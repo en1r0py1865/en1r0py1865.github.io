@@ -1,0 +1,391 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><meta name=viewport content="width=device-width,initial-scale=1"><title>Aliyun ACK巡检功能复现 - en1r0py18655555 Blog</title>
+<meta property="og:url" content="/posts/aliyun-ack-inspection/"><meta property="og:site_name" content="en1r0py18655555 Blog"><meta property="og:title" content="Aliyun ACK巡检功能复现"><meta property="og:description" content='Aliyun ACK巡检功能复现 背景 通过Aliyun ACK提供的巡检检查功能进行检查，下列整理安全相关的检查项复现方式以及安全隐患。 ACK集群信息 集群规格: 基础版 Kubernetes 1.31.1-aliyun.1 容器运行时: containerd 1.6.34 实例规格: ecs.c5.xlarge(4c/8g) 操作系统: Alibaba Cloud Linux 3.2104 LTS 64位 网络插件: Flannel 安全加固: 阿里云OS加固 期望节点数: 3 禁止以特权模式启动容器(runAsPrivileged) 复现yaml apiVersion: apps/v1 kind: Deployment metadata: name: inspector-deployment labels: app: inspector spec: replicas: 1 selector: matchLabels: app: inspector template: metadata: labels: app: inspector spec: containers: - name: alibaba-cloud-linux-3 image: alibaba-cloud-linux-3-registry.cn-hangzhou.cr.aliyuncs.com/alinux3/alinux3:x86-3.220822.1 imagePullPolicy: IfNotPresent command: ["/bin/bash", "-c", "while true; do sleep 30; done;"] securityContext: privileged: true 危害 直接挂载宿主机目录后，对宿主机文件进行读写。 缓解 避免使用root用户运行容器。 利用步骤 # kubectl exec -it inspector-deployment-<pod id> -- bash # yum install -y util-linux # fdisk -l Disk /dev/vda: 30 GiB, 32212254720 bytes, 62914560 sectors Units: sectors of 1 * 512 = 512 bytes Sector size (logical/physical): 512 bytes / 512 bytes I/O size (minimum/optimal): 512 bytes / 512 bytes Disklabel type: gpt Disk identifier: 0F2F0AED-A1BF-46F2-AEC4-E8727122801F Device Start End Sectors Size Type /dev/vda1 2048 6143 4096 2M BIOS boot /dev/vda2 6144 415743 409600 200M EFI System /dev/vda3 415744 62914526 62498783 29.'><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2024-11-09T11:55:55+08:00"><meta property="article:modified_time" content="2024-11-09T11:55:55+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Aliyun ACK巡检功能复现"><meta name=twitter:description content='Aliyun ACK巡检功能复现 背景 通过Aliyun ACK提供的巡检检查功能进行检查，下列整理安全相关的检查项复现方式以及安全隐患。 ACK集群信息 集群规格: 基础版 Kubernetes 1.31.1-aliyun.1 容器运行时: containerd 1.6.34 实例规格: ecs.c5.xlarge(4c/8g) 操作系统: Alibaba Cloud Linux 3.2104 LTS 64位 网络插件: Flannel 安全加固: 阿里云OS加固 期望节点数: 3 禁止以特权模式启动容器(runAsPrivileged) 复现yaml apiVersion: apps/v1 kind: Deployment metadata: name: inspector-deployment labels: app: inspector spec: replicas: 1 selector: matchLabels: app: inspector template: metadata: labels: app: inspector spec: containers: - name: alibaba-cloud-linux-3 image: alibaba-cloud-linux-3-registry.cn-hangzhou.cr.aliyuncs.com/alinux3/alinux3:x86-3.220822.1 imagePullPolicy: IfNotPresent command: ["/bin/bash", "-c", "while true; do sleep 30; done;"] securityContext: privileged: true 危害 直接挂载宿主机目录后，对宿主机文件进行读写。 缓解 避免使用root用户运行容器。 利用步骤 # kubectl exec -it inspector-deployment-<pod id> -- bash # yum install -y util-linux # fdisk -l Disk /dev/vda: 30 GiB, 32212254720 bytes, 62914560 sectors Units: sectors of 1 * 512 = 512 bytes Sector size (logical/physical): 512 bytes / 512 bytes I/O size (minimum/optimal): 512 bytes / 512 bytes Disklabel type: gpt Disk identifier: 0F2F0AED-A1BF-46F2-AEC4-E8727122801F Device Start End Sectors Size Type /dev/vda1 2048 6143 4096 2M BIOS boot /dev/vda2 6144 415743 409600 200M EFI System /dev/vda3 415744 62914526 62498783 29.'><link rel=stylesheet href=/style.min.d21d7ec2a4c5fdd1949f0c9ae34f92464a631f1e3f810acc268d854c8a7153dc798b0871ffbd2939035e2635fb78392227dcd96345321daffcbe0b3bffb9f612.css integrity="sha512-0h1+wqTF/dGUnwya40+SRkpjHx4/gQrMJo2FTIpxU9x5iwhx/70pOQNeJjX7eDkiJ9zZY0UyHa/8vgs7/7n2Eg=="><script>"theme"in localStorage||(localStorage.theme="light"),localStorage.theme==="dark"||!("theme"in localStorage)&&window.matchMedia("(prefers-color-scheme: dark)").matches?document.documentElement.setAttribute("data-theme","dark"):document.documentElement.setAttribute("data-theme","light")</script><script defer src=/js/header.64a5d751579791aca02cca13ec10c056a8bb0de07cc69a70f0ef401bb0f470f2360e07f1f6f4398e0681f9abd2c64b3cb9d167ee471fa2a07bb1943e06e0c02b.js integrity="sha512-ZKXXUVeXkaygLMoT7BDAVqi7DeB8xppw8O9AG7D0cPI2Dgfx9vQ5jgaB+avSxks8udFn7kcfoqB7sZQ+BuDAKw=="></script><script defer src=/js/zooming.684b5d075bf94d0adfa21a7e7eb9acec1ddfb2e7b47d6657981617f0db0cf50949f1172801595afa3051f51b28d67f6a2d0c41be677b59b564307d9dbe4a4fd2.js integrity="sha512-aEtdB1v5TQrfohp+frms7B3fsue0fWZXmBYX8NsM9QlJ8RcoAVla+jBR9Rso1n9qLQxBvmd7WbVkMH2dvkpP0g=="></script><script defer src=/js/builtin-copy.56e07a74dd440b068ab36af35542ed8960865686c19fb809f38436877ac081570612cc8a913650b0c0e3073a336680c5df960e73bf7b1de83dc6aa996f2db858.js integrity="sha512-VuB6dN1ECwaKs2rzVULtiWCGVobBn7gJ84Q2h3rAgVcGEsyKkTZQsMDjBzozZoDF35YOc797Heg9xqqZby24WA=="></script></head><body><header><div id=header_left><div id=sidebar_btn><input type=checkbox id=sidebar_btn_input class=hidden>
+<label id=sidebar_btn_label for=sidebar_btn_input><svg id="menu_icon" width="26" height="26" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+</svg>
+</label><label id=sidebar_canvas_overlay_wrapper for=sidebar_btn_input><div id=sidebar_canvas_overlay></div></label><div id=sidebar><ul></ul></div></div><div class=brand><div><a href=/>en1r0py18655555 Blog</a></div></div></div><div class=toolbox><div id=theme_tool><svg id="dark_mode_btn" class="toolbox-btn" width="18" height="18" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></svg><svg id="light_mode_btn" class="toolbox-btn" width="18" height="18" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></svg></div></div></header><nav id=navbar class=pure-menu><ul class=pure-menu-list></ul></nav><main><div id=content class=content-margin><div class=collapsible-menu-wrapper><div class=collapsible-menu-type><span>Table of contents</span></div><div class=collapsible-menu><nav id=TableOfContents><ul><li><a href=#aliyun-ack巡检功能复现>Aliyun ACK巡检功能复现</a><ul><li><a href=#背景>背景</a></li><li><a href=#ack集群信息>ACK集群信息</a></li><li><a href=#禁止以特权模式启动容器runasprivileged>禁止以特权模式启动容器(runAsPrivileged)</a></li><li><a href=#禁止以-root-用户启动容器runasrootallowed>禁止以 root 用户启动容器(runAsRootAllowed)</a></li><li><a href=#禁止容器内子进程拥有提升权限的能力privilegeescalationallowed>禁止容器内子进程拥有提升权限的能力(privilegeEscalationAllowed)</a></li><li><a href=#禁止容器共享主机的网络命名空间hostnetworkset>禁止容器共享主机的网络命名空间(hostNetworkSet)</a></li><li><a href=#禁止容器共享主机的ipc命名空间hostipcset>禁止容器共享主机的IPC命名空间(hostIPCSet)</a></li><li><a href=#禁止容器共享主机的pid命名空间hostpidset>禁止容器共享主机的PID命名空间(hostPIDSet)</a></li><li><a href=#禁止容器内进程监听节点主机端口hostportset>禁止容器内进程监听节点主机端口(hostPortSet)</a></li></ul></li></ul></nav></div></div><div class=content-margin><article class=line-numbers><h2>Aliyun ACK巡检功能复现</h2><h3>背景</h3><ul><li>通过Aliyun ACK提供的<a href=https://www.alibabacloud.com/help/zh/ack/ack-managed-and-ack-dedicated/security-and-compliance/use-the-inspection-feature-to-detect-security-risks-in-the-workloads-of-an-ack-cluster>巡检检查功能</a>进行检查，下列整理安全相关的检查项复现方式以及安全隐患。</li></ul><h3>ACK集群信息</h3><ul><li>集群规格: 基础版</li><li>Kubernetes 1.31.1-aliyun.1</li><li>容器运行时: containerd 1.6.34</li><li>实例规格: ecs.c5.xlarge(4c/8g)</li><li>操作系统: Alibaba Cloud Linux 3.2104 LTS 64位</li><li>网络插件: Flannel</li><li>安全加固: 阿里云OS加固</li><li>期望节点数: 3</li></ul><h3>禁止以特权模式启动容器(runAsPrivileged)</h3><h4>复现yaml</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>apps/v1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Deployment</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>inspector-deployment</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>labels</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>app</span>: <span style=color:#ae81ff>inspector</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>replicas</span>: <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>selector</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>matchLabels</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>app</span>: <span style=color:#ae81ff>inspector</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>template</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>labels</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>app</span>: <span style=color:#ae81ff>inspector</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>containers</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>alibaba-cloud-linux-3</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>image</span>: <span style=color:#ae81ff>alibaba-cloud-linux-3-registry.cn-hangzhou.cr.aliyuncs.com/alinux3/alinux3:x86-3.220822.1</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>imagePullPolicy</span>: <span style=color:#ae81ff>IfNotPresent</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>command</span>: [<span style=color:#e6db74>&#34;/bin/bash&#34;</span>, <span style=color:#e6db74>&#34;-c&#34;</span>, <span style=color:#e6db74>&#34;while true; do sleep 30; done;&#34;</span>]
+</span></span><span style=display:flex><span>        <span style=color:#f92672>securityContext</span>:
+</span></span><span style=display:flex><span>            <span style=color:#f92672>privileged</span>: <span style=color:#66d9ef>true</span>
+</span></span></code></pre></div><h4>危害</h4><ul><li>直接挂载宿主机目录后，对宿主机文件进行读写。</li></ul><h4>缓解</h4><ul><li>避免使用root用户运行容器。</li></ul><h4>利用步骤</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># kubectl exec -it inspector-deployment-&lt;pod id&gt; -- bash</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># yum install -y util-linux</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># fdisk -l</span>
+</span></span><span style=display:flex><span>Disk /dev/vda: <span style=color:#ae81ff>30</span> GiB, <span style=color:#ae81ff>32212254720</span> bytes, <span style=color:#ae81ff>62914560</span> sectors
+</span></span><span style=display:flex><span>Units: sectors of <span style=color:#ae81ff>1</span> * 512 <span style=color:#f92672>=</span> <span style=color:#ae81ff>512</span> bytes
+</span></span><span style=display:flex><span>Sector size <span style=color:#f92672>(</span>logical/physical<span style=color:#f92672>)</span>: <span style=color:#ae81ff>512</span> bytes / <span style=color:#ae81ff>512</span> bytes
+</span></span><span style=display:flex><span>I/O size <span style=color:#f92672>(</span>minimum/optimal<span style=color:#f92672>)</span>: <span style=color:#ae81ff>512</span> bytes / <span style=color:#ae81ff>512</span> bytes
+</span></span><span style=display:flex><span>Disklabel type: gpt
+</span></span><span style=display:flex><span>Disk identifier: 0F2F0AED-A1BF-46F2-AEC4-E8727122801F
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Device      Start      End  Sectors  Size Type
+</span></span><span style=display:flex><span>/dev/vda1    <span style=color:#ae81ff>2048</span>     <span style=color:#ae81ff>6143</span>     <span style=color:#ae81ff>4096</span>    2M BIOS boot
+</span></span><span style=display:flex><span>/dev/vda2    <span style=color:#ae81ff>6144</span>   <span style=color:#ae81ff>415743</span>   <span style=color:#ae81ff>409600</span>  200M EFI System
+</span></span><span style=display:flex><span>/dev/vda3  <span style=color:#ae81ff>415744</span> <span style=color:#ae81ff>62914526</span> <span style=color:#ae81ff>62498783</span> 29.8G Linux filesystem
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># mkdir /host</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># mount /dev/vda3 /host</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># ls /host</span>
+</span></span><span style=display:flex><span>bin  boot  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+</span></span></code></pre></div><h4 id=修复yaml class=header-anchor-wrapper>修复yaml
+<a href=#%e4%bf%ae%e5%a4%8dyaml class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>apps/v1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Deployment</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>inspector-deployment</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>labels</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>app</span>: <span style=color:#ae81ff>inspector</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>replicas</span>: <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>selector</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>matchLabels</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>app</span>: <span style=color:#ae81ff>inspector</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>template</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>labels</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>app</span>: <span style=color:#ae81ff>inspector</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>containers</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>alibaba-cloud-linux-3</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>image</span>: <span style=color:#ae81ff>alibaba-cloud-linux-3-registry.cn-hangzhou.cr.aliyuncs.com/alinux3/alinux3:x86-3.220822.1</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>imagePullPolicy</span>: <span style=color:#ae81ff>IfNotPresent</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>command</span>: [<span style=color:#e6db74>&#34;/bin/bash&#34;</span>, <span style=color:#e6db74>&#34;-c&#34;</span>, <span style=color:#e6db74>&#34;while true; do sleep 30; done;&#34;</span>]
+</span></span></code></pre></div><h3 id=禁止以-root-用户启动容器runasrootallowed class=header-anchor-wrapper>禁止以 root 用户启动容器(runAsRootAllowed)
+<a href=#%e7%a6%81%e6%ad%a2%e4%bb%a5-root-%e7%94%a8%e6%88%b7%e5%90%af%e5%8a%a8%e5%ae%b9%e5%99%a8runasrootallowed class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h3><h4 id=复现yaml-1 class=header-anchor-wrapper>复现yaml
+<a href=#%e5%a4%8d%e7%8e%b0yaml-1 class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>apps/v1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Deployment</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>inspector-deployment</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>labels</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>app</span>: <span style=color:#ae81ff>inspector</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>replicas</span>: <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>selector</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>matchLabels</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>app</span>: <span style=color:#ae81ff>inspector</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>template</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>labels</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>app</span>: <span style=color:#ae81ff>inspector</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>containers</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>alibaba-cloud-linux-3</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>image</span>: <span style=color:#ae81ff>alibaba-cloud-linux-3-registry.cn-hangzhou.cr.aliyuncs.com/alinux3/alinux3:x86-3.220822.1</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>imagePullPolicy</span>: <span style=color:#ae81ff>IfNotPresent</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>command</span>: [<span style=color:#e6db74>&#34;/bin/bash&#34;</span>, <span style=color:#e6db74>&#34;-c&#34;</span>, <span style=color:#e6db74>&#34;while true; do sleep 30; done;&#34;</span>]
+</span></span></code></pre></div><h4 id=配置项说明 class=header-anchor-wrapper>配置项说明
+<a href=#%e9%85%8d%e7%bd%ae%e9%a1%b9%e8%af%b4%e6%98%8e class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h4><ul><li>强制禁止以root用户启动容器，若yaml没有配置runAsUser参数且镜像默认以 root 用户运行则会报错<code>container has runAsNonRoot and image will run as root</code>。</li></ul><h4 id=危害-1 class=header-anchor-wrapper>危害
+<a href=#%e5%8d%b1%e5%ae%b3-1 class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h4><ul><li>当yaml中没有此项宣告时，且容器使用root权限启动时才有危害，其危害等于是使用root运行容器的危害。</li></ul><h4 id=修复yaml-1 class=header-anchor-wrapper>修复yaml
+<a href=#%e4%bf%ae%e5%a4%8dyaml-1 class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>apps/v1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Deployment</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>inspector-deployment</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>labels</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>app</span>: <span style=color:#ae81ff>inspector</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>replicas</span>: <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>selector</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>matchLabels</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>app</span>: <span style=color:#ae81ff>inspector</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>template</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>labels</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>app</span>: <span style=color:#ae81ff>inspector</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>containers</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>alibaba-cloud-linux-3</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>image</span>: <span style=color:#ae81ff>alibaba-cloud-linux-3-registry.cn-hangzhou.cr.aliyuncs.com/alinux3/alinux3:x86-3.220822.1</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>imagePullPolicy</span>: <span style=color:#ae81ff>IfNotPresent</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>command</span>: [<span style=color:#e6db74>&#34;/bin/bash&#34;</span>, <span style=color:#e6db74>&#34;-c&#34;</span>, <span style=color:#e6db74>&#34;while true; do sleep 30; done;&#34;</span>]
+</span></span><span style=display:flex><span>        <span style=color:#f92672>securityContext</span>:
+</span></span><span style=display:flex><span>          <span style=color:#f92672>runAsNonRoot</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>runAsGroup</span>: <span style=color:#ae81ff>505</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>runAsUser</span>: <span style=color:#ae81ff>505</span>  
+</span></span></code></pre></div><h3 id=禁止容器内子进程拥有提升权限的能力privilegeescalationallowed class=header-anchor-wrapper>禁止容器内子进程拥有提升权限的能力(privilegeEscalationAllowed)
+<a href=#%e7%a6%81%e6%ad%a2%e5%ae%b9%e5%99%a8%e5%86%85%e5%ad%90%e8%bf%9b%e7%a8%8b%e6%8b%a5%e6%9c%89%e6%8f%90%e5%8d%87%e6%9d%83%e9%99%90%e7%9a%84%e8%83%bd%e5%8a%9bprivilegeescalationallowed class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h3><h4 id=复现yaml-2 class=header-anchor-wrapper>复现yaml
+<a href=#%e5%a4%8d%e7%8e%b0yaml-2 class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>apps/v1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Deployment</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>inspector-deployment</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>labels</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>app</span>: <span style=color:#ae81ff>inspector</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>replicas</span>: <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>selector</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>matchLabels</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>app</span>: <span style=color:#ae81ff>inspector</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>template</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>labels</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>app</span>: <span style=color:#ae81ff>inspector</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>containers</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>alibaba-cloud-linux-3</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>image</span>: <span style=color:#ae81ff>alibaba-cloud-linux-3-registry.cn-hangzhou.cr.aliyuncs.com/alinux3/alinux3:x86-3.220822.1</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>imagePullPolicy</span>: <span style=color:#ae81ff>IfNotPresent</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>command</span>: [<span style=color:#e6db74>&#34;/bin/bash&#34;</span>, <span style=color:#e6db74>&#34;-c&#34;</span>, <span style=color:#e6db74>&#34;sudo yum install -y tar &amp;&amp; while true; do sleep 30; done;&#34;</span>]
+</span></span><span style=display:flex><span>        <span style=color:#f92672>securityContext</span>:
+</span></span><span style=display:flex><span>          <span style=color:#f92672>runAsNonRoot</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>runAsGroup</span>: <span style=color:#ae81ff>505</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>runAsUser</span>: <span style=color:#ae81ff>505</span>  
+</span></span></code></pre></div><h4 id=利用步骤-1 class=header-anchor-wrapper>利用步骤
+<a href=#%e5%88%a9%e7%94%a8%e6%ad%a5%e9%aa%a4-1 class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># yum install -y gcc</span>
+</span></span><span style=display:flex><span>cat <span style=color:#e6db74>&lt;&lt;EOF &gt; setuid.c
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>#include &lt;stdio.h&gt;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>#include &lt;stdlib.h&gt;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>#include &lt;unistd.h&gt;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>int main() {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    setuid(0);
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    system(&#34;/bin/bash&#34;);
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    return 0;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>}
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>EOF</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># gcc -o setuid setuid.c</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># chmod u+s setuid</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># kubectl cp setuid inspector-deployment-&lt;pod id&gt;:/tmp/setuid</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># kubectl exec -it inspector-deployment-&lt;pod id&gt; -- bash</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># cd /tmp</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># ./setuid </span>
+</span></span><span style=display:flex><span>sh: /bin/bash: Operation not permitted
+</span></span><span style=display:flex><span>Killed
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 触发阿里云(企业版)告警: 反弹shell(精准防御)</span>
+</span></span><span style=display:flex><span>- 父进程关系
+</span></span><span style=display:flex><span>  - <span style=color:#f92672>[</span>1<span style=color:#f92672>]</span>/usr/lib/systemd/systemd --switched-root --system --deserialize <span style=color:#ae81ff>18</span>
+</span></span><span style=display:flex><span>    - <span style=color:#f92672>[</span>76229<span style=color:#f92672>]</span>/usr/bin/containerd-shim-runc-v2 -namespace k8s.io -id 58a1015c031108da981ab773045901b1a8c48c7cb51a08056731d451ac92e96e -address /run/containerd/containerd.sock
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>[</span>76692<span style=color:#f92672>]</span>bash
+</span></span><span style=display:flex><span>        - <span style=color:#f92672>[</span>76743<span style=color:#f92672>]</span>./setuid
+</span></span></code></pre></div><h4 id=golang代码也会触发阿里云企业版告警-反弹shell精准防御 class=header-anchor-wrapper>golang代码也会触发阿里云(企业版)告警: 反弹shell(精准防御)
+<a href=#golang%e4%bb%a3%e7%a0%81%e4%b9%9f%e4%bc%9a%e8%a7%a6%e5%8f%91%e9%98%bf%e9%87%8c%e4%ba%91%e4%bc%81%e4%b8%9a%e7%89%88%e5%91%8a%e8%ad%a6-%e5%8f%8d%e5%bc%b9shell%e7%b2%be%e5%87%86%e9%98%b2%e5%be%a1 class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-golang data-lang=golang><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> (
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;fmt&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;os&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;os/exec&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;syscall&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// 提升进程权限
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>syscall</span>.<span style=color:#a6e22e>Setuid</span>(<span style=color:#ae81ff>0</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#e6db74>&#34;Failed to set UID:&#34;</span>, <span style=color:#a6e22e>err</span>)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// 启动 Bash shell
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>cmd</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>exec</span>.<span style=color:#a6e22e>Command</span>(<span style=color:#e6db74>&#34;/bin/bash&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>cmd</span>.<span style=color:#a6e22e>Stdin</span> = <span style=color:#a6e22e>os</span>.<span style=color:#a6e22e>Stdin</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>cmd</span>.<span style=color:#a6e22e>Stdout</span> = <span style=color:#a6e22e>os</span>.<span style=color:#a6e22e>Stdout</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>cmd</span>.<span style=color:#a6e22e>Stderr</span> = <span style=color:#a6e22e>os</span>.<span style=color:#a6e22e>Stderr</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>err</span> = <span style=color:#a6e22e>cmd</span>.<span style=color:#a6e22e>Run</span>()
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#e6db74>&#34;Failed to start Bash shell:&#34;</span>, <span style=color:#a6e22e>err</span>)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h4 id=配置项说明-1 class=header-anchor-wrapper>配置项说明
+<a href=#%e9%85%8d%e7%bd%ae%e9%a1%b9%e8%af%b4%e6%98%8e-1 class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h4><ul><li>此参数可以避免容器因为配置错误或漏洞导致的非root用户提权。<ul><li>禁止sudo操作，会得到报错<code>sudo: effective uid is not 0, is /usr/bin/sudo on a file system with the 'nosuid' option set or an NFS file system without root privileges?</code></li><li>避免setuid 和 setgid等文件导致的提权。<ul><li>当执行带有setuid/setgid命令的程序时，程序可以要求操作系统给予进程所有者(或组)的权限。</li></ul></li></ul></li></ul><h4 id=危害-2 class=header-anchor-wrapper>危害
+<a href=#%e5%8d%b1%e5%ae%b3-2 class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h4><ul><li>非root用户提权；换言之，若容器内有错误配置或漏洞导致攻击者从普通用户提权到root时， 才可能造成危害。</li><li>ATT&amp;CK T1548-001-linux-Setuid and Setgid。</li></ul><h4 id=修复yaml-2 class=header-anchor-wrapper>修复yaml
+<a href=#%e4%bf%ae%e5%a4%8dyaml-2 class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>apps/v1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Deployment</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>inspector-deployment</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>labels</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>app</span>: <span style=color:#ae81ff>inspector</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>replicas</span>: <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>selector</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>matchLabels</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>app</span>: <span style=color:#ae81ff>inspector</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>template</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>labels</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>app</span>: <span style=color:#ae81ff>inspector</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>containers</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>alibaba-cloud-linux-3</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>image</span>: <span style=color:#ae81ff>alibaba-cloud-linux-3-registry.cn-hangzhou.cr.aliyuncs.com/alinux3/alinux3:x86-3.220822.1</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>imagePullPolicy</span>: <span style=color:#ae81ff>IfNotPresent</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>command</span>: [<span style=color:#e6db74>&#34;/bin/bash&#34;</span>, <span style=color:#e6db74>&#34;-c&#34;</span>, <span style=color:#e6db74>&#34;while true; do sleep 30; done;&#34;</span>]
+</span></span><span style=display:flex><span>        <span style=color:#f92672>securityContext</span>:
+</span></span><span style=display:flex><span>          <span style=color:#f92672>runAsNonRoot</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>runAsGroup</span>: <span style=color:#ae81ff>505</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>runAsUser</span>: <span style=color:#ae81ff>505</span>  
+</span></span><span style=display:flex><span>          <span style=color:#f92672>allowPrivilegeEscalation</span>: <span style=color:#66d9ef>false</span>
+</span></span></code></pre></div><h3 id=禁止容器共享主机的网络命名空间hostnetworkset class=header-anchor-wrapper>禁止容器共享主机的网络命名空间(hostNetworkSet)
+<a href=#%e7%a6%81%e6%ad%a2%e5%ae%b9%e5%99%a8%e5%85%b1%e4%ba%ab%e4%b8%bb%e6%9c%ba%e7%9a%84%e7%bd%91%e7%bb%9c%e5%91%bd%e5%90%8d%e7%a9%ba%e9%97%b4hostnetworkset class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h3><h4 id=复现yaml-3 class=header-anchor-wrapper>复现yaml
+<a href=#%e5%a4%8d%e7%8e%b0yaml-3 class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>apps/v1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Deployment</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>inspector-deployment</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>labels</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>app</span>: <span style=color:#ae81ff>inspector</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>replicas</span>: <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>selector</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>matchLabels</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>app</span>: <span style=color:#ae81ff>inspector</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>template</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>labels</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>app</span>: <span style=color:#ae81ff>inspector</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>hostNetwork</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>containers</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>alibaba-cloud-linux-3</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>image</span>: <span style=color:#ae81ff>alibaba-cloud-linux-3-registry.cn-hangzhou.cr.aliyuncs.com/alinux3/alinux3:x86-3.220822.1</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>imagePullPolicy</span>: <span style=color:#ae81ff>IfNotPresent</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>command</span>: [<span style=color:#e6db74>&#34;/bin/bash&#34;</span>, <span style=color:#e6db74>&#34;-c&#34;</span>, <span style=color:#e6db74>&#34;while true; do sleep 30; done;&#34;</span>]          
+</span></span></code></pre></div><h4 id=配置说明 class=header-anchor-wrapper>配置说明
+<a href=#%e9%85%8d%e7%bd%ae%e8%af%b4%e6%98%8e class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h4><ul><li>使 Pod 使用宿主机的网络命名空间。这意味着 Pod 内的容器将共享宿主机的网络接口和 IP 地址。</li></ul><h4 id=危害-3 class=header-anchor-wrapper>危害
+<a href=#%e5%8d%b1%e5%ae%b3-3 class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h4><ul><li>与宿主机使用相同网络命名空间，可以使用netstat、ifconfig列出网络信息(与宿主机返回结果相同)，并且监听端口与宿主机互斥。</li><li>可以使用工具(tcpdump)监听宿主机流量。</li></ul><h4 id=利用步骤-2 class=header-anchor-wrapper>利用步骤
+<a href=#%e5%88%a9%e7%94%a8%e6%ad%a5%e9%aa%a4-2 class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># yum install -y net-tools</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># yum install -y nc</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># nc -l 4444</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># kubectl exec -it inspector-deployment-&lt;pod id&gt; -- bash</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># yum install -y tcpdump</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># tcpdump -i any tcp port 4444 -X</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 在另一台机器上操作，并随机输入数据</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># nc &lt;ip&gt; 4444</span>
+</span></span></code></pre></div><h3 id=禁止容器共享主机的ipc命名空间hostipcset class=header-anchor-wrapper>禁止容器共享主机的IPC命名空间(hostIPCSet)
+<a href=#%e7%a6%81%e6%ad%a2%e5%ae%b9%e5%99%a8%e5%85%b1%e4%ba%ab%e4%b8%bb%e6%9c%ba%e7%9a%84ipc%e5%91%bd%e5%90%8d%e7%a9%ba%e9%97%b4hostipcset class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>apps/v1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Deployment</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>inspector-deployment</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>labels</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>app</span>: <span style=color:#ae81ff>inspector</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>replicas</span>: <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>selector</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>matchLabels</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>app</span>: <span style=color:#ae81ff>inspector</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>template</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>labels</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>app</span>: <span style=color:#ae81ff>inspector</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>hostIPC</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>containers</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>alibaba-cloud-linux-3</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>image</span>: <span style=color:#ae81ff>alibaba-cloud-linux-3-registry.cn-hangzhou.cr.aliyuncs.com/alinux3/alinux3:x86-3.220822.1</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>imagePullPolicy</span>: <span style=color:#ae81ff>IfNotPresent</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>command</span>: [<span style=color:#e6db74>&#34;/bin/bash&#34;</span>, <span style=color:#e6db74>&#34;-c&#34;</span>, <span style=color:#e6db74>&#34;while true; do sleep 30; done;&#34;</span>]       
+</span></span></code></pre></div><h4 id=配置说明-1 class=header-anchor-wrapper>配置说明
+<a href=#%e9%85%8d%e7%bd%ae%e8%af%b4%e6%98%8e-1 class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h4><ul><li>IPC(POSIX/SysV IPC)命名空间提供了命名共享内存段、信号量和消息队列的隔离；此参数将宿主机的 IPC 命名空间与容器共享。</li></ul><h4 id=危害-4 class=header-anchor-wrapper>危害
+<a href=#%e5%8d%b1%e5%ae%b3-4 class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h4><ul><li>允许容器内的进程查看主机系统上的所有 IPC 通信，可能造成敏感数据泄露或非预期的进程行为。</li></ul><h4 id=利用步骤-3 class=header-anchor-wrapper>利用步骤
+<a href=#%e5%88%a9%e7%94%a8%e6%ad%a5%e9%aa%a4-3 class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h4><p>使用ipcs命令查看宿主机的IPC命名空间</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># kubectl exec -it inspector-deployment-&lt;pod id&gt; -- bash</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># yum install -y util-linux</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># ipcs -m</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># ipcs -q</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># ipcs -s</span>
+</span></span></code></pre></div><p>使用python进行利用</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 解决 ModuleNotFoundError: No module named &#39;sysv_ipc&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># sudo yum install -y wget tar gcc python3-devel util-linux</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># pip3 install --upgrade pip setuptools</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># pip3 install sysv_ipc</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 使用源代码安装sysv_ipc</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># wget https://files.pythonhosted.org/packages/source/s/sysv_ipc/sysv_ipc-1.0.1.tar.gz</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># tar xzf sysv_ipc-1.0.1.tar.gz</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># cd sysv_ipc-1.0.1</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># python3 setup.py install</span>
+</span></span></code></pre></div><p>宿主机代码</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> sysv_ipc
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 创建共享内存段</span>
+</span></span><span style=display:flex><span>key <span style=color:#f92672>=</span> <span style=color:#ae81ff>12345</span>
+</span></span><span style=display:flex><span>memory <span style=color:#f92672>=</span> sysv_ipc<span style=color:#f92672>.</span>SharedMemory(key, sysv_ipc<span style=color:#f92672>.</span>IPC_CREAT, size<span style=color:#f92672>=</span><span style=color:#ae81ff>1024</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 写入数据</span>
+</span></span><span style=display:flex><span>message <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Hello from the host!&#34;</span>
+</span></span><span style=display:flex><span>memory<span style=color:#f92672>.</span>write(message<span style=color:#f92672>.</span>encode())
+</span></span></code></pre></div><p>容器代码</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> sysv_ipc
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 连接到共享内存段</span>
+</span></span><span style=display:flex><span>key <span style=color:#f92672>=</span> <span style=color:#ae81ff>12345</span>
+</span></span><span style=display:flex><span>memory <span style=color:#f92672>=</span> sysv_ipc<span style=color:#f92672>.</span>SharedMemory(key)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 读取数据</span>
+</span></span><span style=display:flex><span>data <span style=color:#f92672>=</span> memory<span style=color:#f92672>.</span>read()
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>&#34;从共享内存段读取的数据:&#34;</span>, data<span style=color:#f92672>.</span>decode()<span style=color:#f92672>.</span>strip())
+</span></span></code></pre></div><h3 id=禁止容器共享主机的pid命名空间hostpidset class=header-anchor-wrapper>禁止容器共享主机的PID命名空间(hostPIDSet)
+<a href=#%e7%a6%81%e6%ad%a2%e5%ae%b9%e5%99%a8%e5%85%b1%e4%ba%ab%e4%b8%bb%e6%9c%ba%e7%9a%84pid%e5%91%bd%e5%90%8d%e7%a9%ba%e9%97%b4hostpidset class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h3><h4 id=复现yaml-4 class=header-anchor-wrapper>复现yaml
+<a href=#%e5%a4%8d%e7%8e%b0yaml-4 class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>apps/v1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Deployment</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>inspector-deployment</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>labels</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>app</span>: <span style=color:#ae81ff>inspector</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>replicas</span>: <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>selector</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>matchLabels</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>app</span>: <span style=color:#ae81ff>inspector</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>template</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>labels</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>app</span>: <span style=color:#ae81ff>inspector</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>hostPID</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>containers</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>alibaba-cloud-linux-3</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>image</span>: <span style=color:#ae81ff>alibaba-cloud-linux-3-registry.cn-hangzhou.cr.aliyuncs.com/alinux3/alinux3:x86-3.220822.1</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>imagePullPolicy</span>: <span style=color:#ae81ff>IfNotPresent</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>command</span>: [<span style=color:#e6db74>&#34;/bin/bash&#34;</span>, <span style=color:#e6db74>&#34;-c&#34;</span>, <span style=color:#e6db74>&#34;while true; do sleep 30; done;&#34;</span>]                      
+</span></span></code></pre></div><h4 id=配置说明-2 class=header-anchor-wrapper>配置说明
+<a href=#%e9%85%8d%e7%bd%ae%e8%af%b4%e6%98%8e-2 class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h4><ul><li>宿主机的 PID 命名空间与容器共享，这将允许容器内的进程查看宿主机系统上的所有进程。</li></ul><h4 id=危害-5 class=header-anchor-wrapper>危害
+<a href=#%e5%8d%b1%e5%ae%b3-5 class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h4><ul><li>容器内的进程或用户可以访问宿主机上的进程，读取其信息或结束进程。</li></ul><h4 id=缓解-1 class=header-anchor-wrapper>缓解
+<a href=#%e7%bc%93%e8%a7%a3-1 class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h4><ul><li>非root容器用户可以适当缓解。</li></ul><h4 id=利用步骤-4 class=header-anchor-wrapper>利用步骤
+<a href=#%e5%88%a9%e7%94%a8%e6%ad%a5%e9%aa%a4-4 class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># kubectl exec -it inspector-deployment-&lt;pod id&gt; -- bash</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># yum install -y procps</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># ps aux</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># kill -9 &lt;目标pid&gt;</span>
+</span></span></code></pre></div><h3 id=禁止容器内进程监听节点主机端口hostportset class=header-anchor-wrapper>禁止容器内进程监听节点主机端口(hostPortSet)
+<a href=#%e7%a6%81%e6%ad%a2%e5%ae%b9%e5%99%a8%e5%86%85%e8%bf%9b%e7%a8%8b%e7%9b%91%e5%90%ac%e8%8a%82%e7%82%b9%e4%b8%bb%e6%9c%ba%e7%ab%af%e5%8f%a3hostportset class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h3><h4 id=复现yaml-5 class=header-anchor-wrapper>复现yaml
+<a href=#%e5%a4%8d%e7%8e%b0yaml-5 class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>apps/v1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Deployment</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>inspector-deployment</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>labels</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>app</span>: <span style=color:#ae81ff>inspector</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>replicas</span>: <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>selector</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>matchLabels</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>app</span>: <span style=color:#ae81ff>inspector</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>template</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>labels</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>app</span>: <span style=color:#ae81ff>inspector</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>containers</span>:
+</span></span><span style=display:flex><span>        - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>nginx</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>image</span>: <span style=color:#ae81ff>anolis-registry.cn-zhangjiakou.cr.aliyuncs.com/openanolis/nginx:1.14.1-8.6</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>ports</span>:
+</span></span><span style=display:flex><span>            - <span style=color:#f92672>containerPort</span>: <span style=color:#ae81ff>80</span>
+</span></span><span style=display:flex><span>              <span style=color:#f92672>hostPort</span>: <span style=color:#ae81ff>8081</span>
+</span></span></code></pre></div><h4 id=配置说明-3 class=header-anchor-wrapper>配置说明
+<a href=#%e9%85%8d%e7%bd%ae%e8%af%b4%e6%98%8e-3 class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h4><ul><li>在支持hostPort的CNI插件(例如Flannel)上部署，则可以直接使用宿主机ip:port进行访问。</li><li>宿主机使用netstat命令返回中不会出现contianer通过hostPort监听端口的信息。</li></ul><h4 id=危害-6 class=header-anchor-wrapper>危害
+<a href=#%e5%8d%b1%e5%ae%b3-6 class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h4><ul><li>可能造成容器内进程挤占宿主机可用端口，造成端口冲突进而导致 Pod 无法被调度的风险。</li></ul><h4 id=利用步骤-5 class=header-anchor-wrapper>利用步骤
+<a href=#%e5%88%a9%e7%94%a8%e6%ad%a5%e9%aa%a4-5 class=header-anchor-link><svg width="16" height="16" viewBox="0 0 24 24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></svg></a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># wget &lt;pod分配到的宿主机ip&gt;:8081</span>
+</span></span></code></pre></div></article></div></div></main></body></html>
