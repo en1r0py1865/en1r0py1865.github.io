@@ -1,13 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Terminal</title><link>/</link><description>Recent content on Terminal</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 09 Nov 2024 11:55:55 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>Aliyun ACK巡检功能复现</title><link>/posts/aliyun-ack-inspection/</link><pubDate>Sat, 09 Nov 2024 11:55:55 +0800</pubDate><guid>/posts/aliyun-ack-inspection/</guid><description>&lt;h2 id="aliyun-ack巡检功能复现">Aliyun ACK巡检功能复现&lt;/h2>
-&lt;h3 id="背景">背景&lt;/h3>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Terminal</title><link>/</link><description>Recent content on Terminal</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 09 Nov 2024 11:55:55 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>Aliyun ACK巡检功能复现</title><link>/posts/aliyun-ack-inspection/</link><pubDate>Sat, 09 Nov 2024 11:55:55 +0800</pubDate><guid>/posts/aliyun-ack-inspection/</guid><description>&lt;h2 id="背景">背景&lt;/h2>
 &lt;ul>
 &lt;li>通过Aliyun ACK提供的&lt;a href="https://www.alibabacloud.com/help/zh/ack/ack-managed-and-ack-dedicated/security-and-compliance/use-the-inspection-feature-to-detect-security-risks-in-the-workloads-of-an-ack-cluster">巡检检查功能&lt;/a>进行检查，下列整理安全相关的检查项复现方式以及安全隐患。&lt;/li>
-&lt;/ul></description><content>&lt;h2 id="aliyun-ack巡检功能复现">Aliyun ACK巡检功能复现&lt;/h2>
-&lt;h3 id="背景">背景&lt;/h3>
+&lt;/ul></description><content>&lt;h2 id="背景">背景&lt;/h2>
 &lt;ul>
 &lt;li>通过Aliyun ACK提供的&lt;a href="https://www.alibabacloud.com/help/zh/ack/ack-managed-and-ack-dedicated/security-and-compliance/use-the-inspection-feature-to-detect-security-risks-in-the-workloads-of-an-ack-cluster">巡检检查功能&lt;/a>进行检查，下列整理安全相关的检查项复现方式以及安全隐患。&lt;/li>
 &lt;/ul>
-&lt;h3 id="ack集群信息">ACK集群信息&lt;/h3>
+&lt;h2 id="ack集群信息">ACK集群信息&lt;/h2>
 &lt;ul>
 &lt;li>集群规格: 基础版&lt;/li>
 &lt;li>Kubernetes 1.31.1-aliyun.1&lt;/li>
@@ -18,8 +16,8 @@
 &lt;li>安全加固: 阿里云OS加固&lt;/li>
 &lt;li>期望节点数: 3&lt;/li>
 &lt;/ul>
-&lt;h3 id="禁止以特权模式启动容器runasprivileged">禁止以特权模式启动容器(runAsPrivileged)&lt;/h3>
-&lt;h4 id="复现yaml">复现yaml&lt;/h4>
+&lt;h2 id="禁止以特权模式启动容器runasprivileged">禁止以特权模式启动容器(runAsPrivileged)&lt;/h2>
+&lt;h3 id="复现yaml">复现yaml&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">apps/v1&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">Deployment&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">metadata&lt;/span>:
@@ -43,15 +41,15 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">command&lt;/span>: [&lt;span style="color:#e6db74">&amp;#34;/bin/bash&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;-c&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;while true; do sleep 30; done;&amp;#34;&lt;/span>]
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">securityContext&lt;/span>:
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">privileged&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="危害">危害&lt;/h4>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="危害">危害&lt;/h3>
 &lt;ul>
 &lt;li>直接挂载宿主机目录后，对宿主机文件进行读写。&lt;/li>
 &lt;/ul>
-&lt;h4 id="缓解">缓解&lt;/h4>
+&lt;h3 id="缓解">缓解&lt;/h3>
 &lt;ul>
 &lt;li>避免使用root用户运行容器。&lt;/li>
 &lt;/ul>
-&lt;h4 id="利用步骤">利用步骤&lt;/h4>
+&lt;h3 id="利用步骤">利用步骤&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># kubectl exec -it inspector-deployment-&amp;lt;pod id&amp;gt; -- bash&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># yum install -y util-linux&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># fdisk -l&lt;/span>
@@ -71,7 +69,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># mount /dev/vda3 /host&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># ls /host&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>bin boot dev etc home lib lib64 lost+found media mnt opt proc root run sbin srv sys tmp usr var
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="修复yaml">修复yaml&lt;/h4>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="修复yaml">修复yaml&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">apps/v1&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">Deployment&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">metadata&lt;/span>:
@@ -93,8 +91,8 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">image&lt;/span>: &lt;span style="color:#ae81ff">alibaba-cloud-linux-3-registry.cn-hangzhou.cr.aliyuncs.com/alinux3/alinux3:x86-3.220822.1&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">imagePullPolicy&lt;/span>: &lt;span style="color:#ae81ff">IfNotPresent&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">command&lt;/span>: [&lt;span style="color:#e6db74">&amp;#34;/bin/bash&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;-c&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;while true; do sleep 30; done;&amp;#34;&lt;/span>]
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="禁止以-root-用户启动容器runasrootallowed">禁止以 root 用户启动容器(runAsRootAllowed)&lt;/h3>
-&lt;h4 id="复现yaml-1">复现yaml&lt;/h4>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="禁止以-root-用户启动容器runasrootallowed">禁止以 root 用户启动容器(runAsRootAllowed)&lt;/h2>
+&lt;h3 id="复现yaml-1">复现yaml&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">apps/v1&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">Deployment&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">metadata&lt;/span>:
@@ -116,15 +114,15 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">image&lt;/span>: &lt;span style="color:#ae81ff">alibaba-cloud-linux-3-registry.cn-hangzhou.cr.aliyuncs.com/alinux3/alinux3:x86-3.220822.1&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">imagePullPolicy&lt;/span>: &lt;span style="color:#ae81ff">IfNotPresent&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">command&lt;/span>: [&lt;span style="color:#e6db74">&amp;#34;/bin/bash&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;-c&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;while true; do sleep 30; done;&amp;#34;&lt;/span>]
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="配置项说明">配置项说明&lt;/h4>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="配置项说明">配置项说明&lt;/h3>
 &lt;ul>
 &lt;li>强制禁止以root用户启动容器，若yaml没有配置runAsUser参数且镜像默认以 root 用户运行则会报错&lt;code>container has runAsNonRoot and image will run as root&lt;/code>。&lt;/li>
 &lt;/ul>
-&lt;h4 id="危害-1">危害&lt;/h4>
+&lt;h3 id="危害-1">危害&lt;/h3>
 &lt;ul>
 &lt;li>当yaml中没有此项宣告时，且容器使用root权限启动时才有危害，其危害等于是使用root运行容器的危害。&lt;/li>
 &lt;/ul>
-&lt;h4 id="修复yaml-1">修复yaml&lt;/h4>
+&lt;h3 id="修复yaml-1">修复yaml&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">apps/v1&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">Deployment&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">metadata&lt;/span>:
@@ -150,8 +148,8 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">runAsNonRoot&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">runAsGroup&lt;/span>: &lt;span style="color:#ae81ff">505&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">runAsUser&lt;/span>: &lt;span style="color:#ae81ff">505&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="禁止容器内子进程拥有提升权限的能力privilegeescalationallowed">禁止容器内子进程拥有提升权限的能力(privilegeEscalationAllowed)&lt;/h3>
-&lt;h4 id="复现yaml-2">复现yaml&lt;/h4>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="禁止容器内子进程拥有提升权限的能力privilegeescalationallowed">禁止容器内子进程拥有提升权限的能力(privilegeEscalationAllowed)&lt;/h2>
+&lt;h3 id="复现yaml-2">复现yaml&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">apps/v1&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">Deployment&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">metadata&lt;/span>:
@@ -177,7 +175,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">runAsNonRoot&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">runAsGroup&lt;/span>: &lt;span style="color:#ae81ff">505&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">runAsUser&lt;/span>: &lt;span style="color:#ae81ff">505&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="利用步骤-1">利用步骤&lt;/h4>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="利用步骤-1">利用步骤&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># yum install -y gcc&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cat &lt;span style="color:#e6db74">&amp;lt;&amp;lt;EOF &amp;gt; setuid.c
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74">#include &amp;lt;stdio.h&amp;gt;
@@ -207,7 +205,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#f92672">[&lt;/span>76229&lt;span style="color:#f92672">]&lt;/span>/usr/bin/containerd-shim-runc-v2 -namespace k8s.io -id 58a1015c031108da981ab773045901b1a8c48c7cb51a08056731d451ac92e96e -address /run/containerd/containerd.sock
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#f92672">[&lt;/span>76692&lt;span style="color:#f92672">]&lt;/span>bash
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#f92672">[&lt;/span>76743&lt;span style="color:#f92672">]&lt;/span>./setuid
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="golang代码也会触发阿里云企业版告警-反弹shell精准防御">golang代码也会触发阿里云(企业版)告警: 反弹shell(精准防御)&lt;/h4>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="golang代码也会触发阿里云企业版告警-反弹shell精准防御">golang代码也会触发阿里云(企业版)告警: 反弹shell(精准防御)&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-golang" data-lang="golang">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">package&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> (
@@ -236,7 +234,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Println&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;Failed to start Bash shell:&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span>)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="配置项说明-1">配置项说明&lt;/h4>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="配置项说明-1">配置项说明&lt;/h3>
 &lt;ul>
 &lt;li>此参数可以避免容器因为配置错误或漏洞导致的非root用户提权。
 &lt;ul>
@@ -249,12 +247,12 @@
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h4 id="危害-2">危害&lt;/h4>
+&lt;h3 id="危害-2">危害&lt;/h3>
 &lt;ul>
 &lt;li>非root用户提权；换言之，若容器内有错误配置或漏洞导致攻击者从普通用户提权到root时， 才可能造成危害。&lt;/li>
 &lt;li>ATT&amp;amp;CK T1548-001-linux-Setuid and Setgid。&lt;/li>
 &lt;/ul>
-&lt;h4 id="修复yaml-2">修复yaml&lt;/h4>
+&lt;h3 id="修复yaml-2">修复yaml&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">apps/v1&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">Deployment&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">metadata&lt;/span>:
@@ -281,8 +279,8 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">runAsGroup&lt;/span>: &lt;span style="color:#ae81ff">505&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">runAsUser&lt;/span>: &lt;span style="color:#ae81ff">505&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">allowPrivilegeEscalation&lt;/span>: &lt;span style="color:#66d9ef">false&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="禁止容器共享主机的网络命名空间hostnetworkset">禁止容器共享主机的网络命名空间(hostNetworkSet)&lt;/h3>
-&lt;h4 id="复现yaml-3">复现yaml&lt;/h4>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="禁止容器共享主机的网络命名空间hostnetworkset">禁止容器共享主机的网络命名空间(hostNetworkSet)&lt;/h2>
+&lt;h3 id="复现yaml-3">复现yaml&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">apps/v1&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">Deployment&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">metadata&lt;/span>:
@@ -305,16 +303,16 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">image&lt;/span>: &lt;span style="color:#ae81ff">alibaba-cloud-linux-3-registry.cn-hangzhou.cr.aliyuncs.com/alinux3/alinux3:x86-3.220822.1&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">imagePullPolicy&lt;/span>: &lt;span style="color:#ae81ff">IfNotPresent&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">command&lt;/span>: [&lt;span style="color:#e6db74">&amp;#34;/bin/bash&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;-c&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;while true; do sleep 30; done;&amp;#34;&lt;/span>]
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="配置说明">配置说明&lt;/h4>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="配置说明">配置说明&lt;/h3>
 &lt;ul>
 &lt;li>使 Pod 使用宿主机的网络命名空间。这意味着 Pod 内的容器将共享宿主机的网络接口和 IP 地址。&lt;/li>
 &lt;/ul>
-&lt;h4 id="危害-3">危害&lt;/h4>
+&lt;h3 id="危害-3">危害&lt;/h3>
 &lt;ul>
 &lt;li>与宿主机使用相同网络命名空间，可以使用netstat、ifconfig列出网络信息(与宿主机返回结果相同)，并且监听端口与宿主机互斥。&lt;/li>
 &lt;li>可以使用工具(tcpdump)监听宿主机流量。&lt;/li>
 &lt;/ul>
-&lt;h4 id="利用步骤-2">利用步骤&lt;/h4>
+&lt;h3 id="利用步骤-2">利用步骤&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># yum install -y net-tools&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># yum install -y nc&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># nc -l 4444&lt;/span>
@@ -325,7 +323,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 在另一台机器上操作，并随机输入数据&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># nc &amp;lt;ip&amp;gt; 4444&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="禁止容器共享主机的ipc命名空间hostipcset">禁止容器共享主机的IPC命名空间(hostIPCSet)&lt;/h3>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="禁止容器共享主机的ipc命名空间hostipcset">禁止容器共享主机的IPC命名空间(hostIPCSet)&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">apps/v1&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">Deployment&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">metadata&lt;/span>:
@@ -348,15 +346,15 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">image&lt;/span>: &lt;span style="color:#ae81ff">alibaba-cloud-linux-3-registry.cn-hangzhou.cr.aliyuncs.com/alinux3/alinux3:x86-3.220822.1&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">imagePullPolicy&lt;/span>: &lt;span style="color:#ae81ff">IfNotPresent&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">command&lt;/span>: [&lt;span style="color:#e6db74">&amp;#34;/bin/bash&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;-c&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;while true; do sleep 30; done;&amp;#34;&lt;/span>]
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="配置说明-1">配置说明&lt;/h4>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="配置说明-1">配置说明&lt;/h3>
 &lt;ul>
 &lt;li>IPC(POSIX/SysV IPC)命名空间提供了命名共享内存段、信号量和消息队列的隔离；此参数将宿主机的 IPC 命名空间与容器共享。&lt;/li>
 &lt;/ul>
-&lt;h4 id="危害-4">危害&lt;/h4>
+&lt;h3 id="危害-4">危害&lt;/h3>
 &lt;ul>
 &lt;li>允许容器内的进程查看主机系统上的所有 IPC 通信，可能造成敏感数据泄露或非预期的进程行为。&lt;/li>
 &lt;/ul>
-&lt;h4 id="利用步骤-3">利用步骤&lt;/h4>
+&lt;h3 id="利用步骤-3">利用步骤&lt;/h3>
 &lt;p>使用ipcs命令查看宿主机的IPC命名空间&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># kubectl exec -it inspector-deployment-&amp;lt;pod id&amp;gt; -- bash&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># yum install -y util-linux&lt;/span>
@@ -394,8 +392,8 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 读取数据&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>data &lt;span style="color:#f92672">=&lt;/span> memory&lt;span style="color:#f92672">.&lt;/span>read()
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>print(&lt;span style="color:#e6db74">&amp;#34;从共享内存段读取的数据:&amp;#34;&lt;/span>, data&lt;span style="color:#f92672">.&lt;/span>decode()&lt;span style="color:#f92672">.&lt;/span>strip())
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="禁止容器共享主机的pid命名空间hostpidset">禁止容器共享主机的PID命名空间(hostPIDSet)&lt;/h3>
-&lt;h4 id="复现yaml-4">复现yaml&lt;/h4>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="禁止容器共享主机的pid命名空间hostpidset">禁止容器共享主机的PID命名空间(hostPIDSet)&lt;/h2>
+&lt;h3 id="复现yaml-4">复现yaml&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">apps/v1&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">Deployment&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">metadata&lt;/span>:
@@ -418,25 +416,25 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">image&lt;/span>: &lt;span style="color:#ae81ff">alibaba-cloud-linux-3-registry.cn-hangzhou.cr.aliyuncs.com/alinux3/alinux3:x86-3.220822.1&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">imagePullPolicy&lt;/span>: &lt;span style="color:#ae81ff">IfNotPresent&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">command&lt;/span>: [&lt;span style="color:#e6db74">&amp;#34;/bin/bash&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;-c&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;while true; do sleep 30; done;&amp;#34;&lt;/span>]
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="配置说明-2">配置说明&lt;/h4>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="配置说明-2">配置说明&lt;/h3>
 &lt;ul>
 &lt;li>宿主机的 PID 命名空间与容器共享，这将允许容器内的进程查看宿主机系统上的所有进程。&lt;/li>
 &lt;/ul>
-&lt;h4 id="危害-5">危害&lt;/h4>
+&lt;h3 id="危害-5">危害&lt;/h3>
 &lt;ul>
 &lt;li>容器内的进程或用户可以访问宿主机上的进程，读取其信息或结束进程。&lt;/li>
 &lt;/ul>
-&lt;h4 id="缓解-1">缓解&lt;/h4>
+&lt;h3 id="缓解-1">缓解&lt;/h3>
 &lt;ul>
 &lt;li>非root容器用户可以适当缓解。&lt;/li>
 &lt;/ul>
-&lt;h4 id="利用步骤-4">利用步骤&lt;/h4>
+&lt;h3 id="利用步骤-4">利用步骤&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># kubectl exec -it inspector-deployment-&amp;lt;pod id&amp;gt; -- bash&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># yum install -y procps&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># ps aux&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># kill -9 &amp;lt;目标pid&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="禁止容器内进程监听节点主机端口hostportset">禁止容器内进程监听节点主机端口(hostPortSet)&lt;/h3>
-&lt;h4 id="复现yaml-5">复现yaml&lt;/h4>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="禁止容器内进程监听节点主机端口hostportset">禁止容器内进程监听节点主机端口(hostPortSet)&lt;/h2>
+&lt;h3 id="复现yaml-5">复现yaml&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">apps/v1&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">Deployment&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">metadata&lt;/span>:
@@ -459,19 +457,20 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">ports&lt;/span>:
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#f92672">containerPort&lt;/span>: &lt;span style="color:#ae81ff">80&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">hostPort&lt;/span>: &lt;span style="color:#ae81ff">8081&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="配置说明-3">配置说明&lt;/h4>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="配置说明-3">配置说明&lt;/h3>
 &lt;ul>
 &lt;li>在支持hostPort的CNI插件(例如Flannel)上部署，则可以直接使用宿主机ip:port进行访问。&lt;/li>
 &lt;li>宿主机使用netstat命令返回中不会出现contianer通过hostPort监听端口的信息。&lt;/li>
 &lt;/ul>
-&lt;h4 id="危害-6">危害&lt;/h4>
+&lt;h3 id="危害-6">危害&lt;/h3>
 &lt;ul>
 &lt;li>可能造成容器内进程挤占宿主机可用端口，造成端口冲突进而导致 Pod 无法被调度的风险。&lt;/li>
 &lt;/ul>
-&lt;h4 id="利用步骤-5">利用步骤&lt;/h4>
+&lt;h3 id="利用步骤-5">利用步骤&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># wget &amp;lt;pod分配到的宿主机ip&amp;gt;:8081&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>阿里云日志梳理与使用</title><link>/posts/aliyun-security-logs/</link><pubDate>Sat, 12 Oct 2024 00:04:20 +0800</pubDate><guid>/posts/aliyun-security-logs/</guid><description>云日志是任何云检测和响应程序的关键组成部分。日志一直是安全运营中心的重要信息来源，但在云环境中，由于共享责任模型通常限制了组织对托管服务的访问，并且基础设施通过集中式 API 管理，日志往往是获取云环境实时可见性的唯一途径。 在阿里云环境中，管理云日志对于云安全至关重要，但理解日志以及日志之间的关系可能非常复杂。阿里云提供了多种日志服务和工具，每种日志都有独特的名称、格式和配置选项，了解需要收集哪些日志以及理解每种日志的相关用例，通常是安全团队面临的真正挑战。 此外，云上资产的可见性也是一个关键因素。通过全面的日志管理，可以实时监控和分析云上资产的状态和活动，确保及时发现和响应潜在的安全威胁。
-认证、变更审计日志 日志梳理 ActionTrail 配置审计 日志监测指南 异常登录、配置行为 密码暴力破解 跨多个服务的枚举活动 异常的用户、角色、资源创建 数据存取、事件日志 日志梳理 ActionTrail Insights事件 AccessKey审计 数据管理DMS: 操作审计 RDS日志采集 日志监测指南 大量异常的数据检索、复制或删除请求 基于地理位置的异常行为 匿名用户的异常访问 数据破坏行为 网络日志 日志梳理 VPC流日志 WAF日志 云安全中心: 网络日志、安全日志类型 ALB访问日志 日志监测指南 密码暴力破解 IP、端口扫描 基于威胁情报的恶意行为发现 内部计算资源的发现 计算日志 日志梳理 云安全中心: 主机日志、安全日志类型 ECS 实例安全事件 ACK API Server审计 容器内部操作审计 巡检检查 日志监测指南 恶意文件的下载和执行 ECS、容器的命令执行 通过元数据服务获取凭证</description><content>&lt;p>云日志是任何云检测和响应程序的关键组成部分。日志一直是安全运营中心的重要信息来源，但在云环境中，由于共享责任模型通常限制了组织对托管服务的访问，并且基础设施通过集中式 API 管理，日志往往是获取云环境实时可见性的唯一途径。
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>阿里云日志梳理与使用</title><link>/posts/aliyun-security-logs/</link><pubDate>Sat, 12 Oct 2024 00:04:20 +0800</pubDate><guid>/posts/aliyun-security-logs/</guid><description>&lt;p>云日志是任何云检测和响应程序的关键组成部分。日志一直是安全运营中心的重要信息来源，但在云环境中，由于共享责任模型通常限制了组织对托管服务的访问，并且基础设施通过集中式 API 管理，日志往往是获取云环境实时可见性的唯一途径。
+在阿里云环境中，管理云日志对于云安全至关重要，但理解日志以及日志之间的关系可能非常复杂。阿里云提供了多种日志服务和工具，每种日志都有独特的名称、格式和配置选项，了解需要收集哪些日志以及理解每种日志的相关用例，通常是安全团队面临的真正挑战。
+此外，云上资产的可见性也是一个关键因素。通过全面的日志管理，可以实时监控和分析云上资产的状态和活动，确保及时发现和响应潜在的安全威胁。&lt;/p></description><content>&lt;p>云日志是任何云检测和响应程序的关键组成部分。日志一直是安全运营中心的重要信息来源，但在云环境中，由于共享责任模型通常限制了组织对托管服务的访问，并且基础设施通过集中式 API 管理，日志往往是获取云环境实时可见性的唯一途径。
 在阿里云环境中，管理云日志对于云安全至关重要，但理解日志以及日志之间的关系可能非常复杂。阿里云提供了多种日志服务和工具，每种日志都有独特的名称、格式和配置选项，了解需要收集哪些日志以及理解每种日志的相关用例，通常是安全团队面临的真正挑战。
 此外，云上资产的可见性也是一个关键因素。通过全面的日志管理，可以实时监控和分析云上资产的状态和活动，确保及时发现和响应潜在的安全威胁。&lt;/p>
 &lt;h3 id="认证变更审计日志">认证、变更审计日志&lt;/h3>
@@ -543,9 +542,7 @@
 &lt;li>恶意文件的下载和执行&lt;/li>
 &lt;li>ECS、容器的命令执行&lt;/li>
 &lt;li>通过元数据服务获取凭证&lt;/li>
-&lt;/ul></content></item><item><title>Wiz Eks Cluster Games</title><link>/posts/wiz-eks-cluster-games/</link><pubDate>Tue, 17 Sep 2024 12:53:24 +0800</pubDate><guid>/posts/wiz-eks-cluster-games/</guid><description>Wiz Eks Cluster Games Challenge 1: Secret Seeker 题目 Jumpstart your quest by listing all the secrets in the cluster. Can you spot the flag among them?
-{ &amp;#34;secrets&amp;#34;: [ &amp;#34;get&amp;#34;, &amp;#34;list&amp;#34; ] } 解题 题目给出查看全部的secrets # kubectl get secrets NAME TYPE DATA AGE log-rotate Opaque 1 320d # kubectl get secrets log-rotate -o yaml apiVersion: v1 data: flag: d2l6X2Vrc19jaGFsbGVuZ2V7b21nX292ZXJfcHJpdmlsZWdlZF9zZWNyZXRfYWNjZXNzfQ== kind: Secret metadata: creationTimestamp: &amp;#34;2023-11-01T13:02:08Z&amp;#34; name: log-rotate namespace: challenge1 resourceVersion: &amp;#34;890951&amp;#34; uid: 03f6372c-b728-4c5b-ad28-70d5af8d387c type: Opaqu # echo -n &amp;#34;d2l6X2Vrc19jaGFsbGVuZ2V7b21nX292ZXJfcHJpdmlsZWdlZF9zZWNyZXRfYWNjZXNzfQ==&amp;#34; | base64 -d wiz_eks_challenge{omg_over_privileged_secret_access} 思考 对于像 Secrets 这样的敏感资源，拥有 list 和 get 权限是非常强大的。需要谨慎管理这些权限，以保护敏感数据。 在 Kubernetes 中，访问 Secrets 应该受到严格控制。这些资源可能包含密码和令牌等关键数据，管理谁可以访问它们对于安全至关重要。 在 Kubernetes 中定期审计权限设置的必要性。这确保了访问级别始终适当，并且敏感信息得到了充分保护。 Challenge 2: Registry Hunt 题目 A thing we learned during our research: always check the container registries.</description><content>&lt;h1 id="wiz-eks-cluster-games">Wiz Eks Cluster Games&lt;/h1>
-&lt;h2 id="challenge-1-secret-seeker">Challenge 1: Secret Seeker&lt;/h2>
+&lt;/ul></content></item><item><title>Wiz Eks Cluster Games</title><link>/posts/wiz-eks-cluster-games/</link><pubDate>Tue, 17 Sep 2024 12:53:24 +0800</pubDate><guid>/posts/wiz-eks-cluster-games/</guid><description/><content>&lt;h2 id="challenge-1-secret-seeker">Challenge 1: Secret Seeker&lt;/h2>
 &lt;h3 id="题目">题目&lt;/h3>
 &lt;p>Jumpstart your quest by listing all the secrets in the cluster. Can you spot the flag among them?&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>{
@@ -998,10 +995,7 @@ Please be aware: Due to security considerations aimed at safeguarding the CTF in
 &lt;ul>
 &lt;li>创建 ServiceAccount 令牌的权限在 Kubernetes 环境中可能成为权限提升的重要途径。拥有此类权限的恶意行为者可能会假设比他们自己更广泛访问的角色，从而导致未经授权的操作。&lt;/li>
 &lt;li>信任策略定义了哪些主体可以假设角色，任何配置错误都可能使系统暴露于安全风险，例如未经授权的访问或角色假设。&lt;/li>
-&lt;/ul></content></item><item><title>Wiz K8s Lan Party</title><link>/posts/wiz-k8s-lan-party/</link><pubDate>Tue, 03 Sep 2024 22:33:34 +0800</pubDate><guid>/posts/wiz-k8s-lan-party/</guid><description>Wiz K8s Lan Party Challenge 1: RECON 题目 As a warmup, utilize DNS scanning to uncover hidden internal services and obtain the flag. We have &amp;ldquo;loaded your machine with dnscan to ease this process for further challenges.
-提示 在 Kubernetes 集群中进行侦查时，可以使用多种方法来收集信息和发现资源。以下是从DNS scanning中整理的几种主要侦查方式及其说明和使用场景：
-环境变量检查 说明 环境变量通常包含集群中其他服务的 IP 地址和端口，特别是包含字符串 KUBERNETES 的变量，指向 Kubernetes API 服务。 使用场景 初步收集集群内服务的 IP 地址和端口。 获取 Kubernetes API 服务器的地址。 示例 $ env | grep KUBERNETES 文件系统检查 说明 检查 /etc/hosts 和 /etc/resolv.</description><content>&lt;h1 id="wiz-k8s-lan-party">Wiz K8s Lan Party&lt;/h1>
-&lt;h2 id="challenge-1-recon">Challenge 1: RECON&lt;/h2>
+&lt;/ul></content></item><item><title>Wiz K8s Lan Party</title><link>/posts/wiz-k8s-lan-party/</link><pubDate>Tue, 03 Sep 2024 22:33:34 +0800</pubDate><guid>/posts/wiz-k8s-lan-party/</guid><description/><content>&lt;h2 id="challenge-1-recon">Challenge 1: RECON&lt;/h2>
 &lt;h3 id="题目">题目&lt;/h3>
 &lt;p>As a warmup, utilize &lt;a href="https://thegreycorner.com/2023/12/13/kubernetes-internal-service-discovery.html#kubernetes-dns-to-the-partial-rescue">DNS scanning&lt;/a> to uncover hidden internal services and obtain the flag. We have &amp;ldquo;loaded your machine with &lt;a href="https://gist.github.com/nirohfeld/c596898673ead369cb8992d97a1c764e">dnscan&lt;/a> to ease this process for further challenges.&lt;/p>
 &lt;h3 id="提示">提示&lt;/h3>
@@ -1307,10 +1301,7 @@ Please be aware: Due to security considerations aimed at safeguarding the CTF in
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>wiz_k8s_lan_party&lt;span style="color:#f92672">{&lt;/span>you-are-k8s-net-master-with-great-power-to-mutate-your-way-to-victory&lt;span style="color:#f92672">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="思考-4">思考&lt;/h3>
-&lt;p>避免在动态准入控制放置敏感信息。&lt;/p></content></item><item><title>Wiz Big Iam Challenge</title><link>/posts/wiz-big-iam-challenge/</link><pubDate>Sat, 31 Aug 2024 13:08:52 +0800</pubDate><guid>/posts/wiz-big-iam-challenge/</guid><description>Wiz Big Iam Challenge Challenge 1: Buckets of Fun 解题 查看View IAM Policys
-{ &amp;#34;Version&amp;#34;: &amp;#34;2012-10-17&amp;#34;, &amp;#34;Statement&amp;#34;: [ { &amp;#34;Effect&amp;#34;: &amp;#34;Allow&amp;#34;, &amp;#34;Principal&amp;#34;: &amp;#34;*&amp;#34;, &amp;#34;Action&amp;#34;: &amp;#34;s3:GetObject&amp;#34;, &amp;#34;Resource&amp;#34;: &amp;#34;arn:aws:s3:::thebigiamchallenge-storage-9979f4b/*&amp;#34; }, { &amp;#34;Effect&amp;#34;: &amp;#34;Allow&amp;#34;, &amp;#34;Principal&amp;#34;: &amp;#34;*&amp;#34;, &amp;#34;Action&amp;#34;: &amp;#34;s3:ListBucket&amp;#34;, &amp;#34;Resource&amp;#34;: &amp;#34;arn:aws:s3:::thebigiamchallenge-storage-9979f4b&amp;#34;, &amp;#34;Condition&amp;#34;: { &amp;#34;StringLike&amp;#34;: { &amp;#34;s3:prefix&amp;#34;: &amp;#34;files/*&amp;#34; } } } ] } 这个策略包含两个声明：
-第一个声明允许所有用户对存储桶 thebigiamchallenge-storage-9979f4b 中的所有对象执行 s3:GetObject 操作。 第二个声明允许所有用户对存储桶 thebigiamchallenge-storage-9979f4b 执行 s3:ListBucket 操作，但仅限于前缀为 files/ 的对象。 列出指定 S3 存储桶中的全部对象
-$ aws s3api list-objects-v2 --bucket thebigiamchallenge-storage-9979f4b { &amp;#34;Contents&amp;#34;: [ { &amp;#34;Key&amp;#34;: &amp;#34;files/flag1.</description><content>&lt;h1 id="wiz-big-iam-challenge">Wiz Big Iam Challenge&lt;/h1>
+&lt;p>避免在动态准入控制放置敏感信息。&lt;/p></content></item><item><title>Wiz Big Iam Challenge</title><link>/posts/wiz-big-iam-challenge/</link><pubDate>Sat, 31 Aug 2024 13:08:52 +0800</pubDate><guid>/posts/wiz-big-iam-challenge/</guid><description>&lt;h1 id="wiz-big-iam-challenge">Wiz Big Iam Challenge&lt;/h1></description><content>&lt;h1 id="wiz-big-iam-challenge">Wiz Big Iam Challenge&lt;/h1>
 &lt;h2 id="challenge-1-buckets-of-fun">Challenge 1: Buckets of Fun&lt;/h2>
 &lt;h3 id="解题">解题&lt;/h3>
 &lt;p>查看View IAM Policys&lt;/p>
