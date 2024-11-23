@@ -1,4 +1,14 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Terminal</title><link>/</link><description>Recent content on Terminal</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 09 Nov 2024 11:55:55 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>Aliyun ACK巡检功能复现</title><link>/posts/aliyun-ack-inspection/</link><pubDate>Sat, 09 Nov 2024 11:55:55 +0800</pubDate><guid>/posts/aliyun-ack-inspection/</guid><description>&lt;h2 id="背景">背景&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Terminal</title><link>/</link><description>Recent content on Terminal</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 23 Nov 2024 20:15:04 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: SQL injection vulnerability in WHERE clause allowing retrieval of hidden data</title><link>/posts/sql-injection-lab-retrieve-hidden-data/</link><pubDate>Sat, 23 Nov 2024 20:15:04 +0800</pubDate><guid>/posts/sql-injection-lab-retrieve-hidden-data/</guid><description>Lab description Solution 点击Refine your search:时，观察url的变化，例如点击Corporate gifts时，url为/filter?category=Corporate+gifts 根据描述中的SQL query得知，category的参数值将透传给SQL category的比较值；但是SQL query中在后续还有查询条件AND released = 1，所以使用category的参数值影响SQL query，将后续的查询条件去除，为破题所在 尝试在url后面+or+1=1--进行查询，根据页面回显，发现SQL query没有闭合，所以SQL query没有受到影响 新增单引号'将SQL query闭合，完整url为filter?category=Corporate+gifts'+or+1=1--，发送请求后，即可看到全部的商品</description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-retrieve-hidden-data-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>点击&lt;code>Refine your search:&lt;/code>时，观察url的变化，例如点击&lt;code>Corporate gifts&lt;/code>时，url为&lt;code>/filter?category=Corporate+gifts&lt;/code>&lt;/li>
+&lt;li>根据描述中的SQL query得知，&lt;code>category&lt;/code>的参数值将透传给SQL category的比较值；但是SQL query中在后续还有查询条件&lt;code>AND released = 1&lt;/code>，所以使用&lt;code>category&lt;/code>的参数值影响SQL query，将后续的查询条件去除，为破题所在&lt;/li>
+&lt;li>尝试在url后面&lt;code>+or+1=1--&lt;/code>进行查询，根据页面回显，发现SQL query没有闭合，所以SQL query没有受到影响
+&lt;img alt="url-1" src="/img/sql-injection-lab-retrieve-hidden-data-2.jpg">&lt;/li>
+&lt;li>新增单引号&lt;code>'&lt;/code>将SQL query闭合，完整url为&lt;code>filter?category=Corporate+gifts'+or+1=1--&lt;/code>，发送请求后，即可看到全部的商品
+&lt;img alt="url-2" src="/img/sql-injection-lab-retrieve-hidden-data-3.jpg">&lt;/li>
+&lt;/ol></content></item><item><title>About</title><link>/about/</link><pubDate>Sat, 23 Nov 2024 20:02:40 +0800</pubDate><guid>/about/</guid><description>About me</description><content>&lt;p>About me&lt;/p></content></item><item><title>Aliyun ACK巡检功能复现</title><link>/posts/aliyun-ack-inspection/</link><pubDate>Sat, 09 Nov 2024 11:55:55 +0800</pubDate><guid>/posts/aliyun-ack-inspection/</guid><description>&lt;h2 id="背景">背景&lt;/h2>
 &lt;ul>
 &lt;li>通过Aliyun ACK提供的&lt;a href="https://www.alibabacloud.com/help/zh/ack/ack-managed-and-ack-dedicated/security-and-compliance/use-the-inspection-feature-to-detect-security-risks-in-the-workloads-of-an-ack-cluster">巡检检查功能&lt;/a>进行检查，下列整理安全相关的检查项复现方式以及安全隐患。&lt;/li>
 &lt;/ul></description><content>&lt;h2 id="背景">背景&lt;/h2>
@@ -1301,8 +1311,7 @@ Please be aware: Due to security considerations aimed at safeguarding the CTF in
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>wiz_k8s_lan_party&lt;span style="color:#f92672">{&lt;/span>you-are-k8s-net-master-with-great-power-to-mutate-your-way-to-victory&lt;span style="color:#f92672">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="思考-4">思考&lt;/h3>
-&lt;p>避免在动态准入控制放置敏感信息。&lt;/p></content></item><item><title>Wiz Big Iam Challenge</title><link>/posts/wiz-big-iam-challenge/</link><pubDate>Sat, 31 Aug 2024 13:08:52 +0800</pubDate><guid>/posts/wiz-big-iam-challenge/</guid><description>&lt;h1 id="wiz-big-iam-challenge">Wiz Big Iam Challenge&lt;/h1></description><content>&lt;h1 id="wiz-big-iam-challenge">Wiz Big Iam Challenge&lt;/h1>
-&lt;h2 id="challenge-1-buckets-of-fun">Challenge 1: Buckets of Fun&lt;/h2>
+&lt;p>避免在动态准入控制放置敏感信息。&lt;/p></content></item><item><title>Wiz Big Iam Challenge</title><link>/posts/wiz-big-iam-challenge/</link><pubDate>Sat, 31 Aug 2024 13:08:52 +0800</pubDate><guid>/posts/wiz-big-iam-challenge/</guid><description/><content>&lt;h2 id="challenge-1-buckets-of-fun">Challenge 1: Buckets of Fun&lt;/h2>
 &lt;h3 id="解题">解题&lt;/h3>
 &lt;p>查看View IAM Policys&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>{
