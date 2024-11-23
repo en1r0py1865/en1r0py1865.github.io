@@ -1,4 +1,14 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Terminal</title><link>/</link><description>Recent content on Terminal</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 23 Nov 2024 20:15:04 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: SQL injection vulnerability in WHERE clause allowing retrieval of hidden data</title><link>/posts/sql-injection-lab-retrieve-hidden-data/</link><pubDate>Sat, 23 Nov 2024 20:15:04 +0800</pubDate><guid>/posts/sql-injection-lab-retrieve-hidden-data/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Terminal</title><link>/</link><description>Recent content on Terminal</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 23 Nov 2024 22:46:24 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: SQL injection vulnerability allowing login bypass</title><link>/posts/sql-injection-lab-login-bypass/</link><pubDate>Sat, 23 Nov 2024 22:46:24 +0800</pubDate><guid>/posts/sql-injection-lab-login-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-login-bypass-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-login-bypass-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>点击My account后看到登录画面
+&lt;img alt="Lab description" src="/img/sql-injection-lab-login-bypass-2.jpg">&lt;/li>
+&lt;li>根据题目此登录逻辑包含SQL注入问题，猜测后端的SQL query为&lt;code>SELECT * FROM users WHERE username = '&amp;lt;username&amp;gt;' AND password = '&amp;lt;password&amp;gt;'&lt;/code>，如何将&lt;code>AND&lt;/code>之后的查询条件隐去，为此题的目标&lt;/li>
+&lt;li>通过&lt;code>&amp;lt;username&amp;gt;&lt;/code>将后面SQL query去除，尝试使用&lt;code>administrator'--&lt;/code>作为参数传入，将后端的SQL qeruy变为&lt;code>SELECT * FROM users WHERE username = 'administrator'--' AND password = '&amp;lt;password&amp;gt;'&lt;/code>
+&lt;img alt="Lab description" src="/img/sql-injection-lab-login-bypass-3.jpg">&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection vulnerability in WHERE clause allowing retrieval of hidden data</title><link>/posts/sql-injection-lab-retrieve-hidden-data/</link><pubDate>Sat, 23 Nov 2024 20:15:04 +0800</pubDate><guid>/posts/sql-injection-lab-retrieve-hidden-data/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-retrieve-hidden-data-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-retrieve-hidden-data-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
