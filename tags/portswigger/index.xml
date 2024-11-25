@@ -1,4 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Portswigger on Terminal</title><link>/tags/portswigger/</link><description>Recent content in Portswigger on Terminal</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 23 Nov 2024 22:46:24 +0800</lastBuildDate><atom:link href="/tags/portswigger/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: SQL injection vulnerability allowing login bypass</title><link>/posts/sql-injection-lab-login-bypass/</link><pubDate>Sat, 23 Nov 2024 22:46:24 +0800</pubDate><guid>/posts/sql-injection-lab-login-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Portswigger on Terminal</title><link>/tags/portswigger/</link><description>Recent content in Portswigger on Terminal</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 25 Nov 2024 23:02:48 +0800</lastBuildDate><atom:link href="/tags/portswigger/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: SQL injection UNION attack, determining the number of columns returned by the query</title><link>/posts/sql-injection-lab-determine-number-of-columns/</link><pubDate>Mon, 25 Nov 2024 23:02:48 +0800</pubDate><guid>/posts/sql-injection-lab-determine-number-of-columns/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-determine-number-of-columns-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-determine-number-of-columns-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>同前题，SQL query为&lt;code>SELECT * FROM table WHERE category = '&amp;lt;category&amp;gt;'&lt;/code>&lt;/li>
+&lt;li>此题需要获取SQL query所返回的字段数量，有两种方法
+&lt;ol>
+&lt;li>使用&lt;code>UNION (select null, null...)--&lt;/code>，不断新增&lt;code>null,&lt;/code>，直到不返回报错(Internal Server Error)&lt;/li>
+&lt;li>使用&lt;code>ORDER BY n--&lt;/code>，不断递减n，直到不返回报错(Internal Server Error)&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>使用方法1，解题的url为&lt;code>filter?category=Accessories'+UNION+(select+null,+null,+null)--&lt;/code>&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection vulnerability allowing login bypass</title><link>/posts/sql-injection-lab-login-bypass/</link><pubDate>Sat, 23 Nov 2024 22:46:24 +0800</pubDate><guid>/posts/sql-injection-lab-login-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-login-bypass-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-login-bypass-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
