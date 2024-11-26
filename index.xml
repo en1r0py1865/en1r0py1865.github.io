@@ -1,4 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Terminal</title><link>/</link><description>Recent content on Terminal</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 25 Nov 2024 23:02:48 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: SQL injection UNION attack, determining the number of columns returned by the query</title><link>/posts/sql-injection-lab-determine-number-of-columns/</link><pubDate>Mon, 25 Nov 2024 23:02:48 +0800</pubDate><guid>/posts/sql-injection-lab-determine-number-of-columns/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Terminal</title><link>/</link><description>Recent content on Terminal</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 26 Nov 2024 22:34:27 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: SQL injection UNION attack, finding a column containing text</title><link>/posts/sql-injection-lab-find-column-containing-text/</link><pubDate>Tue, 26 Nov 2024 22:34:27 +0800</pubDate><guid>/posts/sql-injection-lab-find-column-containing-text/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-find-column-containing-text-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-find-column-containing-text-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>根据&lt;a href="/posts/sql-injection-lab-determine-number-of-columns/">前题&lt;/a>，SQL query为SELECT * FROM table WHERE category = &amp;lsquo;&lt;!-- raw HTML omitted -->&amp;rsquo;，且返回字段数为3&lt;/li>
+&lt;li>此题需要将题目给出的随机字符串注入至SQL query所返回的字段内容中&lt;/li>
+&lt;li>解题的url为&lt;code>filter?category=Lifestyle' UNION (select null, '&amp;lt;随机字符串&amp;gt;', null)--&lt;/code>
+&lt;ul>
+&lt;li>例如随机字符串为&lt;code>VGs2z9&lt;/code>，所以url为&lt;code>filter?category=Lifestyle' UNION (select null, 'VGs2z9', null)--&lt;/code>
+&lt;img alt="Lab description" src="/img/sql-injection-lab-find-column-containing-text-2.jpg">&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection UNION attack, determining the number of columns returned by the query</title><link>/posts/sql-injection-lab-determine-number-of-columns/</link><pubDate>Mon, 25 Nov 2024 23:02:48 +0800</pubDate><guid>/posts/sql-injection-lab-determine-number-of-columns/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-determine-number-of-columns-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-determine-number-of-columns-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
