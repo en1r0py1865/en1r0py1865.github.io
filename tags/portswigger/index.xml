@@ -1,13 +1,58 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Portswigger on Terminal</title><link>/tags/portswigger/</link><description>Recent content in Portswigger on Terminal</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 01 Dec 2024 18:44:29 +0800</lastBuildDate><atom:link href="/tags/portswigger/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: Username enumeration via account lock</title><link>/posts/authentication-lab-username-enumeration-via-account-lock/</link><pubDate>Sun, 01 Dec 2024 18:44:29 +0800</pubDate><guid>/posts/authentication-lab-username-enumeration-via-account-lock/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Portswigger on Terminal</title><link>/tags/portswigger/</link><description>Recent content in Portswigger on Terminal</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 02 Dec 2024 21:47:59 +0800</lastBuildDate><atom:link href="/tags/portswigger/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: 2FA broken logic</title><link>/posts/authentication-lab-2fa-broken-logic/</link><pubDate>Mon, 02 Dec 2024 21:47:59 +0800</pubDate><guid>/posts/authentication-lab-2fa-broken-logic/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-2fa-broken-logic-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-2fa-broken-logic-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>进入Lab页面后，点击右上角&lt;code>My account&lt;/code>按钮后进入&lt;code>login&lt;/code>页面&lt;/li>
+&lt;li>登录成功(url:&lt;code>/login&lt;/code>)后的Response如下&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">302&lt;/span> &lt;span style="color:#a6e22e">Found&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Location&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">/login2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Set-Cookie&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">verify=wiener; HttpOnly&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Set-Cookie&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">session=rId30xi0me3ux2SZjV4aidmumqu92pPv; Secure; HttpOnly; SameSite=None&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Frame-Options&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">SAMEORIGIN&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
+&lt;li>登录成功后会跳转至&lt;code>/login2&lt;/code>，并且对应的Request为&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /login2 &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0a80005c0389890681083af800d600a9.web-security-academy.net&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Cookie&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">session=rId30xi0me3ux2SZjV4aidmumqu92pPv; verify=wiener&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
+&lt;li>修改Request的&lt;code>verify&lt;/code>参数为&lt;code>carlos&lt;/code>，并发送Request&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /login2 &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0a80005c0389890681083af800d600a9.web-security-academy.net&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Cookie&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">session=rId30xi0me3ux2SZjV4aidmumqu92pPv; verify=carlos&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
+&lt;li>对应的Response为&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span> &lt;span style="color:#a6e22e">OK&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Type&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">text/html; charset=utf-8&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Frame-Options&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">SAMEORIGIN&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">3012&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="6">
+&lt;li>回到页面输入&lt;code>security code&lt;/code>后失败，将对应的Request发送至Intruder，修改&lt;code>verify&lt;/code>为&lt;code>carlos&lt;/code>，参数配置如下&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /login2 &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0a80005c0389890681083af800d600a9.web-security-academy.net&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Cookie&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">session=rId30xi0me3ux2SZjV4aidmumqu92pPv; verify=carlos&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mfa-code=§1111§
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img alt="Burp Intruder" src="/img/authentication-lab-2fa-broken-logic-2.jpg">
+6. 根据爆破的&lt;code>Length&lt;/code>排列，&lt;code>security code&lt;/code>为&lt;code>0448&lt;/code>，将此结果通过&lt;code>Request in browser -&amp;gt; In original session&lt;/code>返回页面
+&lt;img alt="Burp Intruder result" src="/img/authentication-lab-2fa-broken-logic-3.jpg">
+7. 成功登录&lt;code>carlos&lt;/code>
+&lt;img alt="Success" src="/img/authentication-lab-2fa-broken-logic-4.jpg">&lt;/p></content></item><item><title>[Write Up]Lab: Username enumeration via account lock</title><link>/posts/authentication-lab-username-enumeration-via-account-lock/</link><pubDate>Sun, 01 Dec 2024 18:44:29 +0800</pubDate><guid>/posts/authentication-lab-username-enumeration-via-account-lock/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-username-enumeration-via-account-lock-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-username-enumeration-via-account-lock-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>进入Lab页面后，点击右上角&lt;code>My account&lt;/code>按钮后进入&lt;code>login&lt;/code>页面&lt;/li>
-&lt;li>此题目提到&lt;code>account lock&lt;/code>意思是当&lt;code>用户存在时，多次尝试登录将会被禁止&lt;/code>，通过此特性，使用Burp Intruder的&lt;code>Cluster bomb attack&lt;/code>模式，2个参数分别为&lt;code>username&lt;/code>、以及&lt;code>password&lt;/code>的尾缀，参数1使用字典使用题目中&lt;code>Candidate usernames&lt;/code>所提供的列表，参数2使用&lt;code>Null payloads&lt;/code>且&lt;code>Generate 5&lt;/code>&lt;/li>
+&lt;li>此题目提到&lt;code>account lock&lt;/code>意思是当&lt;code>用户存在时，多次尝试登录将会被禁止&lt;/code>，通过此特性，使用Burp Intruder的&lt;code>Cluster bomb attack&lt;/code>模式，2个参数分别为&lt;code>username&lt;/code>、以及&lt;code>password&lt;/code>的尾缀，参数1使用题目中&lt;code>Candidate usernames&lt;/code>所提供的列表，参数2使用&lt;code>Null payloads&lt;/code>且&lt;code>Generate 5&lt;/code>，其实参数2位置在哪里不重要，只要使参数1的&lt;code>username&lt;/code>作为payload发送5次即可&lt;/li>
 &lt;/ol>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">username=§username§&amp;amp;password=password§
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol>
 &lt;li>扫描结果发现&lt;code>username&lt;/code>为&lt;code>academico&lt;/code>时会出现长度为&lt;code>3292&lt;/code>的返回，其内容包含&lt;code>You have made too many incorrect login attempts. Please try again in 1 minute(s).&lt;/code>，因此可以确认&lt;code>academico&lt;/code>是存在的用户
 &lt;img alt="Account lock" src="/img/authentication-lab-username-enumeration-via-account-lock-2.jpg">&lt;/li>
 &lt;li>下一步在确认&lt;code>username&lt;/code>参数的前提下，通过python实现以下爆破方式
