@@ -5,10 +5,6 @@
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ ./codeql version
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>CodeQL command-line toolchain release 2.20.0.
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Copyright &lt;span style="color:#f92672">(&lt;/span>C&lt;span style="color:#f92672">)&lt;/span> 2019-2024 GitHub, Inc.
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Unpacked in: /Users/chung/codeql
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Analysis results depend critically on separately distributed query and
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> extractor modules. To list modules that are visible to the toolchain,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> use &lt;span style="color:#e6db74">&amp;#39;codeql resolve packs&amp;#39;&lt;/span> and &lt;span style="color:#e6db74">&amp;#39;codeql resolve languages&amp;#39;&lt;/span>.
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description><content>&lt;ol>
 &lt;li>至&lt;a href="https://github.com/github/codeql-action/releases">codeql-action releases&lt;/a>下载最新版本的&lt;code>codeql-bundle-osx64.tar.gz&lt;/code>&lt;/li>
 &lt;li>解压缩到任一目录，执行以下命令确认可执行&lt;/li>
@@ -16,14 +12,10 @@
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ ./codeql version
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>CodeQL command-line toolchain release 2.20.0.
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Copyright &lt;span style="color:#f92672">(&lt;/span>C&lt;span style="color:#f92672">)&lt;/span> 2019-2024 GitHub, Inc.
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Unpacked in: /Users/chung/codeql
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Analysis results depend critically on separately distributed query and
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> extractor modules. To list modules that are visible to the toolchain,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> use &lt;span style="color:#e6db74">&amp;#39;codeql resolve packs&amp;#39;&lt;/span> and &lt;span style="color:#e6db74">&amp;#39;codeql resolve languages&amp;#39;&lt;/span>.
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
 &lt;li>至VSCode 下载&lt;code>CodeQL&lt;/code>插件
 &lt;img alt="Lab description" src="/img/installing-codeql-on-macos-1.jpg">&lt;/li>
-&lt;li>在&lt;code>CodeQL&lt;/code>插件&lt;code>Manage&lt;/code>中设置&lt;code>Cli: Executable Path&lt;/code>，需要指定步骤2的二进制位置
+&lt;li>在&lt;code>CodeQL&lt;/code>插件&lt;code>Manage&lt;/code>中设置&lt;code>Cli: Executable Path&lt;/code>，需要指定到步骤2的二进制位置
 &lt;img alt="Lab description" src="/img/installing-codeql-on-macos-2.jpg">&lt;/li>
 &lt;li>至&lt;code>EXPLORER&lt;/code>中开启任意目录作为CodeQL workapsce&lt;/li>
 &lt;li>根据&lt;a href="https://codeql.github.com/docs/codeql-language-guides/basic-query-for-go-code/">Github Basic query for Go code&lt;/a>，尝试从Github上直接导入database&lt;/li>
