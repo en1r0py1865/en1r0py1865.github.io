@@ -45,7 +45,7 @@
 &lt;li>点击鼠标右键选择&lt;code>CodeQL: Run Query on Selected Database&lt;/code>，扫描结果
 &lt;img alt="From Github" src="/img/installing-codeql-on-macos-7.jpg">&lt;/li>
 &lt;li>尝试&lt;a href="https://github.com/github/codeql/tree/main/go/ql/src/Security">Github 其他规则集&lt;/a>&lt;/li>
-&lt;li>如果是自己本地代码执行下列命令后导入databases&lt;/li>
+&lt;li>如果是本地代码，则执行下列命令后导入databases&lt;/li>
 &lt;/ol>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ codeql database create ./vul_codeql_database -s &amp;lt;local project path&amp;gt; --language&lt;span style="color:#f92672">=&lt;/span>go
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>[Write Up]Lab: Password reset poisoning via middleware</title><link>/posts/authentication-lab-password-reset-poisoning-via-middleware/</link><pubDate>Wed, 04 Dec 2024 22:56:33 +0800</pubDate><guid>/posts/authentication-lab-password-reset-poisoning-via-middleware/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
