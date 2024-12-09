@@ -37,13 +37,13 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>action=upgrade&amp;amp;confirmed=true&amp;amp;username=wiener
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;/ol></content></item><item><title>[Write Up]Lab: Method-based access control can be circumvented</title><link>/posts/2024/access-control-lab-method-based-access-control-can-be-circumvented/</link><pubDate>Mon, 09 Dec 2024 21:54:28 +0800</pubDate><guid>/posts/2024/access-control-lab-method-based-access-control-can-be-circumvented/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/access-control-lab-method-based-access-control-can-be-circumvented-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/access-control-lab-method-based-access-control-can-be-circumvented-1.jpg">&lt;/p>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-method-based-access-control-can-be-circumvented-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-method-based-access-control-can-be-circumvented-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>使用&lt;code>administrator:admin&lt;/code>登录&lt;/li>
 &lt;li>点击&lt;code>Admin panel&lt;/code>后可以看到调整用户权限的功能
-&lt;img alt="Admin panel" src="/img/access-control-lab-method-based-access-control-can-be-circumvented-2.jpg">&lt;/li>
+&lt;img alt="Admin panel" src="/img/2024/access-control-lab-method-based-access-control-can-be-circumvented-2.jpg">&lt;/li>
 &lt;li>选择&lt;code>carlos (NORMAL)&lt;/code>并点击&lt;code>Upgrade user&lt;/code>，对应Request
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /admin-roles &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
@@ -508,7 +508,7 @@ csrf=tfSyxjDn9KpPz9FIj9iWu6UNWFoWDKk6&amp;amp;mfa-code=1111
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>username=carlos
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>通过&lt;code>Go to exploit server -&amp;gt; Access log&lt;/code>查看&lt;code>X-Forwarded-Host&lt;/code>所转发信息
-&lt;img alt="Access log" src="/img/2024/authentication-lab-password-reset-poisoning-via-middleware-4.jpg">&lt;/li>
+&lt;img alt="Access log" src="/img/2024/authentication-lab-password-reset-poisoning-via-middleware-14.jpg">&lt;/li>
 &lt;li>访问&lt;code>https://0a5800510400298b80f5992500c700e3.web-security-academy.net/forgot-password?temp-forgot-password-token=550690ezc8yqhlyn0k881ch8xhz596mh&lt;/code>
 &lt;img alt="Reset password" src="/img/2024/authentication-lab-password-reset-poisoning-via-middleware-15.jpg">&lt;/li>
 &lt;li>使用重置后的密码登录&lt;code>carlos&lt;/code>
