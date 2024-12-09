@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Codeql on Terminal</title><link>/tags/codeql/</link><description>Recent content in Codeql on Terminal</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 05 Dec 2024 22:05:14 +0800</lastBuildDate><atom:link href="/tags/codeql/index.xml" rel="self" type="application/rss+xml"/><item><title>在Macos上安装CodeQL并集成VSCode插件</title><link>/posts/installing-codeql-on-macos/</link><pubDate>Thu, 05 Dec 2024 22:05:14 +0800</pubDate><guid>/posts/installing-codeql-on-macos/</guid><description>&lt;ol>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Codeql on Terminal</title><link>/tags/codeql/</link><description>Recent content in Codeql on Terminal</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 05 Dec 2024 22:05:14 +0800</lastBuildDate><atom:link href="/tags/codeql/index.xml" rel="self" type="application/rss+xml"/><item><title>在Macos上安装CodeQL并集成VSCode插件</title><link>/posts/2024/installing-codeql-on-macos/</link><pubDate>Thu, 05 Dec 2024 22:05:14 +0800</pubDate><guid>/posts/2024/installing-codeql-on-macos/</guid><description>&lt;ol>
 &lt;li>至&lt;a href="https://github.com/github/codeql-action/releases">codeql-action releases&lt;/a>下载最新版本的&lt;code>codeql-bundle-osx64.tar.gz&lt;/code>&lt;/li>
 &lt;li>解压缩到任一目录，执行以下命令确认可执行&lt;/li>
 &lt;/ol>
@@ -14,19 +14,19 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Copyright &lt;span style="color:#f92672">(&lt;/span>C&lt;span style="color:#f92672">)&lt;/span> 2019-2024 GitHub, Inc.
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
 &lt;li>至VSCode 下载&lt;code>CodeQL&lt;/code>插件
-&lt;img alt="Lab description" src="/img/installing-codeql-on-macos-1.jpg">&lt;/li>
+&lt;img alt="Lab description" src="/img/2024/installing-codeql-on-macos-1.jpg">&lt;/li>
 &lt;li>在&lt;code>CodeQL&lt;/code>插件&lt;code>Manage&lt;/code>中设置&lt;code>Cli: Executable Path&lt;/code>，需要指定到步骤2的二进制位置
-&lt;img alt="Lab description" src="/img/installing-codeql-on-macos-2.jpg">&lt;/li>
+&lt;img alt="Lab description" src="/img/2024/installing-codeql-on-macos-2.jpg">&lt;/li>
 &lt;li>至&lt;code>EXPLORER&lt;/code>中开启任意目录作为CodeQL workspace&lt;/li>
 &lt;li>根据&lt;a href="https://codeql.github.com/docs/codeql-language-guides/basic-query-for-go-code/">Github Basic query for Go code&lt;/a>，尝试从Github上直接导入database&lt;/li>
 &lt;li>点击&lt;code>From Github&lt;/code>后输入&lt;code>https://github.com/go-gorm/gorm&lt;/code>进行导入
-&lt;img alt="From Github" src="/img/installing-codeql-on-macos-3.jpg">&lt;/li>
+&lt;img alt="From Github" src="/img/2024/installing-codeql-on-macos-3.jpg">&lt;/li>
 &lt;li>导入成功
-&lt;img alt="From Github" src="/img/installing-codeql-on-macos-4.jpg">&lt;/li>
+&lt;img alt="From Github" src="/img/2024/installing-codeql-on-macos-4.jpg">&lt;/li>
 &lt;li>点击&lt;code>Create one to get started&lt;/code>
-&lt;img alt="From Github" src="/img/installing-codeql-on-macos-5.jpg">&lt;/li>
+&lt;img alt="From Github" src="/img/2024/installing-codeql-on-macos-5.jpg">&lt;/li>
 &lt;li>创建成功，&lt;code>codeqlProject&lt;/code>为步骤5所开启的目录，&lt;code>codeql-custom-queries-go&lt;/code>为VSCode自动创建
-&lt;img alt="From Github" src="/img/installing-codeql-on-macos-6.jpg">&lt;/li>
+&lt;img alt="From Github" src="/img/2024/installing-codeql-on-macos-6.jpg">&lt;/li>
 &lt;li>&lt;code>example.ql&lt;/code>内容如下&lt;/li>
 &lt;/ol>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/**
@@ -43,7 +43,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>select f, &lt;span style="color:#e6db74">&amp;#34;Hello, world!&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="12">
 &lt;li>点击鼠标右键选择&lt;code>CodeQL: Run Query on Selected Database&lt;/code>，扫描结果
-&lt;img alt="From Github" src="/img/installing-codeql-on-macos-7.jpg">&lt;/li>
+&lt;img alt="From Github" src="/img/2024/installing-codeql-on-macos-7.jpg">&lt;/li>
 &lt;li>尝试&lt;a href="https://github.com/github/codeql/tree/main/go/ql/src/Security">Github 其他规则集&lt;/a>&lt;/li>
 &lt;li>如果是本地代码，则执行下列命令后导入databases&lt;/li>
 &lt;/ol>

