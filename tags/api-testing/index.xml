@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Api-Testing on en1r0py</title><link>/tags/api-testing/</link><description>Recent content in Api-Testing on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 15 Dec 2024 19:54:33 +0800</lastBuildDate><atom:link href="/tags/api-testing/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: Exploiting server-side parameter pollution in a REST URL</title><link>/posts/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-rest-url/</link><pubDate>Sun, 15 Dec 2024 19:54:33 +0800</pubDate><guid>/posts/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-rest-url/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Api-Testing on en1r0py</title><link>/tags/api-testing/</link><description>Recent content in Api-Testing on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 15 Dec 2024 19:54:33 +0800</lastBuildDate><atom:link href="/tags/api-testing/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: Exploiting server-side parameter pollution in a REST URL</title><link>/portswigger-posts/api-testing-lab-exploiting-server-side-parameter-pollution-in-rest-url/</link><pubDate>Sun, 15 Dec 2024 19:54:33 +0800</pubDate><guid>/portswigger-posts/api-testing-lab-exploiting-server-side-parameter-pollution-in-rest-url/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-rest-url-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-rest-url-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -133,7 +133,7 @@
 &lt;li>使用更新后的密码登录&lt;code>administrator&lt;/code>，登录成功后点击右上方的&lt;code>Admin panel&lt;/code>
 &lt;img alt="Admin panel" src="/img/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-rest-url-4.jpg">&lt;/li>
 &lt;li>点击&lt;code>carlos - Delete&lt;/code>后即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Exploiting a mass assignment vulnerability</title><link>/posts/2024/api-testing-lab-exploiting-mass-assignment-vulnerability/</link><pubDate>Sun, 15 Dec 2024 14:34:06 +0800</pubDate><guid>/posts/2024/api-testing-lab-exploiting-mass-assignment-vulnerability/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Exploiting a mass assignment vulnerability</title><link>/portswigger-posts/api-testing-lab-exploiting-mass-assignment-vulnerability/</link><pubDate>Sun, 15 Dec 2024 14:34:06 +0800</pubDate><guid>/portswigger-posts/api-testing-lab-exploiting-mass-assignment-vulnerability/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-mass-assignment-vulnerability-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-mass-assignment-vulnerability-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -161,7 +161,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Location&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">/cart/order-confirmation?order-confirmed=true&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>回到页面即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Finding and exploiting an unused API endpoint</title><link>/posts/2024/api-testing-lab-exploiting-unused-api-endpoint/</link><pubDate>Sun, 15 Dec 2024 13:07:53 +0800</pubDate><guid>/posts/2024/api-testing-lab-exploiting-unused-api-endpoint/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Finding and exploiting an unused API endpoint</title><link>/portswigger-posts/api-testing-lab-exploiting-unused-api-endpoint/</link><pubDate>Sun, 15 Dec 2024 13:07:53 +0800</pubDate><guid>/portswigger-posts/api-testing-lab-exploiting-unused-api-endpoint/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-unused-api-endpoint-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-unused-api-endpoint-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -206,7 +206,7 @@
 &lt;li>在商品内容最下方点击&lt;code>Add to cart&lt;/code>后，点击页面右上方&lt;code>购物车&lt;/code>进入购物车页面，点击&lt;code>Place order&lt;/code>即可解题
 &lt;img alt="Place order" src="/img/2024/api-testing-lab-exploiting-unused-api-endpoint-3.jpg">
 `&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Exploiting server-side parameter pollution in a query string</title><link>/posts/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-query-string/</link><pubDate>Sat, 14 Dec 2024 22:59:14 +0800</pubDate><guid>/posts/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-query-string/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Exploiting server-side parameter pollution in a query string</title><link>/portswigger-posts/api-testing-lab-exploiting-server-side-parameter-pollution-in-query-string/</link><pubDate>Sat, 14 Dec 2024 22:59:14 +0800</pubDate><guid>/portswigger-posts/api-testing-lab-exploiting-server-side-parameter-pollution-in-query-string/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-query-string-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-query-string-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -294,7 +294,7 @@
 &lt;li>使用更新后的密码登录&lt;code>administrator&lt;/code>，登录成功后点击右上方的&lt;code>Admin panel&lt;/code>
 &lt;img alt="Admin panel" src="/img/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-query-string-6.jpg">&lt;/li>
 &lt;li>点击&lt;code>carlos - Delete&lt;/code>后即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Exploiting an API endpoint using documentation</title><link>/posts/2024/api-testing-lab-exploiting-api-endpoint-using-documentation/</link><pubDate>Sat, 14 Dec 2024 22:32:19 +0800</pubDate><guid>/posts/2024/api-testing-lab-exploiting-api-endpoint-using-documentation/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Exploiting an API endpoint using documentation</title><link>/portswigger-posts/api-testing-lab-exploiting-api-endpoint-using-documentation/</link><pubDate>Sat, 14 Dec 2024 22:32:19 +0800</pubDate><guid>/portswigger-posts/api-testing-lab-exploiting-api-endpoint-using-documentation/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-api-endpoint-using-documentation-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-api-endpoint-using-documentation-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>

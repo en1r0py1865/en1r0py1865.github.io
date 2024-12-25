@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Sqli on en1r0py</title><link>/tags/sqli/</link><description>Recent content in Sqli on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 27 Nov 2024 21:04:57 +0800</lastBuildDate><atom:link href="/tags/sqli/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: SQL injection attack, querying the database type and version on MySQL and Microsoft</title><link>/portswigger-posts/sql-injection-lab-querying-database-version-mysql-microsoft/</link><pubDate>Wed, 27 Nov 2024 21:04:57 +0800</pubDate><guid>/portswigger-posts/sql-injection-lab-querying-database-version-mysql-microsoft/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-querying-database-version-mysql-microsoft-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-querying-database-version-mysql-microsoft-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>推测SQL query为&lt;code>SELECT * FROM table WHERE category = &amp;lt;category&amp;gt;&lt;/code>&lt;/li>
+&lt;li>此题需要通过UNION 注入攻击获取MySQL、Microsoft数据库的类型和版本&lt;/li>
+&lt;li>UNION 注入攻击需要以下三步
+&lt;ol>
+&lt;li>判断列数
+&lt;ol>
+&lt;li>使用&lt;code>order by n&lt;/code>语句不断累加n，n累加到3时报错，所以判断SQL query的返回列数为2&lt;/li>
+&lt;li>url为&lt;code>/filter?category=Gifts' order by 2#&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>判断显示位
+&lt;ol>
+&lt;li>url为&lt;code>/filter?category=Gifts' union select 'a1','a2'%23&lt;/code>
+&lt;ul>
+&lt;li>&lt;code>%23&lt;/code>为&lt;code>#&lt;/code>的URL 编码，通过浏览器发送url时需要进行编码；通过Burp Suite时Burp Suite会自动进行编码
+&lt;img alt="Determine the display position" src="/img/2024/sql-injection-lab-querying-database-version-mysql-microsoft-2.jpg">&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>获取目标数据
+&lt;ol>
+&lt;li>根据&lt;a href="https://portswigger.net/web-security/sql-injection/cheat-sheet">SQL injection cheat sheet&lt;/a>，MySQL、Microsoft数据库的类型和版本获取方式为&lt;code>SELECT @@version&lt;/code>&lt;/li>
+&lt;li>url为&lt;code>/filter?category=Gifts' union select @@version,null%23&lt;/code>
+&lt;img alt="Retrieve the target data" src="/img/2024/sql-injection-lab-querying-database-version-mysql-microsoft-3.jpg">&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection UNION attack, finding a column containing text</title><link>/portswigger-posts/sql-injection-lab-find-column-containing-text/</link><pubDate>Tue, 26 Nov 2024 22:34:27 +0800</pubDate><guid>/portswigger-posts/sql-injection-lab-find-column-containing-text/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-find-column-containing-text-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-find-column-containing-text-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>根据&lt;a href="/portswigger-posts/sql-injection-lab-determine-number-of-columns/">前题&lt;/a>，SQL query为SELECT * FROM table WHERE category = &amp;lsquo;&lt;!-- raw HTML omitted -->&amp;rsquo;，且返回字段数为3&lt;/li>
+&lt;li>此题需要将题目给出的随机字符串注入至SQL query所返回的字段内容中&lt;/li>
+&lt;li>解题的url为&lt;code>filter?category=Lifestyle' UNION (select null, '&amp;lt;随机字符串&amp;gt;', null)--&lt;/code>
+&lt;ul>
+&lt;li>例如随机字符串为&lt;code>VGs2z9&lt;/code>，所以url为&lt;code>filter?category=Lifestyle' UNION (select null, 'VGs2z9', null)--&lt;/code>
+&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-find-column-containing-text-2.jpg">&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection UNION attack, determining the number of columns returned by the query</title><link>/portswigger-posts/sql-injection-lab-determine-number-of-columns/</link><pubDate>Mon, 25 Nov 2024 23:02:48 +0800</pubDate><guid>/portswigger-posts/sql-injection-lab-determine-number-of-columns/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-determine-number-of-columns-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-determine-number-of-columns-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>同前题，SQL query为&lt;code>SELECT * FROM table WHERE category = '&amp;lt;category&amp;gt;'&lt;/code>&lt;/li>
+&lt;li>此题需要获取SQL query所返回的字段数量，有两种方法
+&lt;ol>
+&lt;li>使用&lt;code>UNION (select null, null...)--&lt;/code>，不断新增&lt;code>null,&lt;/code>，直到不返回报错(Internal Server Error)&lt;/li>
+&lt;li>使用&lt;code>ORDER BY n--&lt;/code>，不断递减n，直到不返回报错(Internal Server Error)&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>使用方法1，解题的url为&lt;code>filter?category=Accessories'+UNION+(select+null,+null,+null)--&lt;/code>&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection attack, querying the database type and version on Oracle</title><link>/portswigger-posts/sql-injection-lab-querying-database-version-oracle/</link><pubDate>Sun, 24 Nov 2024 12:37:06 +0800</pubDate><guid>/portswigger-posts/sql-injection-lab-querying-database-version-oracle/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-querying-database-version-oracle-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-querying-database-version-oracle-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>推测SQL query为&lt;code>SELECT * FROM table WHERE category = &amp;lt;category&amp;gt;&lt;/code>&lt;/li>
+&lt;li>此题需要通过UNION 注入攻击获取Oracle数据库的类型和版本&lt;/li>
+&lt;li>UNION 注入攻击需要以下三步
+&lt;ol>
+&lt;li>判断列数
+&lt;ol>
+&lt;li>使用&lt;code>order by n&lt;/code>语句不断累加n，n累加到3时报错，所以判断SQL query的返回列数为2&lt;/li>
+&lt;li>url为&lt;code>filter?category=Accessories'+order+by+2--&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>判断显示位
+&lt;ol>
+&lt;li>根据题目Hit，Oracle数据库中的&lt;code>SELECT&lt;/code>语句必须指定&lt;code>FROM&lt;/code>，可以使用Oracle内置的DUAL表来达成目的&lt;/li>
+&lt;li>url为&lt;code>filter?category=Accessories'+union+select+'a1',+'a2'+from+dual+--&lt;/code>
+&lt;img alt="Determine the display position" src="/img/2024/sql-injection-lab-querying-database-version-oracle-2.jpg">&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>获取目标数据
+&lt;ol>
+&lt;li>根据&lt;a href="https://portswigger.net/web-security/sql-injection/cheat-sheet">SQL injection cheat sheet&lt;/a>，Oracle数据库的类型和版本获取方式为&lt;code>SELECT banner FROM v$version&lt;/code>&lt;/li>
+&lt;li>url为&lt;code>filter?category=Accessories'+union+select+banner,+null+from+v$version+--&lt;/code>
+&lt;img alt="Retrieve the target data" src="/img/2024/sql-injection-lab-querying-database-version-oracle-3.jpg">&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection vulnerability allowing login bypass</title><link>/portswigger-posts/sql-injection-lab-login-bypass/</link><pubDate>Sat, 23 Nov 2024 22:46:24 +0800</pubDate><guid>/portswigger-posts/sql-injection-lab-login-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-login-bypass-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-login-bypass-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>点击My account后看到登录画面
+&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-login-bypass-2.jpg">&lt;/li>
+&lt;li>根据题目此登录逻辑包含SQL注入问题，猜测后端的SQL query为&lt;code>SELECT * FROM users WHERE username = '&amp;lt;username&amp;gt;' AND password = '&amp;lt;password&amp;gt;'&lt;/code>，如何将&lt;code>AND&lt;/code>之后的查询条件隐去，为此题的目标&lt;/li>
+&lt;li>通过&lt;code>&amp;lt;username&amp;gt;&lt;/code>将后面SQL query去除，尝试使用&lt;code>administrator'--&lt;/code>作为参数传入，将后端的SQL qeruy变为&lt;code>SELECT * FROM users WHERE username = 'administrator'--' AND password = '&amp;lt;password&amp;gt;'&lt;/code>
+&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-login-bypass-3.jpg">&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection vulnerability in WHERE clause allowing retrieval of hidden data</title><link>/portswigger-posts/sql-injection-lab-retrieve-hidden-data/</link><pubDate>Sat, 23 Nov 2024 20:15:04 +0800</pubDate><guid>/portswigger-posts/sql-injection-lab-retrieve-hidden-data/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-retrieve-hidden-data-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-retrieve-hidden-data-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>点击&lt;code>Refine your search:&lt;/code>时，观察url的变化，例如点击&lt;code>Corporate gifts&lt;/code>时，url为&lt;code>/filter?category=Corporate+gifts&lt;/code>&lt;/li>
+&lt;li>根据描述中的SQL query得知，&lt;code>category&lt;/code>的参数值将透传给SQL category的比较值；但是SQL query中在后续还有查询条件&lt;code>AND released = 1&lt;/code>，所以使用&lt;code>category&lt;/code>的参数值影响SQL query，将后续的查询条件去除，为破题所在&lt;/li>
+&lt;li>尝试在url后面&lt;code>+or+1=1--&lt;/code>进行查询，根据页面回显，发现SQL query没有闭合，所以SQL query没有受到影响
+&lt;img alt="url-1" src="/img/2024/sql-injection-lab-retrieve-hidden-data-2.jpg">&lt;/li>
+&lt;li>新增单引号&lt;code>'&lt;/code>将SQL query闭合，完整url为&lt;code>filter?category=Corporate+gifts'+or+1=1--&lt;/code>，发送请求后，即可看到全部的商品
+&lt;img alt="url-2" src="/img/2024/sql-injection-lab-retrieve-hidden-data-3.jpg">&lt;/li>
+&lt;/ol></content></item></channel></rss>

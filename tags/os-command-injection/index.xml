@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Os-Command-Injection on en1r0py</title><link>/tags/os-command-injection/</link><description>Recent content in Os-Command-Injection on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 15 Dec 2024 22:06:11 +0800</lastBuildDate><atom:link href="/tags/os-command-injection/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: Blind OS command injection with out-of-band data exfiltration</title><link>/posts/2024/os-command-injection-lab-blind-out-of-band-data-exfiltration/</link><pubDate>Sun, 15 Dec 2024 22:06:11 +0800</pubDate><guid>/posts/2024/os-command-injection-lab-blind-out-of-band-data-exfiltration/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Os-Command-Injection on en1r0py</title><link>/tags/os-command-injection/</link><description>Recent content in Os-Command-Injection on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 15 Dec 2024 22:06:11 +0800</lastBuildDate><atom:link href="/tags/os-command-injection/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: Blind OS command injection with out-of-band data exfiltration</title><link>/portswigger-posts/os-command-injection-lab-blind-out-of-band-data-exfiltration/</link><pubDate>Sun, 15 Dec 2024 22:06:11 +0800</pubDate><guid>/portswigger-posts/os-command-injection-lab-blind-out-of-band-data-exfiltration/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/os-command-injection-lab-blind-out-of-band-data-exfiltration-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/os-command-injection-lab-blind-out-of-band-data-exfiltration-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -20,7 +20,7 @@
 &lt;li>发送请求后回到Burp Collaborator查看到DNS lookup记录，&lt;code>peter-jA42w0&lt;/code>即为&lt;code>whoami&lt;/code>的执行结果
 &lt;img alt="DNS lookup" src="/img/2024/os-command-injection-lab-blind-out-of-band-data-exfiltration-2.jpg">&lt;/li>
 &lt;li>返回页面点击最上方的&lt;code>Submit solution&lt;/code>并输入&lt;code>peter-jA42w0&lt;/code>，即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Blind OS command injection with out-of-band interaction</title><link>/posts/2024/os-command-injection-lab-blind-out-of-band/</link><pubDate>Sun, 15 Dec 2024 21:54:43 +0800</pubDate><guid>/posts/2024/os-command-injection-lab-blind-out-of-band/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Blind OS command injection with out-of-band interaction</title><link>/portswigger-posts/os-command-injection-lab-blind-out-of-band/</link><pubDate>Sun, 15 Dec 2024 21:54:43 +0800</pubDate><guid>/portswigger-posts/os-command-injection-lab-blind-out-of-band/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/os-command-injection-lab-blind-out-of-band-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/os-command-injection-lab-blind-out-of-band-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -42,7 +42,7 @@
 &lt;li>发送请求后回到Burp Collaborator查看到DNS lookup记录
 &lt;img alt="DNS lookup" src="/img/2024/os-command-injection-lab-blind-out-of-band-2.jpg">&lt;/li>
 &lt;li>返回页面并刷新后，即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Blind OS command injection with output redirection</title><link>/posts/2024/os-command-injection-lab-blind-output-redirection/</link><pubDate>Sun, 15 Dec 2024 21:37:30 +0800</pubDate><guid>/posts/2024/os-command-injection-lab-blind-output-redirection/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Blind OS command injection with output redirection</title><link>/portswigger-posts/os-command-injection-lab-blind-output-redirection/</link><pubDate>Sun, 15 Dec 2024 21:37:30 +0800</pubDate><guid>/portswigger-posts/os-command-injection-lab-blind-output-redirection/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/os-command-injection-lab-blind-output-redirection-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/os-command-injection-lab-blind-output-redirection-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -63,7 +63,7 @@
 &lt;li>参考图片请求，将上述输出路径设置入url&lt;code>/image?filename=output.txt&lt;/code>，即可解题
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>peter-00pfjq
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Blind OS command injection with time delays</title><link>/posts/2024/os-command-injection-lab-blind-time-delays/</link><pubDate>Sun, 15 Dec 2024 21:28:55 +0800</pubDate><guid>/posts/2024/os-command-injection-lab-blind-time-delays/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Blind OS command injection with time delays</title><link>/portswigger-posts/os-command-injection-lab-blind-time-delays/</link><pubDate>Sun, 15 Dec 2024 21:28:55 +0800</pubDate><guid>/portswigger-posts/os-command-injection-lab-blind-time-delays/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/os-command-injection-lab-blind-time-delays-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/os-command-injection-lab-blind-time-delays-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -78,7 +78,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=hWJPoizsRhwEmqpWy4YhB0OnDapdOJdV&amp;amp;name=1&amp;amp;email=x||ping+-c+10+127.0.0.1||&amp;amp;subject=1&amp;amp;message=1
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: OS command injection, simple case</title><link>/posts/2024/os-command-injection-lab-simple/</link><pubDate>Sun, 15 Dec 2024 21:17:18 +0800</pubDate><guid>/posts/2024/os-command-injection-lab-simple/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: OS command injection, simple case</title><link>/portswigger-posts/os-command-injection-lab-simple/</link><pubDate>Sun, 15 Dec 2024 21:17:18 +0800</pubDate><guid>/portswigger-posts/os-command-injection-lab-simple/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/os-command-injection-lab-simple-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/os-command-injection-lab-simple-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>

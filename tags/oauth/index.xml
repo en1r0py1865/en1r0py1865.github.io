@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Oauth on en1r0py</title><link>/tags/oauth/</link><description>Recent content in Oauth on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 22 Dec 2024 13:33:08 +0800</lastBuildDate><atom:link href="/tags/oauth/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: Stealing OAuth access tokens via a proxy page</title><link>/posts/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-a-proxy-page/</link><pubDate>Sun, 22 Dec 2024 13:33:08 +0800</pubDate><guid>/posts/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-a-proxy-page/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Oauth on en1r0py</title><link>/tags/oauth/</link><description>Recent content in Oauth on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 22 Dec 2024 13:33:08 +0800</lastBuildDate><atom:link href="/tags/oauth/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: Stealing OAuth access tokens via a proxy page</title><link>/portswigger-posts/oauth-lab-oauth-stealing-oauth-access-tokens-via-a-proxy-page/</link><pubDate>Sun, 22 Dec 2024 13:33:08 +0800</pubDate><guid>/portswigger-posts/oauth-lab-oauth-stealing-oauth-access-tokens-via-a-proxy-page/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-a-proxy-page-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-a-proxy-page-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -71,7 +71,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>回到主页，点击最上方的&lt;code>Submit solution&lt;/code>，并输入apikey内容即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Stealing OAuth access tokens via an open redirect</title><link>/posts/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-an-open-redirect/</link><pubDate>Thu, 19 Dec 2024 21:24:42 +0800</pubDate><guid>/posts/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-an-open-redirect/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Stealing OAuth access tokens via an open redirect</title><link>/portswigger-posts/oauth-lab-oauth-stealing-oauth-access-tokens-via-an-open-redirect/</link><pubDate>Thu, 19 Dec 2024 21:24:42 +0800</pubDate><guid>/portswigger-posts/oauth-lab-oauth-stealing-oauth-access-tokens-via-an-open-redirect/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-an-open-redirect-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/oauth-lab-oauth-stealing-oauth-access-tokens-via-an-open-redirect-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -148,7 +148,7 @@
 &lt;li>
 &lt;p>回到主页，点击最上方的&lt;code>Submit solution&lt;/code>，并输入&lt;code>apikey&lt;/code>内容即可解题&lt;/p>
 &lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: OAuth account hijacking via redirect_uri</title><link>/posts/2024/oauth-lab-oauth-account-hijacking-via-redirect-uri/</link><pubDate>Wed, 18 Dec 2024 22:06:13 +0800</pubDate><guid>/posts/2024/oauth-lab-oauth-account-hijacking-via-redirect-uri/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: OAuth account hijacking via redirect_uri</title><link>/portswigger-posts/oauth-lab-oauth-account-hijacking-via-redirect-uri/</link><pubDate>Wed, 18 Dec 2024 22:06:13 +0800</pubDate><guid>/portswigger-posts/oauth-lab-oauth-account-hijacking-via-redirect-uri/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/oauth-lab-oauth-account-hijacking-via-redirect-uri-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/oauth-lab-oauth-account-hijacking-via-redirect-uri-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -184,7 +184,7 @@
 &lt;li>
 &lt;p>点击右上角&lt;code>Admin panel&lt;/code>后点击&lt;code>carlos - Delete&lt;/code>即可解题&lt;/p>
 &lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Forced OAuth profile linking</title><link>/posts/2024/oauth-lab-oauth-forced-oauth-profile-linking/</link><pubDate>Tue, 17 Dec 2024 21:45:56 +0800</pubDate><guid>/posts/2024/oauth-lab-oauth-forced-oauth-profile-linking/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Forced OAuth profile linking</title><link>/portswigger-posts/oauth-lab-oauth-forced-oauth-profile-linking/</link><pubDate>Tue, 17 Dec 2024 21:45:56 +0800</pubDate><guid>/portswigger-posts/oauth-lab-oauth-forced-oauth-profile-linking/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/oauth-lab-oauth-forced-oauth-profile-linking-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/oauth-lab-oauth-forced-oauth-profile-linking-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -211,7 +211,7 @@
 &lt;li>回到主页后通过&lt;code>Login with social media&lt;/code>登录，已提权为Admin
 &lt;img alt="Role Admin" src="/img/2024/oauth-lab-oauth-forced-oauth-profile-linking-4.jpg">&lt;/li>
 &lt;li>点击右上方&lt;code>Admin panel&lt;/code>后点击&lt;code>carlos - Delete&lt;/code> 即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: SSRF via OpenID dynamic client registration</title><link>/posts/2024/oauth-lab-oauth-ssrf-via-openid-dynamic-client-registration/</link><pubDate>Mon, 16 Dec 2024 22:09:47 +0800</pubDate><guid>/posts/2024/oauth-lab-oauth-ssrf-via-openid-dynamic-client-registration/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: SSRF via OpenID dynamic client registration</title><link>/portswigger-posts/oauth-lab-oauth-ssrf-via-openid-dynamic-client-registration/</link><pubDate>Mon, 16 Dec 2024 22:09:47 +0800</pubDate><guid>/portswigger-posts/oauth-lab-oauth-ssrf-via-openid-dynamic-client-registration/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/oauth-lab-oauth-ssrf-via-openid-dynamic-client-registration-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/oauth-lab-oauth-ssrf-via-openid-dynamic-client-registration-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -340,7 +340,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>回到页面点击最上方&lt;code>Submit solution&lt;/code>输入&lt;code>Nb9HY7w7BExzierfGxfOjvEuRIypEJgcoak1yx2l&lt;/code>即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Authentication bypass via OAuth implicit flow</title><link>/posts/2024/oauth-lab-oauth-authentication-bypass-via-oauth-implicit-flow/</link><pubDate>Mon, 16 Dec 2024 21:43:57 +0800</pubDate><guid>/posts/2024/oauth-lab-oauth-authentication-bypass-via-oauth-implicit-flow/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Authentication bypass via OAuth implicit flow</title><link>/portswigger-posts/oauth-lab-oauth-authentication-bypass-via-oauth-implicit-flow/</link><pubDate>Mon, 16 Dec 2024 21:43:57 +0800</pubDate><guid>/portswigger-posts/oauth-lab-oauth-authentication-bypass-via-oauth-implicit-flow/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/oauth-lab-oauth-authentication-bypass-via-oauth-implicit-flow-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/oauth-lab-oauth-authentication-bypass-via-oauth-implicit-flow-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>

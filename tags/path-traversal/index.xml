@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Path-Traversal on en1r0py</title><link>/tags/path-traversal/</link><description>Recent content in Path-Traversal on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 28 Nov 2024 23:21:04 +0800</lastBuildDate><atom:link href="/tags/path-traversal/index.xml" rel="self" type="application/rss+xml"/><item><title>[Write Up]Lab: File path traversal, validation of file extension with null byte bypass</title><link>/portswigger-posts/file-path-traversal-lab-validate-file-extension-null-byte-bypass/</link><pubDate>Thu, 28 Nov 2024 23:21:04 +0800</pubDate><guid>/portswigger-posts/file-path-traversal-lab-validate-file-extension-null-byte-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-validate-file-extension-null-byte-bypass-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-validate-file-extension-null-byte-bypass-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>请求内容同&lt;a href="/portswigger-posts/file-path-traversal-lab-simple/">前题&lt;/a>，且题目中也提到图片资源请求中包含路径遍历漏洞&lt;/li>
+&lt;li>但不同于前题，题目中提到&lt;code>The application validates that the supplied filename ends with the expected file extension.&lt;/code>；使用&lt;code>null byte&lt;/code>通过文件扩展名检查&lt;/li>
+&lt;li>最终url为&lt;code>/image?filename=../../../etc/passwd%00.jpg&lt;/code>&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: File path traversal, validation of start of path</title><link>/portswigger-posts/file-path-traversal-lab-validate-start-of-path/</link><pubDate>Thu, 28 Nov 2024 23:14:23 +0800</pubDate><guid>/portswigger-posts/file-path-traversal-lab-validate-start-of-path/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-validate-start-of-path-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-validate-start-of-path-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>请求内容同&lt;a href="/portswigger-posts/file-path-traversal-lab-simple/">前题&lt;/a>，且题目中也提到图片资源请求中包含路径遍历漏洞&lt;/li>
+&lt;li>但不同于前题，题目中提到&lt;code>The application transmits the full file path via a request parameter, and validates that the supplied path starts with the expected folder.&lt;/code>，此题的图片资源请求路径为&lt;code>/image?filename=/var/www/images/xx.jpg&lt;/code>，需要以&lt;code>/var/www/images&lt;/code>为起始路径&lt;/li>
+&lt;li>最终url为&lt;code>/image?filename=/var/www/images/../../../etc/passwd&lt;/code>&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: File path traversal, traversal sequences stripped with superfluous URL-decode</title><link>/portswigger-posts/file-path-traversal-lab-superfluous-url-decode/</link><pubDate>Thu, 28 Nov 2024 22:53:46 +0800</pubDate><guid>/portswigger-posts/file-path-traversal-lab-superfluous-url-decode/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-superfluous-url-decode-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-superfluous-url-decode-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>请求内容同&lt;a href="/portswigger-posts/file-path-traversal-lab-simple/">前题&lt;/a>，且题目中也提到图片资源请求中包含路径遍历漏洞&lt;/li>
+&lt;li>但不同于前题，题目中提到&lt;code>The application blocks input containing path traversal sequences. It then performs a URL-decode of the input before using it.&lt;/code>&lt;/li>
+&lt;li>url编码对应如下
+&lt;ul>
+&lt;li>&lt;code>.&lt;/code>: %2e&lt;/li>
+&lt;li>&lt;code>/&lt;/code>: %2f&lt;/li>
+&lt;li>&lt;code>%&lt;/code>: %25&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>参考上述编码&lt;code>../../../etc/passwd&lt;/code>的url编码为&lt;code>%252e%252e%252f%252e%252e%252f%252e%252e%252fetc/passwd&lt;/code>&lt;/li>
+&lt;li>最终url为&lt;code>/image?filename=%252e%252e%252f%252e%252e%252f%252e%252e%252fetc/passwd&lt;/code>&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: File path traversal, traversal sequences stripped non-recursively</title><link>/portswigger-posts/file-path-traversal-lab-sequences-stripped-non-recursively/</link><pubDate>Thu, 28 Nov 2024 22:26:34 +0800</pubDate><guid>/portswigger-posts/file-path-traversal-lab-sequences-stripped-non-recursively/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-sequences-stripped-non-recursively-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-sequences-stripped-non-recursively-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>请求内容同&lt;a href="/portswigger-posts/file-path-traversal-lab-simple/">前题&lt;/a>，且题目中也提到图片资源请求中包含路径遍历漏洞&lt;/li>
+&lt;li>但不同于前题，题目中提到&lt;code>The application strips path traversal sequences from the user-supplied filename before using it.&lt;/code>&lt;/li>
+&lt;li>最终url为&lt;code>/image?filename=....//....//....//etc//passwd&lt;/code>&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: File path traversal, traversal sequences blocked with absolute path bypass</title><link>/portswigger-posts/file-path-traversal-lab-absolute-path-bypass/</link><pubDate>Thu, 28 Nov 2024 22:06:08 +0800</pubDate><guid>/portswigger-posts/file-path-traversal-lab-absolute-path-bypass/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-absolute-path-bypass-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-absolute-path-bypass-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>请求内容同&lt;a href="/portswigger-posts/file-path-traversal-lab-simple/">前题&lt;/a>，且题目中也提到图片资源请求中包含路径遍历漏洞&lt;/li>
+&lt;li>但不同于前题，题目中提到&lt;code>The application blocks traversal sequences but treats the supplied filename as being relative to a default working directory.&lt;/code>&lt;/li>
+&lt;li>最终url为&lt;code>/image?filename=/etc/passwd&lt;/code>&lt;/li>
+&lt;/ol></content></item><item><title>[Write Up]Lab: File path traversal, simple case</title><link>/portswigger-posts/file-path-traversal-lab-simple/</link><pubDate>Thu, 28 Nov 2024 21:24:48 +0800</pubDate><guid>/portswigger-posts/file-path-traversal-lab-simple/</guid><description>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-simple-1.jpg">&lt;/p></description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-simple-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>使用Burp suite观察此Lab，会发现有许多图片资源请求
+&lt;img alt="Lab description" src="/img/2024/file-path-traversal-lab-simple-2.jpg">&lt;/li>
+&lt;li>题目中明确提到图片资源请求中包含路径遍历漏洞，所以尝试在请求url的&lt;code>filename&lt;/code>参数前段不断新增&lt;code>../&lt;/code>便可达成目的；最终url为&lt;code>/image?filename=../../../etc/passwd&lt;/code>&lt;/li>
+&lt;/ol></content></item></channel></rss>
