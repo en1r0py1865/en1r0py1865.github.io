@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on en1r0py</title><link>/posts/</link><description>Recent content in Posts on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 21 Jan 2025 23:49:19 +0800</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Aws安全服务与日志梳理</title><link>/posts/2025/aws-logs/</link><pubDate>Tue, 21 Jan 2025 23:49:19 +0800</pubDate><guid>/posts/2025/aws-logs/</guid><description/><content>&lt;h2 id="安全和合规日志">安全和合规日志&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cloud-Security on en1r0py</title><link>/tags/cloud-security/</link><description>Recent content in Cloud-Security on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 21 Jan 2025 23:49:19 +0800</lastBuildDate><atom:link href="/tags/cloud-security/index.xml" rel="self" type="application/rss+xml"/><item><title>Aws安全服务与日志梳理</title><link>/posts/2025/aws-logs/</link><pubDate>Tue, 21 Jan 2025 23:49:19 +0800</pubDate><guid>/posts/2025/aws-logs/</guid><description/><content>&lt;h2 id="安全和合规日志">安全和合规日志&lt;/h2>
 &lt;ul>
 &lt;li>&lt;a href="https://docs.aws.amazon.com/zh_cn/awscloudtrail/latest/userguide/cloudtrail-user-guide.html">AWS CloudTrail&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://docs.aws.amazon.com/zh_tw/config/latest/developerguide/WhatIsConfig.html">AWS Config&lt;/a>&lt;/li>
@@ -26,57 +26,7 @@
 &lt;ul>
 &lt;li>&lt;a href="https://docs.aws.amazon.com/zh_cn/wellarchitected/latest/framework/welcome.html">AWS Well-Architected 框架&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://docs.aws.amazon.com/zh_cn/wellarchitected/latest/security-pillar/welcome.html?ref=wellarchitected-wp">AWS Well-Architected Framework 的安全性支柱&lt;/a>&lt;/li>
-&lt;/ul></content></item><item><title>在Macos上安装CodeQL并集成VSCode插件</title><link>/posts/2024/installing-codeql-on-macos/</link><pubDate>Thu, 05 Dec 2024 22:05:14 +0800</pubDate><guid>/posts/2024/installing-codeql-on-macos/</guid><description>&lt;ol>
-&lt;li>至&lt;a href="https://github.com/github/codeql-action/releases">codeql-action releases&lt;/a>下载最新版本的&lt;code>codeql-bundle-osx64.tar.gz&lt;/code>&lt;/li>
-&lt;li>解压缩到任一目录，执行以下命令确认可执行&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ ./codeql version
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>CodeQL command-line toolchain release 2.20.0.
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Copyright &lt;span style="color:#f92672">(&lt;/span>C&lt;span style="color:#f92672">)&lt;/span> 2019-2024 GitHub, Inc.
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description><content>&lt;ol>
-&lt;li>至&lt;a href="https://github.com/github/codeql-action/releases">codeql-action releases&lt;/a>下载最新版本的&lt;code>codeql-bundle-osx64.tar.gz&lt;/code>&lt;/li>
-&lt;li>解压缩到任一目录，执行以下命令确认可执行&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ ./codeql version
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>CodeQL command-line toolchain release 2.20.0.
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Copyright &lt;span style="color:#f92672">(&lt;/span>C&lt;span style="color:#f92672">)&lt;/span> 2019-2024 GitHub, Inc.
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
-&lt;li>至VSCode 下载&lt;code>CodeQL&lt;/code>插件
-&lt;img alt="Lab description" src="/img/2024/installing-codeql-on-macos-1.jpg">&lt;/li>
-&lt;li>在&lt;code>CodeQL&lt;/code>插件&lt;code>Manage&lt;/code>中设置&lt;code>Cli: Executable Path&lt;/code>，需要指定到步骤2的二进制位置
-&lt;img alt="Lab description" src="/img/2024/installing-codeql-on-macos-2.jpg">&lt;/li>
-&lt;li>至&lt;code>EXPLORER&lt;/code>中开启任意目录作为CodeQL workspace&lt;/li>
-&lt;li>根据&lt;a href="https://codeql.github.com/docs/codeql-language-guides/basic-query-for-go-code/">Github Basic query for Go code&lt;/a>，尝试从Github上直接导入database&lt;/li>
-&lt;li>点击&lt;code>From Github&lt;/code>后输入&lt;code>https://github.com/go-gorm/gorm&lt;/code>进行导入
-&lt;img alt="From Github" src="/img/2024/installing-codeql-on-macos-3.jpg">&lt;/li>
-&lt;li>导入成功
-&lt;img alt="From Github" src="/img/2024/installing-codeql-on-macos-4.jpg">&lt;/li>
-&lt;li>点击&lt;code>Create one to get started&lt;/code>
-&lt;img alt="From Github" src="/img/2024/installing-codeql-on-macos-5.jpg">&lt;/li>
-&lt;li>创建成功，&lt;code>codeqlProject&lt;/code>为步骤5所开启的目录，&lt;code>codeql-custom-queries-go&lt;/code>为VSCode自动创建
-&lt;img alt="From Github" src="/img/2024/installing-codeql-on-macos-6.jpg">&lt;/li>
-&lt;li>&lt;code>example.ql&lt;/code>内容如下&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/**
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * This is an automatically generated file
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * @name Hello world
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * @kind problem
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * @problem.severity warning
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * @id go/example/hello-world
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> */&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> go
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>from File f
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>select f, &lt;span style="color:#e6db74">&amp;#34;Hello, world!&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="12">
-&lt;li>点击鼠标右键选择&lt;code>CodeQL: Run Query on Selected Database&lt;/code>，扫描结果
-&lt;img alt="From Github" src="/img/2024/installing-codeql-on-macos-7.jpg">&lt;/li>
-&lt;li>尝试&lt;a href="https://github.com/github/codeql/tree/main/go/ql/src/Security">Github 其他规则集&lt;/a>&lt;/li>
-&lt;li>如果是本地代码，则执行下列命令后导入databases&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ codeql database create ./vul_codeql_database -s &amp;lt;local project path&amp;gt; --language&lt;span style="color:#f92672">=&lt;/span>go
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>Aliyun ACK巡检功能复现</title><link>/posts/2024/aliyun-ack-inspection/</link><pubDate>Sat, 09 Nov 2024 11:55:55 +0800</pubDate><guid>/posts/2024/aliyun-ack-inspection/</guid><description>&lt;h2 id="背景">背景&lt;/h2>
+&lt;/ul></content></item><item><title>Aliyun ACK巡检功能复现</title><link>/posts/2024/aliyun-ack-inspection/</link><pubDate>Sat, 09 Nov 2024 11:55:55 +0800</pubDate><guid>/posts/2024/aliyun-ack-inspection/</guid><description>&lt;h2 id="背景">背景&lt;/h2>
 &lt;ul>
 &lt;li>通过Aliyun ACK提供的&lt;a href="https://www.alibabacloud.com/help/zh/ack/ack-managed-and-ack-dedicated/security-and-compliance/use-the-inspection-feature-to-detect-security-risks-in-the-workloads-of-an-ack-cluster">巡检检查功能&lt;/a>进行检查，下列整理安全相关的检查项复现方式以及安全隐患。&lt;/li>
 &lt;/ul></description><content>&lt;h2 id="背景">背景&lt;/h2>

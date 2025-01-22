@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>en1r0py</title><link>/</link><description>Recent content on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 21 Jan 2025 23:49:19 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>Aws安全服务与日志梳理</title><link>/posts/2025/aws-logs/</link><pubDate>Tue, 21 Jan 2025 23:49:19 +0800</pubDate><guid>/posts/2025/aws-logs/</guid><description>安全和合规日志 AWS CloudTrail AWS Config AWS Identity and Access Management (IAM) Access Analyzer AWS Security Hub Amazon Inspector GuardDuty 网络和流量日志 VPC Flow Logs AWS WAF、AWS Firewall Manager 和 AWS Shield Advanced AWS Network Firewall API Gateway CloudFront Logs Route 53 DNS 应用和数据库日志 应用日志 数据库请求日志 容器日志 参考 AWS Well-Architected 框架 AWS Well-Architected Framework 的安全性支柱</description><content>&lt;h2 id="安全和合规日志">安全和合规日志&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>en1r0py</title><link>/</link><description>Recent content on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 21 Jan 2025 23:49:19 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>Aws安全服务与日志梳理</title><link>/posts/2025/aws-logs/</link><pubDate>Tue, 21 Jan 2025 23:49:19 +0800</pubDate><guid>/posts/2025/aws-logs/</guid><description/><content>&lt;h2 id="安全和合规日志">安全和合规日志&lt;/h2>
 &lt;ul>
 &lt;li>&lt;a href="https://docs.aws.amazon.com/zh_cn/awscloudtrail/latest/userguide/cloudtrail-user-guide.html">AWS CloudTrail&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://docs.aws.amazon.com/zh_tw/config/latest/developerguide/WhatIsConfig.html">AWS Config&lt;/a>&lt;/li>
@@ -3492,9 +3492,7 @@ s&lt;img alt="Success" src="/img/2024/authentication-lab-2fa-broken-logic-4.jpg"
 &lt;/ul>
 &lt;h3 id="利用步骤-5">利用步骤&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># wget &amp;lt;pod分配到的宿主机ip&amp;gt;:8081&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>阿里云日志梳理与使用</title><link>/posts/2024/aliyun-security-logs/</link><pubDate>Sat, 12 Oct 2024 00:04:20 +0800</pubDate><guid>/posts/2024/aliyun-security-logs/</guid><description>&lt;p>云日志是任何云检测和响应程序的关键组成部分。日志一直是安全运营中心的重要信息来源，但在云环境中，由于共享责任模型通常限制了组织对托管服务的访问，并且基础设施通过集中式 API 管理，日志往往是获取云环境实时可见性的唯一途径。
-在阿里云环境中，管理云日志对于云安全至关重要，但理解日志以及日志之间的关系可能非常复杂。阿里云提供了多种日志服务和工具，每种日志都有独特的名称、格式和配置选项，了解需要收集哪些日志以及理解每种日志的相关用例，通常是安全团队面临的真正挑战。
-此外，云上资产的可见性也是一个关键因素。通过全面的日志管理，可以实时监控和分析云上资产的状态和活动，确保及时发现和响应潜在的安全威胁。&lt;/p></description><content>&lt;p>云日志是任何云检测和响应程序的关键组成部分。日志一直是安全运营中心的重要信息来源，但在云环境中，由于共享责任模型通常限制了组织对托管服务的访问，并且基础设施通过集中式 API 管理，日志往往是获取云环境实时可见性的唯一途径。
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>阿里云日志梳理与使用</title><link>/posts/2024/aliyun-security-logs/</link><pubDate>Sat, 12 Oct 2024 00:04:20 +0800</pubDate><guid>/posts/2024/aliyun-security-logs/</guid><description/><content>&lt;p>云日志是任何云检测和响应程序的关键组成部分。日志一直是安全运营中心的重要信息来源，但在云环境中，由于共享责任模型通常限制了组织对托管服务的访问，并且基础设施通过集中式 API 管理，日志往往是获取云环境实时可见性的唯一途径。
 在阿里云环境中，管理云日志对于云安全至关重要，但理解日志以及日志之间的关系可能非常复杂。阿里云提供了多种日志服务和工具，每种日志都有独特的名称、格式和配置选项，了解需要收集哪些日志以及理解每种日志的相关用例，通常是安全团队面临的真正挑战。
 此外，云上资产的可见性也是一个关键因素。通过全面的日志管理，可以实时监控和分析云上资产的状态和活动，确保及时发现和响应潜在的安全威胁。&lt;/p>
 &lt;h2 id="认证变更审计日志">认证、变更审计日志&lt;/h2>
@@ -3569,7 +3567,8 @@ s&lt;img alt="Success" src="/img/2024/authentication-lab-2fa-broken-logic-4.jpg"
 &lt;li>恶意文件的下载和执行&lt;/li>
 &lt;li>ECS、容器的命令执行&lt;/li>
 &lt;li>通过元数据服务获取凭证&lt;/li>
-&lt;/ul></content></item><item><title>Wiz Eks Cluster Games</title><link>/posts/2024/wiz-eks-cluster-games/</link><pubDate>Tue, 17 Sep 2024 12:53:24 +0800</pubDate><guid>/posts/2024/wiz-eks-cluster-games/</guid><description/><content>&lt;h2 id="challenge-1-secret-seeker">Challenge 1: Secret Seeker&lt;/h2>
+&lt;/ul></content></item><item><title>Wiz Eks Cluster Games</title><link>/posts/2024/wiz-eks-cluster-games/</link><pubDate>Tue, 17 Sep 2024 12:53:24 +0800</pubDate><guid>/posts/2024/wiz-eks-cluster-games/</guid><description>&lt;img src="/img/2024/wiz-eks-cluster-games.jpg" alt="Certificate" class="center" style="width:70%;" /></description><content>&lt;img src="/img/2024/wiz-eks-cluster-games.jpg" alt="Certificate" class="center" style="width:70%;" />
+&lt;h2 id="challenge-1-secret-seeker">Challenge 1: Secret Seeker&lt;/h2>
 &lt;h3 id="题目">题目&lt;/h3>
 &lt;p>Jumpstart your quest by listing all the secrets in the cluster. Can you spot the flag among them?&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>{
@@ -4022,7 +4021,8 @@ Please be aware: Due to security considerations aimed at safeguarding the CTF in
 &lt;ul>
 &lt;li>创建 ServiceAccount 令牌的权限在 Kubernetes 环境中可能成为权限提升的重要途径。拥有此类权限的恶意行为者可能会假设比他们自己更广泛访问的角色，从而导致未经授权的操作。&lt;/li>
 &lt;li>信任策略定义了哪些主体可以假设角色，任何配置错误都可能使系统暴露于安全风险，例如未经授权的访问或角色假设。&lt;/li>
-&lt;/ul></content></item><item><title>Wiz K8s Lan Party</title><link>/posts/2024/wiz-k8s-lan-party/</link><pubDate>Tue, 03 Sep 2024 22:33:34 +0800</pubDate><guid>/posts/2024/wiz-k8s-lan-party/</guid><description/><content>&lt;h2 id="challenge-1-recon">Challenge 1: RECON&lt;/h2>
+&lt;/ul></content></item><item><title>Wiz K8s Lan Party</title><link>/posts/2024/wiz-k8s-lan-party/</link><pubDate>Tue, 03 Sep 2024 22:33:34 +0800</pubDate><guid>/posts/2024/wiz-k8s-lan-party/</guid><description>&lt;img src="/img/2024/wiz-k8s-lan-party.jpg" alt="Certificate" class="center" style="width:70%;" /></description><content>&lt;img src="/img/2024/wiz-k8s-lan-party.jpg" alt="Certificate" class="center" style="width:70%;" />
+&lt;h2 id="challenge-1-recon">Challenge 1: RECON&lt;/h2>
 &lt;h3 id="题目">题目&lt;/h3>
 &lt;p>As a warmup, utilize &lt;a href="https://thegreycorner.com/2023/12/13/kubernetes-internal-service-discovery.html#kubernetes-dns-to-the-partial-rescue">DNS scanning&lt;/a> to uncover hidden internal services and obtain the flag. We have &amp;ldquo;loaded your machine with &lt;a href="https://gist.github.com/nirohfeld/c596898673ead369cb8992d97a1c764e">dnscan&lt;/a> to ease this process for further challenges.&lt;/p>
 &lt;h3 id="提示">提示&lt;/h3>
@@ -4328,7 +4328,8 @@ Please be aware: Due to security considerations aimed at safeguarding the CTF in
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>wiz_k8s_lan_party&lt;span style="color:#f92672">{&lt;/span>you-are-k8s-net-master-with-great-power-to-mutate-your-way-to-victory&lt;span style="color:#f92672">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="思考-4">思考&lt;/h3>
-&lt;p>避免在动态准入控制放置敏感信息。&lt;/p></content></item><item><title>Wiz Big Iam Challenge</title><link>/posts/2024/wiz-big-iam-challenge/</link><pubDate>Sat, 31 Aug 2024 13:08:52 +0800</pubDate><guid>/posts/2024/wiz-big-iam-challenge/</guid><description/><content>&lt;h2 id="challenge-1-buckets-of-fun">Challenge 1: Buckets of Fun&lt;/h2>
+&lt;p>避免在动态准入控制放置敏感信息。&lt;/p></content></item><item><title>Wiz Big Iam Challenge</title><link>/posts/2024/wiz-big-iam-challenge/</link><pubDate>Sat, 31 Aug 2024 13:08:52 +0800</pubDate><guid>/posts/2024/wiz-big-iam-challenge/</guid><description>&lt;img src="/img/2024/wiz-the-big-iam-challenge-cert.jpg" alt="Certificate" class="center" style="width:70%;" /></description><content>&lt;img src="/img/2024/wiz-the-big-iam-challenge-cert.jpg" alt="Certificate" class="center" style="width:70%;" />
+&lt;h2 id="challenge-1-buckets-of-fun">Challenge 1: Buckets of Fun&lt;/h2>
 &lt;h3 id="解题">解题&lt;/h3>
 &lt;p>查看View IAM Policys&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>{
