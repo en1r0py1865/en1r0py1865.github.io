@@ -1,4 +1,32 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on en1r0py</title><link>/posts/</link><description>Recent content in Posts on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 05 Dec 2024 22:05:14 +0800</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>在Macos上安装CodeQL并集成VSCode插件</title><link>/posts/2024/installing-codeql-on-macos/</link><pubDate>Thu, 05 Dec 2024 22:05:14 +0800</pubDate><guid>/posts/2024/installing-codeql-on-macos/</guid><description>&lt;ol>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on en1r0py</title><link>/posts/</link><description>Recent content in Posts on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 21 Jan 2025 23:49:19 +0800</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Aws安全服务与日志梳理</title><link>/posts/2025/aws-logs/</link><pubDate>Tue, 21 Jan 2025 23:49:19 +0800</pubDate><guid>/posts/2025/aws-logs/</guid><description>安全和合规日志 AWS CloudTrail AWS Config AWS Identity and Access Management (IAM) Access Analyzer AWS Security Hub Amazon Inspector GuardDuty 网络和流量日志 VPC Flow Logs AWS WAF、AWS Firewall Manager 和 AWS Shield Advanced AWS Network Firewall API Gateway CloudFront Logs Route 53 DNS 应用和数据库日志 应用日志 数据库请求日志 容器日志 参考 AWS Well-Architected 框架 AWS Well-Architected Framework 的安全性支柱</description><content>&lt;h2 id="安全和合规日志">安全和合规日志&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/zh_cn/awscloudtrail/latest/userguide/cloudtrail-user-guide.html">AWS CloudTrail&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/zh_tw/config/latest/developerguide/WhatIsConfig.html">AWS Config&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/zh_cn/IAM/latest/UserGuide/what-is-access-analyzer.html">AWS Identity and Access Management (IAM) Access Analyzer&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/zh_cn/securityhub/latest/userguide/what-is-securityhub.html">AWS Security Hub&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/zh_cn/inspector/latest/user/what-is-inspector.html">Amazon Inspector&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/zh_cn/guardduty/latest/ug/what-is-guardduty.html">GuardDuty&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="网络和流量日志">网络和流量日志&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/zh_tw/vpc/latest/userguide/flow-logs.html">VPC Flow Logs&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/zh_cn/waf/latest/developerguide/monitoring_overview.html">AWS WAF、AWS Firewall Manager 和 AWS Shield Advanced&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/zh_cn/network-firewall/latest/developerguide/logging-monitoring.html">AWS Network Firewall&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/zh_cn/apigateway/latest/developerguide/security-monitoring.html">API Gateway&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/zh_cn/AmazonCloudFront/latest/DeveloperGuide/logging-and-monitoring.html">CloudFront Logs&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/zh_cn/Route53/latest/DeveloperGuide/monitoring-overview.html">Route 53 DNS&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="应用和数据库日志">应用和数据库日志&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/zh_cn/AmazonCloudWatch/latest/monitoring/container-insights-appinsights.html">应用日志&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/zh_cn/AmazonCloudWatch/latest/monitoring/Database-Insights.html">数据库请求日志&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/zh_cn/AmazonCloudWatch/latest/monitoring/ContainerInsights.html">容器日志&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h3 id="参考">参考&lt;/h3>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/zh_cn/wellarchitected/latest/framework/welcome.html">AWS Well-Architected 框架&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/zh_cn/wellarchitected/latest/security-pillar/welcome.html?ref=wellarchitected-wp">AWS Well-Architected Framework 的安全性支柱&lt;/a>&lt;/li>
+&lt;/ul></content></item><item><title>在Macos上安装CodeQL并集成VSCode插件</title><link>/posts/2024/installing-codeql-on-macos/</link><pubDate>Thu, 05 Dec 2024 22:05:14 +0800</pubDate><guid>/posts/2024/installing-codeql-on-macos/</guid><description>&lt;ol>
 &lt;li>至&lt;a href="https://github.com/github/codeql-action/releases">codeql-action releases&lt;/a>下载最新版本的&lt;code>codeql-bundle-osx64.tar.gz&lt;/code>&lt;/li>
 &lt;li>解压缩到任一目录，执行以下命令确认可执行&lt;/li>
 &lt;/ol>
