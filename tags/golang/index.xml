@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Codeql on en1r0py</title><link>/tags/codeql/</link><description>Recent content in Codeql on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 27 Jan 2025 17:03:28 +0800</lastBuildDate><atom:link href="/tags/codeql/index.xml" rel="self" type="application/rss+xml"/><item><title>Codeql与Golang编译器</title><link>/posts/2025/codeql-and-the-go-compiler/</link><pubDate>Mon, 27 Jan 2025 17:03:28 +0800</pubDate><guid>/posts/2025/codeql-and-the-go-compiler/</guid><description>&lt;p>开始接触CodeQL时看到&lt;a href="https://github.blog/developer-skills/github/codeql-zero-to-hero-part-1-the-fundamentals-of-static-analysis-for-vulnerability-research/">CodeQL zero to hero part 1: The fundamentals of static analysis for vulnerability research&lt;/a>，当中提到许多的概念，例如AST(Abstract Syntax Tree)、CFG(Control Flow Graph)、SSA(Static Single Assignment)，用作提升代码审计的准确性与效率；在CodeQL文章中也提到上述概念都是参考编译器理论，本文章将通过Golang编译器说明上述概念，并比较CodeQL对应概念下的情况。&lt;/p></description><content>&lt;p>开始接触CodeQL时看到&lt;a href="https://github.blog/developer-skills/github/codeql-zero-to-hero-part-1-the-fundamentals-of-static-analysis-for-vulnerability-research/">CodeQL zero to hero part 1: The fundamentals of static analysis for vulnerability research&lt;/a>，当中提到许多的概念，例如AST(Abstract Syntax Tree)、CFG(Control Flow Graph)、SSA(Static Single Assignment)，用作提升代码审计的准确性与效率；在CodeQL文章中也提到上述概念都是参考编译器理论，本文章将通过Golang编译器说明上述概念，并比较CodeQL对应概念下的情况。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Golang on en1r0py</title><link>/tags/golang/</link><description>Recent content in Golang on en1r0py</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 27 Jan 2025 17:03:28 +0800</lastBuildDate><atom:link href="/tags/golang/index.xml" rel="self" type="application/rss+xml"/><item><title>Codeql与Golang编译器</title><link>/posts/2025/codeql-and-the-go-compiler/</link><pubDate>Mon, 27 Jan 2025 17:03:28 +0800</pubDate><guid>/posts/2025/codeql-and-the-go-compiler/</guid><description>&lt;p>开始接触CodeQL时看到&lt;a href="https://github.blog/developer-skills/github/codeql-zero-to-hero-part-1-the-fundamentals-of-static-analysis-for-vulnerability-research/">CodeQL zero to hero part 1: The fundamentals of static analysis for vulnerability research&lt;/a>，当中提到许多的概念，例如AST(Abstract Syntax Tree)、CFG(Control Flow Graph)、SSA(Static Single Assignment)，用作提升代码审计的准确性与效率；在CodeQL文章中也提到上述概念都是参考编译器理论，本文章将通过Golang编译器说明上述概念，并比较CodeQL对应概念下的情况。&lt;/p></description><content>&lt;p>开始接触CodeQL时看到&lt;a href="https://github.blog/developer-skills/github/codeql-zero-to-hero-part-1-the-fundamentals-of-static-analysis-for-vulnerability-research/">CodeQL zero to hero part 1: The fundamentals of static analysis for vulnerability research&lt;/a>，当中提到许多的概念，例如AST(Abstract Syntax Tree)、CFG(Control Flow Graph)、SSA(Static Single Assignment)，用作提升代码审计的准确性与效率；在CodeQL文章中也提到上述概念都是参考编译器理论，本文章将通过Golang编译器说明上述概念，并比较CodeQL对应概念下的情况。&lt;/p>
 &lt;h2 id="golang编译阶段">Golang编译阶段&lt;/h2>
 &lt;p>编译器通常按以下几个阶段工作。而CodeQL主要参考编译器前端阶段
 &lt;img src="/img/2025/codeql-and-the-go-compiler-1.jpg" alt="Compilation Process Phases" class="center" style="width:40%;" />
@@ -131,76 +131,4 @@ Golang可以使用下述命令，打印出为&lt;code>injectHandler&lt;/code>函
 &lt;p>通过VSCode产生CodeQL的AST
 &lt;img src="/img/2025/codeql-and-the-go-compiler-3.jpg" alt="CodeQL AST" class="left" style="width:100%;" />
 &lt;/p>
-&lt;p>两者在表述AST的结构上还是有很大的差异，但目的都是表述语法规则的树状数据结构。&lt;/p></content></item><item><title>在Macos上安装CodeQL并集成VSCode插件</title><link>/posts/2024/installing-codeql-on-macos/</link><pubDate>Thu, 05 Dec 2024 22:05:14 +0800</pubDate><guid>/posts/2024/installing-codeql-on-macos/</guid><description>&lt;ol>
-&lt;li>至&lt;a href="https://github.com/github/codeql-action/releases">codeql-action releases&lt;/a>下载最新版本的&lt;code>codeql-bundle-osx64.tar.gz&lt;/code>&lt;/li>
-&lt;li>解压缩到任一目录，执行以下命令确认可执行
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ ./codeql version
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>CodeQL command-line toolchain release 2.20.0.
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Copyright &lt;span style="color:#f92672">(&lt;/span>C&lt;span style="color:#f92672">)&lt;/span> 2019-2024 GitHub, Inc.
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ol></description><content>&lt;ol>
-&lt;li>至&lt;a href="https://github.com/github/codeql-action/releases">codeql-action releases&lt;/a>下载最新版本的&lt;code>codeql-bundle-osx64.tar.gz&lt;/code>&lt;/li>
-&lt;li>解压缩到任一目录，执行以下命令确认可执行
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ ./codeql version
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>CodeQL command-line toolchain release 2.20.0.
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Copyright &lt;span style="color:#f92672">(&lt;/span>C&lt;span style="color:#f92672">)&lt;/span> 2019-2024 GitHub, Inc.
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ol>
-&lt;ol start="3">
-&lt;li>至VSCode 下载&lt;code>CodeQL&lt;/code>插件
-&lt;img alt="Lab description" src="/img/2024/installing-codeql-on-macos-1.jpg">&lt;/li>
-&lt;li>在&lt;code>CodeQL&lt;/code>插件&lt;code>Manage&lt;/code>中设置&lt;code>Cli: Executable Path&lt;/code>，需要指定到步骤2的二进制位置
-&lt;img alt="Lab description" src="/img/2024/installing-codeql-on-macos-2.jpg">&lt;/li>
-&lt;li>至&lt;code>EXPLORER&lt;/code>中开启任意目录作为CodeQL workspace&lt;/li>
-&lt;li>根据&lt;a href="https://codeql.github.com/docs/codeql-language-guides/basic-query-for-go-code/">Github Basic query for Go code&lt;/a>，尝试从Github上直接导入database&lt;/li>
-&lt;li>点击&lt;code>From Github&lt;/code>后输入&lt;code>https://github.com/go-gorm/gorm&lt;/code>进行导入
-&lt;img alt="From Github" src="/img/2024/installing-codeql-on-macos-3.jpg">&lt;/li>
-&lt;li>导入成功
-&lt;img alt="From Github" src="/img/2024/installing-codeql-on-macos-4.jpg">&lt;/li>
-&lt;li>点击&lt;code>Create one to get started&lt;/code>
-&lt;img alt="From Github" src="/img/2024/installing-codeql-on-macos-5.jpg">&lt;/li>
-&lt;li>创建成功，&lt;code>codeqlProject&lt;/code>为步骤5所开启的目录，&lt;code>codeql-custom-queries-go&lt;/code>为VSCode自动创建
-&lt;img alt="From Github" src="/img/2024/installing-codeql-on-macos-6.jpg">&lt;/li>
-&lt;li>&lt;code>example.ql&lt;/code>内容如下&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> go
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">from&lt;/span> File f
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>select f, &lt;span style="color:#e6db74">&amp;#34;Hello, world!&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="12">
-&lt;li>点击鼠标右键选择&lt;code>CodeQL: Run Query on Selected Database&lt;/code>，扫描结果
-&lt;img alt="From Github" src="/img/2024/installing-codeql-on-macos-7.jpg">&lt;/li>
-&lt;li>尝试&lt;a href="https://github.com/github/codeql/tree/main/go/ql/src/Security">Github 其他规则集&lt;/a>&lt;/li>
-&lt;li>如果是本地代码，则执行下列命令后导入databases
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ codeql database create ./vul_codeql_database -s &amp;lt;local project path&amp;gt; --language&lt;span style="color:#f92672">=&lt;/span>go
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ol>
-&lt;hr>
-&lt;h2 id="troubleshooting">Troubleshooting&lt;/h2>
-&lt;h4 id="bad-cpu-type-in-executable">Bad CPU type in executable&lt;/h4>
-&lt;ol>
-&lt;li>执行&lt;code>codeql database create&lt;/code>时出现&lt;code>Bad CPU type in executable&lt;/code>，具体情况如下
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ codeql database create ./vul_codeql_database -s &amp;lt;local project path&amp;gt; --language&lt;span style="color:#f92672">=&lt;/span>go
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span>build-stderr&lt;span style="color:#f92672">]&lt;/span> Runner failed to start &lt;span style="color:#e6db74">&amp;#39;&amp;lt;codeql path&amp;gt;/go/tools/autobuild.sh&amp;#39;&lt;/span>: Bad CPU type in executable
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span>ERROR&lt;span style="color:#f92672">]&lt;/span> Spawned process exited abnormally &lt;span style="color:#f92672">(&lt;/span>code 1; tried to run: &lt;span style="color:#f92672">[&lt;/span>&amp;lt;codeql path&amp;gt;/tools/osx64/preload_tracer, &amp;lt;codeql path&amp;gt;/go/tools/autobuild.sh&lt;span style="color:#f92672">])&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>A fatal error occurred: Exit status &lt;span style="color:#ae81ff">1&lt;/span> from command: &lt;span style="color:#f92672">[&lt;/span>&amp;lt;codeql path&amp;gt;/go/tools/autobuild.sh&lt;span style="color:#f92672">]&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;li>安装&lt;code>Rosetta 2&lt;/code>即可解决
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ /usr/sbin/softwareupdate --install-rosetta --agree-to-license
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Install of Rosetta &lt;span style="color:#ae81ff">2&lt;/span> finished successfully
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ol>
-&lt;h4 id="codeql-detected-code-written-in-go-but-could-not-process-any-of-it">CodeQL detected code written in Go but could not process any of it.&lt;/h4>
-&lt;ol>
-&lt;li>执行&lt;code>codeql database create&lt;/code>时出现&lt;code>CodeQL detected code written in Go but could not process any of it.&lt;/code>，具体情况如下
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ codeql database create ./vul_codeql_database -s &amp;lt;local project path&amp;gt; --language&lt;span style="color:#f92672">=&lt;/span>go
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Initializing database at &amp;lt;vul_codeql_database path&amp;gt;.
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Running build command: &lt;span style="color:#f92672">[&lt;/span>&amp;lt;codeql path&amp;gt;/go/tools/autobuild.sh&lt;span style="color:#f92672">]&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Running command in &amp;lt;local project path&amp;gt;: &lt;span style="color:#f92672">[&lt;/span>&amp;lt;codeql path&amp;gt;/go/tools/autobuild.sh&lt;span style="color:#f92672">]&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Finalizing database at &amp;lt;vul_codeql_database path&amp;gt;.
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>CodeQL detected code written in Go but could not process any of it. For more information, review our troubleshooting guide at https://gh.io/troubleshooting-code-scanning/no-source-code-seen-during-build.
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;li>目前在本地执行遇到此问题为&lt;a href="https://docs.github.com/en/code-security/code-scanning/troubleshooting-code-scanning/no-source-code-seen-during-build">troubleshooting guide&lt;/a>的&lt;code>3: Compilation of a compiled language failed&lt;/code>，具体为CodeQL在编译目标项目时使用&lt;code>autobuild&lt;/code>进行编译但是失败，所以需要指定编译方式，通过&lt;code>--command&lt;/code>将项目的编译方式传递给CodeQL
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ codeql database create ./vul_codeql_database -s &amp;lt;local project path&amp;gt; --language&lt;span style="color:#f92672">=&lt;/span>go --command&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&amp;lt;build commands&amp;gt;
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ol></content></item></channel></rss>
+&lt;p>两者在表述AST的结构上还是有很大的差异，但目的都是表述语法规则的树状数据结构。&lt;/p></content></item></channel></rss>
