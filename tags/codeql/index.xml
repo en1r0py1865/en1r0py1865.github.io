@@ -44,9 +44,9 @@ Golang编译器的前端阶段主要负责将源代码转换为中间代码(IR)�
 &lt;ul>
 &lt;li>函数定义：包括返回值类型、函数名称、参数列表和函数体。&lt;/li>
 &lt;li>函数体：包含多个语句，如变量声明、赋值语句、条件语句、循环语句等。&lt;/li>
-&lt;li>语句：可以进一步分解为更小的语法单元，直到叶子节点（Token）。&lt;/li>
+&lt;li>语句：可以进一步分解为更小的语法单元，直到叶子节点(Token)。&lt;/li>
 &lt;/ul>
-&lt;p>通过深度优先遍历AST，可以依次得到原来的 Token，从而还原源代码的结构。&lt;/p>
+&lt;p>通过深度优先遍历AST，可以依次得到原来的Token，从而还原源代码的结构。&lt;/p>
 &lt;h3 id="ssa">SSA&lt;/h3>
 &lt;p>SSA是IR的一种形式，用于表示程序的中间状态。SSA的主要特点是每个变量只能被赋值一次，这使得程序的控制流和数据流更加清晰，便于进行各种优化。
 &lt;a href="https://github.com/golang/go/blob/master/src/cmd/compile/internal/ssa/README.md">Go compiler&amp;rsquo;s SSA backend&lt;/a>里面介绍了Golang的SSA的几个主要概念&lt;/p>
@@ -64,7 +64,7 @@ Golang编译器的前端阶段主要负责将源代码转换为中间代码(IR)�
 &lt;h3 id="cfg">CFG&lt;/h3>
 &lt;p>CFG是程序执行路径的图形表示。CFG中每个节点对应一个Block，节点之间的边表示控制流的转移。&lt;/p>
 &lt;h2 id="与codeql关联">与CodeQL关联&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-golang" data-lang="golang">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">package&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-go" data-lang="go">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">package&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> (
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;log&amp;#34;&lt;/span>
